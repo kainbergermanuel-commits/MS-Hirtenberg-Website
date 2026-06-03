@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alle Termine – MS Hirtenberg</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sage:        oklch(52% 0.10 145);
+    --sage-dark:   oklch(38% 0.09 145);
+    --sage-mid:    oklch(62% 0.09 145);
+    --sage-light:  oklch(80% 0.07 145);
+    --sage-pale:   oklch(95% 0.04 145);
+    --blush:       oklch(78% 0.08 15);
+    --blush-dark:  oklch(56% 0.11 15);
+    --blush-pale:  oklch(96% 0.03 15);
+    --sand:        oklch(80% 0.07 75);
+    --sand-pale:   oklch(95% 0.04 75);
+    --cream:       oklch(98% 0.008 88);
+    --cream-mid:   oklch(96% 0.012 88);
+    --cream-dark:  oklch(92% 0.018 88);
+    --text:        oklch(28% 0.05 145);
+    --text-light:  oklch(55% 0.04 145);
+    --white: #fff;
+    --c-test:  oklch(55% 0.18 25);
+    --c-event: oklch(52% 0.10 145);
+    --c-free:  oklch(56% 0.11 15);
+    --c-conf:  oklch(55% 0.12 260);
+    --c-trip:  oklch(58% 0.14 180);
+    --font-heading: 'Lora', Georgia, serif;
+    --font-body: 'Nunito', system-ui, sans-serif;
+    --radius: 12px; --radius-lg: 20px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--font-body); background: var(--cream); color: var(--text); font-size: 16px; line-height: 1.65; }
+
+  /* NAV */
+  nav { background: var(--white); display: flex; align-items: center; justify-content: space-between; padding: 0 48px; height: 68px; border-bottom: 1.5px solid var(--cream-dark); box-shadow: 0 2px 20px oklch(0% 0 0 / 6%); position: sticky; top: 0; z-index: 100; }
+  .nav-logo { font-family: var(--font-heading); color: var(--sage-dark); font-size: 1.2rem; font-weight: 700; text-decoration: none; display: flex; align-items: center; gap: 10px; }
+  .nav-links { display: flex; gap: 4px; list-style: none; }
+  .nav-links a { color: var(--text-light); text-decoration: none; font-size: 0.88rem; font-weight: 600; padding: 7px 15px; border-radius: 30px; transition: background 0.2s, color 0.2s; letter-spacing: 0.01em; }
+  .nav-links a:hover, .nav-links a.active { background: var(--sage-pale); color: var(--sage-dark); }
+
+  /* PAGE HERO */
+  .page-hero { padding: 64px 96px 52px; position: relative; overflow: hidden; background-color: var(--sage-pale); background-image: linear-gradient(to right, oklch(98% 0.008 88 / 0.97) 0%, oklch(98% 0.008 88 / 0.92) 40%, oklch(97% 0.02 60 / 0.66) 58%, oklch(96% 0.03 15 / 0.24) 76%, transparent 94%), url("uploads/grafik-9f6efa7c.png"); background-size: cover, cover; background-position: center, center 58%; background-repeat: no-repeat, no-repeat; }
+  .page-hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, oklch(38% 0.06 145 / 0.10), transparent 38%); pointer-events: none; }
+  .page-hero-tag { display: inline-flex; align-items: center; gap: 7px; background: var(--white); color: var(--sage); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; padding: 5px 14px; border-radius: 30px; margin-bottom: 14px; border: 1.5px solid var(--sage-pale); }
+  .page-hero h1 { font-family: var(--font-heading); color: var(--text); font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 700; margin-bottom: 10px; }
+  .page-hero p { color: var(--text-light); max-width: 560px; }
+  .back-link { display: inline-flex; align-items: center; gap: 8px; color: var(--sage); font-weight: 700; text-decoration: none; font-size: 0.88rem; margin-bottom: 20px; transition: gap 0.2s; }
+  .back-link:hover { gap: 12px; }
+
+  /* FILTERS */
+  .filters-bar { background: var(--white); border-bottom: 1.5px solid var(--cream-dark); padding: 0 96px; display: flex; gap: 4px; position: sticky; top: 68px; z-index: 90; }
+  .filter-btn { background: none; border: none; cursor: pointer; font-family: var(--font-body); font-size: 0.88rem; font-weight: 700; color: var(--text-light); padding: 14px 18px; border-bottom: 3px solid transparent; transition: color 0.15s, border-color 0.15s; white-space: nowrap; }
+  .filter-btn:hover { color: var(--text); }
+  .filter-btn.active { color: var(--sage-dark); border-bottom-color: var(--sage); }
+  .filter-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; }
+
+  /* MAIN LAYOUT */
+  .page-body { max-width: 1200px; margin: 0 auto; padding: 48px 96px 100px; }
+
+  /* SCHULARBEITEN TABLE */
+  .section-block { margin-bottom: 64px; }
+  .section-block-title {
+    font-family: var(--font-heading); font-size: 1.4rem; font-weight: 700;
+    margin-bottom: 24px; padding-bottom: 12px;
+    border-bottom: 2px solid var(--cream-dark);
+    display: flex; align-items: center; gap: 12px;
+  }
+  .section-block-title .title-dot {
+    width: 14px; height: 14px; border-radius: 50%; flex-shrink: 0;
+  }
+  .class-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+  .class-tab {
+    border: none; cursor: pointer;
+    font-family: var(--font-body); font-size: 0.82rem; font-weight: 700;
+    padding: 7px 16px; border-radius: 20px;
+    transition: background 0.15s, color 0.15s, transform 0.1s;
+  }
+  .class-tab:hover { transform: translateY(-1px); filter: brightness(0.92); }
+  .class-tab[data-class="all"]  { background: var(--sage-pale); color: var(--sage-dark); }
+  .class-tab[data-class="all"].active  { background: var(--sage-dark); color: var(--white); }
+  .class-tab[data-class="1a"]  { background: oklch(92% 0.06 145); color: oklch(32% 0.10 145); }
+  .class-tab[data-class="1a"].active  { background: oklch(42% 0.10 145); color: var(--white); }
+  .class-tab[data-class="1b"]  { background: oklch(92% 0.06 165); color: oklch(32% 0.10 165); }
+  .class-tab[data-class="1b"].active  { background: oklch(42% 0.10 165); color: var(--white); }
+  .class-tab[data-class="2a"]  { background: oklch(93% 0.06 230); color: oklch(32% 0.10 230); }
+  .class-tab[data-class="2a"].active  { background: oklch(42% 0.10 230); color: var(--white); }
+  .class-tab[data-class="2b"]  { background: oklch(92% 0.06 250); color: oklch(32% 0.10 250); }
+  .class-tab[data-class="2b"].active  { background: oklch(42% 0.10 250); color: var(--white); }
+  .class-tab[data-class="3a"]  { background: oklch(93% 0.07 30); color: oklch(34% 0.12 30); }
+  .class-tab[data-class="3a"].active  { background: oklch(44% 0.12 30); color: var(--white); }
+  .class-tab[data-class="3b"]  { background: oklch(93% 0.07 15); color: oklch(36% 0.12 15); }
+  .class-tab[data-class="3b"].active  { background: oklch(46% 0.12 15); color: var(--white); }
+  .class-tab[data-class="4a"]  { background: oklch(93% 0.07 68); color: oklch(36% 0.12 68); }
+  .class-tab[data-class="4a"].active  { background: oklch(46% 0.12 68); color: var(--white); }
+  .class-tab[data-class="4b"]  { background: oklch(92% 0.07 50); color: oklch(35% 0.12 50); }
+  .class-tab[data-class="4b"].active  { background: oklch(45% 0.12 50); color: var(--white); }
+
+  /* EVENT DETAIL CARDS */
+  .event-detail-card {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 10px oklch(0% 0 0 / 5%);
+    border: 1.5px solid var(--cream-dark);
+    transition: box-shadow 0.2s;
+  }
+  .event-detail-card:hover { box-shadow: 0 4px 20px oklch(0% 0 0 / 10%); }
+  .event-detail-card[data-hidden="true"] { display: none; }
+  .event-card-header {
+    display: flex; align-items: center; gap: 20px;
+    padding: 20px 24px; cursor: pointer;
+  }
+  .event-card-color-bar { width: 6px; height: 56px; border-radius: 3px; flex-shrink: 0; }
+  .event-card-date-badge { min-width: 52px; text-align: center; }
+  .event-card-date-day { font-size: 1.6rem; font-weight: 700; line-height: 1; color: var(--text); font-family: var(--font-heading); }
+  .event-card-date-rest { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-light); }
+  .event-card-main { flex: 1; }
+  .event-card-tag { display: inline-block; font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; padding: 2px 8px; border-radius: 20px; margin-bottom: 4px; }
+  .event-card-name { font-weight: 700; font-size: 1rem; margin-bottom: 2px; }
+  .event-card-short { font-size: 0.83rem; color: var(--text-light); }
+  .event-card-chevron { font-size: 1rem; color: var(--text-light); transition: transform 0.2s; flex-shrink: 0; }
+  .event-detail-card.open .event-card-chevron { transform: rotate(180deg); }
+
+  .event-card-body {
+    display: none;
+    padding: 0 24px 24px 24px;
+    border-top: 1.5px solid var(--cream-dark);
+    margin-top: 0;
+  }
+  .event-detail-card.open .event-card-body { display: block; }
+  .event-info-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+    margin-top: 20px;
+  }
+  .event-info-item { }
+  .event-info-label { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.09em; color: var(--text-light); margin-bottom: 3px; }
+  .event-info-value { font-size: 0.9rem; font-weight: 600; color: var(--text); }
+  .event-note {
+    margin-top: 16px; padding: 14px 16px;
+    background: var(--cream); border-radius: var(--radius);
+    border-left: 4px solid var(--amber);
+    font-size: 0.88rem; color: var(--text-light);
+  }
+  .event-note strong { color: var(--text); }
+
+  /* MONTH DIVIDERS */
+  .month-divider {
+    font-family: var(--font-heading); font-size: 0.95rem; font-weight: 700;
+    color: var(--text-light); text-transform: uppercase; letter-spacing: 0.1em;
+    padding: 8px 0; margin: 28px 0 12px;
+    display: flex; align-items: center; gap: 14px;
+  }
+  .month-divider::after { content: ''; flex: 1; height: 1.5px; background: var(--cream-dark); }
+
+  /* TAG COLORS */
+  .tag-test  { background: oklch(92% 0.06 25);  color: oklch(38% 0.16 25); }
+  .tag-event { background: var(--sage-pale);   color: var(--sage-dark); }
+  .tag-free  { background: var(--blush-pale);  color: var(--blush-dark); }
+  .tag-conf  { background: oklch(92% 0.05 260); color: oklch(33% 0.12 260); }
+  .tag-trip  { background: oklch(90% 0.06 180); color: oklch(33% 0.14 180); }
+  .bar-test  { background: var(--c-test); }
+  .bar-event { background: var(--c-event); }
+  .bar-free  { background: var(--c-free); }
+  .bar-conf  { background: var(--c-conf); }
+  .bar-trip  { background: var(--c-trip); }
+
+  footer { background: var(--sage-dark); padding: 32px 48px; display: flex; align-items: center; justify-content: space-between; color: var(--sage-light); font-size: 0.85rem; margin-top: 0; }
+  footer a { color: var(--sage-light); text-decoration: none; }
+  footer a:hover { color: var(--white); }
+
+  @media (max-width: 900px) {
+    nav { padding: 0 20px; }
+    .page-hero { padding: 40px 20px 32px; }
+    .filters-bar { padding: 0 20px; overflow-x: auto; }
+    .page-body { padding: 32px 20px 80px; }
+    .event-info-grid { grid-template-columns: 1fr 1fr; }
+    footer { flex-direction: column; gap: 12px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <svg width="38" height="38" viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="19" cy="19" r="17" fill="none" stroke="oklch(52% 0.10 145)" stroke-width="1.3"/>
+      <circle cx="19" cy="19" r="13.5" fill="none" stroke="oklch(52% 0.10 145)" stroke-width="0.4" opacity="0.4"/>
+      <line x1="19" y1="27" x2="19" y2="22" stroke="oklch(52% 0.10 145)" stroke-width="1.4" stroke-linecap="round"/>
+      <path d="M19 22 C22 18 22 12 19 11 C16 12 16 18 19 22Z" fill="oklch(52% 0.10 145)"/>
+      <path d="M19 22 C15 19 12 15 13 13 C15 13 18 18 19 22Z" fill="oklch(68% 0.09 145)"/>
+      <path d="M19 22 C23 19 26 15 25 13 C23 13 20 18 19 22Z" fill="oklch(68% 0.09 145)"/>
+      <circle cx="19" cy="2" r="1.8" fill="oklch(60% 0.11 68)"/>
+    </svg>
+  </a>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#ueber">Über uns</a></li>
+    <li><a href="index.html#news">News</a></li>
+    <li><a href="index.html#kalender">Kalender</a></li>
+    <li><a href="termine.html" class="active">Termine</a></li>
+    <li><a href="index.html#team">Lehrpersonal</a></li>
+    <li><a href="index.html#galerie">Galerie</a></li>
+    <li><a href="index.html#kontakt">Kontakt</a></li>
+  </ul>
+</nav>
+
+<div class="page-hero">
+  <a href="index.html#kalender" class="back-link">← Zurück zum Kalender</a>
+  <div class="page-hero-tag">Schuljahr 2025/26</div>
+  <h1>Alle Termine im Überblick</h1>
+  <p>Schularbeiten nach Klassen, Veranstaltungen, schulfreie Tage und Konferenzen — vollständig für das gesamte Schuljahr.</p>
+</div>
+
+<div class="filters-bar">
+  <button class="filter-btn active" onclick="filterEvents('all', this)">Alle Termine</button>
+  <button class="filter-btn" onclick="filterEvents('test', this)"><span class="filter-dot" style="background:var(--c-test)"></span>Schularbeiten</button>
+  <button class="filter-btn" onclick="filterEvents('event', this)"><span class="filter-dot" style="background:var(--c-event)"></span>Veranstaltungen</button>
+  <button class="filter-btn" onclick="filterEvents('free', this)"><span class="filter-dot" style="background:var(--c-free)"></span>Schulfrei</button>
+  <button class="filter-btn" onclick="filterEvents('conf', this)"><span class="filter-dot" style="background:var(--c-conf)"></span>Konferenzen</button>
+  <button class="filter-btn" onclick="filterEvents('trip', this)"><span class="filter-dot" style="background:var(--c-trip)"></span>Ausflüge</button>
+</div>
+
+<div class="page-body">
+
+  <!-- SCHULARBEITEN NACH KLASSEN -->
+  <div class="section-block" data-section="test">
+    <div class="section-block-title">
+      <div class="title-dot" style="background:var(--c-test)"></div>
+      Schularbeiten nach Klassen
+    </div>
+    <div class="class-tabs">
+      <button class="class-tab active" onclick="filterClass('all', this)">Alle Klassen</button>
+      <button class="class-tab" onclick="filterClass('1a', this)">1a</button>
+      <button class="class-tab" onclick="filterClass('1b', this)">1b</button>
+      <button class="class-tab" onclick="filterClass('2a', this)">2a</button>
+      <button class="class-tab" onclick="filterClass('2b', this)">2b</button>
+      <button class="class-tab" onclick="filterClass('3a', this)">3a</button>
+      <button class="class-tab" onclick="filterClass('3b', this)">3b</button>
+      <button class="class-tab" onclick="filterClass('4a', this)">4a</button>
+      <button class="class-tab" onclick="filterClass('4b', this)">4b</button>
+    </div>
+    <div id="schularbeiten-list"></div>
+  </div>
+
+  <!-- ALLE SONSTIGEN TERMINE -->
+  <div class="section-block" data-section="other">
+    <div class="section-block-title">
+      <div class="title-dot" style="background:var(--green-mid)"></div>
+      Veranstaltungen, Feiertage & Konferenzen
+    </div>
+    <div id="other-events-list"></div>
+  </div>
+
+</div>
+
+<footer>
+  <div>© 2026 Mittelschule Hirtenberg · Alle Rechte vorbehalten</div>
+  <div style="display:flex;gap:24px;"><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a><a href="barrierefreiheit.html">Barrierefreiheit</a></div>
+</footer>
+
+<script>
+const MONTHS_DE = ['Jänner','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'];
+const DAYS_DE = ['Sonntag','Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag'];
+
+const TAG_LABELS = { test:'Schularbeit', event:'Veranstaltung', free:'Schulfrei', conf:'Konferenz', trip:'Ausflug' };
+
+// All events with full detail
+const SCHULARBEITEN = [
+  // 1. Klassen
+  { id: 'sa-1a-de-1',  date:'2025-10-14', type:'test', classes:['1a'],     subject:'Deutsch',       nr:'1. Schularbeit', teacher:'Mag. Anna Weidinger',   time:'2. + 3. Stunde', room:'Klasse 1a',    note:'Thema: Aufsatz – Erlebnisbericht. Hilfsmittel: Wörterbuch erlaubt.' },
+  { id: 'sa-1b-de-1',  date:'2025-10-15', type:'test', classes:['1b'],     subject:'Deutsch',       nr:'1. Schularbeit', teacher:'Mag. Anna Weidinger',   time:'2. + 3. Stunde', room:'Klasse 1b',    note:'Thema: Aufsatz – Erlebnisbericht. Hilfsmittel: Wörterbuch erlaubt.' },
+  { id: 'sa-1a-ma-1',  date:'2025-11-06', type:'test', classes:['1a'],     subject:'Mathematik',    nr:'1. Schularbeit', teacher:'Mag. Thomas Kern',      time:'1. + 2. Stunde', room:'Klasse 1a',    note:'Stoff: Kapitel 1–3 (Grundrechenarten, ganze Zahlen). Keine Taschenrechner.' },
+  { id: 'sa-1b-ma-1',  date:'2025-11-07', type:'test', classes:['1b'],     subject:'Mathematik',    nr:'1. Schularbeit', teacher:'Mag. Thomas Kern',      time:'1. + 2. Stunde', room:'Klasse 1b',    note:'Stoff: Kapitel 1–3. Keine Taschenrechner.' },
+  { id: 'sa-1a-en-1',  date:'2025-12-03', type:'test', classes:['1a','1b'],subject:'Englisch',      nr:'1. Schularbeit', teacher:'Mag. Sandra Fuchs',     time:'3. Stunde',      room:'Klasse 1a/b',  note:'Vokabeln Unit 1–4, Grammatik: Simple Present, to be.' },
+  { id: 'sa-1a-ge-2',  date:'2026-03-10', type:'test', classes:['1a','1b'],subject:'Geschichte',    nr:'2. Schularbeit', teacher:'Mag. Peter Langer',     time:'4. Stunde',      room:'Klasse 1a/b',  note:'Stoff: Antikes Griechenland und Römisches Reich.' },
+  { id: 'sa-1a-de-2',  date:'2026-04-28', type:'test', classes:['1a','1b'],subject:'Deutsch',       nr:'2. Schularbeit', teacher:'Mag. Anna Weidinger',   time:'2. + 3. Stunde', room:'Klasse 1a/b',  note:'Thema: Sachtexte analysieren. Hilfsmittel: Wörterbuch erlaubt.' },
+  { id: 'sa-1a-ma-2',  date:'2026-05-12', type:'test', classes:['1a','1b'],subject:'Mathematik',    nr:'2. Schularbeit', teacher:'Mag. Thomas Kern',      time:'1. + 2. Stunde', room:'Klasse 1a/b',  note:'Stoff: Brüche, Dezimalzahlen, Grundgleichungen. Keine Taschenrechner.' },
+
+  // 2. Klassen
+  { id: 'sa-2a-de-1',  date:'2025-10-16', type:'test', classes:['2a'],     subject:'Deutsch',       nr:'1. Schularbeit', teacher:'Mag. Anna Weidinger',   time:'2. + 3. Stunde', room:'Klasse 2a',    note:'Thema: Inhaltsangabe. Erlaubte Hilfsmittel: Wörterbuch.' },
+  { id: 'sa-2b-de-1',  date:'2025-10-17', type:'test', classes:['2b'],     subject:'Deutsch',       nr:'1. Schularbeit', teacher:'Mag. Anna Weidinger',   time:'2. + 3. Stunde', room:'Klasse 2b',    note:'Thema: Inhaltsangabe.' },
+  { id: 'sa-2a-ma-1',  date:'2025-11-13', type:'test', classes:['2a','2b'],subject:'Mathematik',    nr:'1. Schularbeit', teacher:'Mag. Thomas Kern',      time:'1. + 2. Stunde', room:'Klasse 2a/b',  note:'Stoff: Prozentrechnung, Gleichungen.' },
+  { id: 'sa-2a-en-1',  date:'2025-12-04', type:'test', classes:['2a','2b'],subject:'Englisch',      nr:'1. Schularbeit', teacher:'Mag. Sandra Fuchs',     time:'3. Stunde',      room:'Klasse 2a/b',  note:'Vokabeln Unit 1–5, Simple Past, Irregular Verbs.' },
+  { id: 'sa-2a-de-2',  date:'2026-05-20', type:'test', classes:['2a','2b'],subject:'Deutsch',       nr:'2. Schularbeit', teacher:'Mag. Anna Weidinger',   time:'2. + 3. Stunde', room:'Klasse 2a/b',  note:'Thema: Argumentation und Stellungnahme.' },
+  { id: 'sa-2a-ma-2',  date:'2026-05-27', type:'test', classes:['2a','2b'],subject:'Mathematik',    nr:'2. Schularbeit', teacher:'Mag. Thomas Kern',      time:'1. + 2. Stunde', room:'Klasse 2a/b',  note:'Stoff: Geometrie, Flächenberechnungen.' },
+
+  // 3. Klassen
+  { id: 'sa-3a-de-1',  date:'2025-10-09', type:'test', classes:['3a'],     subject:'Deutsch',       nr:'1. Schularbeit', teacher:'Mag. Anna Weidinger',   time:'2. + 3. Stunde', room:'Klasse 3a',    note:'Erörterung zu einem aktuellen Thema.' },
+  { id: 'sa-3b-de-1',  date:'2025-10-10', type:'test', classes:['3b'],     subject:'Deutsch',       nr:'1. Schularbeit', teacher:'Mag. Anna Weidinger',   time:'2. + 3. Stunde', room:'Klasse 3b',    note:'Erörterung zu einem aktuellen Thema.' },
+  { id: 'sa-3a-ma-1',  date:'2025-11-20', type:'test', classes:['3a','3b'],subject:'Mathematik',    nr:'1. Schularbeit', teacher:'Mag. Thomas Kern',      time:'1. + 2. Stunde', room:'Klasse 3a/b',  note:'Stoff: Lineare Funktionen, Gleichungssysteme.' },
+  { id: 'sa-3a-en-1',  date:'2025-12-11', type:'test', classes:['3a','3b'],subject:'Englisch',      nr:'1. Schularbeit', teacher:'Mag. Sandra Fuchs',     time:'3. Stunde',      room:'Klasse 3a/b',  note:'Present Perfect, Passive Voice, Reading Comprehension.' },
+  { id: 'sa-3a-ma-2',  date:'2026-04-28', type:'test', classes:['3a','3b'],subject:'Mathematik',    nr:'2. Schularbeit', teacher:'Mag. Thomas Kern',      time:'1. + 2. Stunde', room:'Klasse 3a/b',  note:'Stoff: Pythagoras, Trigonometrie.' },
+  { id: 'sa-3a-de-2',  date:'2026-05-19', type:'test', classes:['3a','3b'],subject:'Deutsch',       nr:'2. Schularbeit', teacher:'Mag. Anna Weidinger',   time:'2. + 3. Stunde', room:'Klasse 3a/b',  note:'Kreatives Schreiben, freie Themenwahl.' },
+
+  // 4. Klassen
+  { id: 'sa-4a-de-1',  date:'2025-10-08', type:'test', classes:['4a'],     subject:'Deutsch',       nr:'1. Schularbeit', teacher:'Mag. Anna Weidinger',   time:'2. + 3. Stunde', room:'Klasse 4a',    note:'Vorbereitung auf den Bildungsstandards-Test.' },
+  { id: 'sa-4b-de-1',  date:'2025-10-09', type:'test', classes:['4b'],     subject:'Deutsch',       nr:'1. Schularbeit', teacher:'Mag. Anna Weidinger',   time:'2. + 3. Stunde', room:'Klasse 4b',    note:'Vorbereitung auf den Bildungsstandards-Test.' },
+  { id: 'sa-4a-ma-1',  date:'2025-11-27', type:'test', classes:['4a','4b'],subject:'Mathematik',    nr:'1. Schularbeit', teacher:'Mag. Thomas Kern',      time:'1. + 2. Stunde', room:'Klasse 4a/b',  note:'Stoff: Quadratische Gleichungen, Potenzen.' },
+  { id: 'sa-4a-en-1',  date:'2025-12-18', type:'test', classes:['4a','4b'],subject:'Englisch',      nr:'1. Schularbeit', teacher:'Mag. Sandra Fuchs',     time:'3. + 4. Stunde', room:'Klasse 4a/b',  note:'Vollständiger Grammatikstoff Jahrgangsstufe 4, Writing task.' },
+  { id: 'sa-4a-ge-2',  date:'2026-03-19', type:'test', classes:['4a','4b'],subject:'Geschichte',    nr:'2. Schularbeit', teacher:'Mag. Peter Langer',     time:'4. Stunde',      room:'Klasse 4a/b',  note:'Stoff: 20. Jahrhundert, Weltkriege, Österreichische Geschichte.' },
+  { id: 'sa-4a-en-2',  date:'2026-06-04', type:'test', classes:['4a','4b'],subject:'Englisch',      nr:'Abschlussschularbeit', teacher:'Mag. Sandra Fuchs', time:'3. + 4. Stunde', room:'Klasse 4a/b', note:'Gesamter Jahresstoff. Wichtig: Hilfsmittel gemäß Schulordnung.' },
+  { id: 'sa-4a-ma-2',  date:'2026-06-09', type:'test', classes:['4a','4b'],subject:'Mathematik',    nr:'Abschlussschularbeit', teacher:'Mag. Thomas Kern',  time:'1. + 2. Stunde', room:'Klasse 4a/b',  note:'Gesamter Jahresstoff. Taschenrechner erlaubt.' },
+];
+
+const OTHER_EVENTS = [
+  { id: 'evt-schulforum',    date:'2026-04-30', type:'event', name:'Schulforum',              short:'Eltern- und Schülervertreter', time:'18:00 – 20:00 Uhr', room:'Konferenzraum EG', staff:'Mag. Maria Huber (Leitung)', note:'Alle Elternvertreter:innen und Schülervertreter:innen sind herzlich eingeladen. Tagesordnung wird vorab per E-Mail verschickt.' },
+  { id: 'evt-staatsfeiertag',date:'2026-05-01', type:'free',  name:'Staatsfeiertag',          short:'Tag der Arbeit – schulfrei',  time:'—',                  room:'—',                staff:'—',                           note:'Gesetzlicher Feiertag. Kein Unterricht.' },
+  { id: 'evt-konferenz-mai', date:'2026-05-05', type:'conf',  name:'Lehrerkonferenz',         short:'Pädagogische Konferenz',      time:'14:00 – 17:00 Uhr',  room:'Konferenzraum EG', staff:'Alle Lehrkräfte',              note:'Pflichtveranstaltung für das gesamte Lehrpersonal. Themen: Semesterrückblick, Schulentwicklung, Jahresplanung.' },
+  { id: 'evt-sporttag',      date:'2026-05-10', type:'event', name:'Sporttag 2026',           short:'Sportplatz Hirtenberg',       time:'8:30 – 16:00 Uhr',   room:'Sportplatz + Turnhalle', staff:'Mag. Thomas Kern (Org.)', note:'Alle Klassen nehmen teil. Bitte Sportkleidung und Jause mitbringen. Bei Schlechtwetter Ausweichprogramm in der Turnhalle. Eltern herzlich willkommen!' },
+  { id: 'evt-himmelfahrt',   date:'2026-05-14', type:'free',  name:'Christi Himmelfahrt',     short:'Gesetzlicher Feiertag',       time:'—',                  room:'—',                staff:'—',                           note:'Kein Unterricht.' },
+  { id: 'evt-geschichte-1b', date:'2026-05-12', type:'test',  name:'Schularbeit Geschichte',  short:'1a und 1b',                   time:'4. Stunde',           room:'Klasse 1a/b',      staff:'Mag. Peter Langer',           note:'Stoff: Antikes Griechenland und Römisches Reich. Lernunterlagen aus dem Heft sind erlaubt.' },
+  { id: 'evt-pfingsten',     date:'2026-05-25', type:'free',  name:'Pfingstmontag',           short:'Gesetzlicher Feiertag',       time:'—',                  room:'—',                staff:'—',                           note:'Kein Unterricht.' },
+  { id: 'evt-museumsbesuch', date:'2026-05-28', type:'trip',  name:'Museumsbesuch Wien',      short:'4. Klassen – Naturhistorisches Museum', time:'Abfahrt 7:45 Uhr', room:'Treffpunkt: Schuleingang', staff:'Prof. Josef Novak, Mag. Sandra Fuchs', note:'Bitte Taschengeld (max. €10), Jause und wetterfeste Kleidung mitbringen. Rückkehr ca. 17:30 Uhr. Einverständniserklärung der Eltern erforderlich.' },
+  { id: 'evt-paed-tag',      date:'2026-06-03', type:'conf',  name:'Pädagogischer Tag',       short:'Unterrichtsfrei für Schüler:innen', time:'Ganztags',       room:'Lehrerkonferenz',  staff:'Alle Lehrkräfte',              note:'Die Schülerinnen und Schüler haben unterrichtsfrei. Die Lehrkräfte nehmen an einer Fortbildungsveranstaltung teil.' },
+  { id: 'evt-open-house',    date:'2026-06-08', type:'event', name:'Tag der offenen Tür',     short:'Für künftige Schüler:innen',  time:'14:00 – 17:00 Uhr',  room:'Gesamte Schule',   staff:'Alle Lehrkräfte',              note:'Künftige Schüler:innen und deren Eltern sind herzlich eingeladen, unsere Schule kennenzulernen. Führungen, Infostände und Mitmachangebote.' },
+  { id: 'evt-sprechtag',     date:'2026-06-11', type:'conf',  name:'Elternsprechtag',         short:'Individuelle Beratungsgespräche', time:'15:00 – 19:00 Uhr', room:'Klassenräume',   staff:'Alle Klassenvorstände',        note:'Anmeldung zu Gesprächen bitte bis 6. Juni über das Schulbüro. Pro Gespräch sind 10 Minuten eingeplant.' },
+  { id: 'evt-wandertag',     date:'2026-06-15', type:'trip',  name:'Wandertag',               short:'Ganztagesausflug',            time:'Abfahrt 8:00 Uhr',   room:'Treffpunkt: Schuleingang', staff:'Alle Klassenvorstände',  note:'Ziel: Triestingtal und Umgebung. Festes Schuhwerk, Jause und Trinkwasser mitbringen. Einverständniserklärung erforderlich.' },
+  { id: 'evt-fronleichnam',  date:'2026-06-19', type:'free',  name:'Fronleichnam',            short:'Gesetzlicher Feiertag',       time:'—',                  room:'—',                staff:'—',                           note:'Kein Unterricht.' },
+  { id: 'evt-jahreskonferenz',date:'2026-06-26',type:'conf',  name:'Jahresabschlusskonferenz',short:'Notenkonferenz',              time:'Nachmittags',         room:'Konferenzraum',    staff:'Alle Lehrkräfte',              note:'Endgültige Noten für das Schuljahr 2025/26 werden beschlossen. Zeugnisausgabe am 29. Juni.' },
+  { id: 'evt-schulschluss',  date:'2026-06-29', type:'event', name:'Schulschlussfeier',       short:'Ende des Schuljahres',        time:'10:00 Uhr',           room:'Aula MS Hirtenberg', staff:'Mag. Maria Huber (Leitung)', note:'Feierliche Zeugnisausgabe. Alle Schüler:innen und Eltern herzlich willkommen. Im Anschluss kleiner Umtrunk im Schulhof.' },
+  { id: 'evt-sommerferien',  date:'2026-06-30', type:'free',  name:'Sommerferien Beginn',     short:'Letzter Schultag',            time:'—',                  room:'—',                staff:'—',                           note:'Beginn der Sommerferien. Schulbeginn 2026/27 voraussichtlich am 7. September 2026.' },
+];
+
+function formatDate(dateStr) {
+  const d = new Date(dateStr + 'T12:00:00');
+  return { day: d.getDate(), mon: MONTHS_DE[d.getMonth()], year: d.getFullYear(), dow: DAYS_DE[d.getDay()] };
+}
+
+function renderSchularbeiten(classFilter = 'all') {
+  const list = document.getElementById('schularbeiten-list');
+  let events = classFilter === 'all'
+    ? SCHULARBEITEN
+    : SCHULARBEITEN.filter(e => e.classes.includes(classFilter));
+
+  events = [...events].sort((a,b) => a.date.localeCompare(b.date));
+
+  let html = '';
+  let lastMonth = '';
+  events.forEach(e => {
+    const dt = formatDate(e.date);
+    const month = dt.mon + ' ' + dt.year;
+    if (month !== lastMonth) {
+      html += `<div class="month-divider">${month}</div>`;
+      lastMonth = month;
+    }
+    const classes = e.classes.join(', ');
+    html += `
+    <div class="event-detail-card" id="${e.id}" data-type="${e.type}" data-classes="${e.classes.join(',')}">
+      <div class="event-card-header" onclick="toggleCard('${e.id}')">
+        <div class="event-card-color-bar bar-${e.type}"></div>
+        <div class="event-card-date-badge">
+          <div class="event-card-date-day">${dt.day}</div>
+          <div class="event-card-date-rest">${dt.mon.slice(0,3)}</div>
+        </div>
+        <div class="event-card-main">
+          <div class="event-card-tag tag-${e.type}">${e.nr}</div>
+          <div class="event-card-name">${e.subject} – Klasse ${classes}</div>
+          <div class="event-card-short">${dt.dow}, ${dt.day}. ${dt.mon} ${dt.year}</div>
+        </div>
+        <div class="event-card-chevron">▾</div>
+      </div>
+      <div class="event-card-body">
+        <div class="event-info-grid">
+          <div class="event-info-item"><div class="event-info-label">Lehrperson</div><div class="event-info-value">${e.teacher}</div></div>
+          <div class="event-info-item"><div class="event-info-label">Zeit</div><div class="event-info-value">${e.time}</div></div>
+          <div class="event-info-item"><div class="event-info-label">Raum</div><div class="event-info-value">${e.room}</div></div>
+        </div>
+        <div class="event-note"><strong>Beachte:</strong> ${e.note}</div>
+      </div>
+    </div>`;
+  });
+  list.innerHTML = html;
+}
+
+function renderOtherEvents() {
+  const list = document.getElementById('other-events-list');
+  const events = [...OTHER_EVENTS].sort((a,b) => a.date.localeCompare(b.date));
+  let html = '';
+  let lastMonth = '';
+  events.forEach(e => {
+    if (e.type === 'test') return; // shown in Schularbeiten
+    const dt = formatDate(e.date);
+    const month = dt.mon + ' ' + dt.year;
+    if (month !== lastMonth) {
+      html += `<div class="month-divider">${month}</div>`;
+      lastMonth = month;
+    }
+    html += `
+    <div class="event-detail-card" id="${e.id}" data-type="${e.type}">
+      <div class="event-card-header" onclick="toggleCard('${e.id}')">
+        <div class="event-card-color-bar bar-${e.type}"></div>
+        <div class="event-card-date-badge">
+          <div class="event-card-date-day">${dt.day}</div>
+          <div class="event-card-date-rest">${dt.mon.slice(0,3)}</div>
+        </div>
+        <div class="event-card-main">
+          <div class="event-card-tag tag-${e.type}">${TAG_LABELS[e.type]}</div>
+          <div class="event-card-name">${e.name}</div>
+          <div class="event-card-short">${dt.dow}, ${dt.day}. ${dt.mon} ${dt.year} · ${e.short}</div>
+        </div>
+        <div class="event-card-chevron">▾</div>
+      </div>
+      <div class="event-card-body">
+        <div class="event-info-grid">
+          <div class="event-info-item"><div class="event-info-label">Zeit</div><div class="event-info-value">${e.time}</div></div>
+          <div class="event-info-item"><div class="event-info-label">Ort / Raum</div><div class="event-info-value">${e.room}</div></div>
+          <div class="event-info-item"><div class="event-info-label">Zuständig</div><div class="event-info-value">${e.staff}</div></div>
+        </div>
+        <div class="event-note"><strong>Beachte:</strong> ${e.note}</div>
+      </div>
+    </div>`;
+  });
+  list.innerHTML = html;
+}
+
+function toggleCard(id) {
+  const card = document.getElementById(id);
+  card.classList.toggle('open');
+}
+
+function filterClass(cls, btn) {
+  document.querySelectorAll('.class-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  renderSchularbeiten(cls);
+}
+
+function filterEvents(type, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const saSection = document.querySelector('[data-section="test"]');
+  const otherSection = document.querySelector('[data-section="other"]');
+  if (type === 'all') {
+    saSection.style.display = '';
+    otherSection.style.display = '';
+    document.querySelectorAll('.event-detail-card').forEach(c => c.removeAttribute('data-hidden'));
+  } else if (type === 'test') {
+    saSection.style.display = '';
+    otherSection.style.display = 'none';
+  } else {
+    saSection.style.display = 'none';
+    otherSection.style.display = '';
+    document.querySelectorAll('#other-events-list .event-detail-card').forEach(c => {
+      c.dataset.hidden = c.dataset.type !== type ? 'true' : 'false';
+      c.style.display = c.dataset.type !== type ? 'none' : '';
+    });
+  }
+}
+
+// Init
+renderSchularbeiten();
+renderOtherEvents();
+
+// Auto-open and scroll to anchor on load
+window.addEventListener('load', () => {
+  const hash = window.location.hash.slice(1);
+  if (hash) {
+    const card = document.getElementById(hash);
+    if (card) {
+      card.classList.add('open');
+      setTimeout(() => {
+        const top = card.getBoundingClientRect().top + window.scrollY - 120;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }, 100);
+    }
+  }
+});
+</script>
+</body>
+</html>

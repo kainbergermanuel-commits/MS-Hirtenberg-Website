@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MS Hirtenberg – Mittelschule</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<script type="application/json" id="tweaks-data">/*EDITMODE-BEGIN*/{
+  "primaryColor": "#5a8158",
+  "accentColor": "#c47a2a",
+  "bgColor": "oklch(97% 0.012 95)",
+  "headingFont": "Lora",
+  "bodyFont": "Nunito"
+}/*EDITMODE-END*/</script>
+
+<style>
+  :root {
+    --sage:        oklch(52% 0.10 145);
+    --sage-dark:   oklch(38% 0.09 145);
+    --sage-mid:    oklch(62% 0.09 145);
+    --sage-light:  oklch(80% 0.07 145);
+    --sage-pale:   oklch(95% 0.04 145);
+    --blush:       oklch(78% 0.08 15);
+    --blush-dark:  oklch(56% 0.11 15);
+    --blush-pale:  oklch(96% 0.03 15);
+    --sand:        oklch(80% 0.07 75);
+    --sand-pale:   oklch(95% 0.04 75);
+    --cream:       oklch(98% 0.008 88);
+    --cream-mid:   oklch(96% 0.012 88);
+    --cream-dark:  oklch(92% 0.018 88);
+    --text:        oklch(28% 0.05 145);
+    --text-light:  oklch(55% 0.04 145);
+    --white: #fff;
+
+    /* legacy aliases for compatibility */
+    --green-dark:   var(--sage-dark);
+    --green-mid:    var(--sage);
+    --green-light:  var(--sage-light);
+    --green-pale:   var(--sage-pale);
+    --amber:        var(--blush-dark);
+    --amber-light:  var(--blush-pale);
+    --brown:        oklch(46% 0.07 20);
+
+    --font-heading: 'Lora', Georgia, serif;
+    --font-body:    'Nunito', system-ui, sans-serif;
+    --radius:       12px;
+    --radius-lg:    20px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--cream);
+    color: var(--text);
+    font-size: 17px;
+    line-height: 1.65;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--white);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 48px;
+    height: 68px;
+    border-bottom: 1.5px solid var(--cream-dark);
+    box-shadow: 0 2px 20px oklch(0% 0 0 / 6%);
+  }
+  .nav-logo {
+    font-family: var(--font-heading);
+    color: var(--sage-dark);
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    text-decoration: none;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .nav-links {
+    display: flex; gap: 4px; list-style: none;
+  }
+  .nav-links a {
+    color: var(--text-light);
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 600;
+    padding: 7px 15px;
+    border-radius: 30px;
+    transition: background 0.2s, color 0.2s;
+    letter-spacing: 0.01em;
+  }
+  .nav-links a:hover {
+    background: var(--sage-pale);
+    color: var(--sage-dark);
+  }
+
+  /* ─── HERO ─── */
+  #home {
+    position: relative;
+    min-height: 90vh;
+    display: flex; align-items: center;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--sage-pale) 0%, oklch(96% 0.03 100) 60%, var(--blush-pale) 100%);
+  }
+  .hero-photo {
+    position: absolute;
+    inset: 0;
+    background-image: url("uploads/grafik-9f6efa7c.png");
+    background-size: cover;
+    background-position: center 30%;
+    z-index: 1;
+  }
+  /* lighten the left side so the heading stays legible, photo stays full-bleed */
+  .hero-photo::after {
+    content: ''; position: absolute; inset: 0;
+    background:
+      linear-gradient(to right,
+        oklch(98% 0.008 88 / 0.95) 0%,
+        oklch(98% 0.008 88 / 0.85) 24%,
+        oklch(97% 0.02 60 / 0.48) 46%,
+        oklch(96% 0.03 15 / 0.14) 66%,
+        transparent 84%),
+      linear-gradient(to top, oklch(38% 0.06 145 / 0.10), transparent 42%);
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='600' viewBox='0 0 600 600'%3E%3Cg fill='none' stroke='oklch(62%25 0.09 145)' stroke-width='1' opacity='0.18'%3E%3Cellipse cx='300' cy='300' rx='180' ry='260' transform='rotate(-25 300 300)'/%3E%3Cellipse cx='300' cy='300' rx='140' ry='210' transform='rotate(15 300 300)'/%3E%3Cellipse cx='300' cy='300' rx='100' ry='160' transform='rotate(-45 300 300)'/%3E%3Ccircle cx='300' cy='300' r='4'/%3E%3Cline x1='300' y1='40' x2='300' y2='560'/%3E%3Cline x1='300' y1='300' x2='460' y2='180'/%3E%3Cline x1='300' y1='300' x2='140' y2='180'/%3E%3Cline x1='300' y1='300' x2='480' y2='380'/%3E%3Cline x1='300' y1='300' x2='120' y2='380'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: 500px 500px;
+    background-position: right 5% center;
+    background-repeat: no-repeat;
+    opacity: 0.6;
+  }
+  /* botanical bg pattern for sections */
+  .hero-leaves { display: none; }
+  .leaf-group, .leaf { display: none; }
+
+  .hero-content {
+    position: relative; z-index: 2;
+    padding: 96px 96px;
+    max-width: 680px;
+  }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--white);
+    color: var(--sage);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    padding: 6px 16px;
+    border-radius: 30px;
+    margin-bottom: 28px;
+    border: 1.5px solid var(--sage-pale);
+    box-shadow: 0 2px 12px oklch(0% 0 0 / 6%);
+  }
+  .hero-tag::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--sage);
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .hero-title {
+    font-family: var(--font-heading);
+    color: var(--text);
+    font-size: clamp(2.4rem, 5vw, 3.8rem);
+    line-height: 1.15;
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-wrap: pretty;
+  }
+  .hero-title em {
+    color: var(--sage);
+    font-style: italic;
+  }
+  .hero-sub {
+    color: var(--text-light);
+    font-size: 1.05rem;
+    max-width: 460px;
+    margin-bottom: 40px;
+    text-wrap: pretty;
+    line-height: 1.7;
+  }
+  .hero-cta {
+    display: flex; gap: 14px; flex-wrap: wrap;
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 13px 28px;
+    border-radius: 30px;
+    font-family: var(--font-body);
+    font-size: 0.92rem;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    transition: transform 0.15s, box-shadow 0.15s;
+    letter-spacing: 0.01em;
+  }
+  .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px oklch(0% 0 0 / 14%); }
+  .btn-primary { background: var(--sage); color: var(--white); }
+  .btn-outline { background: var(--white); color: var(--sage-dark); border: 1.5px solid var(--cream-dark); }
+  .btn-outline:hover { border-color: var(--sage-light); background: var(--sage-pale); }
+
+  .hero-stats {
+    margin-top: 48px;
+    padding-top: 36px;
+    border-top: 1.5px solid oklch(52% 0.06 145 / 0.18);
+    display: flex; gap: 40px;
+    z-index: 2;
+  }
+  .stat { text-align: left; }
+  .stat-num {
+    font-family: var(--font-heading);
+    color: var(--sage-dark);
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1;
+  }
+  .stat-label {
+    color: var(--text-light);
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  /* ─── SECTIONS ─── */
+  section { scroll-margin-top: 68px; }
+  .section-inner { max-width: 1200px; margin: 0 auto; padding: 100px 48px; }
+  .section-tag {
+    display: inline-flex; align-items: center; gap: 7px;
+    color: var(--sage); font-size: 0.75rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.14em; margin-bottom: 14px;
+  }
+  .section-tag::before {
+    content: ''; display: inline-block;
+    width: 18px; height: 1.5px; background: var(--sage-light);
+  }
+  .section-title {
+    font-family: var(--font-heading); font-size: clamp(1.8rem, 3vw, 2.5rem);
+    font-weight: 700; color: var(--text); line-height: 1.2;
+    margin-bottom: 16px; text-wrap: pretty;
+  }
+  .section-subtitle {
+    color: var(--text-light); max-width: 580px; font-size: 1.05rem;
+    margin-bottom: 56px; text-wrap: pretty; line-height: 1.7;
+  }
+
+  /* ─── ÜBER UNS ─── */
+  #ueber { background: var(--white); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+  }
+  .about-features { margin-top: 32px; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .feature-card {
+    background: var(--sage-pale); border-radius: var(--radius);
+    padding: 20px; border-left: 3px solid var(--sage-light);
+  }
+  .feature-title { font-weight: 700; font-size: 0.92rem; margin-bottom: 4px; color: var(--text); }
+  .feature-desc { font-size: 0.82rem; color: var(--text-light); }
+
+  /* ─── NEWS ─── */
+  #news { background: var(--cream-mid); position: relative; overflow: hidden; }
+  #news::before {
+    content: ''; position: absolute; top: -80px; right: -80px;
+    width: 320px; height: 320px; opacity: 0.5;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Ccircle cx='100' cy='100' r='90' fill='none' stroke='%238aaa85' stroke-width='1'/%3E%3Ccircle cx='100' cy='100' r='60' fill='none' stroke='%238aaa85' stroke-width='1'/%3E%3Ccircle cx='100' cy='100' r='30' fill='none' stroke='%238aaa85' stroke-width='1'/%3E%3C/svg%3E");
+    background-size: contain; background-repeat: no-repeat; pointer-events: none;
+  }
+  .news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .news-card {
+    background: var(--white); border-radius: var(--radius-lg); overflow: hidden;
+    box-shadow: 0 1px 8px oklch(0% 0 0 / 5%); border: 1.5px solid var(--cream-dark);
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    text-decoration: none; color: inherit; display: block;
+  }
+  .news-card:hover { transform: translateY(-4px); box-shadow: 0 8px 28px oklch(0% 0 0 / 10%); border-color: var(--sage-light); }
+  .news-card-img {
+    height: 200px;
+    overflow: hidden;
+  }
+  .news-card-img img {
+    width: 100%; height: 100%; object-fit: cover;
+    display: block;
+    transition: transform 0.4s;
+  }
+  .news-card:hover .news-card-img img { transform: scale(1.05); }
+  .news-card-body { padding: 24px; }
+  .news-date { font-size: 0.75rem; color: var(--text-light); font-weight: 700; text-transform: uppercase; letter-spacing: 0.09em; margin-bottom: 8px; }
+  .news-title { font-family: var(--font-heading); font-size: 1.05rem; font-weight: 700; margin-bottom: 8px; line-height: 1.3; color: var(--text); }
+  .news-excerpt { font-size: 0.85rem; color: var(--text-light); line-height: 1.6; }
+  .news-link { display: inline-flex; align-items: center; gap: 5px; margin-top: 14px; font-size: 0.83rem; font-weight: 700; color: var(--sage); text-decoration: none; }
+  .news-link:hover { color: var(--sage-dark); }
+
+  /* ─── KALENDER ─── */
+  #kalender { background: var(--white); }
+  .kalender-layout {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 40px;
+    align-items: start;
+  }
+  .cal-card {
+    background: var(--cream);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+  .cal-header {
+    background: var(--sage);
+    padding: 20px 28px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .cal-month-label { font-family: var(--font-heading); color: var(--white); font-size: 1.2rem; font-weight: 700; }
+  .cal-nav { background: none; border: none; cursor: pointer; color: oklch(90% 0.04 145); font-size: 1.2rem; padding: 4px 10px; border-radius: 8px; transition: background 0.15s; }
+  .cal-nav:hover { background: oklch(100% 0 0 / 15%); color: var(--white); }
+  .cal-grid {
+    display: grid; grid-template-columns: repeat(7, 1fr);
+    padding: 16px 20px 20px;
+    gap: 4px;
+  }
+  .cal-dow {
+    text-align: center; font-size: 0.72rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--text-light); padding: 6px 0;
+  }
+  .cal-day {
+    aspect-ratio: 1;
+    display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
+    padding-top: 6px;
+    border-radius: 10px;
+    cursor: default;
+    position: relative;
+    transition: background 0.15s;
+    min-width: 0;
+  }
+  .cal-day:hover:not(.empty) { background: var(--cream-dark); }
+  .cal-day.today .cal-day-num {
+    background: var(--sage); color: var(--white);
+    width: 26px; height: 26px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .cal-day.other-month { opacity: 0.3; }
+  .cal-day-num {
+    font-size: 0.85rem; font-weight: 700; line-height: 1;
+    margin-bottom: 3px;
+    width: 26px; height: 26px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .cal-dots { display: flex; gap: 2px; flex-wrap: wrap; justify-content: center; }
+  .cal-dot {
+    width: 5px; height: 5px; border-radius: 50%;
+  }
+  .dot-test    { background: oklch(55% 0.18 25); }
+  .dot-event   { background: var(--sage); }
+  .dot-free    { background: var(--blush-dark); }
+  .dot-conf    { background: oklch(55% 0.12 260); }
+  .dot-trip    { background: oklch(58% 0.14 180); }
+
+  /* legend */
+  .cal-legend {
+    display: flex; flex-wrap: wrap; gap: 14px;
+    padding: 0 20px 20px;
+  }
+  .legend-item {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 0.78rem; font-weight: 700; color: var(--text-light);
+  }
+  .legend-dot {
+    width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0;
+  }
+
+  /* sidebar */
+  .cal-sidebar { display: flex; flex-direction: column; gap: 12px; }
+  .cal-sidebar-title {
+    font-family: var(--font-heading); font-size: 1.15rem; font-weight: 700;
+    margin-bottom: 4px; color: var(--text);
+  }
+  .event-item {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 14px 16px;
+    display: flex; gap: 14px; align-items: flex-start;
+    border-left: 4px solid transparent;
+    transition: transform 0.15s;
+    text-decoration: none; color: inherit;
+    border: 1.5px solid var(--cream-dark);
+    border-left: 4px solid transparent;
+  }
+  .event-item:hover { transform: translateX(3px); box-shadow: 0 2px 10px oklch(0% 0 0 / 8%); }
+  .event-item.test  { border-color: oklch(55% 0.18 25); }
+  .event-item.event { border-color: var(--sage); }
+  .event-item.free  { border-color: var(--blush-dark); }
+  .event-item.conf  { border-color: oklch(55% 0.12 260); }
+  .event-item.trip  { border-color: oklch(58% 0.14 180); }
+  .event-date-badge {
+    min-width: 44px; text-align: center;
+    background: var(--cream-dark); border-radius: 8px;
+    padding: 6px 4px;
+  }
+  .event-date-day { font-size: 1.2rem; font-weight: 700; line-height: 1; color: var(--text); }
+  .event-date-mon { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-light); }
+  .event-name { font-weight: 700; font-size: 0.9rem; margin-bottom: 2px; }
+  .event-desc { font-size: 0.8rem; color: var(--text-light); }
+  .event-tag {
+    display: inline-block; font-size: 0.68rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    padding: 2px 7px; border-radius: 20px; margin-bottom: 4px;
+  }
+  .event-tag.test  { background: oklch(92% 0.06 25);  color: oklch(40% 0.15 25); }
+  .event-tag.event { background: var(--sage-pale);   color: var(--sage-dark); }
+  .event-tag.free  { background: var(--blush-pale);  color: var(--blush-dark); }
+  .event-tag.conf  { background: oklch(92% 0.05 260); color: oklch(35% 0.12 260); }
+  .event-tag.trip  { background: oklch(90% 0.06 180); color: oklch(35% 0.14 180); }
+
+  @media (max-width: 900px) {
+    .kalender-layout { grid-template-columns: 1fr; }
+  }
+  #team { background: var(--white); }
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 28px;
+  }
+  .team-card {
+    text-align: center;
+  }
+  .team-avatar {
+    width: 110px; height: 110px;
+    border-radius: 50%;
+    margin: 0 auto 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px oklch(0% 0 0 / 12%);
+    border: 3px solid var(--cream-dark);
+  }
+  .team-avatar img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+  }
+  .team-avatar-initials {
+    width: 110px; height: 110px;
+    border-radius: 50%;
+    margin: 0 auto 16px;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700;
+    font-size: 1.4rem;
+    color: var(--white);
+  }
+  .team-name { font-weight: 700; font-size: 1rem; margin-bottom: 4px; }
+  .team-role { font-size: 0.83rem; color: var(--text-light); }
+
+  /* ─── GALERIE ─── */
+  #galerie { background: var(--cream-mid); }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto auto;
+    gap: 14px;
+  }
+  .gallery-item {
+    border-radius: var(--radius);
+    overflow: hidden;
+    aspect-ratio: 4/3;
+    transition: transform 0.2s;
+    cursor: pointer;
+  }
+  .gallery-item img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    transition: transform 0.4s;
+  }
+  .gallery-item:hover { transform: scale(1.02); }
+  .gallery-item:hover img { transform: scale(1.06); }
+  .gallery-item.tall { grid-row: span 2; aspect-ratio: unset; }
+  .gallery-item.wide { grid-column: span 2; aspect-ratio: 2/1; }
+
+  /* ─── KONTAKT ─── */
+  #kontakt { background: var(--sage-pale); position: relative; overflow: hidden; }
+  #kontakt::before {
+    content: ''; position: absolute; bottom: -60px; left: -60px;
+    width: 280px; height: 280px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cellipse cx='100' cy='100' rx='80' ry='120' fill='none' stroke='%23739e6e' stroke-width='1.2' opacity='0.3' transform='rotate(-30 100 100)'/%3E%3Cellipse cx='100' cy='100' rx='50' ry='80' fill='none' stroke='%23739e6e' stroke-width='1' opacity='0.2' transform='rotate(20 100 100)'/%3E%3C/svg%3E");
+    background-size: contain; background-repeat: no-repeat; pointer-events: none;
+  }
+  #kontakt .section-title { color: var(--text); }
+  #kontakt .section-tag { color: var(--sage); }
+  #kontakt .section-subtitle { color: var(--text-light); }
+  .kontakt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+  .kontakt-info { display: flex; flex-direction: column; gap: 20px; }
+  .kontakt-item { display: flex; gap: 16px; align-items: flex-start; }
+  .kontakt-icon {
+    width: 44px; height: 44px; flex-shrink: 0;
+    background: var(--white); border-radius: var(--radius);
+    display: flex; align-items: center; justify-content: center;
+    border: 1.5px solid var(--cream-dark); box-shadow: 0 2px 8px oklch(0% 0 0 / 6%);
+  }
+  .kontakt-label { font-size: 0.72rem; color: var(--sage); font-weight: 700; text-transform: uppercase; letter-spacing: 0.09em; margin-bottom: 3px; }
+  .kontakt-value { color: var(--text); font-size: 0.92rem; font-weight: 600; }
+  .map-placeholder {
+    aspect-ratio: 4/3;
+    background: oklch(28% 0.08 145);
+    border-radius: var(--radius-lg);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 12px;
+    color: oklch(65% 0.07 145);
+    font-family: monospace; font-size: 0.85rem;
+    border: 2px dashed oklch(44% 0.09 145);
+    text-align: center;
+    padding: 24px;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--sage-dark); padding: 32px 48px;
+    display: flex; align-items: center; justify-content: space-between;
+    color: var(--sage-light); font-size: 0.83rem;
+  }
+  footer a { color: var(--sage-light); text-decoration: none; }
+  footer a:hover { color: var(--white); }
+
+  /* ─── TWEAKS PANEL ─── */
+  #tweaks-panel {
+    display: none;
+    position: fixed; bottom: 24px; right: 24px; z-index: 9999;
+    background: var(--white);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px oklch(0% 0 0 / 18%);
+    padding: 20px 24px;
+    width: 260px;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    border: 1px solid var(--cream-dark);
+  }
+  #tweaks-panel.open { display: block; }
+  #tweaks-panel h3 {
+    font-size: 0.9rem; font-weight: 700; margin-bottom: 16px;
+    color: var(--text);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .tweak-row { margin-bottom: 14px; }
+  .tweak-row label { display: block; color: var(--text-light); margin-bottom: 4px; font-weight: 600; }
+  .tweak-row select, .tweak-row input[type=color] {
+    width: 100%; padding: 6px 10px;
+    border: 1.5px solid var(--cream-dark); border-radius: 8px;
+    font-family: var(--font-body); font-size: 0.85rem;
+    background: var(--cream);
+    cursor: pointer;
+  }
+  .tweak-row input[type=color] { height: 36px; padding: 2px 6px; }
+
+  @media (max-width: 900px) {
+    nav { padding: 0 24px; }
+    #home { flex-direction: column; min-height: auto; }
+    .hero-content { padding: 56px 24px 28px; order: 1; }
+    .hero-photo {
+      position: relative; order: 2;
+      width: 100%; height: 280px;
+      -webkit-mask-image: linear-gradient(to bottom, transparent 0%, oklch(0% 0 0) 30%);
+      mask-image: linear-gradient(to bottom, transparent 0%, oklch(0% 0 0) 30%);
+    }
+    .hero-photo::after { display: none; }
+    .hero-stats { position: static; order: 3; padding: 24px; gap: 24px; flex-wrap: wrap; }
+    .section-inner { padding: 64px 24px; }
+    .about-grid, .kontakt-grid { grid-template-columns: 1fr; }
+    .news-grid { grid-template-columns: 1fr; }
+    .team-grid { grid-template-columns: repeat(2, 1fr); }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    .gallery-item.tall, .gallery-item.wide { grid-row: unset; grid-column: unset; aspect-ratio: 4/3; }
+    footer { flex-direction: column; gap: 12px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#home" class="nav-logo">
+    <svg width="38" height="38" viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="19" cy="19" r="17" fill="none" stroke="oklch(52% 0.10 145)" stroke-width="1.3"/>
+      <circle cx="19" cy="19" r="13.5" fill="none" stroke="oklch(52% 0.10 145)" stroke-width="0.4" opacity="0.4"/>
+      <line x1="19" y1="27" x2="19" y2="22" stroke="oklch(52% 0.10 145)" stroke-width="1.4" stroke-linecap="round"/>
+      <path d="M19 22 C22 18 22 12 19 11 C16 12 16 18 19 22Z" fill="oklch(52% 0.10 145)"/>
+      <path d="M19 22 C15 19 12 15 13 13 C15 13 18 18 19 22Z" fill="oklch(68% 0.09 145)"/>
+      <path d="M19 22 C23 19 26 15 25 13 C23 13 20 18 19 22Z" fill="oklch(68% 0.09 145)"/>
+      <circle cx="19" cy="2" r="1.8" fill="oklch(60% 0.11 68)"/>
+    </svg>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#ueber">Über uns</a></li>
+    <li><a href="#news">News</a></li>
+    <li><a href="#kalender">Kalender</a></li>
+    <li><a href="termine.html">Termine</a></li>
+    <li><a href="#team">Lehrpersonal</a></li>
+    <li><a href="#galerie">Galerie</a></li>
+    <li><a href="#kontakt">Kontakt</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-photo"></div>
+  <div class="hero-bg"></div>
+  <div class="hero-leaves">
+    <div class="leaf-group">
+      <div class="leaf leaf-1"></div>
+      <div class="leaf leaf-2"></div>
+      <div class="leaf leaf-3"></div>
+      <div class="leaf leaf-4"></div>
+    </div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-tag">Mittelschule Hirtenberg</div>
+    <h1 class="hero-title">Lernen, <em>wachsen</em>,<br>die Zukunft gestalten.</h1>
+    <p class="hero-sub">Herzlich willkommen an der MS Hirtenberg — wo Bildung und Gemeinschaft Hand in Hand gehen.</p>
+    <div class="hero-cta">
+      <a href="#ueber" class="btn btn-primary">Unsere Schule kennenlernen</a>
+      <a href="#kontakt" class="btn btn-outline">Kontakt aufnehmen</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">320+</div>
+        <div class="stat-label">Schülerinnen & Schüler</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">28</div>
+        <div class="stat-label">Lehrkräfte</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">16</div>
+        <div class="stat-label">Klassen</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ÜBER UNS -->
+<section id="ueber">
+  <div class="section-inner">
+    <div class="about-grid">
+      <img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=900&fit=crop&crop=center"
+           alt="Schulgebäude MS Hirtenberg"
+           style="width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:var(--radius-lg);display:block;">
+      <div>
+        <span class="section-tag">Über uns</span>
+        <h2 class="section-title">Eine Schule mit Herz und Natur im Blick</h2>
+        <p style="color: var(--text-light); margin-bottom: 20px;">Die Mittelschule Hirtenberg liegt eingebettet in der grünen Umgebung des Triestingtal. Seit Jahrzehnten begleiten wir junge Menschen auf ihrem Weg — mit zeitgemäßem Unterricht, einem starken Miteinander und einem offenen Klima.</p>
+        <p style="color: var(--text-light);">Wir legen besonderen Wert auf Nachhaltigkeit, Naturverbundenheit und die persönliche Entfaltung jedes einzelnen Kindes.</p>
+        <div class="about-features">
+          <div class="feature-card">
+            <div class="feature-title">Ganztagesschule</div>
+            <div class="feature-desc">Betreuung & Lernzeit bis 16 Uhr</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-title">Natur-Projekte</div>
+            <div class="feature-desc">Schulgarten & Umweltprojekte</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-title">Digitales Lernen</div>
+            <div class="feature-desc">Tablets & moderne Lernräume</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-title">Inklusion</div>
+            <div class="feature-desc">Individuelle Förderung für alle</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWS -->
+<section id="news">
+  <div class="section-inner">
+    <span class="section-tag">Aktuelles</span>
+    <h2 class="section-title">News & Veranstaltungen</h2>
+    <p class="section-subtitle">Hier finden Sie aktuelle Informationen rund um das Schulleben.</p>
+    <div class="news-grid">
+      <a class="news-card" href="news/wienerwald.html" style="text-decoration:none;color:inherit;display:block;">
+        <div class="news-card-img">
+          <img src="https://images.unsplash.com/photo-1448375240586-882707db888b?w=700&fit=crop&crop=center" alt="Frühlingsausflug Wienerwald">
+        </div>
+        <div class="news-card-body">
+          <div class="news-date">14. April 2026</div>
+          <div class="news-title">Frühlingsausflug in den Wienerwald</div>
+          <div class="news-excerpt">Die 3. Klassen erkundeten gemeinsam den Wienerwald und lernten heimische Pflanzen- und Tierarten kennen. Ein unvergesslicher Tag voller Entdeckungen!</div>
+          <span class="news-link">Weiterlesen →</span>
+        </div>
+      </a>
+      <a class="news-card" href="news/theaterabend.html" style="text-decoration:none;color:inherit;display:block;">
+        <div class="news-card-img">
+          <img src="https://images.unsplash.com/photo-1507676184212-d03ab07a01bf?w=700&fit=crop&crop=center" alt="Schultheaterabend">
+        </div>
+        <div class="news-card-body">
+          <div class="news-date">8. April 2026</div>
+          <div class="news-title">Großer Erfolg beim Schultheaterabend</div>
+          <div class="news-excerpt">Über 200 Gäste erlebten eine beeindruckende Aufführung unserer Theater-AG zum Thema Klimawandel — mit selbst geschriebenen Texten und professioneller Bühnengestaltung.</div>
+          <span class="news-link">Weiterlesen →</span>
+        </div>
+      </a>
+      <a class="news-card" href="news/sporttag.html" style="text-decoration:none;color:inherit;display:block;">
+        <div class="news-card-img">
+          <img src="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=700&fit=crop&crop=center" alt="Sporttag 2026">
+        </div>
+        <div class="news-card-body">
+          <div class="news-date">2. April 2026</div>
+          <div class="news-title">Sporttag 2026 – Anmeldungen offen</div>
+          <div class="news-excerpt">Am 10. Mai findet unser jährlicher Sporttag statt. Leichtathletik, Staffelläufe und Mannschaftsspiele warten auf alle Klassen. Jetzt anmelden!</div>
+          <span class="news-link">Weiterlesen →</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- KALENDER -->
+<section id="kalender">
+  <div class="section-inner">
+    <span class="section-tag">Schuljahr 2025/26</span>
+    <h2 class="section-title">Schulkalender</h2>
+    <p class="section-subtitle">Wichtige Termine auf einen Blick — Schularbeiten, Veranstaltungen, schulfreie Tage und Konferenzen.</p>
+    <div class="kalender-layout">
+      <div>
+        <div class="cal-card">
+          <div class="cal-header">
+            <button class="cal-nav" onclick="changeMonth(-1)">&#8592;</button>
+            <div class="cal-month-label" id="cal-month-label"></div>
+            <button class="cal-nav" onclick="changeMonth(1)">&#8594;</button>
+          </div>
+          <div class="cal-grid" id="cal-grid"></div>
+          <div class="cal-legend">
+            <div class="legend-item"><div class="legend-dot" style="background:oklch(55% 0.18 25)"></div>Schularbeit</div>
+            <div class="legend-item"><div class="legend-dot" style="background:var(--green-mid)"></div>Veranstaltung</div>
+            <div class="legend-item"><div class="legend-dot" style="background:var(--amber)"></div>Schulfrei</div>
+            <div class="legend-item"><div class="legend-dot" style="background:oklch(55% 0.12 260)"></div>Konferenz</div>
+            <div class="legend-item"><div class="legend-dot" style="background:oklch(58% 0.14 180)"></div>Ausflug</div>
+          </div>
+        </div>
+      </div>
+      <div class="cal-sidebar">
+        <div class="cal-sidebar-title">Nächste Termine</div>
+        <div id="upcoming-events"></div>
+        <a href="termine.html" style="display:inline-flex;align-items:center;gap:6px;margin-top:12px;font-size:0.88rem;font-weight:700;color:var(--green-mid);text-decoration:none;">Alle Termine ansehen →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team">
+  <div class="section-inner">
+    <span class="section-tag">Lehrpersonal</span>
+    <h2 class="section-title">Unser Team</h2>
+    <p class="section-subtitle">Engagierte Pädagoginnen und Pädagogen begleiten Ihre Kinder auf dem Weg.</p>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-avatar"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=220&h=220&fit=crop&crop=face" alt="Maria Huber"></div>
+        <div class="team-name">Mag. Maria Huber</div>
+        <div class="team-role">Direktorin</div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=220&h=220&fit=crop&crop=face" alt="Thomas Kern"></div>
+        <div class="team-name">Mag. Thomas Kern</div>
+        <div class="team-role">Stellv. Direktor · Mathematik</div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar"><img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=220&h=220&fit=crop&crop=face" alt="Anna Weidinger"></div>
+        <div class="team-name">Mag. Anna Weidinger</div>
+        <div class="team-role">Deutsch · Klassenvorstand 3a</div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar"><img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=220&h=220&fit=crop&crop=face" alt="Josef Novak"></div>
+        <div class="team-name">Prof. Josef Novak</div>
+        <div class="team-role">Biologie · Umwelt-AG</div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=220&h=220&fit=crop&crop=face" alt="Sandra Fuchs"></div>
+        <div class="team-name">Mag. Sandra Fuchs</div>
+        <div class="team-role">Englisch · Französisch</div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=220&h=220&fit=crop&crop=face" alt="Peter Langer"></div>
+        <div class="team-name">Mag. Peter Langer</div>
+        <div class="team-role">Geschichte · Geographie</div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar"><img src="https://images.unsplash.com/photo-1554151228-14d9def656e4?w=220&h=220&fit=crop&crop=face" alt="Karin Schober"></div>
+        <div class="team-name">Karin Schober, BA</div>
+        <div class="team-role">Kunst · Werken</div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar"><img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=220&h=220&fit=crop&crop=face" alt="Michael Reiter"></div>
+        <div class="team-name">Mag. Michael Reiter</div>
+        <div class="team-role">Musik · Chor</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALERIE -->
+<section id="galerie">
+  <div class="section-inner">
+    <span class="section-tag">Einblicke</span>
+    <h2 class="section-title">Galerie</h2>
+    <p class="section-subtitle">Impressionen aus unserem Schulleben.</p>
+    <div class="gallery-grid">
+      <div class="gallery-item tall" onclick="openLight('https://images.unsplash.com/photo-1509062522246-3755977927d7?w=1200&fit=crop','Schülerinnen im Unterricht')">
+        <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=600&h=900&fit=crop&crop=center" alt="Schülerinnen im Unterricht">
+      </div>
+      <div class="gallery-item" onclick="openLight('https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=1200&fit=crop','Klassenraum')">
+        <img src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=600&h=450&fit=crop&crop=center" alt="Klassenraum">
+      </div>
+      <div class="gallery-item" onclick="openLight('https://images.unsplash.com/photo-1416339306562-f3d12fefd36f?w=1200&fit=crop','Schulgarten')">
+        <img src="https://images.unsplash.com/photo-1416339306562-f3d12fefd36f?w=600&h=450&fit=crop&crop=center" alt="Schulgarten">
+      </div>
+      <div class="gallery-item" onclick="openLight('https://images.unsplash.com/photo-1507676184212-d03ab07a01bf?w=1200&fit=crop','Theateraufführung')">
+        <img src="https://images.unsplash.com/photo-1507676184212-d03ab07a01bf?w=600&h=450&fit=crop&crop=center" alt="Theateraufführung">
+      </div>
+      <div class="gallery-item" onclick="openLight('https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=1200&fit=crop','Sporttag')">
+        <img src="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=600&h=450&fit=crop&crop=center" alt="Sporttag">
+      </div>
+      <div class="gallery-item wide" onclick="openLight('https://images.unsplash.com/photo-1448375240586-882707db888b?w=1600&fit=crop','Schulausflug Panorama')">
+        <img src="https://images.unsplash.com/photo-1448375240586-882707db888b?w=900&h=450&fit=crop&crop=center" alt="Schulausflug Panorama">
+      </div>
+      <div class="gallery-item" onclick="openLight('https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=1200&fit=crop','Bibliothek')">
+        <img src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=600&h=450&fit=crop&crop=center" alt="Bibliothek">
+      </div>
+    </div>
+
+    <!-- LIGHTBOX -->
+    <div id="lightbox" onclick="closeLight()" style="display:none;position:fixed;inset:0;z-index:9000;background:oklch(0% 0 0 / 88%);align-items:center;justify-content:center;cursor:zoom-out;flex-direction:column;gap:16px;">
+      <img id="lb-img" alt="" style="max-width:90vw;max-height:82vh;object-fit:contain;border-radius:12px;box-shadow:0 16px 64px oklch(0% 0 0 / 40%);">
+      <div id="lb-caption" style="color:oklch(85% 0.04 145);font-family:'Nunito',sans-serif;font-size:0.95rem;"></div>
+      <div style="color:oklch(60% 0.04 145);font-size:0.8rem;">Klicken zum Schließen</div>
+    </div>
+  </div>
+</section>
+
+<!-- KONTAKT -->
+<section id="kontakt">
+  <div class="section-inner">
+    <span class="section-tag">Kontakt</span>
+    <h2 class="section-title">So erreichen Sie uns</h2>
+    <p class="section-subtitle">Wir freuen uns über Ihre Nachricht — ob Frage, Anliegen oder Rückmeldung.</p>
+    <div class="kontakt-grid">
+      <div class="kontakt-info">
+        <div class="kontakt-item">
+        <div class="kontakt-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2C7.24 2 5 4.24 5 7c0 4 5 9 5 9s5-5 5-9c0-2.76-2.24-5-5-5zm0 6.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" fill="oklch(52% 0.10 145)"/></svg>
+          </div>
+          <div>
+            <div class="kontakt-label">Adresse</div>
+            <div class="kontakt-value">Schulstraße 1, 2552 Hirtenberg<br>Niederösterreich, Österreich</div>
+          </div>
+        </div>
+        <div class="kontakt-item">
+        <div class="kontakt-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 4h14c.55 0 1 .45 1 1v10c0 .55-.45 1-1 1H3c-.55 0-1-.45-1-1V5c0-.55.45-1 1-1zm7 7 7-5H3l7 5z" fill="oklch(52% 0.10 145)"/></svg>
+          </div>
+          <div>
+            <div class="kontakt-label">E-Mail</div>
+            <div class="kontakt-value"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f1959883949a85989e9fb19c82dc99988385949f93948396df9085">[email&#160;protected]</a></div>
+          </div>
+        </div>
+        <div class="kontakt-item">
+        <div class="kontakt-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 2h3l1.5 4-2 1.2a11 11 0 0 0 4.3 4.3L12 9.5l4 1.5v3c0 1.1-1 1.9-2.1 1.7C6.6 14.6 2 9.4 2 4.1 2 3 2.9 2 4 2z" fill="oklch(52% 0.10 145)"/></svg>
+          </div>
+          <div>
+            <div class="kontakt-label">Telefon</div>
+            <div class="kontakt-value">02256 / 12 34 56</div>
+          </div>
+        </div>
+        <div class="kontakt-item">
+        <div class="kontakt-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" stroke="oklch(52% 0.10 145)" stroke-width="1.8"/><path d="M10 6v4l3 2" stroke="oklch(52% 0.10 145)" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </div>
+          <div>
+            <div class="kontakt-label">Sekretariat</div>
+            <div class="kontakt-value">Mo–Fr 7:30 – 12:00 Uhr</div>
+          </div>
+        </div>
+      </div>
+      <div style="border-radius: var(--radius-lg); overflow: hidden; aspect-ratio: 4/3;">
+        <iframe
+          src="https://www.openstreetmap.org/export/embed.html?bbox=16.144%2C47.920%2C16.224%2C47.955&layer=mapnik&marker=47.9375%2C16.184"
+          style="width:100%;height:100%;border:none;"
+          title="Karte MS Hirtenberg"
+          loading="lazy"
+        ></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>© 2026 Mittelschule Hirtenberg · Alle Rechte vorbehalten</div>
+  <div style="display:flex;gap:24px;">
+    <a href="impressum.html">Impressum</a>
+    <a href="datenschutz.html">Datenschutz</a>
+    <a href="barrierefreiheit.html">Barrierefreiheit</a>
+  </div>
+</footer>
+
+<!-- TWEAKS PANEL -->
+<div id="tweaks-panel">
+  <h3>Tweaks <span style="cursor:pointer;opacity:.5" onclick="closeTweaks()">✕</span></h3>
+  <div class="tweak-row">
+    <label>Primärfarbe (Grün-Ton)</label>
+    <input type="color" id="tw-primary" value="#2a5c22" oninput="applyColor()">
+  </div>
+  <div class="tweak-row">
+    <label>Akzentfarbe (Amber)</label>
+    <input type="color" id="tw-accent" value="#c47a2a" oninput="applyColor()">
+  </div>
+  <div class="tweak-row">
+    <label>Überschriften-Schrift</label>
+    <select id="tw-headfont" onchange="applyFonts()">
+      <option value="Lora" selected>Lora (Serifen)</option>
+      <option value="Nunito">Nunito (Rund)</option>
+      <option value="Georgia">Georgia (Klassisch)</option>
+    </select>
+  </div>
+  <div class="tweak-row">
+    <label>Fließtext-Schrift</label>
+    <select id="tw-bodyfont" onchange="applyFonts()">
+      <option value="Nunito" selected>Nunito</option>
+      <option value="Georgia">Georgia</option>
+      <option value="system-ui">System-Schrift</option>
+    </select>
+  </div>
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  function openLight(src, caption) {
+    const lb = document.getElementById('lightbox');
+    document.getElementById('lb-img').src = src;
+    document.getElementById('lb-caption').textContent = caption;
+    lb.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLight() {
+    document.getElementById('lightbox').style.display = 'none';
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLight(); });
+
+  // ─── KALENDER ───
+  const EVENTS = [
+    { id: 'sa-1a-de-2',       date: '2026-04-28', type: 'test',  name: 'Schularbeit Mathematik',   desc: '3a und 3b – 2. Schularbeit' },
+    { id: 'evt-schulforum',    date: '2026-04-30', type: 'event', name: 'Schulforum',               desc: 'Eltern- und Schülervertreter, 18:00 Uhr' },
+    { id: 'evt-staatsfeiertag',date: '2026-05-01', type: 'free',  name: 'Staatsfeiertag',           desc: 'Tag der Arbeit – schulfrei' },
+    { id: 'evt-konferenz-mai', date: '2026-05-05', type: 'conf',  name: 'Lehrerkonferenz',          desc: 'Pädagogische Konferenz, 14:00 Uhr' },
+    { id: 'evt-sporttag',      date: '2026-05-10', type: 'event', name: 'Sporttag 2026',            desc: 'Sportplatz Hirtenberg, 8:30–16:00 Uhr' },
+    { id: 'evt-geschichte-1b', date: '2026-05-12', type: 'test',  name: 'Schularbeit Geschichte',   desc: '1a und 1b – 2. Schularbeit' },
+    { id: 'evt-himmelfahrt',   date: '2026-05-14', type: 'free',  name: 'Christi Himmelfahrt',      desc: 'Gesetzlicher Feiertag – schulfrei' },
+    { id: 'sa-2a-de-2',        date: '2026-05-20', type: 'test',  name: 'Schularbeit Deutsch',      desc: '2a und 2b – 2. Schularbeit' },
+    { id: 'evt-pfingsten',     date: '2026-05-25', type: 'free',  name: 'Pfingstmontag',            desc: 'Gesetzlicher Feiertag – schulfrei' },
+    { id: 'sa-2a-ma-2',        date: '2026-05-27', type: 'test',  name: 'Schularbeit Mathematik',   desc: '2a und 2b – 2. Schularbeit' },
+    { id: 'evt-museumsbesuch', date: '2026-05-28', type: 'trip',  name: 'Museumsbesuch Wien',       desc: '4. Klassen – Naturhistorisches Museum' },
+    { id: 'evt-paed-tag',      date: '2026-06-03', type: 'conf',  name: 'Pädagogischer Tag',        desc: 'Unterrichtsfrei für Schüler:innen' },
+    { id: 'sa-4a-en-2',        date: '2026-06-04', type: 'test',  name: 'Schularbeit Englisch',     desc: '4a und 4b – Abschlussschularbeit' },
+    { id: 'evt-open-house',    date: '2026-06-08', type: 'event', name: 'Tag der offenen Tür',      desc: 'Schulbesichtigung für künftige Schüler:innen' },
+    { id: 'evt-sprechtag',     date: '2026-06-11', type: 'conf',  name: 'Elternsprechtag',          desc: 'Individuelle Beratungsgespräche, 15–19 Uhr' },
+    { id: 'evt-wandertag',     date: '2026-06-15', type: 'trip',  name: 'Wandertag',                desc: 'Ganztagesausflug für alle Klassen' },
+    { id: 'evt-fronleichnam',  date: '2026-06-19', type: 'free',  name: 'Fronleichnam',             desc: 'Gesetzlicher Feiertag – schulfrei' },
+    { id: 'evt-jahreskonferenz',date:'2026-06-26', type: 'conf',  name: 'Jahresabschlusskonferenz', desc: 'Notenkonferenz, nachmittags' },
+    { id: 'evt-schulschluss',  date: '2026-06-29', type: 'event', name: 'Schulschlussfeier',        desc: 'Aula MS Hirtenberg, 10:00 Uhr' },
+    { id: 'evt-sommerferien',  date: '2026-06-30', type: 'free',  name: 'Sommerferien Beginn',      desc: 'Letzter Schultag / Beginn der Sommerferien' },
+  ];
+
+  const MONTHS_DE = ['Jänner','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'];
+  const DAYS_DE = ['Mo','Di','Mi','Do','Fr','Sa','So'];
+
+  let curYear = 2026, curMonth = 3; // 0-indexed: April
+
+  function eventsOn(dateStr) {
+    return EVENTS.filter(e => e.date === dateStr);
+  }
+
+  function renderCalendar() {
+    const label = document.getElementById('cal-month-label');
+    const grid  = document.getElementById('cal-grid');
+    label.textContent = MONTHS_DE[curMonth] + ' ' + curYear;
+
+    const today = new Date();
+    const firstDay = new Date(curYear, curMonth, 1);
+    // Monday-first: 0=Mon … 6=Sun
+    let startDow = (firstDay.getDay() + 6) % 7;
+    const daysInMonth = new Date(curYear, curMonth + 1, 0).getDate();
+    const prevDays = new Date(curYear, curMonth, 0).getDate();
+
+    let html = DAYS_DE.map(d => `<div class="cal-dow">${d}</div>`).join('');
+
+    // prev month fill
+    for (let i = startDow - 1; i >= 0; i--) {
+      const d = prevDays - i;
+      const m = curMonth === 0 ? 11 : curMonth - 1;
+      const y = curMonth === 0 ? curYear - 1 : curYear;
+      const ds = `${y}-${String(m+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+      const evs = eventsOn(ds);
+      html += `<div class="cal-day other-month"><div class="cal-day-num">${d}</div><div class="cal-dots">${evs.map(e=>`<div class="cal-dot dot-${e.type}"></div>`).join('')}</div></div>`;
+    }
+
+    for (let d = 1; d <= daysInMonth; d++) {
+      const ds = `${curYear}-${String(curMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+      const evs = eventsOn(ds);
+      const isToday = today.getFullYear()===curYear && today.getMonth()===curMonth && today.getDate()===d;
+      html += `<div class="cal-day${isToday?' today':''}"><div class="cal-day-num">${d}</div><div class="cal-dots">${evs.map(e=>`<div class="cal-dot dot-${e.type}"></div>`).join('')}</div></div>`;
+    }
+
+    // next month fill
+    const total = startDow + daysInMonth;
+    const remaining = total % 7 === 0 ? 0 : 7 - (total % 7);
+    for (let d = 1; d <= remaining; d++) {
+      const m = curMonth === 11 ? 0 : curMonth + 1;
+      const y = curMonth === 11 ? curYear + 1 : curYear;
+      const ds = `${y}-${String(m+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+      const evs = eventsOn(ds);
+      html += `<div class="cal-day other-month"><div class="cal-day-num">${d}</div><div class="cal-dots">${evs.map(e=>`<div class="cal-dot dot-${e.type}"></div>`).join('')}</div></div>`;
+    }
+
+    grid.innerHTML = html;
+    renderUpcoming();
+  }
+
+  function renderUpcoming() {
+    const container = document.getElementById('upcoming-events');
+    const today = new Date(); today.setHours(0,0,0,0);
+    const upcoming = EVENTS
+      .filter(e => new Date(e.date) >= today)
+      .sort((a,b) => a.date.localeCompare(b.date))
+      .slice(0, 7);
+
+    const tagLabels = { test:'Schularbeit', event:'Veranstaltung', free:'Schulfrei', conf:'Konferenz', trip:'Ausflug' };
+
+    container.innerHTML = upcoming.map(e => {
+      const dt = new Date(e.date + 'T12:00:00');
+      const day = dt.getDate();
+      const mon = MONTHS_DE[dt.getMonth()].slice(0,3);
+      const link = e.id ? `termine.html#${e.id}` : 'termine.html';
+      return `<a class="event-item ${e.type}" href="${link}" style="text-decoration:none;">
+        <div class="event-date-badge">
+          <div class="event-date-day">${day}</div>
+          <div class="event-date-mon">${mon}</div>
+        </div>
+        <div>
+          <div class="event-tag ${e.type}">${tagLabels[e.type]}</div>
+          <div class="event-name">${e.name}</div>
+          <div class="event-desc">${e.desc}</div>
+        </div>
+      </a>`;
+    }).join('');
+  }
+
+  function changeMonth(dir) {
+    curMonth += dir;
+    if (curMonth > 11) { curMonth = 0; curYear++; }
+    if (curMonth < 0)  { curMonth = 11; curYear--; }
+    renderCalendar();
+  }
+
+  renderCalendar();
+
+  // Tweaks
+  window.addEventListener('message', e => {
+    if (e.data?.type === '__activate_edit_mode') openTweaks();
+    if (e.data?.type === '__deactivate_edit_mode') closeTweaks();
+  });
+  window.parent.postMessage({ type: '__edit_mode_available' }, '*');
+
+  function openTweaks()  { document.getElementById('tweaks-panel').classList.add('open'); }
+  function closeTweaks() { document.getElementById('tweaks-panel').classList.remove('open'); }
+
+  function applyColor() {
+    // Just demonstrate with CSS filter tinting the hero bg
+    const p = document.getElementById('tw-primary').value;
+    const a = document.getElementById('tw-accent').value;
+    document.querySelectorAll('.btn-primary').forEach(el => el.style.background = a);
+    document.querySelectorAll('.hero-tag').forEach(el => el.style.background = a);
+    document.querySelectorAll('.nav-logo-leaf').forEach(el => el.style.background = a);
+    document.querySelectorAll('.feature-card').forEach(el => el.style.borderLeftColor = p);
+    document.querySelectorAll('.section-tag').forEach(el => el.style.color = p);
+    document.querySelectorAll('.news-link').forEach(el => el.style.color = p);
+    window.parent.postMessage({ type: '__edit_mode_set_keys', edits: { primaryColor: p, accentColor: a } }, '*');
+  }
+
+  function applyFonts() {
+    const hf = document.getElementById('tw-headfont').value;
+    const bf = document.getElementById('tw-bodyfont').value;
+    document.documentElement.style.setProperty('--font-heading', `'${hf}', serif`);
+    document.documentElement.style.setProperty('--font-body', `'${bf}', sans-serif`);
+    window.parent.postMessage({ type: '__edit_mode_set_keys', edits: { headingFont: hf, bodyFont: bf } }, '*');
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Datenschutzerklärung – MS Hirtenberg</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sage:        oklch(52% 0.10 145);
+    --sage-dark:   oklch(38% 0.09 145);
+    --sage-mid:    oklch(62% 0.09 145);
+    --sage-light:  oklch(80% 0.07 145);
+    --sage-pale:   oklch(95% 0.04 145);
+    --blush:       oklch(78% 0.08 15);
+    --blush-dark:  oklch(56% 0.11 15);
+    --blush-pale:  oklch(96% 0.03 15);
+    --cream:       oklch(98% 0.008 88);
+    --cream-mid:   oklch(96% 0.012 88);
+    --cream-dark:  oklch(92% 0.018 88);
+    --text:        oklch(28% 0.05 145);
+    --text-light:  oklch(55% 0.04 145);
+    --white: #fff;
+    --font-heading: 'Lora', Georgia, serif;
+    --font-body: 'Nunito', system-ui, sans-serif;
+    --radius: 12px; --radius-lg: 20px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--font-body); background: var(--cream); color: var(--text); font-size: 17px; line-height: 1.7; }
+
+  nav { background: var(--white); display: flex; align-items: center; justify-content: space-between; padding: 0 48px; height: 68px; border-bottom: 1.5px solid var(--cream-dark); box-shadow: 0 2px 20px oklch(0% 0 0 / 6%); position: sticky; top: 0; z-index: 100; }
+  .nav-logo { font-family: var(--font-heading); color: var(--sage-dark); font-size: 1.2rem; font-weight: 700; letter-spacing: -0.02em; text-decoration: none; display: flex; align-items: center; gap: 10px; }
+  .nav-links { display: flex; gap: 4px; list-style: none; }
+  .nav-links a { color: var(--text-light); text-decoration: none; font-size: 0.88rem; font-weight: 600; padding: 7px 15px; border-radius: 30px; transition: background 0.2s, color 0.2s; letter-spacing: 0.01em; }
+  .nav-links a:hover, .nav-links a.active { background: var(--sage-pale); color: var(--sage-dark); }
+
+  .page-hero { padding: 64px 96px 52px; position: relative; overflow: hidden; background-color: var(--sage-pale); background-image: linear-gradient(to right, oklch(98% 0.008 88 / 0.97) 0%, oklch(98% 0.008 88 / 0.92) 40%, oklch(97% 0.02 60 / 0.66) 58%, oklch(96% 0.03 15 / 0.24) 76%, transparent 94%), url("uploads/grafik-9f6efa7c.png"); background-size: cover, cover; background-position: center, center 58%; background-repeat: no-repeat, no-repeat; }
+  .page-hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, oklch(38% 0.06 145 / 0.10), transparent 38%); pointer-events: none; }
+  .page-hero-tag { display: inline-flex; align-items: center; gap: 7px; background: var(--white); color: var(--sage); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; padding: 5px 14px; border-radius: 30px; margin-bottom: 14px; border: 1.5px solid var(--sage-pale); }
+  .page-hero h1 { font-family: var(--font-heading); color: var(--text); font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 700; margin-bottom: 10px; }
+  .page-hero p { color: var(--text-light); max-width: 600px; }
+  .back-link { display: inline-flex; align-items: center; gap: 8px; color: var(--sage); font-weight: 700; text-decoration: none; font-size: 0.88rem; margin-bottom: 20px; transition: gap 0.2s; }
+  .back-link:hover { gap: 12px; }
+
+  .legal-layout { max-width: 1080px; margin: 0 auto; padding: 56px 48px 100px; display: grid; grid-template-columns: 220px 1fr; gap: 56px; align-items: start; }
+
+  /* TOC */
+  .legal-toc { position: sticky; top: 92px; }
+  .legal-toc-title { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--sage); margin-bottom: 14px; }
+  .legal-toc ol { list-style: none; counter-reset: toc; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 2px; }
+  .legal-toc a { counter-increment: toc; display: block; padding: 7px 12px 7px 34px; position: relative; color: var(--text-light); text-decoration: none; font-size: 0.86rem; font-weight: 600; border-radius: 8px; transition: background 0.15s, color 0.15s; }
+  .legal-toc a::before { content: counter(toc); position: absolute; left: 12px; color: var(--sage); font-weight: 700; }
+  .legal-toc a:hover { background: var(--sage-pale); color: var(--sage-dark); }
+
+  .legal-content { min-width: 0; }
+  .legal-block { margin-bottom: 44px; scroll-margin-top: 92px; }
+  .legal-block:last-child { margin-bottom: 0; }
+  .legal-block h2 {
+    font-family: var(--font-heading); font-size: 1.3rem; font-weight: 700; color: var(--text);
+    margin-bottom: 16px; padding-bottom: 12px; border-bottom: 2px solid var(--cream-dark);
+    display: flex; align-items: baseline; gap: 12px;
+  }
+  .legal-block h2 .h-num { font-size: 0.95rem; color: var(--sage); font-weight: 700; }
+  .legal-block h3 { font-size: 1.0rem; font-weight: 700; color: var(--text); margin: 24px 0 8px; }
+  .legal-block p { color: var(--text-light); margin-bottom: 16px; text-wrap: pretty; }
+  .legal-block p:last-child { margin-bottom: 0; }
+  .legal-block a { color: var(--sage-dark); font-weight: 600; text-decoration: none; border-bottom: 1.5px solid var(--sage-light); }
+  .legal-block a:hover { color: var(--sage); }
+  .legal-block strong { color: var(--text); font-weight: 700; }
+
+  .legal-list { list-style: none; padding: 0; margin: 0 0 16px; }
+  .legal-list li { position: relative; padding-left: 22px; color: var(--text-light); margin-bottom: 9px; }
+  .legal-list li::before { content: ''; position: absolute; left: 2px; top: 11px; width: 6px; height: 6px; border-radius: 50%; background: var(--sage-light); }
+  .legal-list strong { color: var(--text); }
+
+  .data-card { background: var(--white); border: 1.5px solid var(--cream-dark); border-radius: var(--radius-lg); padding: 24px 28px; box-shadow: 0 2px 10px oklch(0% 0 0 / 4%); margin-bottom: 16px; }
+  .data-grid { display: grid; grid-template-columns: 150px 1fr; gap: 8px 24px; }
+  .data-label { font-size: 0.76rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--sage); padding-top: 2px; }
+  .data-value { color: var(--text); font-weight: 600; }
+  .data-row-sep { grid-column: 1 / -1; height: 1px; background: var(--cream-dark); margin: 6px 0; }
+
+  /* RIGHTS GRID */
+  .rights-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 4px 0 16px; }
+  .right-item { background: var(--sage-pale); border-radius: var(--radius); padding: 16px 18px; border-left: 3px solid var(--sage-light); }
+  .right-item h4 { font-size: 0.92rem; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+  .right-item p { font-size: 0.84rem; color: var(--text-light); margin: 0; }
+
+  .legal-note { margin-top: 14px; padding: 16px 20px; background: var(--blush-pale); border-radius: var(--radius); border-left: 4px solid var(--blush-dark); font-size: 0.92rem; color: var(--text-light); }
+  .legal-note strong { color: var(--text); }
+  .legal-updated { margin-top: 8px; font-size: 0.85rem; color: var(--text-light); font-style: italic; }
+
+  footer { background: var(--sage-dark); padding: 32px 48px; display: flex; align-items: center; justify-content: space-between; color: var(--sage-light); font-size: 0.83rem; }
+  footer a { color: var(--sage-light); text-decoration: none; }
+  footer a:hover { color: var(--white); }
+
+  @media (max-width: 900px) {
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .page-hero { padding: 40px 20px 32px; }
+    .legal-layout { grid-template-columns: 1fr; gap: 28px; padding: 40px 20px 80px; }
+    .legal-toc { position: static; }
+    .legal-toc ol { display: grid; grid-template-columns: 1fr 1fr; }
+    .data-grid { grid-template-columns: 1fr; gap: 2px; }
+    .data-label { margin-top: 12px; }
+    .data-label:first-child { margin-top: 0; }
+    .data-row-sep { display: none; }
+    .rights-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 12px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <svg width="38" height="38" viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="19" cy="19" r="17" fill="none" stroke="oklch(52% 0.10 145)" stroke-width="1.3"/>
+      <circle cx="19" cy="19" r="13.5" fill="none" stroke="oklch(52% 0.10 145)" stroke-width="0.4" opacity="0.4"/>
+      <line x1="19" y1="27" x2="19" y2="22" stroke="oklch(52% 0.10 145)" stroke-width="1.4" stroke-linecap="round"/>
+      <path d="M19 22 C22 18 22 12 19 11 C16 12 16 18 19 22Z" fill="oklch(52% 0.10 145)"/>
+      <path d="M19 22 C15 19 12 15 13 13 C15 13 18 18 19 22Z" fill="oklch(68% 0.09 145)"/>
+      <path d="M19 22 C23 19 26 15 25 13 C23 13 20 18 19 22Z" fill="oklch(68% 0.09 145)"/>
+      <circle cx="19" cy="2" r="1.8" fill="oklch(60% 0.11 68)"/>
+    </svg>
+    MS Hirtenberg
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#ueber">Über uns</a></li>
+    <li><a href="index.html#news">News</a></li>
+    <li><a href="index.html#kalender">Kalender</a></li>
+    <li><a href="termine.html">Termine</a></li>
+    <li><a href="index.html#team">Lehrpersonal</a></li>
+    <li><a href="index.html#galerie">Galerie</a></li>
+    <li><a href="index.html#kontakt">Kontakt</a></li>
+  </ul>
+</nav>
+
+<div class="page-hero">
+  <a href="index.html" class="back-link">← Zurück zur Startseite</a>
+  <div class="page-hero-tag">Rechtliches</div>
+  <h1>Datenschutzerklärung</h1>
+  <p>Der Schutz Ihrer personenbezogenen Daten ist uns ein besonderes Anliegen. Wir verarbeiten Ihre Daten ausschließlich auf Grundlage der Datenschutz-Grundverordnung (DSGVO) und des österreichischen Datenschutzgesetzes (DSG).</p>
+</div>
+
+<div class="legal-layout">
+
+  <aside class="legal-toc">
+    <div class="legal-toc-title">Inhalt</div>
+    <ol>
+      <li><a href="#verantwortlich">Verantwortliche Stelle</a></li>
+      <li><a href="#zwecke">Datenverarbeitung &amp; Zwecke</a></li>
+      <li><a href="#website">Daten beim Websitebesuch</a></li>
+      <li><a href="#kontakt">Kontaktaufnahme</a></li>
+      <li><a href="#fotos">Fotos &amp; Schulleben</a></li>
+      <li><a href="#dritte">Eingebundene Dienste</a></li>
+      <li><a href="#speicherdauer">Speicherdauer</a></li>
+      <li><a href="#rechte">Ihre Rechte</a></li>
+      <li><a href="#beschwerde">Beschwerderecht</a></li>
+    </ol>
+  </aside>
+
+  <div class="legal-content">
+
+    <div class="legal-block" id="verantwortlich">
+      <h2><span class="h-num">01</span>Verantwortliche Stelle</h2>
+      <p>Verantwortlich für die Datenverarbeitung im Sinne der DSGVO ist:</p>
+      <div class="data-card">
+        <div class="data-grid">
+          <div class="data-label">Schule</div>
+          <div class="data-value">Mittelschule Hirtenberg</div>
+          <div class="data-row-sep"></div>
+          <div class="data-label">Anschrift</div>
+          <div class="data-value">Schulstraße 1, 2552 Hirtenberg, Österreich</div>
+          <div class="data-row-sep"></div>
+          <div class="data-label">Telefon</div>
+          <div class="data-value"><a href="tel:+43225612345">02256 / 12 34 56</a></div>
+          <div class="data-row-sep"></div>
+          <div class="data-label">E-Mail</div>
+          <div class="data-value"><a href="/cdn-cgi/l/email-protection#35515441505b46565d40414f755846185d5c4741505b575047521b5441"><span class="__cf_email__" data-cfemail="0d696c7968637e6e657879774d607e2065647f7968636f687f6a236c79">[email&#160;protected]</span></a></div>
+        </div>
+      </div>
+      <p>Für Datenschutzangelegenheiten der Schulverwaltung ist zusätzlich der Datenschutzbeauftragte der Bildungsdirektion für Niederösterreich zuständig.</p>
+    </div>
+
+    <div class="legal-block" id="zwecke">
+      <h2><span class="h-num">02</span>Datenverarbeitung &amp; Zwecke</h2>
+      <p>Wir verarbeiten personenbezogene Daten ausschließlich im Rahmen unseres gesetzlichen Bildungsauftrags sowie zur Organisation des Schulbetriebs. Rechtsgrundlagen sind insbesondere die Erfüllung einer rechtlichen Verpflichtung (Art. 6 Abs. 1 lit. c DSGVO), die Wahrnehmung einer Aufgabe im öffentlichen Interesse (Art. 6 Abs. 1 lit. e DSGVO) sowie – wo erforderlich – Ihre Einwilligung (Art. 6 Abs. 1 lit. a DSGVO).</p>
+      <ul class="legal-list">
+        <li><strong>Schülerverwaltung:</strong> Anmeldung, Zeugnisse, Leistungsbeurteilung und Schullaufbahn.</li>
+        <li><strong>Kommunikation:</strong> Information von Erziehungsberechtigten über Termine, Veranstaltungen und schulische Angelegenheiten.</li>
+        <li><strong>Schulorganisation:</strong> Klasseneinteilung, Ausflüge, Betreuung und Verwaltung.</li>
+        <li><strong>Website-Betrieb:</strong> Bereitstellung dieser Informationsseite.</li>
+      </ul>
+    </div>
+
+    <div class="legal-block" id="website">
+      <h2><span class="h-num">03</span>Daten beim Besuch dieser Website</h2>
+      <p>Beim Aufruf unserer Website werden durch den Hosting-Anbieter automatisch Informationen in sogenannten Server-Logfiles gespeichert, die Ihr Browser übermittelt. Dies sind:</p>
+      <ul class="legal-list">
+        <li>aufgerufene Seite und Datum/Uhrzeit des Zugriffs</li>
+        <li>verwendeter Browsertyp und Betriebssystem</li>
+        <li>übertragene Datenmenge und Meldung über erfolgreichen Abruf</li>
+        <li>(gekürzte) IP-Adresse des zugreifenden Geräts</li>
+      </ul>
+      <p>Diese Daten dienen ausschließlich dem technisch fehlerfreien Betrieb und der Sicherheit der Website (Art. 6 Abs. 1 lit. f DSGVO). Eine Zusammenführung mit anderen Datenquellen oder eine Auswertung zu Marketingzwecken findet nicht statt. Wir setzen <strong>keine Tracking-Cookies</strong> und keine Analyse-Werkzeuge ein.</p>
+    </div>
+
+    <div class="legal-block" id="kontakt">
+      <h2><span class="h-num">04</span>Kontaktaufnahme</h2>
+      <p>Wenn Sie uns per E-Mail, Telefon oder über ein Formular kontaktieren, werden Ihre Angaben zum Zweck der Bearbeitung der Anfrage und für mögliche Anschlussfragen gespeichert. Diese Daten geben wir nicht ohne Ihre Einwilligung weiter und löschen sie, sobald die Bearbeitung abgeschlossen ist und keine gesetzlichen Aufbewahrungspflichten entgegenstehen.</p>
+    </div>
+
+    <div class="legal-block" id="fotos">
+      <h2><span class="h-num">05</span>Fotos &amp; Berichte aus dem Schulleben</h2>
+      <p>Im Rahmen von Schulveranstaltungen entstehen Fotos, die wir auf dieser Website und in unseren News-Beiträgen veröffentlichen. Eine Veröffentlichung erfolgt nur auf Grundlage einer ausdrücklichen Einwilligung der abgebildeten Personen bzw. – bei Minderjährigen – ihrer Erziehungsberechtigten (Art. 6 Abs. 1 lit. a DSGVO). Eine erteilte Einwilligung kann jederzeit für die Zukunft widerrufen werden.</p>
+    </div>
+
+    <div class="legal-block" id="dritte">
+      <h2><span class="h-num">06</span>Eingebundene Dienste Dritter</h2>
+      <h3>Google Fonts</h3>
+      <p>Zur einheitlichen Darstellung von Schriftarten werden auf dieser Website Schriften des Anbieters Google geladen. Beim Aufruf einer Seite kann dabei eine Verbindung zu den Servern von Google hergestellt werden, wodurch Ihre IP-Adresse übertragen wird.</p>
+      <h3>Kartendarstellung (OpenStreetMap)</h3>
+      <p>Auf der Kontaktseite binden wir eine Karte von OpenStreetMap ein, um unseren Standort anzuzeigen. Dabei wird eine Verbindung zu den Servern von OpenStreetMap aufgebaut.</p>
+      <div class="legal-note">
+        <strong>Hinweis:</strong> Werden externe Schriften und Karten eingebunden, sollten diese idealerweise lokal gehostet bzw. erst nach Einwilligung geladen werden. Bitte vor Veröffentlichung mit der Schulleitung abstimmen.
+      </div>
+    </div>
+
+    <div class="legal-block" id="speicherdauer">
+      <h2><span class="h-num">07</span>Speicherdauer</h2>
+      <p>Wir speichern personenbezogene Daten nur so lange, wie es für die genannten Zwecke erforderlich ist oder gesetzliche Aufbewahrungsfristen (z. B. nach dem Bildungsdokumentationsgesetz) dies vorsehen. Anschließend werden die Daten gelöscht oder anonymisiert.</p>
+    </div>
+
+    <div class="legal-block" id="rechte">
+      <h2><span class="h-num">08</span>Ihre Rechte</h2>
+      <p>Sie haben hinsichtlich der Sie betreffenden personenbezogenen Daten folgende Rechte:</p>
+      <div class="rights-grid">
+        <div class="right-item"><h4>Auskunft</h4><p>Information darüber, welche Daten wir verarbeiten (Art. 15).</p></div>
+        <div class="right-item"><h4>Berichtigung</h4><p>Korrektur unrichtiger Daten (Art. 16).</p></div>
+        <div class="right-item"><h4>Löschung</h4><p>Entfernung Ihrer Daten, sofern zulässig (Art. 17).</p></div>
+        <div class="right-item"><h4>Einschränkung</h4><p>Einschränkung der Verarbeitung (Art. 18).</p></div>
+        <div class="right-item"><h4>Datenübertragbarkeit</h4><p>Erhalt Ihrer Daten in gängigem Format (Art. 20).</p></div>
+        <div class="right-item"><h4>Widerspruch</h4><p>Widerspruch gegen die Verarbeitung (Art. 21).</p></div>
+      </div>
+      <p>Zur Ausübung Ihrer Rechte genügt eine formlose Nachricht an <a href="/cdn-cgi/l/email-protection#95f1f4e1f0fbe6f6fde0e1efd5f8e6b8fdfce7e1f0fbf7f0e7f2bbf4e1"><span class="__cf_email__" data-cfemail="53373227363d20303b262729133e207e3b3a2127363d313621347d3227">[email&#160;protected]</span></a>.</p>
+    </div>
+
+    <div class="legal-block" id="beschwerde">
+      <h2><span class="h-num">09</span>Beschwerderecht</h2>
+      <p>Wenn Sie der Ansicht sind, dass die Verarbeitung Ihrer Daten gegen das Datenschutzrecht verstößt, haben Sie das Recht, sich bei der Aufsichtsbehörde zu beschweren:</p>
+      <div class="data-card">
+        <div class="data-grid">
+          <div class="data-label">Behörde</div>
+          <div class="data-value">Österreichische Datenschutzbehörde</div>
+          <div class="data-row-sep"></div>
+          <div class="data-label">Anschrift</div>
+          <div class="data-value">Barichgasse 40–42, 1030 Wien</div>
+          <div class="data-row-sep"></div>
+          <div class="data-label">Web</div>
+          <div class="data-value"><a href="https://www.dsb.gv.at" target="_blank" rel="noopener">www.dsb.gv.at</a></div>
+        </div>
+      </div>
+      <p class="legal-updated">Stand: Juni 2026 · Diese Datenschutzerklärung ist ein an die Schule anzupassendes Muster und vor Veröffentlichung rechtlich zu prüfen.</p>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div>© 2026 Mittelschule Hirtenberg · Alle Rechte vorbehalten</div>
+  <div style="display:flex;gap:24px;">
+    <a href="impressum.html">Impressum</a>
+    <a href="datenschutz.html">Datenschutz</a>
+    <a href="barrierefreiheit.html">Barrierefreiheit</a>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  document.querySelectorAll('.legal-toc a').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const t = document.querySelector(a.getAttribute('href'));
+      if (t) window.scrollTo({ top: t.getBoundingClientRect().top + window.scrollY - 92, behavior: 'smooth' });
+    });
+  });
+</script>
+
+</body>
+</html>

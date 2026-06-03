@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Schultheaterabend 2026 – MS Hirtenberg</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sage:        oklch(52% 0.10 145);
+    --sage-dark:   oklch(38% 0.09 145);
+    --sage-mid:    oklch(62% 0.09 145);
+    --sage-light:  oklch(80% 0.07 145);
+    --sage-pale:   oklch(95% 0.04 145);
+    --blush:       oklch(78% 0.08 15);
+    --blush-dark:  oklch(56% 0.11 15);
+    --blush-pale:  oklch(96% 0.03 15);
+    --cream:       oklch(98% 0.008 88);
+    --cream-mid:   oklch(96% 0.012 88);
+    --cream-dark:  oklch(92% 0.018 88);
+    --text:        oklch(28% 0.05 145);
+    --text-light:  oklch(55% 0.04 145);
+    --white: #fff;
+    --font-heading: 'Lora', Georgia, serif;
+    --font-body: 'Nunito', system-ui, sans-serif;
+    --radius: 12px; --radius-lg: 20px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  nav { background: var(--white); display: flex; align-items: center; justify-content: space-between; padding: 0 48px; height: 68px; border-bottom: 1.5px solid var(--cream-dark); box-shadow: 0 2px 20px oklch(0% 0 0 / 6%); position: sticky; top: 0; z-index: 100; }
+  .nav-logo { font-family: var(--font-heading); color: var(--sage-dark); font-size: 1.2rem; font-weight: 700; letter-spacing: -0.02em; text-decoration: none; display: flex; align-items: center; gap: 10px; }
+  .nav-links { display: flex; gap: 4px; list-style: none; }
+  .nav-links a { color: var(--text-light); text-decoration: none; font-size: 0.88rem; font-weight: 600; padding: 7px 15px; border-radius: 30px; transition: background 0.2s, color 0.2s; letter-spacing: 0.01em; }
+  .nav-links a:hover, .nav-links a.active { background: var(--sage-pale); color: var(--sage-dark); }
+  body { font-family: var(--font-body); background: var(--cream); color: var(--text); font-size: 17px; line-height: 1.7; }
+  .article-hero { position: relative; height: 480px; overflow: hidden; display: flex; align-items: flex-end; }
+  .article-hero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .article-hero-overlay { position: absolute; inset: 0; background: linear-gradient(to top, oklch(22% 0.06 145 / 0.80) 0%, transparent 60%); }
+  .article-hero-content { position: relative; z-index: 2; padding: 48px 96px; max-width: 900px; }
+  .article-tag { display: inline-flex; align-items: center; gap: 7px; background: var(--white); color: var(--sage); font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; padding: 5px 14px; border-radius: 30px; margin-bottom: 14px; border: 1.5px solid var(--sage-pale); }
+  .article-hero-title { font-family: var(--font-heading); color: var(--white); font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 700; line-height: 1.2; text-shadow: 0 2px 12px oklch(0% 0 0 / 30%); }
+  .article-wrapper { max-width: 800px; margin: 0 auto; padding: 64px 48px 100px; }
+  .article-meta { display: flex; align-items: center; gap: 24px; padding-bottom: 28px; border-bottom: 1.5px solid var(--cream-dark); margin-bottom: 40px; color: var(--text-light); font-size: 0.88rem; font-weight: 600; }
+  .article-body h2 { font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700; margin: 40px 0 14px; color: var(--text); }
+  .article-body p { margin-bottom: 20px; color: var(--text-light); text-wrap: pretty; }
+  .article-body strong { color: var(--text); font-weight: 700; }
+  .article-body blockquote { border-left: 3px solid var(--sage-light); margin: 32px 0; padding: 16px 24px; background: var(--sage-pale); border-radius: 0 var(--radius) var(--radius) 0; font-style: italic; color: var(--text); }
+  .article-photo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 36px 0; }
+  .article-photo-grid img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: var(--radius); display: block; }
+  .article-photo-grid img.wide { grid-column: span 2; aspect-ratio: 16/7; }
+  .back-link { display: inline-flex; align-items: center; gap: 8px; color: var(--sage); font-weight: 700; text-decoration: none; font-size: 0.9rem; margin-bottom: 40px; transition: gap 0.2s; }
+  .back-link:hover { gap: 12px; color: var(--sage-dark); }
+  footer { background: var(--sage-dark); padding: 32px 48px; display: flex; align-items: center; justify-content: space-between; color: var(--sage-light); font-size: 0.83rem; }
+  footer a { color: var(--sage-light); text-decoration: none; }
+  footer a:hover { color: var(--white); }
+  @media (max-width: 768px) {
+    nav { padding: 0 20px; }
+    .article-hero-content { padding: 32px 20px; }
+    .article-wrapper { padding: 40px 20px 80px; }
+    .article-photo-grid { grid-template-columns: 1fr; }
+    .article-photo-grid img.wide { grid-column: unset; aspect-ratio: 4/3; }
+    footer { flex-direction: column; gap: 12px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo">
+    <svg width="38" height="38" viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="19" cy="19" r="17" fill="none" stroke="oklch(52% 0.10 145)" stroke-width="1.3"/>
+      <circle cx="19" cy="19" r="13.5" fill="none" stroke="oklch(52% 0.10 145)" stroke-width="0.4" opacity="0.4"/>
+      <line x1="19" y1="27" x2="19" y2="22" stroke="oklch(52% 0.10 145)" stroke-width="1.4" stroke-linecap="round"/>
+      <path d="M19 22 C22 18 22 12 19 11 C16 12 16 18 19 22Z" fill="oklch(52% 0.10 145)"/>
+      <path d="M19 22 C15 19 12 15 13 13 C15 13 18 18 19 22Z" fill="oklch(68% 0.09 145)"/>
+      <path d="M19 22 C23 19 26 15 25 13 C23 13 20 18 19 22Z" fill="oklch(68% 0.09 145)"/>
+      <circle cx="19" cy="2" r="1.8" fill="oklch(60% 0.11 68)"/>
+    </svg>
+  </a>
+  <ul class="nav-links">
+    <li><a href="../index.html#ueber">Über uns</a></li>
+    <li><a href="../index.html#news" class="active">News</a></li>
+    <li><a href="../index.html#kalender">Kalender</a></li>
+    <li><a href="../termine.html">Termine</a></li>
+    <li><a href="../index.html#team">Lehrpersonal</a></li>
+    <li><a href="../index.html#galerie">Galerie</a></li>
+    <li><a href="../index.html#kontakt">Kontakt</a></li>
+  </ul>
+</nav>
+
+<div class="article-hero">
+  <img src="https://images.unsplash.com/photo-1507676184212-d03ab07a01bf?w=1600&fit=crop&crop=center" alt="Theaterabend">
+  <div class="article-hero-overlay"></div>
+  <div class="article-hero-content">
+    <div class="article-tag">Veranstaltung</div>
+    <h1 class="article-hero-title">Großer Erfolg beim Schultheaterabend 2026</h1>
+  </div>
+</div>
+
+<div class="article-wrapper">
+  <a href="../index.html#news" class="back-link">← Zurück zur Übersicht</a>
+
+  <div class="article-meta">
+    <span>📅 8. April 2026</span>
+    <span>✍️ Mag. Michael Reiter</span>
+    <span>🎭 Aula MS Hirtenberg</span>
+  </div>
+
+  <div class="article-body">
+    <p>Ein bewegender Abend, der noch lange in Erinnerung bleiben wird: Am 8. April präsentierte die Theater-AG der MS Hirtenberg vor über 200 begeisterten Zuschauerinnen und Zuschauern ihr diesjähriges Stück <strong>„Morgen ist heute schon gestern"</strong> — ein selbst verfasstes Drama über Klimawandel, Verantwortung und den Mut zur Veränderung.</p>
+
+    <h2>Monatelange Vorbereitung</h2>
+    <p>Seit November proben die 18 Schülerinnen und Schüler der Theater-AG unter der Leitung von <strong>Mag. Michael Reiter</strong> und <strong>Karin Schober, BA</strong> intensiv für diesen großen Auftritt. Die Texte entstanden gemeinsam im Unterricht, das Bühnenbild gestalteten die Schülerinnen und Schüler selbst in Werkzeichen.</p>
+
+    <blockquote>„Ich war so aufgeregt, aber als ich auf die Bühne gegangen bin, war alles weg. Das Publikum hat uns so toll aufgenommen!" — Schüler, 4a</blockquote>
+
+    <div class="article-photo-grid">
+      <img src="https://images.unsplash.com/photo-1507676184212-d03ab07a01bf?w=600&h=450&fit=crop" alt="Bühne">
+      <img src="https://images.unsplash.com/photo-1571624436279-b272aff752b5?w=600&h=450&fit=crop" alt="Backstage">
+      <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1200&h=525&fit=crop" alt="Applaus" class="wide">
+    </div>
+
+    <h2>Standing Ovations für alle Beteiligten</h2>
+    <p>Nach dem Schlussapplaus — der minutenlang anhielt — waren Tränen der Rührung keine Seltenheit. Direktorin <strong>Mag. Maria Huber</strong> betonte in ihrer Abschlussrede, wie stolz die gesamte Schulgemeinschaft auf die Leistung der jungen Künstlerinnen und Künstler sei.</p>
+
+    <p>Die nächste Aufführung ist bereits für den Herbst 2026 geplant. Interessierte Schülerinnen und Schüler können sich ab September für die Theater-AG anmelden.</p>
+  </div>
+</div>
+
+<footer>
+  <div>© 2026 Mittelschule Hirtenberg · Alle Rechte vorbehalten</div>
+  <div style="display:flex;gap:24px;"><a href="../impressum.html">Impressum</a><a href="../datenschutz.html">Datenschutz</a><a href="../barrierefreiheit.html">Barrierefreiheit</a></div>
+</footer>
+</body>
+</html>

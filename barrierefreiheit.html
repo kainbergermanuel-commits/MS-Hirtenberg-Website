@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Erklärung zur Barrierefreiheit – MS Hirtenberg</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sage:        oklch(52% 0.10 145);
+    --sage-dark:   oklch(38% 0.09 145);
+    --sage-mid:    oklch(62% 0.09 145);
+    --sage-light:  oklch(80% 0.07 145);
+    --sage-pale:   oklch(95% 0.04 145);
+    --blush:       oklch(78% 0.08 15);
+    --blush-dark:  oklch(56% 0.11 15);
+    --blush-pale:  oklch(96% 0.03 15);
+    --cream:       oklch(98% 0.008 88);
+    --cream-mid:   oklch(96% 0.012 88);
+    --cream-dark:  oklch(92% 0.018 88);
+    --text:        oklch(28% 0.05 145);
+    --text-light:  oklch(55% 0.04 145);
+    --white: #fff;
+    --ok:          oklch(52% 0.10 145);
+    --partial:     oklch(60% 0.11 68);
+    --font-heading: 'Lora', Georgia, serif;
+    --font-body: 'Nunito', system-ui, sans-serif;
+    --radius: 12px; --radius-lg: 20px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--font-body); background: var(--cream); color: var(--text); font-size: 17px; line-height: 1.7; }
+
+  nav { background: var(--white); display: flex; align-items: center; justify-content: space-between; padding: 0 48px; height: 68px; border-bottom: 1.5px solid var(--cream-dark); box-shadow: 0 2px 20px oklch(0% 0 0 / 6%); position: sticky; top: 0; z-index: 100; }
+  .nav-logo { font-family: var(--font-heading); color: var(--sage-dark); font-size: 1.2rem; font-weight: 700; letter-spacing: -0.02em; text-decoration: none; display: flex; align-items: center; gap: 10px; }
+  .nav-links { display: flex; gap: 4px; list-style: none; }
+  .nav-links a { color: var(--text-light); text-decoration: none; font-size: 0.88rem; font-weight: 600; padding: 7px 15px; border-radius: 30px; transition: background 0.2s, color 0.2s; letter-spacing: 0.01em; }
+  .nav-links a:hover, .nav-links a.active { background: var(--sage-pale); color: var(--sage-dark); }
+
+  .page-hero { padding: 64px 96px 52px; position: relative; overflow: hidden; background-color: var(--sage-pale); background-image: linear-gradient(to right, oklch(98% 0.008 88 / 0.97) 0%, oklch(98% 0.008 88 / 0.92) 40%, oklch(97% 0.02 60 / 0.66) 58%, oklch(96% 0.03 15 / 0.24) 76%, transparent 94%), url("uploads/grafik-9f6efa7c.png"); background-size: cover, cover; background-position: center, center 58%; background-repeat: no-repeat, no-repeat; }
+  .page-hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, oklch(38% 0.06 145 / 0.10), transparent 38%); pointer-events: none; }
+  .page-hero-tag { display: inline-flex; align-items: center; gap: 7px; background: var(--white); color: var(--sage); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; padding: 5px 14px; border-radius: 30px; margin-bottom: 14px; border: 1.5px solid var(--sage-pale); }
+  .page-hero h1 { font-family: var(--font-heading); color: var(--text); font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 700; margin-bottom: 10px; }
+  .page-hero p { color: var(--text-light); max-width: 600px; }
+  .back-link { display: inline-flex; align-items: center; gap: 8px; color: var(--sage); font-weight: 700; text-decoration: none; font-size: 0.88rem; margin-bottom: 20px; transition: gap 0.2s; }
+  .back-link:hover { gap: 12px; }
+
+  .legal-wrapper { max-width: 820px; margin: 0 auto; padding: 56px 48px 100px; }
+
+  /* STATUS BANNER */
+  .status-banner { background: var(--white); border: 1.5px solid var(--cream-dark); border-radius: var(--radius-lg); padding: 28px 32px; box-shadow: 0 2px 10px oklch(0% 0 0 / 4%); margin-bottom: 44px; display: flex; gap: 24px; align-items: center; }
+  .status-badge { width: 64px; height: 64px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; background: var(--sage-pale); }
+  .status-badge svg { width: 34px; height: 34px; }
+  .status-text h2 { font-family: var(--font-heading); font-size: 1.2rem; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+  .status-text p { color: var(--text-light); font-size: 0.92rem; margin: 0; }
+  .status-text strong { color: var(--sage-dark); }
+
+  .legal-block { margin-bottom: 44px; }
+  .legal-block:last-child { margin-bottom: 0; }
+  .legal-block h2 { font-family: var(--font-heading); font-size: 1.3rem; font-weight: 700; color: var(--text); margin-bottom: 16px; padding-bottom: 12px; border-bottom: 2px solid var(--cream-dark); display: flex; align-items: center; gap: 12px; }
+  .legal-block h2 .h-dot { width: 12px; height: 12px; border-radius: 50%; background: var(--sage); flex-shrink: 0; }
+  .legal-block h3 { font-size: 1.0rem; font-weight: 700; color: var(--text); margin: 24px 0 8px; }
+  .legal-block p { color: var(--text-light); margin-bottom: 16px; text-wrap: pretty; }
+  .legal-block p:last-child { margin-bottom: 0; }
+  .legal-block a { color: var(--sage-dark); font-weight: 600; text-decoration: none; border-bottom: 1.5px solid var(--sage-light); }
+  .legal-block a:hover { color: var(--sage); }
+  .legal-block strong { color: var(--text); font-weight: 700; }
+
+  .legal-list { list-style: none; padding: 0; margin: 0 0 16px; }
+  .legal-list li { position: relative; padding-left: 22px; color: var(--text-light); margin-bottom: 9px; }
+  .legal-list li::before { content: ''; position: absolute; left: 2px; top: 11px; width: 6px; height: 6px; border-radius: 50%; background: var(--sage-light); }
+  .legal-list strong { color: var(--text); }
+
+  /* FEATURE / GAP ROWS */
+  .feat-row { display: flex; gap: 14px; align-items: flex-start; padding: 14px 0; border-bottom: 1px solid var(--cream-dark); }
+  .feat-row:last-child { border-bottom: none; }
+  .feat-icon { width: 26px; height: 26px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem; margin-top: 1px; }
+  .feat-icon.yes { background: var(--sage-pale); color: var(--sage-dark); }
+  .feat-icon.partial { background: oklch(94% 0.05 68); color: oklch(45% 0.12 68); }
+  .feat-text { color: var(--text-light); font-size: 0.95rem; }
+  .feat-text strong { color: var(--text); }
+
+  .data-card { background: var(--white); border: 1.5px solid var(--cream-dark); border-radius: var(--radius-lg); padding: 24px 28px; box-shadow: 0 2px 10px oklch(0% 0 0 / 4%); margin-bottom: 16px; }
+  .data-grid { display: grid; grid-template-columns: 150px 1fr; gap: 8px 24px; }
+  .data-label { font-size: 0.76rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--sage); padding-top: 2px; }
+  .data-value { color: var(--text); font-weight: 600; }
+  .data-row-sep { grid-column: 1 / -1; height: 1px; background: var(--cream-dark); margin: 6px 0; }
+
+  .legal-note { margin-top: 14px; padding: 16px 20px; background: var(--blush-pale); border-radius: var(--radius); border-left: 4px solid var(--blush-dark); font-size: 0.92rem; color: var(--text-light); }
+  .legal-note strong { color: var(--text); }
+  .legal-updated { margin-top: 8px; font-size: 0.85rem; color: var(--text-light); font-style: italic; }
+
+  footer { background: var(--sage-dark); padding: 32px 48px; display: flex; align-items: center; justify-content: space-between; color: var(--sage-light); font-size: 0.83rem; }
+  footer a { color: var(--sage-light); text-decoration: none; }
+  footer a:hover { color: var(--white); }
+
+  @media (max-width: 900px) {
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .page-hero { padding: 40px 20px 32px; }
+    .legal-wrapper { padding: 40px 20px 80px; }
+    .status-banner { flex-direction: column; text-align: center; align-items: center; }
+    .data-grid { grid-template-columns: 1fr; gap: 2px; }
+    .data-label { margin-top: 12px; }
+    .data-label:first-child { margin-top: 0; }
+    .data-row-sep { display: none; }
+    footer { flex-direction: column; gap: 12px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <svg width="38" height="38" viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="19" cy="19" r="17" fill="none" stroke="oklch(52% 0.10 145)" stroke-width="1.3"/>
+      <circle cx="19" cy="19" r="13.5" fill="none" stroke="oklch(52% 0.10 145)" stroke-width="0.4" opacity="0.4"/>
+      <line x1="19" y1="27" x2="19" y2="22" stroke="oklch(52% 0.10 145)" stroke-width="1.4" stroke-linecap="round"/>
+      <path d="M19 22 C22 18 22 12 19 11 C16 12 16 18 19 22Z" fill="oklch(52% 0.10 145)"/>
+      <path d="M19 22 C15 19 12 15 13 13 C15 13 18 18 19 22Z" fill="oklch(68% 0.09 145)"/>
+      <path d="M19 22 C23 19 26 15 25 13 C23 13 20 18 19 22Z" fill="oklch(68% 0.09 145)"/>
+      <circle cx="19" cy="2" r="1.8" fill="oklch(60% 0.11 68)"/>
+    </svg>
+    MS Hirtenberg
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#ueber">Über uns</a></li>
+    <li><a href="index.html#news">News</a></li>
+    <li><a href="index.html#kalender">Kalender</a></li>
+    <li><a href="termine.html">Termine</a></li>
+    <li><a href="index.html#team">Lehrpersonal</a></li>
+    <li><a href="index.html#galerie">Galerie</a></li>
+    <li><a href="index.html#kontakt">Kontakt</a></li>
+  </ul>
+</nav>
+
+<div class="page-hero">
+  <a href="index.html" class="back-link">← Zurück zur Startseite</a>
+  <div class="page-hero-tag">Rechtliches</div>
+  <h1>Erklärung zur Barrierefreiheit</h1>
+  <p>Die Mittelschule Hirtenberg ist bemüht, ihre Website im Einklang mit dem Web-Zugänglichkeitsgesetz (WZG) barrierefrei zugänglich zu machen.</p>
+</div>
+
+<div class="legal-wrapper">
+
+  <div class="status-banner">
+    <div class="status-badge">
+      <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="oklch(52% 0.10 145)"/><path d="M7 12.5l3.2 3.2L17 9" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+    <div class="status-text">
+      <h2>Weitgehend konform</h2>
+      <p>Diese Website ist mit der <strong>WCAG 2.1, Konformitätsstufe AA</strong> weitgehend konform. Einzelne Inhalte sind aufgrund der nachstehend genannten Ausnahmen noch nicht vollständig barrierefrei.</p>
+    </div>
+  </div>
+
+  <div class="legal-block">
+    <h2><span class="h-dot"></span>Geltungsbereich &amp; Rechtsgrundlage</h2>
+    <p>Diese Erklärung gilt für die unter <strong>www.ms-hirtenberg.at</strong> veröffentlichte Website der Mittelschule Hirtenberg. Sie beruht auf dem Web-Zugänglichkeitsgesetz (WZG), das die EU-Richtlinie 2016/2102 über den barrierefreien Zugang zu Websites öffentlicher Stellen umsetzt, sowie auf den Europäischen Norm EN 301 549 und den Web Content Accessibility Guidelines (WCAG) 2.1.</p>
+  </div>
+
+  <div class="legal-block">
+    <h2><span class="h-dot"></span>Was wir umgesetzt haben</h2>
+    <div class="feat-row">
+      <div class="feat-icon yes">✓</div>
+      <div class="feat-text"><strong>Klare Struktur:</strong> Überschriften, Landmarken und eine logische Lesereihenfolge erleichtern die Orientierung – auch mit Screenreader.</div>
+    </div>
+    <div class="feat-row">
+      <div class="feat-icon yes">✓</div>
+      <div class="feat-text"><strong>Ausreichende Kontraste:</strong> Text und Bedienelemente erfüllen die geforderten Mindestkontraste für gute Lesbarkeit.</div>
+    </div>
+    <div class="feat-row">
+      <div class="feat-icon yes">✓</div>
+      <div class="feat-text"><strong>Tastaturbedienung:</strong> Alle Navigationspunkte und Schaltflächen sind ohne Maus erreichbar.</div>
+    </div>
+    <div class="feat-row">
+      <div class="feat-icon yes">✓</div>
+      <div class="feat-text"><strong>Responsives Layout:</strong> Die Inhalte passen sich an Bildschirmgröße und Vergrößerung an, ohne Informationsverlust.</div>
+    </div>
+    <div class="feat-row">
+      <div class="feat-icon yes">✓</div>
+      <div class="feat-text"><strong>Alternativtexte:</strong> Aussagekräftige Bilder sind mit beschreibenden Textalternativen versehen.</div>
+    </div>
+  </div>
+
+  <div class="legal-block">
+    <h2><span class="h-dot"></span>Nicht barrierefreie Inhalte</h2>
+    <p>Folgende Inhalte sind aus den genannten Gründen derzeit nicht vollständig barrierefrei. Wir arbeiten an einer schrittweisen Verbesserung.</p>
+    <div class="feat-row">
+      <div class="feat-icon partial">!</div>
+      <div class="feat-text"><strong>Eingebundene Kartendarstellung:</strong> Die interaktive Karte auf der Kontaktseite ist mit Screenreadern nur eingeschränkt bedienbar. Die Adresse ist als Text vollständig verfügbar.</div>
+    </div>
+    <div class="feat-row">
+      <div class="feat-icon partial">!</div>
+      <div class="feat-text"><strong>Einzelne ältere PDF-Dokumente:</strong> Manche zum Download bereitgestellten Dateien sind noch nicht vollständig getaggt. Auf Anfrage stellen wir die Inhalte in barrierefreier Form zur Verfügung.</div>
+    </div>
+    <div class="feat-row">
+      <div class="feat-icon partial">!</div>
+      <div class="feat-text"><strong>Dekorative Hintergrundgrafiken:</strong> Einzelne dekorative Elemente sind nicht beschriftet, transportieren jedoch keine wesentlichen Informationen.</div>
+    </div>
+  </div>
+
+  <div class="legal-block">
+    <h2><span class="h-dot"></span>Erstellung dieser Erklärung</h2>
+    <div class="data-card">
+      <div class="data-grid">
+        <div class="data-label">Erstellt am</div>
+        <div class="data-value">1. Juni 2026</div>
+        <div class="data-row-sep"></div>
+        <div class="data-label">Methode</div>
+        <div class="data-value">Selbstbewertung durch die Schule</div>
+        <div class="data-row-sep"></div>
+        <div class="data-label">Letzte Prüfung</div>
+        <div class="data-value">Juni 2026</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="legal-block">
+    <h2><span class="h-dot"></span>Barrieren melden &amp; Kontakt (Feedback)</h2>
+    <p>Sind Ihnen Barrieren aufgefallen oder benötigen Sie Informationen in einer barrierefreien Form? Bitte teilen Sie uns das mit – wir bemühen uns um eine rasche Lösung.</p>
+    <div class="data-card">
+      <div class="data-grid">
+        <div class="data-label">Ansprechperson</div>
+        <div class="data-value">Mag. Maria Huber (Schulleitung)</div>
+        <div class="data-row-sep"></div>
+        <div class="data-label">E-Mail</div>
+        <div class="data-value"><a href="/cdn-cgi/l/email-protection#62060b100709160b0d0c220f114f0a0b1016070c000710054c0316"><span class="__cf_email__" data-cfemail="baded3c8dfd1ced3d5d4fad7c997d2d3c8cedfd4d8dfc8dd94dbce">[email&#160;protected]</span></a></div>
+        <div class="data-row-sep"></div>
+        <div class="data-label">Telefon</div>
+        <div class="data-value"><a href="tel:+43225612345">02256 / 12 34 56</a></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="legal-block">
+    <h2><span class="h-dot"></span>Beschwerdeverfahren</h2>
+    <p>Sind Sie mit der Antwort auf Ihre Rückmeldung nicht zufrieden, können Sie sich an die zuständige Beschwerdestelle wenden. In Österreich nimmt die Beschwerden über die Nichteinhaltung der Anforderungen des Web-Zugänglichkeitsgesetzes die folgende Stelle entgegen:</p>
+    <div class="data-card">
+      <div class="data-grid">
+        <div class="data-label">Stelle</div>
+        <div class="data-value">Beschwerdestelle des Bundesministeriums (FFG – Bundesstelle für barrierefreie Websites)</div>
+        <div class="data-row-sep"></div>
+        <div class="data-label">Web</div>
+        <div class="data-value"><a href="https://www.ffg.at" target="_blank" rel="noopener">www.ffg.at</a></div>
+      </div>
+    </div>
+    <div class="legal-note">
+      <strong>Hinweis:</strong> Konkrete Konformitätsangaben, Prüfdatum und die genaue Bezeichnung der zuständigen Beschwerdestelle sind vor Veröffentlichung von der Schule zu prüfen und gegebenenfalls anzupassen.
+    </div>
+    <p class="legal-updated">Stand: Juni 2026</p>
+  </div>
+
+</div>
+
+<footer>
+  <div>© 2026 Mittelschule Hirtenberg · Alle Rechte vorbehalten</div>
+  <div style="display:flex;gap:24px;">
+    <a href="impressum.html">Impressum</a>
+    <a href="datenschutz.html">Datenschutz</a>
+    <a href="barrierefreiheit.html">Barrierefreiheit</a>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>
+</html>
