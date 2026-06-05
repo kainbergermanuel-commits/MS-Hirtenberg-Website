@@ -436,6 +436,58 @@
   .news-link { display: inline-flex; align-items: center; gap: 5px; margin-top: 14px; font-size: 0.83rem; font-weight: 700; color: var(--sage); text-decoration: none; }
   .news-link:hover { color: var(--sage-dark); }
 
+  /* ─── NÄCHSTE TERMINE (in Aktuelles) ─── */
+  .termine-subhead {
+    margin-top: 72px;
+    margin-bottom: 28px;
+  }
+  .termine-subhead h3 {
+    font-family: var(--font-heading); font-size: clamp(1.8rem, 3vw, 2.5rem); font-weight: 700;
+    color: var(--text); line-height: 1.2;
+  }
+  .termine-subhead .termine-meta {
+    color: var(--text-light); font-size: 1rem; margin-top: 8px;
+  }
+  .termine-subhead .today-pill {
+    display: inline-flex; align-items: center; gap: 7px;
+    background: var(--white); color: var(--sage);
+    font-size: 0.78rem; font-weight: 700; letter-spacing: 0.04em;
+    padding: 4px 14px; border-radius: 30px;
+    border: 1.5px solid var(--sage-pale);
+    box-shadow: 0 2px 12px oklch(0% 0 0 / 6%);
+    vertical-align: middle;
+  }
+  .termine-subhead .today-pill::before { content: none; }
+  .termine-subhead .today-pill .today-pill-icon {
+    width: 13px; height: 13px; flex: none; color: var(--sage);
+  }
+  .termine-preview-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .termine-card {
+    background: var(--white); border-radius: var(--radius-lg);
+    border: 1.5px solid var(--cream-dark); border-left: 4px solid var(--sage);
+    box-shadow: 0 1px 8px oklch(0% 0 0 / 5%);
+    padding: 22px 24px;
+    display: flex; gap: 16px; align-items: flex-start;
+    text-decoration: none; color: inherit;
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  }
+  .termine-card:hover { transform: translateY(-4px); box-shadow: 0 8px 28px oklch(0% 0 0 / 10%); }
+  .termine-card.test  { border-left-color: oklch(55% 0.18 25); }
+  .termine-card.event { border-left-color: var(--sage); }
+  .termine-card.free  { border-left-color: var(--blush-dark); }
+  .termine-card.conf  { border-left-color: oklch(55% 0.12 260); }
+  .termine-card.trip  { border-left-color: oklch(58% 0.14 180); }
+  /* größeres Tages-Kärtchen + Hover nur auf dem Tag */
+  .termine-card .event-date-badge {
+    min-width: 58px; padding: 11px 7px; border-radius: 10px;
+    transition: background 0.2s;
+  }
+  .termine-card .event-date-day { font-size: 1.65rem; transition: color 0.2s; }
+  .termine-card .event-date-mon { font-size: 0.74rem; transition: color 0.2s; }
+  .termine-card:hover .event-date-badge { background: var(--sage-pale); }
+  .termine-card:hover .event-date-day { color: var(--sage-dark); }
+  .termine-card:hover .event-date-mon { color: var(--sage); }
+
   /* ─── KALENDER ─── */
   #kalender { background: var(--white); }
   .kalender-layout {
@@ -727,6 +779,7 @@
     .section-inner { padding: 64px 24px; }
     .about-grid, .kontakt-grid { grid-template-columns: 1fr; }
     .news-grid { grid-template-columns: 1fr; }
+    .termine-preview-grid { grid-template-columns: 1fr; }
     .team-grid { grid-template-columns: repeat(2, 1fr); }
     .gallery-grid { grid-template-columns: repeat(2, 1fr); }
     .gallery-item.tall, .gallery-item.wide { grid-row: unset; grid-column: unset; aspect-ratio: 4/3; }
@@ -751,8 +804,7 @@
   </a>
   <ul class="nav-links">
     <li><a href="#ueber">Über uns</a></li>
-    <li><a href="#news">News</a></li>
-    <li><a href="#kalender">Kalender</a></li>
+    <li><a href="#news">Aktuelles</a></li>
     <li><a href="termine.html">Termine</a></li>
     <li><a href="#team">Lehrpersonal</a></li>
     <li><a href="#galerie">Galerie</a></li>
@@ -810,9 +862,9 @@
   </div>
 
   <div class="hero-quick" role="navigation" aria-label="Schnellzugriff">
-    <a class="quick-item" href="#kalender">
+    <a class="quick-item" href="termine.html">
       <svg class="quick-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="17" rx="2.5"/><line x1="3" y1="9.5" x2="21" y2="9.5"/><line x1="8" y1="2.5" x2="8" y2="6.5"/><line x1="16" y1="2.5" x2="16" y2="6.5"/></svg>
-      <span class="quick-label">Kalender</span>
+      <span class="quick-label">Termine</span>
     </a>
     <a class="quick-item" href="stundenzeiten.html">
       <svg class="quick-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
@@ -914,38 +966,16 @@
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </a>
     </div>
-  </div>
-</section>
 
-<!-- KALENDER -->
-<section id="kalender">
-  <div class="section-inner">
-    <span class="section-tag">Schuljahr 2025/26</span>
-    <h2 class="section-title">Schulkalender</h2>
-    <p class="section-subtitle">Wichtige Termine auf einen Blick — Schularbeiten, Veranstaltungen, schulfreie Tage und Konferenzen.</p>
-    <div class="kalender-layout">
-      <div>
-        <div class="cal-card">
-          <div class="cal-header">
-            <button class="cal-nav" onclick="changeMonth(-1)">&#8592;</button>
-            <div class="cal-month-label" id="cal-month-label"></div>
-            <button class="cal-nav" onclick="changeMonth(1)">&#8594;</button>
-          </div>
-          <div class="cal-grid" id="cal-grid"></div>
-          <div class="cal-legend">
-            <div class="legend-item"><div class="legend-dot" style="background:oklch(55% 0.18 25)"></div>Schularbeit</div>
-            <div class="legend-item"><div class="legend-dot" style="background:var(--green-mid)"></div>Veranstaltung</div>
-            <div class="legend-item"><div class="legend-dot" style="background:var(--amber)"></div>Schulfrei</div>
-            <div class="legend-item"><div class="legend-dot" style="background:oklch(55% 0.12 260)"></div>Konferenz</div>
-            <div class="legend-item"><div class="legend-dot" style="background:oklch(58% 0.14 180)"></div>Ausflug</div>
-          </div>
-        </div>
-      </div>
-      <div class="cal-sidebar">
-        <div class="cal-sidebar-title">Nächste Termine</div>
-        <div id="upcoming-events"></div>
-        <a href="termine.html" style="display:inline-flex;align-items:center;gap:6px;margin-top:12px;font-size:0.88rem;font-weight:700;color:var(--green-mid);text-decoration:none;">Alle Termine ansehen →</a>
-      </div>
+    <div class="termine-subhead">
+      <h3>Nächste Termine</h3>
+      <p class="termine-meta">Schuljahr 2025/26. Heutiges Datum: <span class="today-pill"><svg class="today-pill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="17" rx="2.5"/><line x1="3" y1="9.5" x2="21" y2="9.5"/><line x1="8" y1="2.5" x2="8" y2="6.5"/><line x1="16" y1="2.5" x2="16" y2="6.5"/></svg><span id="today-date"></span></span></p>
+    </div>
+    <div class="termine-preview-grid" id="news-termine"></div>
+    <div style="display:flex;justify-content:center;margin-top:48px;">
+      <a href="termine.html" class="btn btn-outline">Alle Termine ansehen
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
     </div>
   </div>
 </section>
@@ -1158,88 +1188,6 @@
   ];
 
   const MONTHS_DE = ['Jänner','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'];
-  const DAYS_DE = ['Mo','Di','Mi','Do','Fr','Sa','So'];
-
-  let curYear = 2026, curMonth = 3; // 0-indexed: April
-
-  function eventsOn(dateStr) {
-    return EVENTS.filter(e => e.date === dateStr);
-  }
-
-  function renderCalendar() {
-    const label = document.getElementById('cal-month-label');
-    const grid  = document.getElementById('cal-grid');
-    label.textContent = MONTHS_DE[curMonth] + ' ' + curYear;
-
-    const today = new Date();
-    const firstDay = new Date(curYear, curMonth, 1);
-    // Monday-first: 0=Mon … 6=Sun
-    let startDow = (firstDay.getDay() + 6) % 7;
-    const daysInMonth = new Date(curYear, curMonth + 1, 0).getDate();
-    const prevDays = new Date(curYear, curMonth, 0).getDate();
-
-    let html = DAYS_DE.map(d => `<div class="cal-dow">${d}</div>`).join('');
-
-    // prev month fill
-    for (let i = startDow - 1; i >= 0; i--) {
-      const d = prevDays - i;
-      const m = curMonth === 0 ? 11 : curMonth - 1;
-      const y = curMonth === 0 ? curYear - 1 : curYear;
-      const ds = `${y}-${String(m+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
-      const evs = eventsOn(ds);
-      html += `<div class="cal-day other-month"><div class="cal-day-num">${d}</div><div class="cal-dots">${evs.map(e=>`<div class="cal-dot dot-${e.type}"></div>`).join('')}</div></div>`;
-    }
-
-    for (let d = 1; d <= daysInMonth; d++) {
-      const ds = `${curYear}-${String(curMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
-      const evs = eventsOn(ds);
-      const isToday = today.getFullYear()===curYear && today.getMonth()===curMonth && today.getDate()===d;
-      html += `<div class="cal-day${isToday?' today':''}"><div class="cal-day-num">${d}</div><div class="cal-dots">${evs.map(e=>`<div class="cal-dot dot-${e.type}"></div>`).join('')}</div></div>`;
-    }
-
-    // next month fill
-    const total = startDow + daysInMonth;
-    const remaining = total % 7 === 0 ? 0 : 7 - (total % 7);
-    for (let d = 1; d <= remaining; d++) {
-      const m = curMonth === 11 ? 0 : curMonth + 1;
-      const y = curMonth === 11 ? curYear + 1 : curYear;
-      const ds = `${y}-${String(m+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
-      const evs = eventsOn(ds);
-      html += `<div class="cal-day other-month"><div class="cal-day-num">${d}</div><div class="cal-dots">${evs.map(e=>`<div class="cal-dot dot-${e.type}"></div>`).join('')}</div></div>`;
-    }
-
-    grid.innerHTML = html;
-    renderUpcoming();
-  }
-
-  function renderUpcoming() {
-    const container = document.getElementById('upcoming-events');
-    const today = new Date(); today.setHours(0,0,0,0);
-    const upcoming = EVENTS
-      .filter(e => new Date(e.date) >= today)
-      .sort((a,b) => a.date.localeCompare(b.date))
-      .slice(0, 7);
-
-    const tagLabels = { test:'Schularbeit', event:'Veranstaltung', free:'Schulfrei', conf:'Konferenz', trip:'Ausflug' };
-
-    container.innerHTML = upcoming.map(e => {
-      const dt = new Date(e.date + 'T12:00:00');
-      const day = dt.getDate();
-      const mon = MONTHS_DE[dt.getMonth()].slice(0,3);
-      const link = e.id ? `termine.html#${e.id}` : 'termine.html';
-      return `<a class="event-item ${e.type}" href="${link}" style="text-decoration:none;">
-        <div class="event-date-badge">
-          <div class="event-date-day">${day}</div>
-          <div class="event-date-mon">${mon}</div>
-        </div>
-        <div>
-          <div class="event-tag ${e.type}">${tagLabels[e.type]}</div>
-          <div class="event-name">${e.name}</div>
-          <div class="event-desc">${e.desc}</div>
-        </div>
-      </a>`;
-    }).join('');
-  }
 
   const CHIP_COLORS = {
     test: 'oklch(55% 0.18 25)',
@@ -1277,14 +1225,39 @@
   }
   renderHeroChip();
 
-  function changeMonth(dir) {
-    curMonth += dir;
-    if (curMonth > 11) { curMonth = 0; curYear++; }
-    if (curMonth < 0)  { curMonth = 11; curYear--; }
-    renderCalendar();
+  function renderNewsTermine() {
+    const td = document.getElementById('today-date');
+    if (td) {
+      const n = new Date();
+      td.textContent = String(n.getDate()).padStart(2,'0') + '.' + String(n.getMonth()+1).padStart(2,'0') + '.' + n.getFullYear();
+    }
+    const container = document.getElementById('news-termine');
+    if (!container) return;
+    const today = new Date(); today.setHours(0,0,0,0);
+    const next3 = EVENTS
+      .filter(e => new Date(e.date + 'T12:00:00') >= today)
+      .sort((a,b) => a.date.localeCompare(b.date))
+      .slice(0, 3);
+    const tagLabels = { test:'Schularbeit', event:'Veranstaltung', free:'Schulfrei', conf:'Konferenz', trip:'Ausflug' };
+    container.innerHTML = next3.map(e => {
+      const dt = new Date(e.date + 'T12:00:00');
+      const day = dt.getDate();
+      const mon = MONTHS_DE[dt.getMonth()].slice(0,3);
+      const link = e.id ? `termine.html#${e.id}` : 'termine.html';
+      return `<a class="termine-card ${e.type}" href="${link}">
+        <div class="event-date-badge">
+          <div class="event-date-day">${day}</div>
+          <div class="event-date-mon">${mon}</div>
+        </div>
+        <div>
+          <div class="event-tag ${e.type}">${tagLabels[e.type]}</div>
+          <div class="event-name">${e.name}</div>
+          <div class="event-desc">${e.desc}</div>
+        </div>
+      </a>`;
+    }).join('');
   }
-
-  renderCalendar();
+  renderNewsTermine();
 </script>
 </body>
 </html>
