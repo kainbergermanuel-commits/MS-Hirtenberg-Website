@@ -3,17 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <title>MS Hirtenberg – Mittelschule</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-<script type="application/json" id="tweaks-data">/*EDITMODE-BEGIN*/{
-  "primaryColor": "#5a8158",
-  "accentColor": "#c47a2a",
-  "bgColor": "oklch(97% 0.012 95)",
-  "headingFont": "Lora",
-  "bodyFont": "Nunito"
-}/*EDITMODE-END*/</script>
 
 <style>
   :root {
@@ -700,36 +695,6 @@
   footer a { color: var(--sage-light); text-decoration: none; }
   footer a:hover { color: var(--white); }
 
-  /* ─── TWEAKS PANEL ─── */
-  #tweaks-panel {
-    display: none;
-    position: fixed; bottom: 24px; right: 24px; z-index: 9999;
-    background: var(--white);
-    border-radius: 16px;
-    box-shadow: 0 8px 32px oklch(0% 0 0 / 18%);
-    padding: 20px 24px;
-    width: 260px;
-    font-family: var(--font-body);
-    font-size: 0.85rem;
-    border: 1px solid var(--cream-dark);
-  }
-  #tweaks-panel.open { display: block; }
-  #tweaks-panel h3 {
-    font-size: 0.9rem; font-weight: 700; margin-bottom: 16px;
-    color: var(--text);
-    display: flex; align-items: center; justify-content: space-between;
-  }
-  .tweak-row { margin-bottom: 14px; }
-  .tweak-row label { display: block; color: var(--text-light); margin-bottom: 4px; font-weight: 600; }
-  .tweak-row select, .tweak-row input[type=color] {
-    width: 100%; padding: 6px 10px;
-    border: 1.5px solid var(--cream-dark); border-radius: 8px;
-    font-family: var(--font-body); font-size: 0.85rem;
-    background: var(--cream);
-    cursor: pointer;
-  }
-  .tweak-row input[type=color] { height: 36px; padding: 2px 6px; }
-
   @media (max-width: 900px) {
     nav { padding: 0 24px; }
     #home { flex-direction: column; min-height: auto; padding-bottom: 0; }
@@ -1106,7 +1071,7 @@
           </div>
           <div>
             <div class="kontakt-label">E-Mail</div>
-            <div class="kontakt-value"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f5919c87909e819c9a9bb59886d89d9c8781909b97908792db9481">[email&#160;protected]</a></div>
+            <div class="kontakt-value">direktion@ms-hirtenberg.at</div>
           </div>
         </div>
         <div class="kontakt-item">
@@ -1154,36 +1119,7 @@
   </div>
 </footer>
 
-<!-- TWEAKS PANEL -->
-<div id="tweaks-panel">
-  <h3>Tweaks <span style="cursor:pointer;opacity:.5" onclick="closeTweaks()">✕</span></h3>
-  <div class="tweak-row">
-    <label>Primärfarbe (Grün-Ton)</label>
-    <input type="color" id="tw-primary" value="#2a5c22" oninput="applyColor()">
-  </div>
-  <div class="tweak-row">
-    <label>Akzentfarbe (Amber)</label>
-    <input type="color" id="tw-accent" value="#c47a2a" oninput="applyColor()">
-  </div>
-  <div class="tweak-row">
-    <label>Überschriften-Schrift</label>
-    <select id="tw-headfont" onchange="applyFonts()">
-      <option value="Lora" selected>Lora (Serifen)</option>
-      <option value="Nunito">Nunito (Rund)</option>
-      <option value="Georgia">Georgia (Klassisch)</option>
-    </select>
-  </div>
-  <div class="tweak-row">
-    <label>Fließtext-Schrift</label>
-    <select id="tw-bodyfont" onchange="applyFonts()">
-      <option value="Nunito" selected>Nunito</option>
-      <option value="Georgia">Georgia</option>
-      <option value="system-ui">System-Schrift</option>
-    </select>
-  </div>
-</div>
-
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
   function openLight(src, caption) {
     const lb = document.getElementById('lightbox');
     document.getElementById('lb-img').src = src;
@@ -1349,37 +1285,6 @@
   }
 
   renderCalendar();
-
-  // Tweaks
-  window.addEventListener('message', e => {
-    if (e.data?.type === '__activate_edit_mode') openTweaks();
-    if (e.data?.type === '__deactivate_edit_mode') closeTweaks();
-  });
-  window.parent.postMessage({ type: '__edit_mode_available' }, '*');
-
-  function openTweaks()  { document.getElementById('tweaks-panel').classList.add('open'); }
-  function closeTweaks() { document.getElementById('tweaks-panel').classList.remove('open'); }
-
-  function applyColor() {
-    // Just demonstrate with CSS filter tinting the hero bg
-    const p = document.getElementById('tw-primary').value;
-    const a = document.getElementById('tw-accent').value;
-    document.querySelectorAll('.btn-primary').forEach(el => el.style.background = a);
-    document.querySelectorAll('.hero-tag').forEach(el => el.style.background = a);
-    document.querySelectorAll('.nav-logo-leaf').forEach(el => el.style.background = a);
-    document.querySelectorAll('.feature-card').forEach(el => el.style.borderLeftColor = p);
-    document.querySelectorAll('.section-tag').forEach(el => el.style.color = p);
-    document.querySelectorAll('.news-link').forEach(el => el.style.color = p);
-    window.parent.postMessage({ type: '__edit_mode_set_keys', edits: { primaryColor: p, accentColor: a } }, '*');
-  }
-
-  function applyFonts() {
-    const hf = document.getElementById('tw-headfont').value;
-    const bf = document.getElementById('tw-bodyfont').value;
-    document.documentElement.style.setProperty('--font-heading', `'${hf}', serif`);
-    document.documentElement.style.setProperty('--font-body', `'${bf}', sans-serif`);
-    window.parent.postMessage({ type: '__edit_mode_set_keys', edits: { headingFont: hf, bodyFont: bf } }, '*');
-  }
 </script>
 </body>
 </html>

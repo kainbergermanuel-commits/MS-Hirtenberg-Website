@@ -1,0 +1,13 @@
+<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <rect width="64" height="64" rx="14" fill="oklch(52% 0.10 145)"></rect>
+  
+  <line x1="32" y1="50" x2="32" y2="33" stroke="oklch(96% 0.02 88)" stroke-width="3.4" stroke-linecap="round"></line>
+  
+  <path d="M32 36 C38 27 38 17 32 14 C26 17 26 27 32 36Z" fill="oklch(96% 0.02 88)"></path>
+  
+  <path d="M32 38 C24 32 18 25 20 20 C26 20 30 30 32 38Z" fill="oklch(82% 0.07 145)"></path>
+  
+  <path d="M32 38 C40 32 46 25 44 20 C38 20 34 30 32 38Z" fill="oklch(82% 0.07 145)"></path>
+  
+  <circle cx="32" cy="10" r="3" fill="oklch(78% 0.10 68)"></circle>
+</svg>
