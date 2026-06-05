@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lehrpersonal – MS Hirtenberg</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sage:        oklch(52% 0.10 145);
+    --sage-dark:   oklch(38% 0.09 145);
+    --sage-mid:    oklch(62% 0.09 145);
+    --sage-light:  oklch(80% 0.07 145);
+    --sage-pale:   oklch(95% 0.04 145);
+    --blush:       oklch(78% 0.08 15);
+    --blush-dark:  oklch(56% 0.11 15);
+    --blush-pale:  oklch(96% 0.03 15);
+    --sand:        oklch(80% 0.07 75);
+    --sand-mid:    oklch(70% 0.10 68);
+    --sand-pale:   oklch(95% 0.04 75);
+    --cream:       oklch(98% 0.008 88);
+    --cream-mid:   oklch(96% 0.012 88);
+    --cream-dark:  oklch(92% 0.018 88);
+    --text:        oklch(28% 0.05 145);
+    --text-light:  oklch(55% 0.04 145);
+    --white: #fff;
+    --font-heading: 'Lora', Georgia, serif;
+    --font-body: 'Nunito', system-ui, sans-serif;
+    --radius: 12px; --radius-lg: 20px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--font-body); background: var(--cream); color: var(--text); font-size: 16px; line-height: 1.65; }
+
+  /* NAV */
+  nav { background: var(--white); display: flex; align-items: center; justify-content: space-between; padding: 0 48px; height: 68px; border-bottom: 1.5px solid var(--cream-dark); box-shadow: 0 2px 20px oklch(0% 0 0 / 6%); position: sticky; top: 0; z-index: 100; }
+  .nav-logo { font-family: var(--font-heading); color: var(--sage-dark); font-size: 1.2rem; font-weight: 700; text-decoration: none; display: flex; align-items: center; gap: 10px; }
+  .nav-links { display: flex; gap: 4px; list-style: none; }
+  .nav-links a { color: var(--text-light); text-decoration: none; font-size: 0.88rem; font-weight: 600; padding: 7px 15px; border-radius: 30px; transition: background 0.2s, color 0.2s; letter-spacing: 0.01em; }
+  .nav-links a:hover, .nav-links a.active { background: var(--sage-pale); color: var(--sage-dark); }
+
+  /* PAGE HERO */
+  .page-hero { padding: 56px 96px 150px; position: relative; overflow: hidden; background-color: var(--sage-pale); background-image: linear-gradient(to right, oklch(98% 0.008 88 / 0.97) 0%, oklch(98% 0.008 88 / 0.92) 40%, oklch(97% 0.02 60 / 0.66) 58%, oklch(96% 0.03 15 / 0.24) 76%, transparent 94%), url("uploads/grafik-9f6efa7c.png"); background-size: cover, cover; background-position: center, center 58%; background-repeat: no-repeat, no-repeat; }
+  .page-hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, oklch(38% 0.06 145 / 0.10), transparent 38%); pointer-events: none; }
+  .page-hero-tag { display: inline-flex; align-items: center; gap: 7px; background: var(--white); color: var(--sage); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; padding: 5px 14px; border-radius: 30px; margin-bottom: 14px; border: 1.5px solid var(--sage-pale); }
+  .back-link { display: inline-flex; align-items: center; gap: 8px; color: var(--sage); font-weight: 700; text-decoration: none; font-size: 0.88rem; margin-bottom: 20px; transition: gap 0.2s; }
+  .back-link:hover { gap: 12px; }
+  .page-hero h1 { font-family: var(--font-heading); color: var(--text); font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 700; }
+
+  /* PROFILE CARD — overlaps hero */
+  .page-body { max-width: 880px; margin: -110px auto 0; padding: 0 48px 60px; position: relative; z-index: 5; }
+
+  .profile-head {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    border: 1.5px solid var(--cream-dark);
+    box-shadow: 0 12px 40px oklch(38% 0.06 145 / 0.12);
+    padding: 36px 40px;
+    display: grid; grid-template-columns: auto 1fr; gap: 32px; align-items: center;
+  }
+  .profile-avatar { width: 150px; height: 150px; border-radius: 50%; overflow: hidden; border: 4px solid var(--sage-pale); box-shadow: 0 6px 20px oklch(38% 0.06 145 / 0.14); flex: none; }
+  .profile-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .profile-name { font-family: var(--font-heading); font-size: clamp(1.6rem, 2.6vw, 2.1rem); font-weight: 700; color: var(--text); line-height: 1.15; margin-bottom: 6px; }
+  .profile-primary { display: inline-flex; align-items: center; gap: 8px; font-weight: 800; color: var(--sage-dark); font-size: 1.02rem; margin-bottom: 14px; }
+  .profile-primary .leaf { width: 9px; height: 9px; border-radius: 50% 0 50% 50%; background: var(--sage); transform: rotate(45deg); flex: none; }
+  .profile-meta { display: flex; flex-direction: column; gap: 9px; font-size: 0.9rem; color: var(--text-light); }
+  .profile-meta .mi { display: inline-flex; align-items: center; gap: 8px; }
+  .profile-meta svg { width: 16px; height: 16px; color: var(--sage-mid); flex: none; }
+  .profile-meta a { color: var(--text-light); text-decoration: none; border-bottom: 1px solid var(--sage-light); }
+  .profile-meta a:hover { color: var(--sage-dark); }
+
+  /* SECTIONS */
+  .section-block { margin-top: 40px; }
+  .block-label { display: inline-flex; align-items: center; gap: 9px; font-size: 0.74rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.13em; color: var(--sage); margin-bottom: 16px; }
+  .block-label svg { width: 17px; height: 17px; }
+
+  /* ROLLEN */
+  .rollen-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .rollen-box { background: var(--white); border: 1.5px solid var(--cream-dark); border-radius: var(--radius); padding: 22px 24px; }
+  .rollen-box h3 { font-family: var(--font-heading); font-size: 1.05rem; color: var(--text); margin-bottom: 14px; font-weight: 600; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip { font-size: 0.86rem; font-weight: 700; padding: 6px 14px; border-radius: 30px; background: var(--sage-pale); color: var(--sage-dark); }
+  .chip.task { background: var(--sand-pale); color: oklch(40% 0.10 68); }
+  .chip.lead { background: var(--blush-pale); color: var(--blush-dark); }
+  .task-list { list-style: none; display: flex; flex-direction: column; gap: 11px; }
+  .task-list li { display: flex; gap: 11px; align-items: flex-start; font-size: 0.93rem; color: var(--text); }
+  .task-list li::before { content: ''; width: 8px; height: 8px; border-radius: 50% 0 50% 50%; background: var(--sand-mid); transform: rotate(45deg); flex: none; margin-top: 7px; }
+
+  /* HALTUNG */
+  .haltung { background: var(--white); border: 1.5px solid var(--cream-dark); border-left: 5px solid var(--sage); border-radius: var(--radius); padding: 28px 32px; }
+  .haltung p { color: var(--text); margin-bottom: 14px; }
+  .haltung p:last-child { margin-bottom: 0; }
+
+  /* ZITAT */
+  .zitat { position: relative; background: var(--sage-dark); color: oklch(95% 0.03 145); border-radius: var(--radius-lg); padding: 48px 52px 40px; overflow: hidden; }
+  .zitat .mark { font-family: var(--font-heading); font-size: 6rem; line-height: 0.6; color: var(--sage-mid); opacity: 0.5; position: absolute; top: 28px; left: 30px; }
+  .zitat blockquote { font-family: var(--font-heading); font-style: italic; font-size: clamp(1.3rem, 2.3vw, 1.7rem); line-height: 1.45; position: relative; z-index: 1; padding-left: 30px; }
+  .zitat .cite { margin-top: 18px; padding-left: 30px; font-size: 0.85rem; font-weight: 700; color: var(--sage-light); text-transform: uppercase; letter-spacing: 0.08em; }
+
+  /* SCHNELL-LEISTE */
+  .quickbar-wrap { background: var(--cream-mid); border-top: 1.5px solid var(--cream-dark); padding: 40px 48px 56px; }
+  .quickbar-inner { max-width: 1080px; margin: 0 auto; }
+  .quickbar-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 20px; flex-wrap: wrap; }
+  .quickbar-head h2 { font-family: var(--font-heading); font-size: 1.25rem; color: var(--text); font-weight: 700; }
+  .quickbar-head a { color: var(--sage); font-weight: 700; text-decoration: none; font-size: 0.88rem; display: inline-flex; align-items: center; gap: 6px; }
+  .quickbar-head a:hover { gap: 9px; }
+  .quickbar { display: flex; gap: 12px; overflow-x: auto; padding: 8px 0; margin-top: -8px; scroll-snap-type: x proximity; }
+  .qb-card { scroll-snap-align: start; flex: 0 0 auto; width: 138px; text-decoration: none; background: var(--white); border: 1.5px solid var(--cream-dark); border-radius: var(--radius); padding: 18px 14px; text-align: center; transition: transform 0.18s, box-shadow 0.18s, border-color 0.18s; }
+  .qb-card:hover { transform: translateY(-3px); box-shadow: 0 8px 22px oklch(38% 0.06 145 / 0.13); border-color: var(--sage-light); }
+  .qb-card.current { border-color: var(--sage); background: var(--sage-pale); cursor: default; }
+  .qb-card.current:hover { transform: none; box-shadow: none; }
+  .qb-av { width: 64px; height: 64px; border-radius: 50%; overflow: hidden; margin: 0 auto 10px; border: 2.5px solid var(--cream-dark); }
+  .qb-card.current .qb-av { border-color: var(--sage-mid); }
+  .qb-av img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .qb-name { font-weight: 700; font-size: 0.84rem; color: var(--text); line-height: 1.25; margin-bottom: 3px; }
+  .qb-role { font-size: 0.72rem; color: var(--text-light); line-height: 1.3; }
+  .qb-card.current .qb-tag { display: inline-block; margin-top: 7px; font-size: 0.62rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: var(--sage-dark); }
+
+  footer { background: var(--sage-dark); padding: 32px 48px; display: flex; align-items: center; justify-content: space-between; color: var(--sage-light); font-size: 0.85rem; }
+  footer a { color: var(--sage-light); text-decoration: none; }
+  footer a:hover { color: var(--white); }
+
+  @media (max-width: 760px) {
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .page-hero { padding: 40px 20px 130px; }
+    .page-body { padding: 0 20px 48px; }
+    .profile-head { grid-template-columns: 1fr; text-align: center; gap: 18px; padding: 28px 22px; }
+    .profile-avatar { margin: 0 auto; width: 124px; height: 124px; }
+    .profile-primary, .profile-meta { justify-content: center; }
+    .rollen-grid { grid-template-columns: 1fr; }
+    .zitat { padding: 40px 26px 32px; }
+    .zitat blockquote, .zitat .cite { padding-left: 14px; }
+    .zitat .mark { left: 14px; }
+    .quickbar-wrap { padding: 32px 20px 44px; }
+    footer { flex-direction: column; gap: 12px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <svg width="38" height="38" viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="19" cy="19" r="17" fill="none" stroke="oklch(52% 0.10 145)" stroke-width="1.3"/>
+      <circle cx="19" cy="19" r="13.5" fill="none" stroke="oklch(52% 0.10 145)" stroke-width="0.4" opacity="0.4"/>
+      <line x1="19" y1="27" x2="19" y2="22" stroke="oklch(52% 0.10 145)" stroke-width="1.4" stroke-linecap="round"/>
+      <path d="M19 22 C22 18 22 12 19 11 C16 12 16 18 19 22Z" fill="oklch(52% 0.10 145)"/>
+      <path d="M19 22 C15 19 12 15 13 13 C15 13 18 18 19 22Z" fill="oklch(68% 0.09 145)"/>
+      <path d="M19 22 C23 19 26 15 25 13 C23 13 20 18 19 22Z" fill="oklch(68% 0.09 145)"/>
+      <circle cx="19" cy="2" r="1.8" fill="oklch(60% 0.11 68)"/>
+    </svg>
+    MS Hirtenberg
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#ueber">Über uns</a></li>
+    <li><a href="index.html#news">News</a></li>
+    <li><a href="index.html#kalender">Kalender</a></li>
+    <li><a href="termine.html">Termine</a></li>
+    <li><a href="index.html#team" class="active">Lehrpersonal</a></li>
+    <li><a href="index.html#galerie">Galerie</a></li>
+    <li><a href="index.html#kontakt">Kontakt</a></li>
+  </ul>
+</nav>
+
+<div class="page-hero">
+  <a href="index.html#team" class="back-link">← Zurück zum Team</a>
+  <div class="page-hero-tag">Lehrpersonal</div>
+  <h1 id="hero-title">Lehrperson</h1>
+</div>
+
+<div class="page-body" id="profile-root">
+  <!-- gerendert via JS -->
+</div>
+
+<div class="quickbar-wrap">
+  <div class="quickbar-inner">
+    <div class="quickbar-head">
+      <h2>Unser Lehrpersonal</h2>
+      <a href="index.html#team">Zur Team-Übersicht →</a>
+    </div>
+    <div class="quickbar" id="quickbar"></div>
+  </div>
+</div>
+
+<footer>
+  <div>© 2026 Mittelschule Hirtenberg · Alle Rechte vorbehalten</div>
+  <div style="display:flex;gap:24px;"><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a><a href="barrierefreiheit.html">Barrierefreiheit</a></div>
+</footer>
+
+<script>
+  const TEAM = [
+    {
+      id: 'huber',
+      name: 'Mag. Maria Huber',
+      role: 'Direktorin',
+      photo: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=300&h=300&fit=crop&crop=face',
+      since: '2009',
+      email: 'direktion@ms-hirtenberg.at',
+      sprechstunde: 'nach Vereinbarung',
+      subjects: ['Schulleitung', 'Deutsch'],
+      tasks: [
+        { t: 'Schulleitung & pädagogische Gesamtverantwortung', lead: true },
+        { t: 'Vorsitz im Schulforum' },
+        { t: 'Qualitätsentwicklung & Schulprofil' },
+        { t: 'Ansprechperson für Eltern und Behörden' },
+      ],
+      haltung: [
+        'Schule ist für mich weit mehr als ein Ort der Wissensvermittlung — sie ist eine Gemeinschaft, in der jedes Kind gesehen wird. Mir ist wichtig, dass sich Schülerinnen und Schüler bei uns sicher, ernst genommen und ermutigt fühlen.',
+        'Eine gute Schule lebt vom Miteinander von Lehrenden, Eltern und Kindern. Ich setze auf offene Türen, ehrliche Gespräche und Entscheidungen, die das Wohl der Kinder in den Mittelpunkt stellen.'
+      ],
+      zitat: 'Kinder wachsen dort, wo man ihnen vertraut.'
+    },
+    {
+      id: 'kern',
+      name: 'Mag. Thomas Kern',
+      role: 'Stellv. Direktor · Mathematik',
+      photo: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face',
+      since: '2012',
+      email: 't.kern@ms-hirtenberg.at',
+      sprechstunde: 'Di, 10:00 – 10:50 Uhr',
+      subjects: ['Mathematik', 'Physik'],
+      tasks: [
+        { t: 'Stellvertretung der Schulleitung', lead: true },
+        { t: 'Stundenplan & Supplierungen' },
+        { t: 'Betreuung der Mathematik-Förderkurse' },
+        { t: 'Koordination Digitale Grundbildung' },
+      ],
+      haltung: [
+        'Mathematik darf nicht einschüchtern. Ich möchte zeigen, dass hinter Zahlen und Formeln klare, nachvollziehbare Logik steckt — und dass Fehler ein notwendiger Teil des Verstehens sind.',
+        'Mir ist wichtig, dass jede Schülerin und jeder Schüler ein eigenes Tempo haben darf. Wer einmal den roten Faden verloren hat, bekommt bei mir die Zeit, ihn wiederzufinden.'
+      ],
+      zitat: 'Jeder Rechenweg ist erlaubt — Hauptsache, man versteht, warum er funktioniert.'
+    },
+    {
+      id: 'weidinger',
+      name: 'Mag. Anna Weidinger',
+      role: 'Deutsch · Klassenvorstand 3a',
+      photo: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&h=300&fit=crop&crop=face',
+      since: '2015',
+      email: 'a.weidinger@ms-hirtenberg.at',
+      sprechstunde: 'Mi, 09:00 – 09:50 Uhr',
+      subjects: ['Deutsch', 'Soziales Lernen'],
+      tasks: [
+        { t: 'Klassenvorstand 3a', lead: true },
+        { t: 'Leseförderung & Schulbibliothek' },
+        { t: 'Begleitung der Schülerzeitung' },
+      ],
+      haltung: [
+        'Sprache öffnet Türen — zu Geschichten, zu anderen Menschen und zur eigenen Meinung. Ich möchte, dass Kinder Freude am Lesen und Mut zum eigenen Wort entwickeln.',
+        'Als Klassenvorstand sehe ich mich als verlässliche Ansprechperson. Eine Klasse, in der man sich gegenseitig zuhört und respektiert, ist die beste Grundlage zum Lernen.'
+      ],
+      zitat: 'Wer seine eigene Stimme findet, traut sich auch, Fragen zu stellen.'
+    },
+    {
+      id: 'novak',
+      name: 'Prof. Josef Novak',
+      role: 'Biologie · Umwelt-AG',
+      photo: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop&crop=face',
+      since: '2006',
+      email: 'j.novak@ms-hirtenberg.at',
+      sprechstunde: 'Do, 11:00 – 11:50 Uhr',
+      subjects: ['Biologie', 'Naturwissenschaften'],
+      tasks: [
+        { t: 'Leitung der Umwelt-AG', lead: true },
+        { t: 'Betreuung des Schulgartens' },
+        { t: 'Koordination „Ökolog“-Projekte' },
+      ],
+      haltung: [
+        'Natur versteht man am besten draußen, mit allen Sinnen. Darum verlege ich den Unterricht, wann immer es geht, in den Schulgarten oder ins Triestingtal.',
+        'Nachhaltigkeit ist für mich kein Schlagwort, sondern eine Haltung, die im Kleinen beginnt. Wenn Kinder lernen, achtsam mit ihrer Umwelt umzugehen, tragen sie das ein Leben lang weiter.'
+      ],
+      zitat: 'Man schützt nur, was man kennt und liebgewonnen hat.'
+    },
+    {
+      id: 'fuchs',
+      name: 'Mag. Sandra Fuchs',
+      role: 'Englisch · Französisch',
+      photo: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=300&h=300&fit=crop&crop=face',
+      since: '2017',
+      email: 's.fuchs@ms-hirtenberg.at',
+      sprechstunde: 'Di, 09:00 – 09:50 Uhr',
+      subjects: ['Englisch', 'Französisch'],
+      tasks: [
+        { t: 'Organisation der Sprachreisen', lead: true },
+        { t: 'Betreuung des E-Twinning-Austauschs' },
+        { t: 'Vorbereitung Cambridge-Zertifikate' },
+      ],
+      haltung: [
+        'Eine Sprache lernt man, indem man sie benutzt — auch mit Fehlern. In meinem Unterricht wird gesprochen, gelacht und ausprobiert, denn Sicherheit entsteht durch Üben, nicht durch Angst.',
+        'Sprachen sind das Tor zu anderen Kulturen. Ich möchte Neugier auf die Welt wecken und zeigen, wie viel näher sie rückt, wenn man sich verständigen kann.'
+      ],
+      zitat: 'Trau dich zu sprechen — Verstanden­werden ist schöner als Perfektion.'
+    },
+    {
+      id: 'langer',
+      name: 'Mag. Peter Langer',
+      role: 'Geschichte · Geographie',
+      photo: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&h=300&fit=crop&crop=face',
+      since: '2011',
+      email: 'p.langer@ms-hirtenberg.at',
+      sprechstunde: 'Mi, 10:00 – 10:50 Uhr',
+      subjects: ['Geschichte', 'Geographie', 'Politische Bildung'],
+      tasks: [
+        { t: 'Organisation der Wien-Exkursionen', lead: true },
+        { t: 'Projekt „Demokratie leben“' },
+        { t: 'Betreuung des Geschichte-Wettbewerbs' },
+      ],
+      haltung: [
+        'Geschichte ist keine Sammlung von Jahreszahlen, sondern erzählt davon, wie Menschen gelebt, entschieden und gestritten haben. Ich möchte, dass Schülerinnen und Schüler Zusammenhänge erkennen und kritisch nachfragen.',
+        'Wer die Vergangenheit versteht, kann die Gegenwart besser einordnen. Mir liegt am Herzen, junge Menschen zu mündigen, demokratisch denkenden Bürgerinnen und Bürgern zu begleiten.'
+      ],
+      zitat: 'Geschichte gehört allen, die bereit sind, Fragen zu stellen.'
+    },
+    {
+      id: 'schober',
+      name: 'Karin Schober, BA',
+      role: 'Kunst · Werken',
+      photo: 'https://images.unsplash.com/photo-1554151228-14d9def656e4?w=300&h=300&fit=crop&crop=face',
+      since: '2019',
+      email: 'k.schober@ms-hirtenberg.at',
+      sprechstunde: 'Do, 09:00 – 09:50 Uhr',
+      subjects: ['Bildnerische Erziehung', 'Technisches Werken'],
+      tasks: [
+        { t: 'Gestaltung der Schulausstellungen', lead: true },
+        { t: 'Betreuung der Kreativ-AG' },
+        { t: 'Bühnenbild für Schulaufführungen' },
+      ],
+      haltung: [
+        'Kreativität braucht Freiraum und das Gefühl, dass nichts „falsch“ ist. In meinem Unterricht zählt der Mut zum Ausprobieren mehr als das perfekte Ergebnis.',
+        'Gestalten heißt, mit Kopf und Händen zu denken. Gerade Kinder, die sich mit Worten schwertun, blühen oft auf, wenn sie etwas mit eigenen Händen schaffen dürfen.'
+      ],
+      zitat: 'Jedes Kind ist kreativ — man muss ihm nur Material und Vertrauen geben.'
+    },
+    {
+      id: 'reiter',
+      name: 'Mag. Michael Reiter',
+      role: 'Musik · Chor',
+      photo: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=300&h=300&fit=crop&crop=face',
+      since: '2014',
+      email: 'm.reiter@ms-hirtenberg.at',
+      sprechstunde: 'Di, 11:00 – 11:50 Uhr',
+      subjects: ['Musikerziehung'],
+      tasks: [
+        { t: 'Leitung des Schulchors', lead: true },
+        { t: 'Musikalische Gestaltung der Schulfeiern' },
+        { t: 'Betreuung der Instrumental-Gruppe' },
+      ],
+      haltung: [
+        'Musik verbindet — sie schafft Gemeinschaft, lange bevor man über sie spricht. Wenn eine ganze Klasse gemeinsam singt, entsteht etwas, das man nicht erzwingen kann.',
+        'Mir ist wichtig, dass jeder mitmachen darf, unabhängig von Vorerfahrung. Im Chor geht es nicht um die schönste Stimme, sondern darum, Teil von etwas Größerem zu sein.'
+      ],
+      zitat: 'Gemeinsam singen heißt, für einen Moment ganz eins zu sein.'
+    },
+  ];
+
+  function byId(id) { return TEAM.find(t => t.id === id); }
+
+  const params = new URLSearchParams(location.search);
+  const current = byId(params.get('id')) || TEAM[0];
+
+  document.title = current.name + ' – MS Hirtenberg';
+  document.getElementById('hero-title').textContent = current.name;
+
+  function esc(s) { return String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+  // ── Profile body ──
+  const subjectChips = current.subjects.map(s => `<span class="chip">${esc(s)}</span>`).join('');
+  const taskItems = current.tasks.map(t =>
+    `<li${t.lead ? ' style="font-weight:700"' : ''}>${esc(t.t)}</li>`
+  ).join('');
+  const haltungHtml = current.haltung.map(p => `<p>${esc(p)}</p>`).join('');
+
+  document.getElementById('profile-root').innerHTML = `
+    <div class="profile-head">
+      <div class="profile-avatar"><img src="${current.photo}" alt="${esc(current.name)}"></div>
+      <div>
+        <div class="profile-name">${esc(current.name)}</div>
+        <div class="profile-primary"><span class="leaf"></span>${esc(current.role)}</div>
+        <div class="profile-meta">
+          <span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><a href="mailto:${esc(current.email)}">${esc(current.email)}</a></span>
+          <span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Sprechstunde: ${esc(current.sprechstunde)}</span>
+          <span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V8l9-5 9 5v13"/><path d="M9 21v-7h6v7"/></svg>An der MS Hirtenberg seit ${esc(current.since)}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-block">
+      <div class="block-label">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3 8-8"/><path d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h9"/></svg>
+        Rollen &amp; Aufgaben
+      </div>
+      <div class="rollen-grid">
+        <div class="rollen-box">
+          <h3>Unterrichtsfächer</h3>
+          <div class="chips">${subjectChips}</div>
+        </div>
+        <div class="rollen-box">
+          <h3>Aufgaben an der Schule</h3>
+          <ul class="task-list">${taskItems}</ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-block">
+      <div class="block-label">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.5-9.5-9A5 5 0 0 1 12 5a5 5 0 0 1 9.5 7c-2.5 4.5-9.5 9-9.5 9z"/></svg>
+        Meine Haltung
+      </div>
+      <div class="haltung">${haltungHtml}</div>
+    </div>
+
+    <div class="section-block">
+      <div class="zitat">
+        <span class="mark">&ldquo;</span>
+        <blockquote>${esc(current.zitat)}</blockquote>
+        <div class="cite">— ${esc(current.name)}</div>
+      </div>
+    </div>
+  `;
+
+  // ── Schnell-Leiste ──
+  const ordered = [current, ...TEAM.filter(t => t.id !== current.id)];
+  document.getElementById('quickbar').innerHTML = ordered.map(t => {
+    if (t.id === current.id) {
+      return `<div class="qb-card current">
+        <div class="qb-av"><img src="${t.photo}" alt="${esc(t.name)}"></div>
+        <div class="qb-name">${esc(t.name)}</div>
+        <div class="qb-role">${esc(t.role)}</div>
+        <span class="qb-tag">Sie sind hier</span>
+      </div>`;
+    }
+    return `<a class="qb-card" href="lehrer.html?id=${t.id}">
+      <div class="qb-av"><img src="${t.photo}" alt="${esc(t.name)}"></div>
+      <div class="qb-name">${esc(t.name)}</div>
+      <div class="qb-role">${esc(t.role)}</div>
+    </a>`;
+  }).join('');
+
+  window.scrollTo(0, 0);
+</script>
+
+</body>
+</html>
