@@ -39,6 +39,7 @@
   /* NAV */
   nav { background: var(--white); display: flex; align-items: center; justify-content: space-between; padding: 0 48px; height: 68px; border-bottom: 1.5px solid var(--cream-dark); box-shadow: 0 2px 20px oklch(0% 0 0 / 6%); position: sticky; top: 0; z-index: 100; }
   .nav-logo { font-family: var(--font-heading); color: var(--sage-dark); font-size: 1.2rem; font-weight: 700; text-decoration: none; display: flex; align-items: center; gap: 10px; }
+  .nav-pill { display: inline-flex; align-items: center; background: var(--white); color: var(--sage); font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.13em; padding: 5px 14px; border-radius: 30px; border: 1.5px solid var(--sage-pale); white-space: nowrap; }
   .nav-links { display: flex; gap: 4px; list-style: none; }
   .nav-links a { color: var(--text-light); text-decoration: none; font-size: 0.88rem; font-weight: 600; padding: 7px 15px; border-radius: 30px; transition: background 0.2s, color 0.2s; letter-spacing: 0.01em; }
   .nav-links a:hover, .nav-links a.active { background: var(--sage-pale); color: var(--sage-dark); }
@@ -144,7 +145,8 @@
 
   @media (max-width: 900px) {
     nav { padding: 0 20px; }
-    .nav-links { display: none; }
+    .nav-pill { display: inline-flex; align-items: center; background: var(--white); color: var(--sage); font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.13em; padding: 5px 14px; border-radius: 30px; border: 1.5px solid var(--sage-pale); white-space: nowrap; }
+  .nav-links { display: none; }
     .page-hero { padding: 40px 20px 32px; }
     .page-body { padding: 36px 20px 80px; }
     .schedule-head, .lesson { grid-template-columns: 48px 1fr auto; gap: 12px; padding-left: 18px; padding-right: 18px; }
@@ -169,7 +171,7 @@
       <path d="M19 22 C23 19 26 15 25 13 C23 13 20 18 19 22Z" fill="oklch(68% 0.09 145)"/>
       <circle cx="19" cy="2" r="1.8" fill="oklch(60% 0.11 68)"/>
     </svg>
-    MS Hirtenberg
+    <span class="nav-pill">Mittelschule Hirtenberg</span>
   </a>
   <ul class="nav-links">
     <li><a href="index.html#ueber">Über uns</a></li>

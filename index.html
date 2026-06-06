@@ -75,6 +75,7 @@
     text-decoration: none;
     display: flex; align-items: center; gap: 10px;
   }
+  .nav-pill { display: inline-flex; align-items: center; background: var(--white); color: var(--sage); font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.13em; padding: 5px 14px; border-radius: 30px; border: 1.5px solid var(--sage-pale); white-space: nowrap; }
   .nav-links {
     display: flex; gap: 4px; list-style: none;
   }
@@ -352,18 +353,20 @@
   .quick-item {
     display: flex; flex-direction: column; align-items: center; justify-content: center;
     gap: 6px;
-    padding: 11px 8px;
+    padding: 5px 8px;
     text-decoration: none;
   }
   .quick-icon {
     width: 24px; height: 24px; color: var(--sage);
-    transition: transform 0.18s, color 0.18s;
+    transition: transform 0.18s, color 0.18s, filter 0.18s;
   }
-  .quick-item:hover .quick-icon { transform: translateY(-2px); color: var(--sage-dark); }
+  .quick-item:hover .quick-icon { transform: translateY(-2px); color: oklch(93% 0.03 145); filter: drop-shadow(0 0 8px oklch(85% 0.09 145 / 0.8)); }
   .quick-label {
     font-size: 0.82rem; font-weight: 800; color: var(--text);
     letter-spacing: 0.01em;
+    transition: color 0.18s;
   }
+  .quick-item:hover .quick-label { color: oklch(93% 0.03 145); }
 
   /* ─── SECTIONS ─── */
   section { scroll-margin-top: 68px; }
@@ -633,7 +636,6 @@
     border-color: var(--sage-light);
     box-shadow: 0 10px 26px oklch(38% 0.06 145 / 0.12);
   }
-  .team-card:hover .team-avatar { border-color: var(--sage-mid); }
   .team-more {
     display: inline-flex; align-items: center; gap: 5px;
     margin-top: 8px; font-size: 0.74rem; font-weight: 800;
@@ -801,6 +803,7 @@
       <path d="M19 22 C23 19 26 15 25 13 C23 13 20 18 19 22Z" fill="oklch(68% 0.09 145)"/>
       <circle cx="19" cy="2" r="1.8" fill="oklch(60% 0.11 68)"/>
     </svg>
+    <span class="nav-pill">Mittelschule Hirtenberg</span>
   </a>
   <ul class="nav-links">
     <li><a href="#ueber">Über uns</a></li>
@@ -825,7 +828,6 @@
     </div>
   </div>
   <div class="hero-content">
-    <div class="hero-tag">Mittelschule Hirtenberg</div>
     <h1 class="hero-title">Lernen, <em>wachsen</em>,<br>die Zukunft gestalten.</h1>
     <p class="hero-sub">Herzlich willkommen an der MS Hirtenberg — wo Bildung und Gemeinschaft Hand in Hand gehen.</p>
     <div class="hero-cta">

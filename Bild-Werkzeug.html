@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<title>Bild-Werkzeug – Fotos für die Galerie vorbereiten</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sage:        oklch(52% 0.10 145);
+    --sage-dark:   oklch(38% 0.09 145);
+    --sage-mid:    oklch(62% 0.09 145);
+    --sage-light:  oklch(80% 0.07 145);
+    --sage-pale:   oklch(95% 0.04 145);
+    --blush-dark:  oklch(56% 0.11 15);
+    --blush-pale:  oklch(96% 0.03 15);
+    --cream:       oklch(98% 0.008 88);
+    --cream-mid:   oklch(96% 0.012 88);
+    --cream-dark:  oklch(92% 0.018 88);
+    --text:        oklch(28% 0.05 145);
+    --text-light:  oklch(55% 0.04 145);
+    --white: #fff;
+    --amber:       oklch(62% 0.11 68);
+    --amber-pale:  oklch(96% 0.03 75);
+    --font-heading: 'Lora', Georgia, serif;
+    --font-body: 'Nunito', system-ui, sans-serif;
+    --radius: 12px; --radius-lg: 20px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--font-body); background: var(--cream); color: var(--text); font-size: 16px; line-height: 1.6; }
+
+  /* ─── HEADER ─── */
+  .tool-head { padding: 40px 48px 34px; background-color: var(--sage-pale); border-bottom: 1.5px solid var(--cream-dark); }
+  .tool-head-inner { max-width: 1080px; margin: 0 auto; }
+  .head-logo-row { display: flex; align-items: center; gap: 11px; margin-bottom: 18px; }
+  .head-logo-row span { font-family: var(--font-heading); color: var(--sage-dark); font-size: 1.05rem; font-weight: 700; }
+  .tool-tag { display: inline-flex; align-items: center; gap: 7px; background: var(--white); color: var(--sage); font-size: 0.74rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.12em; padding: 5px 14px; border-radius: 30px; margin-bottom: 14px; border: 1.5px solid var(--white); }
+  .tool-head h1 { font-family: var(--font-heading); color: var(--text); font-size: clamp(1.7rem, 3vw, 2.4rem); font-weight: 700; margin-bottom: 8px; }
+  .tool-head p { color: var(--text-light); max-width: 620px; }
+
+  /* ─── PRIVACY NOTE ─── */
+  .privacy { max-width: 1080px; margin: -16px auto 0; padding: 0 48px; }
+  .privacy-inner { background: var(--white); border: 1.5px solid var(--sage-light); border-radius: var(--radius); padding: 14px 18px; display: flex; align-items: center; gap: 13px; box-shadow: 0 6px 22px oklch(38% 0.06 145 / 0.10); position: relative; top: -2px; }
+  .privacy-inner svg { color: var(--sage); flex-shrink: 0; }
+  .privacy-inner p { font-size: 0.88rem; color: var(--text); }
+  .privacy-inner b { font-weight: 800; color: var(--sage-dark); }
+
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 30px 48px 100px; }
+
+  /* ─── SETTINGS ─── */
+  .panel { background: var(--white); border: 1.5px solid var(--cream-dark); border-radius: var(--radius-lg); padding: 26px 28px; margin-bottom: 26px; }
+  .panel-title { font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-light); margin-bottom: 20px; display: flex; align-items: center; gap: 8px; }
+  .panel-title .step-num { background: var(--sage); color: var(--white); width: 22px; height: 22px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 0.78rem; font-weight: 800; letter-spacing: 0; }
+  .settings-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px 28px; }
+  .field { display: flex; flex-direction: column; gap: 7px; }
+  .field label { font-size: 0.84rem; font-weight: 700; color: var(--text); }
+  .field .hint { font-size: 0.76rem; color: var(--text-light); font-weight: 500; }
+  .field input[type=text], .field input[type=number] { font-family: var(--font-body); font-size: 0.92rem; font-weight: 600; color: var(--text); padding: 10px 13px; border: 1.5px solid var(--cream-dark); border-radius: var(--radius); background: var(--cream); transition: border-color 0.18s; }
+  .field input:focus { outline: none; border-color: var(--sage-light); background: var(--white); }
+  .seg { display: inline-flex; background: var(--cream); border: 1.5px solid var(--cream-dark); border-radius: 30px; padding: 3px; gap: 3px; width: fit-content; }
+  .seg button { font-family: var(--font-body); font-size: 0.83rem; font-weight: 700; color: var(--text-light); background: transparent; border: none; padding: 7px 16px; border-radius: 30px; cursor: pointer; transition: all 0.16s; }
+  .seg button.on { background: var(--sage); color: var(--white); }
+  .range-row { display: flex; align-items: center; gap: 14px; }
+  .range-row input[type=range] { flex: 1; accent-color: var(--sage); }
+  .range-val { font-variant-numeric: tabular-nums; font-weight: 800; color: var(--sage-dark); font-size: 0.9rem; min-width: 42px; text-align: right; }
+
+  /* ─── DROP ZONE ─── */
+  .drop { border: 2.5px dashed var(--sage-light); border-radius: var(--radius-lg); background: var(--white); padding: 52px 30px; text-align: center; cursor: pointer; transition: all 0.2s; }
+  .drop:hover { border-color: var(--sage); background: var(--sage-pale); }
+  .drop.over { border-color: var(--sage); background: var(--sage-pale); transform: scale(1.005); }
+  .drop .drop-ico { color: var(--sage); margin-bottom: 14px; }
+  .drop h2 { font-family: var(--font-heading); font-size: 1.3rem; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+  .drop p { color: var(--text-light); font-size: 0.92rem; }
+  .drop .browse { color: var(--sage); font-weight: 800; text-decoration: underline; text-underline-offset: 2px; }
+
+  /* ─── SUMMARY BAR ─── */
+  .summary { display: none; margin-top: 26px; background: var(--sage-dark); color: var(--white); border-radius: var(--radius-lg); padding: 20px 26px; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+  .summary.show { display: flex; }
+  .summary-stats { display: flex; gap: 30px; flex-wrap: wrap; }
+  .stat .stat-num { font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700; line-height: 1; }
+  .stat .stat-lbl { font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--sage-light); margin-top: 5px; font-weight: 700; }
+  .stat .stat-num .arrow { color: var(--sage-light); font-weight: 400; margin: 0 4px; }
+  .stat .stat-num .saved { color: oklch(85% 0.10 145); }
+  .summary-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; border-radius: 30px; font-family: var(--font-body); font-size: 0.9rem; font-weight: 700; text-decoration: none; cursor: pointer; border: none; transition: transform 0.15s, box-shadow 0.15s, background 0.15s; white-space: nowrap; }
+  .btn:disabled { opacity: 0.5; cursor: default; }
+  .btn-light { background: var(--white); color: var(--sage-dark); }
+  .btn-light:not(:disabled):hover { transform: translateY(-2px); box-shadow: 0 6px 18px oklch(0% 0 0 / 0.18); }
+  .btn-ghost { background: oklch(99% 0.005 88 / 0.14); color: var(--white); border: 1.5px solid oklch(99% 0.005 88 / 0.3); }
+  .btn-ghost:not(:disabled):hover { background: oklch(99% 0.005 88 / 0.24); }
+
+  /* ─── RESULTS ─── */
+  .results { margin-top: 28px; display: grid; grid-template-columns: repeat(auto-fill, minmax(168px, 1fr)); gap: 16px; }
+  .rcard { background: var(--white); border: 1.5px solid var(--cream-dark); border-radius: var(--radius); overflow: hidden; }
+  .rcard-thumb { aspect-ratio: 1; background: var(--cream-dark); position: relative; overflow: hidden; }
+  .rcard-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .rcard-thumb .spin { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+  .rcard-body { padding: 11px 13px 13px; }
+  .rcard-name { font-size: 0.78rem; font-weight: 700; color: var(--text); word-break: break-all; line-height: 1.35; margin-bottom: 7px; }
+  .rcard-sizes { display: flex; flex-direction: column; gap: 3px; font-size: 0.74rem; color: var(--text-light); font-weight: 600; }
+  .rcard-sizes .sz-row { display: flex; justify-content: space-between; gap: 8px; }
+  .rcard-sizes .was { text-decoration: line-through; opacity: 0.6; }
+  .rcard-sizes .now { color: var(--sage-dark); font-weight: 800; }
+  .badge-mini { display: inline-block; font-size: 0.64rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; padding: 1px 7px; border-radius: 20px; }
+  .badge-mini.g { background: var(--sage-pale); color: var(--sage-dark); }
+  .badge-mini.t { background: var(--blush-pale); color: var(--blush-dark); }
+
+  .spinner { width: 26px; height: 26px; border: 3px solid var(--cream-dark); border-top-color: var(--sage); border-radius: 50%; animation: spin 0.8s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* ─── HOW-TO / CHECKLIST ─── */
+  .howto { margin-top: 40px; background: var(--amber-pale); border: 1.5px solid oklch(85% 0.06 75); border-radius: var(--radius-lg); padding: 26px 30px; }
+  .howto h3 { font-family: var(--font-heading); font-size: 1.15rem; color: var(--text); margin-bottom: 14px; display: flex; align-items: center; gap: 9px; }
+  .howto ol { list-style: none; counter-reset: step; display: flex; flex-direction: column; gap: 11px; }
+  .howto li { counter-increment: step; padding-left: 38px; position: relative; font-size: 0.91rem; color: var(--text); }
+  .howto li::before { content: counter(step); position: absolute; left: 0; top: -1px; width: 25px; height: 25px; background: var(--amber); color: var(--white); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 800; }
+  .howto li b { font-weight: 800; }
+  .howto code { background: var(--white); border: 1px solid var(--cream-dark); border-radius: 5px; padding: 1px 6px; font-size: 0.84em; font-family: ui-monospace, monospace; color: var(--sage-dark); }
+
+  .toast { position: fixed; bottom: 26px; left: 50%; transform: translateX(-50%) translateY(20px); background: var(--sage-dark); color: var(--white); padding: 13px 24px; border-radius: 30px; font-weight: 700; font-size: 0.9rem; box-shadow: 0 12px 36px oklch(0% 0 0 / 0.28); opacity: 0; pointer-events: none; transition: opacity 0.25s, transform 0.25s; z-index: 5000; }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  footer { background: var(--sage-dark); padding: 26px 48px; text-align: center; color: var(--sage-light); font-size: 0.84rem; }
+
+  @media (max-width: 760px) {
+    .tool-head, .privacy, .wrap, footer { padding-left: 20px; padding-right: 20px; }
+    .settings-grid { grid-template-columns: 1fr; }
+    .summary { flex-direction: column; align-items: stretch; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="tool-head">
+  <div class="tool-head-inner">
+    <div class="head-logo-row">
+      <svg width="34" height="34" viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="19" cy="19" r="17" fill="none" stroke="oklch(52% 0.10 145)" stroke-width="1.3"/>
+        <line x1="19" y1="27" x2="19" y2="22" stroke="oklch(52% 0.10 145)" stroke-width="1.4" stroke-linecap="round"/>
+        <path d="M19 22 C22 18 22 12 19 11 C16 12 16 18 19 22Z" fill="oklch(52% 0.10 145)"/>
+        <path d="M19 22 C15 19 12 15 13 13 C15 13 18 18 19 22Z" fill="oklch(68% 0.09 145)"/>
+        <path d="M19 22 C23 19 26 15 25 13 C23 13 20 18 19 22Z" fill="oklch(68% 0.09 145)"/>
+        <circle cx="19" cy="2" r="1.8" fill="oklch(60% 0.11 68)"/>
+      </svg>
+      <span>Mittelschule Hirtenberg</span>
+    </div>
+    <div class="tool-tag">Internes Werkzeug</div>
+    <h1>Fotos für die Galerie vorbereiten</h1>
+    <p>Ziehen Sie die Originalfotos hier hinein. Das Werkzeug verkleinert jedes Bild automatisch auf zwei Web-Größen — ein großes Bild für die Lightbox und ein kleines Thumbnail fürs Raster — und packt alles zum Download. Anschließend nur noch auf das Hosting hochladen.</p>
+  </div>
+</div>
+
+<!-- PRIVACY -->
+<div class="privacy">
+  <div class="privacy-inner">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+    <p><b>Alles bleibt auf Ihrem Gerät.</b> Die Fotos werden direkt hier im Browser verarbeitet und nirgendwo hochgeladen — wichtig bei Schülerfotos. Es funktioniert sogar ohne Internet.</p>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- SETTINGS -->
+  <div class="panel">
+    <div class="panel-title"><span class="step-num">1</span> Einstellungen</div>
+    <div class="settings-grid">
+      <div class="field">
+        <label for="slug">Album-Name (für die Dateinamen)</label>
+        <input type="text" id="slug" value="schulfest-2026" placeholder="z. B. schulfest-2026">
+        <span class="hint">Ergibt Dateinamen wie <code id="nameExample">schulfest-2026-01-gross.jpg</code></span>
+      </div>
+      <div class="field">
+        <label>Thumbnail-Form</label>
+        <div class="seg" id="cropSeg">
+          <button data-crop="square" class="on">Quadratisch</button>
+          <button data-crop="keep">Seitenverhältnis</button>
+        </div>
+        <span class="hint">Quadratisch passt zum aktuellen Galerie-Raster.</span>
+      </div>
+      <div class="field">
+        <label for="bigEdge">Große Kante (Lightbox-Bild)</label>
+        <div class="range-row">
+          <input type="range" id="bigEdge" min="1000" max="2400" step="100" value="1600">
+          <span class="range-val"><span id="bigEdgeVal">1600</span>px</span>
+        </div>
+        <span class="hint">Längste Bildkante. 1600 px ist ein guter Wert.</span>
+      </div>
+      <div class="field">
+        <label for="thumbEdge">Thumbnail-Größe (Raster)</label>
+        <div class="range-row">
+          <input type="range" id="thumbEdge" min="240" max="600" step="20" value="400">
+          <span class="range-val"><span id="thumbEdgeVal">400</span>px</span>
+        </div>
+        <span class="hint">400 px reicht fürs Raster locker aus.</span>
+      </div>
+      <div class="field" style="grid-column: 1 / -1;">
+        <label for="quality">Qualität / Kompression</label>
+        <div class="range-row">
+          <input type="range" id="quality" min="60" max="92" step="1" value="82">
+          <span class="range-val"><span id="qualityVal">82</span>%</span>
+        </div>
+        <span class="hint">Höher = schärfer, aber größere Dateien. 80–85 % ist der ideale Kompromiss.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- DROP -->
+  <div class="panel-title"><span class="step-num">2</span> Fotos hinzufügen</div>
+  <div class="drop" id="drop">
+    <div class="drop-ico">
+      <svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+    </div>
+    <h2>Fotos hierher ziehen</h2>
+    <p>oder <span class="browse">Dateien auswählen</span> · mehrere auf einmal möglich (JPG, PNG, HEIC*)</p>
+    <input type="file" id="fileInput" accept="image/*" multiple hidden>
+  </div>
+
+  <!-- SUMMARY -->
+  <div class="summary" id="summary">
+    <div class="summary-stats">
+      <div class="stat"><div class="stat-num" id="statCount">0</div><div class="stat-lbl">Bilder</div></div>
+      <div class="stat"><div class="stat-num"><span id="statBefore">0</span><span class="arrow">→</span><span class="saved" id="statAfter">0</span></div><div class="stat-lbl">Gesamtgröße (MB)</div></div>
+      <div class="stat"><div class="stat-num saved" id="statSaved">0%</div><div class="stat-lbl">gespart</div></div>
+    </div>
+    <div class="summary-actions">
+      <button class="btn btn-ghost" id="copyListBtn">Dateiliste kopieren</button>
+      <button class="btn btn-ghost" id="clearBtn">Zurücksetzen</button>
+      <button class="btn btn-light" id="zipBtn">Alle als ZIP herunterladen</button>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div class="results" id="results"></div>
+
+  <!-- HOW-TO -->
+  <div class="howto">
+    <h3>
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="oklch(56% 0.11 68)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+      Die ganze Routine in unter 15 Minuten
+    </h3>
+    <ol>
+      <li>Vom Ereignis die <b>besten 15–25 Fotos</b> auswählen (der Schritt kostet die meiste Zeit — lieber wenige gute).</li>
+      <li>Oben den <b>Album-Namen</b> eintragen, dann die Fotos hier <b>hineinziehen</b>. Das Verkleinern passiert automatisch.</li>
+      <li>Auf <b>„Alle als ZIP herunterladen"</b> klicken und das ZIP auf dem Computer entpacken.</li>
+      <li>Den entpackten Ordner per Datei-Manager des Hostings nach <code>uploads/galerie/</code> hochladen.</li>
+      <li>In der <code>galerie.html</code> den Album-Block ergänzen — die <b>Dateiliste</b> dafür liefert der Knopf oben.</li>
+    </ol>
+  </div>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+<footer>Internes Werkzeug der Mittelschule Hirtenberg · läuft vollständig offline im Browser</footer>
+
+<script>
+/* ───────── State & Settings ───────── */
+const S = { crop: 'square', bigEdge: 1600, thumbEdge: 400, quality: 0.82, slug: 'schulfest-2026' };
+let items = []; // { idx, baseName, origSize, big:{blob,w,h}, thumb:{blob,w,h}, thumbURL }
+
+const $ = id => document.getElementById(id);
+const fmtMB = b => (b / 1048576).toFixed(1);
+const fmtKB = b => Math.round(b / 1024);
+
+/* ───────── Settings bindings ───────── */
+function updateNameExample() {
+  $('nameExample').textContent = `${S.slug || 'album'}-01-gross.jpg`;
+}
+$('slug').addEventListener('input', e => { S.slug = e.target.value.trim().replace(/\s+/g,'-').toLowerCase() || 'album'; updateNameExample(); });
+$('cropSeg').addEventListener('click', e => {
+  const b = e.target.closest('button'); if (!b) return;
+  S.crop = b.dataset.crop;
+  [...$('cropSeg').children].forEach(c => c.classList.toggle('on', c === b));
+});
+function bindRange(id, valId, key, transform = v => v) {
+  $(id).addEventListener('input', e => { S[key] = transform(+e.target.value); $(valId).textContent = e.target.value; });
+}
+bindRange('bigEdge', 'bigEdgeVal', 'bigEdge');
+bindRange('thumbEdge', 'thumbEdgeVal', 'thumbEdge');
+bindRange('quality', 'qualityVal', 'quality', v => v / 100);
+
+/* ───────── Image resizing (Canvas, stepped downscale) ───────── */
+function sourceCanvas(img, sx, sy, sw, sh) {
+  const c = document.createElement('canvas');
+  c.width = sw; c.height = sh;
+  c.getContext('2d').drawImage(img, sx, sy, sw, sh, 0, 0, sw, sh);
+  return c;
+}
+function stepDown(src, tw, th) {
+  let cur = src;
+  while (cur.width > tw * 2 && cur.height > th * 2) {
+    const n = document.createElement('canvas');
+    n.width = Math.max(1, Math.round(cur.width / 2));
+    n.height = Math.max(1, Math.round(cur.height / 2));
+    const c = n.getContext('2d'); c.imageSmoothingEnabled = true; c.imageSmoothingQuality = 'high';
+    c.drawImage(cur, 0, 0, n.width, n.height);
+    cur = n;
+  }
+  const out = document.createElement('canvas');
+  out.width = tw; out.height = th;
+  const oc = out.getContext('2d'); oc.imageSmoothingEnabled = true; oc.imageSmoothingQuality = 'high';
+  oc.drawImage(cur, 0, 0, tw, th);
+  return out;
+}
+function canvasToBlob(canvas, q) {
+  return new Promise(res => canvas.toBlob(res, 'image/jpeg', q));
+}
+async function makeBig(img) {
+  const w = img.naturalWidth, h = img.naturalHeight;
+  const scale = Math.min(1, S.bigEdge / Math.max(w, h));
+  const tw = Math.round(w * scale), th = Math.round(h * scale);
+  const canvas = stepDown(sourceCanvas(img, 0, 0, w, h), tw, th);
+  return { blob: await canvasToBlob(canvas, S.quality), w: tw, h: th };
+}
+async function makeThumb(img) {
+  const w = img.naturalWidth, h = img.naturalHeight;
+  if (S.crop === 'square') {
+    const s = Math.min(w, h);
+    const sx = Math.round((w - s) / 2), sy = Math.round((h - s) / 2);
+    const canvas = stepDown(sourceCanvas(img, sx, sy, s, s), S.thumbEdge, S.thumbEdge);
+    return { blob: await canvasToBlob(canvas, S.quality), w: S.thumbEdge, h: S.thumbEdge };
+  } else {
+    const scale = Math.min(1, S.thumbEdge / Math.max(w, h));
+    const tw = Math.round(w * scale), th = Math.round(h * scale);
+    const canvas = stepDown(sourceCanvas(img, 0, 0, w, h), tw, th);
+    return { blob: await canvasToBlob(canvas, S.quality), w: tw, h: th };
+  }
+}
+function loadImage(file) {
+  return new Promise((res, rej) => {
+    const url = URL.createObjectURL(file);
+    const img = new Image();
+    img.onload = () => { res({ img, url }); };
+    img.onerror = () => { URL.revokeObjectURL(url); rej(new Error('Bild konnte nicht gelesen werden: ' + file.name)); };
+    img.src = url;
+  });
+}
+
+/* ───────── Pipeline ───────── */
+let busy = false;
+async function handleFiles(fileList) {
+  const files = [...fileList].filter(f => f.type.startsWith('image/'));
+  if (!files.length) { toast('Keine Bilddateien erkannt.'); return; }
+  busy = true;
+  $('summary').classList.add('show');
+  for (const file of files) {
+    const idx = items.length + 1;
+    const baseName = `${S.slug}-${String(idx).padStart(2, '0')}`;
+    const card = addPlaceholderCard(baseName);
+    try {
+      const { img, url } = await loadImage(file);
+      const big = await makeBig(img);
+      const thumb = await makeThumb(img);
+      URL.revokeObjectURL(url);
+      const thumbURL = URL.createObjectURL(thumb.blob);
+      const item = { idx, baseName, origSize: file.size, big, thumb, thumbURL };
+      items.push(item);
+      fillCard(card, item);
+    } catch (err) {
+      card.remove();
+      toast(err.message);
+    }
+    updateSummary();
+  }
+  busy = false;
+}
+
+/* ───────── Result cards ───────── */
+function addPlaceholderCard(baseName) {
+  const el = document.createElement('div');
+  el.className = 'rcard';
+  el.innerHTML = `
+    <div class="rcard-thumb"><div class="spin"><div class="spinner"></div></div></div>
+    <div class="rcard-body">
+      <div class="rcard-name">${baseName}</div>
+      <div class="rcard-sizes"><span class="hint">wird verarbeitet…</span></div>
+    </div>`;
+  $('results').appendChild(el);
+  return el;
+}
+function fillCard(el, it) {
+  el.querySelector('.rcard-thumb').innerHTML = `<img src="${it.thumbURL}" alt="${it.baseName}">`;
+  el.querySelector('.rcard-sizes').innerHTML = `
+    <div class="sz-row"><span class="was">${fmtKB(it.origSize)} KB Original</span></div>
+    <div class="sz-row"><span class="badge-mini g">Groß</span><span class="now">${fmtKB(it.big.blob.size)} KB · ${it.big.w}×${it.big.h}</span></div>
+    <div class="sz-row"><span class="badge-mini t">Thumb</span><span class="now">${fmtKB(it.thumb.blob.size)} KB · ${it.thumb.w}×${it.thumb.h}</span></div>`;
+}
+function updateSummary() {
+  const before = items.reduce((s, i) => s + i.origSize, 0);
+  const after = items.reduce((s, i) => s + i.big.blob.size + i.thumb.blob.size, 0);
+  $('statCount').textContent = items.length;
+  $('statBefore').textContent = fmtMB(before);
+  $('statAfter').textContent = fmtMB(after);
+  $('statSaved').textContent = before ? Math.round((1 - after / before) * 100) + '%' : '0%';
+  const has = items.length > 0;
+  $('zipBtn').disabled = !has; $('copyListBtn').disabled = !has;
+}
+
+/* ───────── Drop / input wiring ───────── */
+const drop = $('drop');
+drop.addEventListener('click', () => $('fileInput').click());
+$('fileInput').addEventListener('change', e => { handleFiles(e.target.files); e.target.value = ''; });
+['dragenter', 'dragover'].forEach(ev => drop.addEventListener(ev, e => { e.preventDefault(); drop.classList.add('over'); }));
+['dragleave', 'drop'].forEach(ev => drop.addEventListener(ev, e => { e.preventDefault(); if (ev === 'dragleave' && drop.contains(e.relatedTarget)) return; drop.classList.remove('over'); }));
+drop.addEventListener('drop', e => { if (e.dataTransfer?.files) handleFiles(e.dataTransfer.files); });
+window.addEventListener('dragover', e => e.preventDefault());
+window.addEventListener('drop', e => e.preventDefault());
+
+/* ───────── Actions ───────── */
+$('clearBtn').addEventListener('click', () => {
+  if (busy) { toast('Bitte warten, bis alle Bilder fertig sind.'); return; }
+  items.forEach(i => URL.revokeObjectURL(i.thumbURL));
+  items = [];
+  $('results').innerHTML = '';
+  $('summary').classList.remove('show');
+});
+$('copyListBtn').addEventListener('click', () => {
+  const list = items.map(i => `    "${i.baseName}-gross.jpg"`).join(',\n');
+  const text = `photos: [\n${list}\n  ]`;
+  navigator.clipboard.writeText(text).then(
+    () => toast('Dateiliste in die Zwischenablage kopiert.'),
+    () => toast('Kopieren nicht möglich — bitte manuell markieren.')
+  );
+});
+$('zipBtn').addEventListener('click', async () => {
+  if (!items.length || busy) return;
+  $('zipBtn').disabled = true; $('zipBtn').textContent = 'ZIP wird erstellt…';
+  try {
+    const files = [];
+    for (const it of items) {
+      files.push({ name: `${it.baseName}-gross.jpg`, data: new Uint8Array(await it.big.blob.arrayBuffer()) });
+      files.push({ name: `${it.baseName}-thumb.jpg`, data: new Uint8Array(await it.thumb.blob.arrayBuffer()) });
+    }
+    const zipBlob = makeZip(files);
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(zipBlob);
+    a.download = `${S.slug}.zip`;
+    a.click();
+    setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+    toast('ZIP heruntergeladen.');
+  } catch (err) {
+    toast('Fehler beim Erstellen des ZIP.');
+    console.error(err);
+  }
+  $('zipBtn').disabled = false; $('zipBtn').textContent = 'Alle als ZIP herunterladen';
+});
+
+/* ───────── Minimal ZIP writer (store, no compression — JPEGs are already compressed) ───────── */
+const crcTable = (() => {
+  const t = [];
+  for (let n = 0; n < 256; n++) { let c = n; for (let k = 0; k < 8; k++) c = c & 1 ? 0xEDB88320 ^ (c >>> 1) : c >>> 1; t[n] = c >>> 0; }
+  return t;
+})();
+function crc32(buf) {
+  let c = 0xFFFFFFFF;
+  for (let i = 0; i < buf.length; i++) c = crcTable[(c ^ buf[i]) & 0xFF] ^ (c >>> 8);
+  return (c ^ 0xFFFFFFFF) >>> 0;
+}
+function makeZip(files) {
+  const enc = new TextEncoder();
+  const local = [], central = [];
+  let offset = 0;
+  for (const f of files) {
+    const name = enc.encode(f.name);
+    const crc = crc32(f.data), size = f.data.length;
+    const lh = new DataView(new ArrayBuffer(30));
+    lh.setUint32(0, 0x04034b50, true); lh.setUint16(4, 20, true); lh.setUint16(6, 0, true);
+    lh.setUint16(8, 0, true); lh.setUint16(10, 0, true); lh.setUint16(12, 0, true);
+    lh.setUint32(14, crc, true); lh.setUint32(18, size, true); lh.setUint32(22, size, true);
+    lh.setUint16(26, name.length, true); lh.setUint16(28, 0, true);
+    local.push(new Uint8Array(lh.buffer), name, f.data);
+    const ch = new DataView(new ArrayBuffer(46));
+    ch.setUint32(0, 0x02014b50, true); ch.setUint16(4, 20, true); ch.setUint16(6, 20, true);
+    ch.setUint16(8, 0, true); ch.setUint16(10, 0, true); ch.setUint16(12, 0, true); ch.setUint16(14, 0, true);
+    ch.setUint32(16, crc, true); ch.setUint32(20, size, true); ch.setUint32(24, size, true);
+    ch.setUint16(28, name.length, true); ch.setUint32(42, offset, true);
+    central.push(new Uint8Array(ch.buffer), name);
+    offset += 30 + name.length + size;
+  }
+  let cdSize = 0; central.forEach(c => cdSize += c.length);
+  const eocd = new DataView(new ArrayBuffer(22));
+  eocd.setUint32(0, 0x06054b50, true);
+  eocd.setUint16(8, files.length, true); eocd.setUint16(10, files.length, true);
+  eocd.setUint32(12, cdSize, true); eocd.setUint32(16, offset, true);
+  return new Blob([...local, ...central, new Uint8Array(eocd.buffer)], { type: 'application/zip' });
+}
+
+/* ───────── Toast ───────── */
+let toastTimer;
+function toast(msg) {
+  const t = $('toast'); t.textContent = msg; t.classList.add('show');
+  clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+updateNameExample();
+updateSummary();
+</script>
+</body>
+</html>
