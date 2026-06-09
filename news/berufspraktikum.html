@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<title>Berufspraktische Tage – MS Hirtenberg</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sage:        oklch(52% 0.10 145);
+    --sage-dark:   oklch(38% 0.09 145);
+    --sage-mid:    oklch(62% 0.09 145);
+    --sage-light:  oklch(80% 0.07 145);
+    --sage-pale:   oklch(95% 0.04 145);
+    --blush:       oklch(78% 0.08 15);
+    --blush-dark:  oklch(56% 0.11 15);
+    --blush-pale:  oklch(96% 0.03 15);
+    --cream:       oklch(98% 0.008 88);
+    --cream-mid:   oklch(96% 0.012 88);
+    --cream-dark:  oklch(92% 0.018 88);
+    --text:        oklch(28% 0.05 145);
+    --text-light:  oklch(55% 0.04 145);
+    --white: #fff;
+    --font-heading: 'Lora', Georgia, serif;
+    --font-body: 'Nunito', system-ui, sans-serif;
+    --radius: 12px; --radius-lg: 20px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  nav { background: var(--white); display: flex; align-items: center; justify-content: space-between; padding: 0 48px; height: 68px; border-bottom: 1.5px solid var(--cream-dark); box-shadow: 0 2px 20px oklch(0% 0 0 / 6%); position: sticky; top: 0; z-index: 100; }
+  .nav-logo { font-family: var(--font-heading); color: var(--sage-dark); font-size: 1.2rem; font-weight: 700; letter-spacing: -0.02em; text-decoration: none; display: flex; align-items: center; gap: 10px; }
+  .nav-pill { display: inline-flex; align-items: center; background: var(--white); color: var(--sage); font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.13em; padding: 5px 14px; border-radius: 30px; border: 1.5px solid var(--sage-pale); white-space: nowrap; }
+  .nav-links { display: flex; gap: 4px; list-style: none; }
+  .nav-links a { color: var(--text-light); text-decoration: none; font-size: 0.88rem; font-weight: 600; padding: 7px 15px; border-radius: 30px; transition: background 0.2s, color 0.2s; letter-spacing: 0.01em; }
+  .nav-links a:hover, .nav-links a.active { background: var(--sage-pale); color: var(--sage-dark); }
+  body { font-family: var(--font-body); background: var(--cream); color: var(--text); font-size: 17px; line-height: 1.7; }
+
+  .article-hero { position: relative; height: 480px; overflow: hidden; display: flex; align-items: flex-end; }
+  .article-hero img.hero-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 20%; }
+  .article-hero-overlay { position: absolute; inset: 0; background: linear-gradient(to top, oklch(22% 0.06 145 / 0.82) 0%, oklch(22% 0.06 145 / 0.20) 55%, transparent 80%); }
+  .article-hero-content { position: relative; z-index: 2; padding: 48px 96px; max-width: 920px; }
+  .article-tag { display: inline-flex; align-items: center; gap: 7px; background: var(--white); color: var(--sage); font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; padding: 5px 14px; border-radius: 30px; margin-bottom: 14px; border: 1.5px solid var(--sage-pale); }
+  .article-hero-title { font-family: var(--font-heading); color: var(--white); font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 700; line-height: 1.2; text-shadow: 0 2px 14px oklch(0% 0 0 / 40%); text-wrap: pretty; }
+
+  .article-wrapper { max-width: 800px; margin: 0 auto; padding: 64px 48px 100px; }
+  .article-meta { display: flex; align-items: center; gap: 24px; padding-bottom: 28px; border-bottom: 1.5px solid var(--cream-dark); margin-bottom: 40px; color: var(--text-light); font-size: 0.88rem; font-weight: 600; flex-wrap: wrap; }
+  .article-lead { font-family: var(--font-heading); font-size: 1.28rem; line-height: 1.55; color: var(--text); margin-bottom: 28px; font-weight: 600; }
+  .article-body h2 { font-family: var(--font-heading); font-size: 1.45rem; font-weight: 700; margin: 40px 0 14px; color: var(--text); }
+  .article-body p { margin-bottom: 20px; color: var(--text-light); text-wrap: pretty; }
+  .article-body strong { color: var(--text); font-weight: 700; }
+  .article-body blockquote { border-left: 3px solid var(--sage-light); margin: 32px 0; padding: 16px 24px; background: var(--sage-pale); border-radius: 0 var(--radius) var(--radius) 0; font-style: italic; color: var(--text); }
+
+  .article-photo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 36px 0; }
+  .article-photo-grid img { width: 100%; aspect-ratio: 3/4; object-fit: cover; border-radius: var(--radius); display: block; }
+  .article-photo-grid img.landscape { aspect-ratio: 4/3; }
+  .article-photo-grid img.wide { grid-column: span 2; aspect-ratio: 16/7; object-fit: cover; object-position: center 35%; }
+
+  .highlight-box { background: var(--sage-pale); border-radius: var(--radius-lg); padding: 28px 32px; margin: 36px 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 20px; }
+  .highlight-item { display: flex; flex-direction: column; gap: 4px; }
+  .highlight-label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--sage-mid); }
+  .highlight-value { font-size: 1.05rem; font-weight: 700; color: var(--text); }
+
+  /* Branchen-Karten */
+  .branch-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 32px 0; }
+  .branch-card { background: var(--white); border: 1.5px solid var(--cream-dark); border-radius: var(--radius); padding: 18px 20px; }
+  .branch-card-icon { font-size: 1.6rem; margin-bottom: 8px; }
+  .branch-card-title { font-family: var(--font-heading); font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+  .branch-card-desc { font-size: 0.84rem; color: var(--text-light); line-height: 1.5; }
+
+  .back-link { display: inline-flex; align-items: center; gap: 8px; color: var(--sage); font-weight: 700; text-decoration: none; font-size: 0.9rem; margin-bottom: 40px; transition: gap 0.2s; }
+  .back-link:hover { gap: 12px; color: var(--sage-dark); }
+
+  footer { background: var(--sage-dark); padding: 32px 48px; display: flex; align-items: center; justify-content: space-between; color: var(--sage-light); font-size: 0.83rem; }
+  footer a { color: var(--sage-light); text-decoration: none; }
+  footer a:hover { color: var(--white); }
+
+  @media (max-width: 768px) {
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .article-hero { height: 360px; }
+    .article-hero-content { padding: 32px 20px; }
+    .article-wrapper { padding: 40px 20px 80px; }
+    .article-photo-grid { grid-template-columns: 1fr; }
+    .article-photo-grid img.wide { grid-column: unset; aspect-ratio: 4/3; }
+    .branch-cards { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 12px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo">
+    <svg width="38" height="38" viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="19" cy="19" r="17" fill="none" stroke="oklch(52% 0.10 145)" stroke-width="1.3"/>
+      <circle cx="19" cy="19" r="13.5" fill="none" stroke="oklch(52% 0.10 145)" stroke-width="0.4" opacity="0.4"/>
+      <line x1="19" y1="27" x2="19" y2="22" stroke="oklch(52% 0.10 145)" stroke-width="1.4" stroke-linecap="round"/>
+      <path d="M19 22 C22 18 22 12 19 11 C16 12 16 18 19 22Z" fill="oklch(52% 0.10 145)"/>
+      <path d="M19 22 C15 19 12 15 13 13 C15 13 18 18 19 22Z" fill="oklch(68% 0.09 145)"/>
+      <path d="M19 22 C23 19 26 15 25 13 C23 13 20 18 19 22Z" fill="oklch(68% 0.09 145)"/>
+      <circle cx="19" cy="2" r="1.8" fill="oklch(60% 0.11 68)"/>
+    </svg>
+    <span class="nav-pill">Mittelschule Hirtenberg</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="../index.html#ueber">Über uns</a></li>
+    <li><a href="../aktuelles.html" class="active">Aktuelles</a></li>
+    <li><a href="../termine.html">Termine</a></li>
+    <li><a href="../index.html#team">Lehrpersonal</a></li>
+    <li><a href="../index.html#galerie">Galerie</a></li>
+    <li><a href="../index.html#kontakt">Kontakt</a></li>
+  </ul>
+</nav>
+
+<div class="article-hero">
+  <img class="hero-photo" src="../uploads/pic_6211122068articles.jpg" alt="Schülerin beim Schnupperpraktikum an der Kasse bei C&amp;A">
+  <div class="article-hero-overlay"></div>
+  <div class="article-hero-content">
+    <div class="article-tag">Berufsorientierung</div>
+    <h1 class="article-hero-title">Berufspraktische Tage<br>an der MS Hirtenberg</h1>
+  </div>
+</div>
+
+<div class="article-wrapper">
+  <a href="../aktuelles.html" class="back-link">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+    Zurück zur Übersicht
+  </a>
+
+  <div class="article-meta">
+    <span>📅 2025/26</span>
+    <span>🎓 4. Klassen der MS Hirtenberg</span>
+    <span>🏢 Verschiedene Betriebe in der Region</span>
+  </div>
+
+  <div class="article-body">
+    <p class="article-lead">Zwei Tage in der Wunschfirma, ganz ohne Schulbuch: Unsere Viertklässlerinnen und Viertklässler tauchten bei den Berufspraktischen Tagen hautnah in ihr angestrebtes Berufsfeld ein.</p>
+
+    <p>Einmal im Jahr haben die Schülerinnen und Schüler der <strong>4. Klassen</strong> die Möglichkeit, den Schulalltag hinter sich zu lassen und zwei volle Tage in einem Betrieb ihrer Wahl zu verbringen. Diese sogenannten <strong>Berufspraktischen Tage</strong> sind fester Bestandteil des Berufsorientierungsschwerpunkts der MS Hirtenberg und sollen den Jugendlichen helfen, eine fundierte Entscheidung für ihre weitere Ausbildung zu treffen.</p>
+
+    <p>Jede Schülerin und jeder Schüler hat sich <strong>eigenständig einen Betrieb</strong> ausgesucht, der zum persönlichen Berufswunsch passt. Von Handel über Kfz-Technik bis hin zu Logistik und Lebensmitteleinzelhandel war die Bandbreite dieses Jahr besonders vielfältig — ein Spiegelbild der unterschiedlichen Talente und Interessen unserer Klassen.</p>
+
+    <div class="highlight-box">
+      <div class="highlight-item">
+        <span class="highlight-label">Dauer</span>
+        <span class="highlight-value">2 Tage</span>
+      </div>
+      <div class="highlight-item">
+        <span class="highlight-label">Klassen</span>
+        <span class="highlight-value">Beide 4. Klassen</span>
+      </div>
+      <div class="highlight-item">
+        <span class="highlight-label">Betriebe</span>
+        <span class="highlight-value">Selbst gewählt</span>
+      </div>
+      <div class="highlight-item">
+        <span class="highlight-label">Ziel</span>
+        <span class="highlight-value">Berufsorientierung</span>
+      </div>
+    </div>
+
+    <h2>Im Handel: Kassa, Kleidung und Kundenkontakt</h2>
+    <p>Gleich zwei Schülerinnen entschieden sich für den <strong>Einzelhandel</strong> und verbrachten ihre Praktikumstage bei C&amp;A. Eine von ihnen übernahm Aufgaben an der Kasse — von der Begrüßung der Kundinnen und Kunden über die Bedienung des Kassensystems bis hin zur Mitglieder-Anmeldung für die C&amp;A-Kundenkarte. Die andere war auf der Fläche eingesetzt und lernte, wie Ware ausgezeichnet, sortiert und präsentiert wird.</p>
+
+    <p>Beide berichteten übereinstimmend: Der <strong>Umgang mit Menschen</strong> war das Schönste — aber auch das Anspruchsvollste. Freundlichkeit, Geduld und ein gutes Gedächtnis für Produktstandorte sind im Einzelhandel gefragt.</p>
+
+    <div class="article-photo-grid">
+      <img src="../uploads/pic_6211122068articles.jpg" alt="Schülerin an der Kasse bei C&amp;A" class="landscape">
+      <img src="../uploads/pic_6211322068articles.jpg" alt="Schülerin mit Preisauszeichner in der Jeans-Abteilung bei C&amp;A" class="landscape">
+    </div>
+
+    <h2>In der Werkstatt: Motoren, Technik und echte Arbeit</h2>
+    <p>Die Kfz-Werkstatt war für technikbegeisterte Schüler die erste Wahl. Unter Anleitung erfahrener Mechaniker durften sie direkt am <strong>offenen Motorraum</strong> mitarbeiten — Leitungen prüfen, Teile benennen, Werkzeug reichen und beobachten, wie Diagnosen gestellt werden. Was in der Theorie trocken klingt, wird in der Werkstatt plötzlich zum lebendigen Erlebnis.</p>
+
+    <p>Besonders beeindruckend: Der Umgang mit modernen <strong>Diagnosegeräten</strong> und die Präzision, mit der die Mechanikerinnen und Mechaniker arbeiten. Die Schüler kamen mit dem Wunsch zurück, bald eine Kfz-Technik-Lehre zu beginnen — und mit ordentlich Motoröl an den Händen.</p>
+
+    <div class="article-photo-grid">
+      <img src="../uploads/pic_6211222068articles.jpg" alt="Schüler arbeitet am offenen Motor in der Kfz-Werkstatt" class="landscape">
+      <img src="../uploads/pic_6211422068articles.jpg" alt="Schüler und Mechaniker vor einem Skoda mit geöffneter Motorhaube" class="landscape">
+    </div>
+
+    <h2>Im Lebensmittelhandel und in der Logistik</h2>
+    <p>Auch der <strong>Lebensmitteleinzelhandel</strong> stand auf dem Programm: Zwei Schülerinnen probierten sich in einem Supermarkt aus und lernten, wie Waren eingeräumt, Aktionen aufgebaut und Kundinnen und Kunden beraten werden. Was von außen simpel wirkt, verbirgt dahinter ein komplexes System aus Lieferplänen, Kühlketten und Hygienevorschriften.</p>
+
+    <p>Für einen weiteren Schüler ging es besonders groß raus: Er verbrachte seine Praktikumstage in einem <strong>Nutzfahrzeug-Betrieb</strong> und stand am Ende stolz neben einem imposanten Scania 500R. Logistik, Fahrzeugtechnik und der Werkstattalltag rund um schwere LKW — ein Einblick, der Eindruck hinterlässt.</p>
+
+    <div class="article-photo-grid">
+      <img src="../uploads/pic_6211522068articles.jpg" alt="Zwei Schülerinnen im Supermarkt mit Merci-Schokoladen" class="landscape">
+      <img src="../uploads/pic_6211722068articles.jpg" alt="Schüler mit Daumen hoch vor einem grünen Scania-LKW" class="landscape">
+    </div>
+
+    <h2>Was bleibt nach zwei Tagen Praxis?</h2>
+    <p>Die Berufspraktischen Tage sind mehr als ein schulischer Ausflug — sie sind ein <strong>Schlüsselmoment</strong> in der Berufsfindungsphase. Wer zwei Tage lang wirklich im Betrieb mitgearbeitet hat, weiß danach besser, ob ein Beruf zu den eigenen Stärken und Interessen passt. Manche Schülerinnen und Schüler kehren bestätigt zurück — andere entscheiden sich nach dem Schnuppern bewusst für eine neue Richtung. Beides ist wertvoll.</p>
+
+    <blockquote>„Mit großem Engagement und viel Freude sammelten die Jugendlichen wertvolle Erfahrungen in der Berufswelt — Erfahrungen, die kein Schulbuch ersetzen kann."</blockquote>
+
+    <p>Wir bedanken uns herzlich bei <strong>allen teilnehmenden Betrieben</strong> für die Zeit, Geduld und Offenheit, mit der sie unsere Schülerinnen und Schüler empfangen und begleitet haben. Und wir gratulieren unseren Jugendlichen — ihr habt gezeigt, dass ihr bereit seid für den nächsten Schritt!</p>
+
+    <div class="branch-cards">
+      <div class="branch-card">
+        <div class="branch-card-icon">👗</div>
+        <div class="branch-card-title">Einzelhandel (C&amp;A)</div>
+        <div class="branch-card-desc">Kassa, Flächenarbeit, Kundenberatung, Warenauszeichnung</div>
+      </div>
+      <div class="branch-card">
+        <div class="branch-card-icon">🔧</div>
+        <div class="branch-card-title">Kfz-Technik</div>
+        <div class="branch-card-desc">Motordiagnose, Werkzeugkunde, Reparaturabläufe</div>
+      </div>
+      <div class="branch-card">
+        <div class="branch-card-icon">🛒</div>
+        <div class="branch-card-title">Lebensmittelhandel</div>
+        <div class="branch-card-desc">Warenpräsentation, Aktionsaufbau, Kundenservice</div>
+      </div>
+      <div class="branch-card">
+        <div class="branch-card-icon">🚛</div>
+        <div class="branch-card-title">Nutzfahrzeuge &amp; Logistik</div>
+        <div class="branch-card-desc">Fahrzeugtechnik, Werkstattalltag, schwere LKW</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div>© 2026 Mittelschule Hirtenberg · Alle Rechte vorbehalten</div>
+  <div style="display:flex;gap:24px;">
+    <a href="../impressum.html">Impressum</a>
+    <a href="../datenschutz.html">Datenschutz</a>
+    <a href="../barrierefreiheit.html">Barrierefreiheit</a>
+  </div>
+</footer>
+
+</body>
+</html>

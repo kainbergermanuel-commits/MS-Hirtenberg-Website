@@ -6,7 +6,7 @@
     <link rel="icon" href="../favicon.svg" type="image/svg+xml">
     <link rel="icon" href="../favicon-32.png" sizes="32x32" type="image/png">
     <link rel="apple-touch-icon" href="../apple-touch-icon.png">
-<title>Sporttag 2026 – MS Hirtenberg</title>
+<title>Impressionen vom Weihnachtsmarkt – MS Hirtenberg</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -45,7 +45,8 @@
   .article-tag { display: inline-flex; align-items: center; gap: 7px; background: var(--white); color: var(--sage); font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; padding: 5px 14px; border-radius: 30px; margin-bottom: 14px; border: 1.5px solid var(--sage-pale); }
   .article-hero-title { font-family: var(--font-heading); color: var(--white); font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 700; line-height: 1.2; text-shadow: 0 2px 12px oklch(0% 0 0 / 30%); }
   .article-wrapper { max-width: 800px; margin: 0 auto; padding: 64px 48px 100px; }
-  .article-meta { display: flex; align-items: center; gap: 24px; padding-bottom: 28px; border-bottom: 1.5px solid var(--cream-dark); margin-bottom: 40px; color: var(--text-light); font-size: 0.88rem; font-weight: 600; }
+  .article-meta { display: flex; align-items: center; gap: 24px; padding-bottom: 28px; border-bottom: 1.5px solid var(--cream-dark); margin-bottom: 40px; color: var(--text-light); font-size: 0.88rem; font-weight: 600; flex-wrap: wrap; }
+  .article-lead { font-family: var(--font-heading); font-size: 1.3rem; line-height: 1.5; color: var(--text); margin-bottom: 28px; font-weight: 600; }
   .article-body h2 { font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700; margin: 40px 0 14px; color: var(--text); }
   .article-body p { margin-bottom: 20px; color: var(--text-light); text-wrap: pretty; }
   .article-body strong { color: var(--text); font-weight: 700; }
@@ -53,6 +54,11 @@
   .article-photo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 36px 0; }
   .article-photo-grid img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: var(--radius); display: block; }
   .article-photo-grid img.wide { grid-column: span 2; aspect-ratio: 16/7; }
+  .article-photo-grid img.tall { aspect-ratio: 3/4; }
+  .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 36px 0; }
+  .stat-card { background: var(--white); border: 1.5px solid var(--cream-dark); border-radius: var(--radius); padding: 22px 20px; text-align: center; }
+  .stat-num { font-family: var(--font-heading); font-size: 2rem; font-weight: 700; color: var(--sage); line-height: 1; }
+  .stat-label { font-size: 0.82rem; color: var(--text-light); font-weight: 600; margin-top: 8px; }
   .back-link { display: inline-flex; align-items: center; gap: 8px; color: var(--sage); font-weight: 700; text-decoration: none; font-size: 0.9rem; margin-bottom: 40px; transition: gap 0.2s; }
   .back-link:hover { gap: 12px; color: var(--sage-dark); }
   footer { background: var(--sage-dark); padding: 32px 48px; display: flex; align-items: center; justify-content: space-between; color: var(--sage-light); font-size: 0.83rem; }
@@ -60,23 +66,14 @@
   footer a:hover { color: var(--white); }
   @media (max-width: 768px) {
     nav { padding: 0 20px; }
+    .nav-links { display: none; }
     .article-hero-content { padding: 32px 20px; }
     .article-wrapper { padding: 40px 20px 80px; }
     .article-photo-grid { grid-template-columns: 1fr; }
-    .article-photo-grid img.wide { grid-column: unset; aspect-ratio: 4/3; }
+    .article-photo-grid img.wide, .article-photo-grid img.tall { grid-column: unset; aspect-ratio: 4/3; }
+    .stat-row { grid-template-columns: 1fr; }
     footer { flex-direction: column; gap: 12px; text-align: center; }
   }
-  .signup-box { background: var(--sage-dark); border-radius: var(--radius-lg); padding: 36px 40px; margin-top: 48px; }
-  .signup-box h3 { font-family: var(--font-heading); color: var(--white); font-size: 1.4rem; margin-bottom: 8px; }
-  .signup-box p { color: oklch(82% 0.05 145); margin-bottom: 24px; font-size: 0.95rem; }
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
-  .form-row input, .form-row select, .signup-box input[type=text] { width: 100%; padding: 11px 16px; border: none; border-radius: 10px; font-family: var(--font-body); font-size: 0.95rem; background: oklch(100% 0 0 / 12%); color: var(--white); }
-  .form-row input::placeholder { color: oklch(72% 0.04 145); }
-  .form-row select { color: oklch(72% 0.04 145); }
-  .form-row select option { background: var(--sage-dark); color: var(--white); }
-  .btn-submit { margin-top: 8px; background: var(--blush-dark); color: var(--white); border: none; border-radius: 30px; padding: 13px 32px; font-family: var(--font-body); font-size: 0.95rem; font-weight: 700; cursor: pointer; transition: transform 0.15s, box-shadow 0.15s; }
-  .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 6px 20px oklch(0% 0 0 / 18%); }
-  @media (max-width: 768px) { .form-row { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
@@ -105,61 +102,67 @@
 </nav>
 
 <div class="article-hero">
-  <img src="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=1600&fit=crop&crop=center" alt="Sporttag">
+  <img src="https://images.unsplash.com/photo-1543589077-47d81606c1bf?w=1600&fit=crop&crop=center" alt="Stimmungsvoller Weihnachtsmarkt mit Lichtern und Ständen">
   <div class="article-hero-overlay"></div>
   <div class="article-hero-content">
-    <div class="article-tag">Sport</div>
-    <h1 class="article-hero-title">Sporttag 2026 – Jetzt anmelden!</h1>
+    <div class="article-tag">Schulleben</div>
+    <h1 class="article-hero-title">Impressionen vom Weihnachtsmarkt</h1>
   </div>
 </div>
 
 <div class="article-wrapper">
-  <a href="../index.html#news" class="back-link">← Zurück zur Übersicht</a>
+  <a href="../aktuelles.html" class="back-link">← Zurück zur Übersicht</a>
 
   <div class="article-meta">
-    <span>📅 10. Mai 2026</span>
-    <span>✍️ Sabine Forstner</span>
-    <span>📍 Sportplatz Hirtenberg</span>
+    <span>📅 Ende November 2025</span>
+    <span>🎄 MS Hirtenberg</span>
+    <span>📍 In der Schule</span>
   </div>
 
   <div class="article-body">
-    <p>Der jährliche Sporttag der MS Hirtenberg findet dieses Jahr am <strong>Sonntag, 10. Mai 2026</strong>, auf dem Sportplatz Hirtenberg statt. Von 8:30 bis 16:00 Uhr messen sich alle Klassen in verschiedenen Disziplinen — von Leichtathletik über Staffelläufe bis hin zu Mannschaftsspielen.</p>
+    <p class="article-lead">Unser dreitägiger Weihnachtsmarkt Ende November war wieder ein großer Erfolg — mit feiner Kulinarik, einem ausgezeichneten Frühstück und vielen liebevoll selbst hergestellten Weihnachtsprodukten.</p>
 
-    <h2>Programm des Tages</h2>
-    <p>Geplant sind Wettbewerbe in <strong>100-Meter-Lauf, Weitsprung, Hochsprung, Kugelstoßen</strong> sowie ein großes <strong>Fußball- und Völkerballturnier</strong>. Neu in diesem Jahr: ein Hindernislauf-Parcours, der von Schülerinnen und Schülern der 4. Klassen selbst entworfen wurde.</p>
+    <p>Schon Tage vorher lag in der ganzen Schule der Duft von frischem Gebäck und Punsch in der Luft. Drei Tage lang verwandelte sich die <strong>MS Hirtenberg</strong> in einen kleinen, festlich geschmückten Weihnachtsmarkt, der zahlreiche Besucherinnen und Besucher aus Hirtenberg und Umgebung anlockte. Eltern, Großeltern, Freunde und Nachbarn kamen vorbei, um zu stöbern, zu plaudern und gemeinsam auf die Adventzeit einzustimmen.</p>
 
-    <blockquote>„Sport verbindet. Der Sporttag ist immer einer der Höhepunkte unseres Schuljahres!" — Sabine Forstner, stv. Direktor</blockquote>
+    <h2>Kulinarik und ein ausgezeichnetes Frühstück</h2>
+    <p>Ein besonderes Herzstück war auch heuer wieder die <strong>Kulinarik</strong>. In der Schulküche bereiteten unsere Schülerinnen und Schüler liebevoll belegte Brote, herzhafte Jausenteller und ein reichhaltiges Frühstücksbuffet zu. Viele Gäste lobten ausdrücklich die frische, regionale Qualität — vom knusprigen Gebäck bis zu den bunt garnierten Platten.</p>
 
     <div class="article-photo-grid">
-      <img src="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=600&h=450&fit=crop" alt="Laufen">
-      <img src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=600&h=450&fit=crop" alt="Weitsprung">
-      <img src="https://images.unsplash.com/photo-1526676037777-05a232554f77?w=1200&h=525&fit=crop" alt="Mannschaft" class="wide">
+      <img src="weihnachtsmarkt-buffet.jpg" alt="Liebevoll angerichtete Jausenteller und frisches Gebäck vom Frühstücksbuffet">
+      <img src="weihnachtsmarkt-kueche.jpg" alt="Schülerinnen bereiten in der Schulküche belegte Brote zu">
     </div>
 
-    <h2>Eltern und Geschwister herzlich willkommen</h2>
-    <p>Alle Familien sind eingeladen, dem Sporttag beizuwohnen und die Schülerinnen und Schüler anzufeuern. Ein kleines Buffet wird vom Elternverein organisiert. Für Speisen und Getränke ist gesorgt.</p>
+    <h2>Selbst hergestellte Weihnachtsprodukte</h2>
+    <p>Großen Anklang fanden die <strong>selbst hergestellten Weihnachtsprodukte</strong>, die in den Wochen davor in vielen fleißigen Stunden entstanden waren. Von handgefertigter Keramik über weihnachtliche Dekoration bis hin zu kunstvoll gebundenen Adventkränzen — für jeden Geschmack war etwas dabei. Ein besonderer Blickfang war die liebevoll gestaltete <strong>Weihnachtskrippe</strong>.</p>
 
-    <p>Bitte melden Sie Ihr Kind bis <strong>30. April 2026</strong> über das untenstehende Formular an. Bei Fragen wenden Sie sich an das Sekretariat.</p>
-
-    <div class="signup-box">
-      <h3>Jetzt anmelden</h3>
-      <p>Anmeldefrist: 30. April 2026 · Teilnahme kostenlos</p>
-      <div class="form-row">
-        <input type="text" placeholder="Vorname des Kindes">
-        <input type="text" placeholder="Nachname des Kindes">
-      </div>
-      <div class="form-row">
-        <select>
-          <option value="" disabled selected>Klasse wählen…</option>
-          <option>1a</option><option>1b</option>
-          <option>2a</option><option>2b</option>
-          <option>3a</option><option>3b</option>
-          <option>4a</option><option>4b</option>
-        </select>
-        <input type="text" placeholder="E-Mail der Eltern">
-      </div>
-      <button class="btn-submit" onclick="this.textContent='Anmeldung gesendet ✓'; this.style.background='oklch(50% 0.13 145)'; this.disabled=true;">Verbindlich anmelden</button>
+    <div class="article-photo-grid">
+      <img src="weihnachtsmarkt-keramik-1.jpg" alt="Selbst getöpferte Weihnachtskeramik: Zwergen-Tassen, Schneemänner und Stechpalmen-Schalen">
+      <img src="weihnachtsmarkt-keramik-2.jpg" alt="Weihnachtliche Keramik und Kerzen am Verkaufsstand">
+      <img src="weihnachtsmarkt-adventkranz.jpg" alt="Selbst gebundener Adventkranz mit violetten und rosa Kerzen" class="tall">
+      <img src="weihnachtsmarkt-krippe.jpg" alt="Liebevoll gestaltete, selbst gebaute Weihnachtskrippe">
     </div>
+
+    <div class="stat-row">
+      <div class="stat-card">
+        <div class="stat-num">3</div>
+        <div class="stat-label">Tage Weihnachtsmarkt</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">100 %</div>
+        <div class="stat-label">selbst gemacht</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">∞</div>
+        <div class="stat-label">Weihnachtsstimmung</div>
+      </div>
+    </div>
+
+    <h2>Stolz auf ein gemeinsames Projekt</h2>
+    <p>Hinter dem Weihnachtsmarkt steckt wochenlange Vorbereitung — vom Töpfern und Basteln über das Dekorieren der Räume bis hin zum Kochen und Backen. Dass am Ende alles so reibungslos zusammenspielte, ist dem großen Engagement aller Beteiligten zu verdanken.</p>
+
+    <blockquote>„Die selbst hergestellten Weihnachtsprodukte fanden großen Anklang — worauf unsere Schülerinnen, Schüler und das Lehrerteam sehr stolz sind."</blockquote>
+
+    <p>Wir bedanken uns herzlich bei allen, die mit ihrem Besuch, ihrer Mithilfe und ihrer Unterstützung zu diesen schönen Tagen beigetragen haben. Wir freuen uns schon jetzt auf den nächsten Weihnachtsmarkt!</p>
   </div>
 </div>
 

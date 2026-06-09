@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="../favicon-32.png" sizes="32x32" type="image/png">
+    <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<title>Alles wächst in der MS Hirtenberg! – MS Hirtenberg</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sage:        oklch(52% 0.10 145);
+    --sage-dark:   oklch(38% 0.09 145);
+    --sage-mid:    oklch(62% 0.09 145);
+    --sage-light:  oklch(80% 0.07 145);
+    --sage-pale:   oklch(95% 0.04 145);
+    --blush:       oklch(78% 0.08 15);
+    --blush-dark:  oklch(56% 0.11 15);
+    --blush-pale:  oklch(96% 0.03 15);
+    --cream:       oklch(98% 0.008 88);
+    --cream-mid:   oklch(96% 0.012 88);
+    --cream-dark:  oklch(92% 0.018 88);
+    --text:        oklch(28% 0.05 145);
+    --text-light:  oklch(55% 0.04 145);
+    --white: #fff;
+    --font-heading: 'Lora', Georgia, serif;
+    --font-body: 'Nunito', system-ui, sans-serif;
+    --radius: 12px; --radius-lg: 20px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  nav { background: var(--white); display: flex; align-items: center; justify-content: space-between; padding: 0 48px; height: 68px; border-bottom: 1.5px solid var(--cream-dark); box-shadow: 0 2px 20px oklch(0% 0 0 / 6%); position: sticky; top: 0; z-index: 100; }
+  .nav-logo { font-family: var(--font-heading); color: var(--sage-dark); font-size: 1.2rem; font-weight: 700; letter-spacing: -0.02em; text-decoration: none; display: flex; align-items: center; gap: 10px; }
+  .nav-pill { display: inline-flex; align-items: center; background: var(--white); color: var(--sage); font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.13em; padding: 5px 14px; border-radius: 30px; border: 1.5px solid var(--sage-pale); white-space: nowrap; }
+  .nav-links { display: flex; gap: 4px; list-style: none; }
+  .nav-links a { color: var(--text-light); text-decoration: none; font-size: 0.88rem; font-weight: 600; padding: 7px 15px; border-radius: 30px; transition: background 0.2s, color 0.2s; letter-spacing: 0.01em; }
+  .nav-links a:hover, .nav-links a.active { background: var(--sage-pale); color: var(--sage-dark); }
+  body { font-family: var(--font-body); background: var(--cream); color: var(--text); font-size: 17px; line-height: 1.7; }
+  .article-hero { position: relative; height: 480px; overflow: hidden; display: flex; align-items: flex-end; }
+  .article-hero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .article-hero-overlay { position: absolute; inset: 0; background: linear-gradient(to top, oklch(22% 0.06 145 / 0.80) 0%, transparent 60%); }
+  .article-hero-content { position: relative; z-index: 2; padding: 48px 96px; max-width: 900px; }
+  .article-tag { display: inline-flex; align-items: center; gap: 7px; background: var(--white); color: var(--sage); font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; padding: 5px 14px; border-radius: 30px; margin-bottom: 14px; border: 1.5px solid var(--sage-pale); }
+  .article-hero-title { font-family: var(--font-heading); color: var(--white); font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 700; line-height: 1.2; text-shadow: 0 2px 12px oklch(0% 0 0 / 30%); }
+  .article-wrapper { max-width: 800px; margin: 0 auto; padding: 64px 48px 100px; }
+  .article-meta { display: flex; align-items: center; gap: 24px; padding-bottom: 28px; border-bottom: 1.5px solid var(--cream-dark); margin-bottom: 40px; color: var(--text-light); font-size: 0.88rem; font-weight: 600; flex-wrap: wrap; }
+  .article-lead { font-family: var(--font-heading); font-size: 1.3rem; line-height: 1.5; color: var(--text); margin-bottom: 28px; font-weight: 600; }
+  .article-body h2 { font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700; margin: 40px 0 14px; color: var(--text); }
+  .article-body p { margin-bottom: 20px; color: var(--text-light); text-wrap: pretty; }
+  .article-body strong { color: var(--text); font-weight: 700; }
+  .article-body blockquote { border-left: 3px solid var(--sage-light); margin: 32px 0; padding: 16px 24px; background: var(--sage-pale); border-radius: 0 var(--radius) var(--radius) 0; font-style: italic; color: var(--text); }
+  .article-photo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 36px 0; }
+  .article-photo-grid img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: var(--radius); display: block; }
+  .article-photo-grid img.wide { grid-column: span 2; aspect-ratio: 16/7; }
+  .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 36px 0; }
+  .stat-card { background: var(--white); border: 1.5px solid var(--cream-dark); border-radius: var(--radius); padding: 22px 20px; text-align: center; }
+  .stat-num { font-family: var(--font-heading); font-size: 2rem; font-weight: 700; color: var(--sage); line-height: 1; }
+  .stat-label { font-size: 0.82rem; color: var(--text-light); font-weight: 600; margin-top: 8px; }
+  /* Termin-Box */
+  .termin-box { background: var(--white); border: 1.5px solid var(--cream-dark); border-radius: var(--radius-lg); padding: 28px 30px; margin: 36px 0; }
+  .termin-box h3 { font-family: var(--font-heading); font-size: 1.15rem; font-weight: 700; color: var(--text); margin-bottom: 16px; }
+  .termin-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+  .termin-item { display: flex; gap: 16px; align-items: flex-start; }
+  .termin-date { flex-shrink: 0; background: var(--sage-pale); color: var(--sage-dark); font-weight: 700; font-size: 0.82rem; padding: 6px 12px; border-radius: 30px; white-space: nowrap; min-width: 64px; text-align: center; }
+  .termin-text { font-size: 0.96rem; color: var(--text); padding-top: 3px; }
+  .termin-text strong { font-weight: 700; }
+  .termin-note { font-size: 0.86rem; color: var(--text-light); margin-top: 16px; padding-top: 14px; border-top: 1px dashed var(--cream-dark); }
+  /* Sorten-Tags */
+  .sorten-tags { display: flex; flex-wrap: wrap; gap: 9px; margin: 8px 0 28px; }
+  .sorten-tag { background: var(--blush-pale); color: var(--blush-dark); border: 1.5px solid oklch(88% 0.05 15); font-weight: 700; font-size: 0.86rem; padding: 6px 15px; border-radius: 30px; }
+  .sorten-tag.green { background: var(--sage-pale); color: var(--sage-dark); border-color: var(--sage-light); }
+  /* Flyer */
+  .flyer-figure { margin: 36px 0; }
+  .flyer-figure img { width: 100%; border-radius: var(--radius); display: block; border: 1.5px solid var(--cream-dark); }
+  .flyer-figure figcaption { font-size: 0.82rem; color: var(--text-light); text-align: center; margin-top: 10px; font-weight: 600; }
+  .back-link { display: inline-flex; align-items: center; gap: 8px; color: var(--sage); font-weight: 700; text-decoration: none; font-size: 0.9rem; margin-bottom: 40px; transition: gap 0.2s; }
+  .back-link:hover { gap: 12px; color: var(--sage-dark); }
+  footer { background: var(--sage-dark); padding: 32px 48px; display: flex; align-items: center; justify-content: space-between; color: var(--sage-light); font-size: 0.83rem; }
+  footer a { color: var(--sage-light); text-decoration: none; }
+  footer a:hover { color: var(--white); }
+  @media (max-width: 768px) {
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .article-hero-content { padding: 32px 20px; }
+    .article-wrapper { padding: 40px 20px 80px; }
+    .article-photo-grid { grid-template-columns: 1fr; }
+    .article-photo-grid img.wide { grid-column: unset; aspect-ratio: 4/3; }
+    .stat-row { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 12px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo">
+    <svg width="38" height="38" viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="19" cy="19" r="17" fill="none" stroke="oklch(52% 0.10 145)" stroke-width="1.3"/>
+      <circle cx="19" cy="19" r="13.5" fill="none" stroke="oklch(52% 0.10 145)" stroke-width="0.4" opacity="0.4"/>
+      <line x1="19" y1="27" x2="19" y2="22" stroke="oklch(52% 0.10 145)" stroke-width="1.4" stroke-linecap="round"/>
+      <path d="M19 22 C22 18 22 12 19 11 C16 12 16 18 19 22Z" fill="oklch(52% 0.10 145)"/>
+      <path d="M19 22 C15 19 12 15 13 13 C15 13 18 18 19 22Z" fill="oklch(68% 0.09 145)"/>
+      <path d="M19 22 C23 19 26 15 25 13 C23 13 20 18 19 22Z" fill="oklch(68% 0.09 145)"/>
+      <circle cx="19" cy="2" r="1.8" fill="oklch(60% 0.11 68)"/>
+    </svg>
+    <span class="nav-pill">Mittelschule Hirtenberg</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="../index.html#ueber">Über uns</a></li>
+    <li><a href="../index.html#news" class="active">Aktuelles</a></li>
+    <li><a href="../termine.html">Termine</a></li>
+    <li><a href="../index.html#team">Lehrpersonal</a></li>
+    <li><a href="../index.html#galerie">Galerie</a></li>
+    <li><a href="../index.html#kontakt">Kontakt</a></li>
+  </ul>
+</nav>
+
+<div class="article-hero">
+  <img src="https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?w=1600&fit=crop&crop=center" alt="Junge Gemüsesetzlinge in Reihen – frisch herangezogene Jungpflanzen">
+  <div class="article-hero-overlay"></div>
+  <div class="article-hero-content">
+    <div class="article-tag">Junior Company</div>
+    <h1 class="article-hero-title">Alles wächst in der MS Hirtenberg!</h1>
+  </div>
+</div>
+
+<div class="article-wrapper">
+  <a href="../aktuelles.html" class="back-link">← Zurück zur Übersicht</a>
+
+  <div class="article-meta">
+    <span>📅 April 2026</span>
+    <span>🌱 Junior Companys der MS Hirtenberg</span>
+    <span>📍 Hirtenberg &amp; Enzesfeld</span>
+  </div>
+
+  <div class="article-body">
+    <p class="article-lead">Ob Gemüse im Hochbeet, Kräuterraritäten oder kräftige Jungpflanzen für den Verkauf — bei den Junior Companys <strong>Kürbini</strong> und <strong>TomasTomate</strong> lassen die Schülerinnen und Schüler der MS Hirtenberg alles gedeihen. Zu den Markttagen am 25. und 26. April sind alle herzlich eingeladen!</p>
+
+    <p>Seit Wochen wird in der Mittelschule Hirtenberg gesät, pikiert, getopft und gegossen. Was als kleines Samenkorn begann, ist inzwischen zu kräftigen Jungpflanzen herangewachsen — liebevoll herangezogen von den Schülerinnen und Schülern selbst. In ihren <strong>Junior Companys</strong> erleben die Jugendlichen dabei nicht nur, wie aus einem Setzling eine Pflanze wird, sondern auch, was es heißt, ein eigenes kleines Unternehmen zu führen: vom Anbau über die Kalkulation bis hin zur Werbung und zum Verkauf.</p>
+
+    <h2>Zwei Junior Companys, ein gemeinsames Ziel</h2>
+    <p>Hinter dem Projekt stehen zwei Schüler-Unternehmen mit ganz eigenem Charakter. <strong>TomasTomate</strong> kümmert sich um Kräuterraritäten, Gemüse und Bienenweidepflanzen — ideal für alle, die ihren Garten oder Balkon naturnah und bienenfreundlich gestalten möchten. <strong>Kürbini</strong> hat sich ganz dem Kürbis und der Zucchini verschrieben und bietet robuste Jungpflanzen für die eigene Ernte im Spätsommer und Herbst an.</p>
+    <p>Allen gemeinsam ist ein einfacher, aber überzeugender Gedanke: <strong>gesunde, regionale und saisonale Pflanzen aus der Region für die Region.</strong> Wer Gemüse, Kräuter oder Bienenweidepflanzen für den eigenen Garten sucht, wird bei den Markttagen garantiert fündig.</p>
+
+    <div class="article-photo-grid">
+      <img src="kuerbini-hochbeet.jpg" alt="Frisch bepflanztes Hochbeet mit Salat und Kohlpflanzen">
+      <img src="kuerbini-pflanzen.jpg" alt="Kräftige Jungpflanzen in Töpfen im Schulgarten">
+      <img src="kuerbini-setzlinge-1.jpg" alt="Junge Setzlinge in kleinen Töpfen von oben">
+      <img src="kuerbini-setzlinge-2.jpg" alt="Vorgezogene Kräuter- und Gemüsesetzlinge in bunten Töpfen">
+    </div>
+
+    <h2>Kürbini: Kürbis und Zucchini für Ihren Garten</h2>
+    <p>Das Sortiment von Kürbini reicht von der knackigen Zucchini bis zum lagerfähigen Speisekürbis — perfekt für Suppe, Ofengerichte oder einfach zum Selber-Weiterziehen im eigenen Beet. Eine Pflanze kostet <strong>nur 3,50 €.</strong></p>
+    <div class="sorten-tags">
+      <span class="sorten-tag green">Zucchini gelb</span>
+      <span class="sorten-tag green">Zucchini grün</span>
+      <span class="sorten-tag">Hokaido-Kürbis</span>
+      <span class="sorten-tag">Olivenkürbis</span>
+      <span class="sorten-tag">Butternuss-Kürbis</span>
+    </div>
+
+    <figure class="flyer-figure">
+      <img src="kuerbini-flyer.jpg" alt="Verkaufsplakat der Junior Basic Company Kürbini mit Sortenübersicht und Verkaufsterminen">
+      <figcaption>Das Verkaufsplakat der Junior Basic Company „Kürbini" mit allen Sorten und Terminen.</figcaption>
+    </figure>
+
+    <h2>Die Markttage im Überblick</h2>
+    <div class="termin-box">
+      <h3>Wann &amp; wo verkauft wird</h3>
+      <ul class="termin-list">
+        <li class="termin-item">
+          <span class="termin-date">25. April</span>
+          <span class="termin-text"><strong>10 – 14 Uhr</strong> · vor der Kirche in Hirtenberg</span>
+        </li>
+        <li class="termin-item">
+          <span class="termin-date">26. April</span>
+          <span class="termin-text"><strong>ab 12 Uhr</strong> · Pflanzenmarkt vor der Spitalskirche in Enzesfeld</span>
+        </li>
+      </ul>
+      <p class="termin-note">Zusätzlich gibt es einen <strong>laufenden Verkauf in der Schule</strong> für Lehrerinnen, Lehrer sowie Schülerinnen und Schüler.</p>
+    </div>
+
+    <div class="stat-row">
+      <div class="stat-card">
+        <div class="stat-num">3,50 €</div>
+        <div class="stat-label">pro Pflanze</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">5</div>
+        <div class="stat-label">Kürbis- &amp; Zucchini-Sorten</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">2</div>
+        <div class="stat-label">Markttage</div>
+      </div>
+    </div>
+
+    <h2>Mehr als nur ein Verkaufsstand</h2>
+    <p>Hinter den Markttagen steckt weit mehr als ein paar Töpfe mit Jungpflanzen. Die Schülerinnen und Schüler übernehmen <strong>vom ersten Setzling bis zum fertigen Verkaufsstand</strong> selbst Verantwortung — sie planen, rechnen, gestalten Plakate und treten mit ihren Kundinnen und Kunden in Kontakt. So wird wirtschaftliches Denken nicht im Lehrbuch, sondern direkt im echten Leben erfahrbar.</p>
+
+    <blockquote>„Die Kinder lernen hier ganz nebenbei, was es heißt, eine Idee in die Tat umzusetzen — vom Samenkorn bis zum verkauften Produkt."</blockquote>
+
+    <p>Schauen Sie vorbei, unterstützen Sie unsere jungen Unternehmerinnen und Unternehmer und holen Sie sich ein Stück Frühling für den eigenen Garten. Wir freuen uns auf Ihren Besuch!</p>
+
+    <p style="font-size:0.84rem;color:var(--text-light);margin-top:32px;padding-top:18px;border-top:1px dashed var(--cream-dark);">Hinweis: Die Junior Basic Company ist ein Schulprojekt und kein echtes Unternehmen.</p>
+  </div>
+</div>
+
+<footer>
+  <div>© 2026 Mittelschule Hirtenberg · Alle Rechte vorbehalten</div>
+  <div style="display:flex;gap:24px;"><a href="../impressum.html">Impressum</a><a href="../datenschutz.html">Datenschutz</a><a href="../barrierefreiheit.html">Barrierefreiheit</a></div>
+</footer>
+</body>
+</html>

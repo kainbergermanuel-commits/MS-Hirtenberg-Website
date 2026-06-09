@@ -45,7 +45,7 @@
   .nav-links a:hover, .nav-links a.active { background: var(--sage-pale); color: var(--sage-dark); }
 
   /* PAGE HERO */
-  .page-hero { padding: 56px 96px 150px; position: relative; overflow: hidden; background-color: var(--sage-pale); background-image: linear-gradient(to right, oklch(98% 0.008 88 / 0.97) 0%, oklch(98% 0.008 88 / 0.92) 40%, oklch(97% 0.02 60 / 0.66) 58%, oklch(96% 0.03 15 / 0.24) 76%, transparent 94%), url("uploads/grafik-9f6efa7c.png"); background-size: cover, cover; background-position: center, center 58%; background-repeat: no-repeat, no-repeat; }
+  .page-hero { padding: 56px 96px 150px; position: relative; overflow: hidden; background-color: var(--sage-pale); background-image: linear-gradient(to right, oklch(98% 0.008 88 / 0.97) 0%, oklch(98% 0.008 88 / 0.92) 40%, oklch(97% 0.02 60 / 0.66) 58%, oklch(96% 0.03 15 / 0.24) 76%, transparent 94%), url("uploads/ChatGPT Image 9. Juni 2026, 14_43_03.png"); background-size: cover, cover; background-position: center, right center; background-repeat: no-repeat, no-repeat; }
   .page-hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, oklch(38% 0.06 145 / 0.10), transparent 38%); pointer-events: none; }
   .page-hero-tag { display: inline-flex; align-items: center; gap: 7px; background: var(--white); color: var(--sage); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; padding: 5px 14px; border-radius: 30px; margin-bottom: 14px; border: 1.5px solid var(--sage-pale); }
   .back-link { display: inline-flex; align-items: center; gap: 8px; color: var(--sage); font-weight: 700; text-decoration: none; font-size: 0.88rem; margin-bottom: 20px; transition: gap 0.2s; }
@@ -65,6 +65,7 @@
   }
   .profile-avatar { width: 150px; height: 150px; border-radius: 50%; overflow: hidden; border: 4px solid var(--sage-pale); box-shadow: 0 6px 20px oklch(38% 0.06 145 / 0.14); flex: none; }
   .profile-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .profile-avatar.initials { display: flex; align-items: center; justify-content: center; color: var(--white); font-family: var(--font-heading); font-weight: 700; font-size: 3.1rem; letter-spacing: 0.02em; }
   .profile-name { font-family: var(--font-heading); font-size: clamp(1.6rem, 2.6vw, 2.1rem); font-weight: 700; color: var(--text); line-height: 1.15; margin-bottom: 6px; }
   .profile-primary { display: inline-flex; align-items: center; gap: 8px; font-weight: 800; color: var(--sage-dark); font-size: 1.02rem; margin-bottom: 14px; }
   .profile-primary .leaf { width: 9px; height: 9px; border-radius: 50% 0 50% 50%; background: var(--sage); transform: rotate(45deg); flex: none; }
@@ -117,6 +118,7 @@
   .qb-av { width: 64px; height: 64px; border-radius: 50%; overflow: hidden; margin: 0 auto 10px; border: 2.5px solid var(--cream-dark); }
   .qb-card.current .qb-av { border-color: var(--sage-mid); }
   .qb-av img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .qb-av.initials { display: flex; align-items: center; justify-content: center; color: var(--white); font-weight: 700; font-size: 1.25rem; }
   .qb-name { font-weight: 700; font-size: 0.84rem; color: var(--text); line-height: 1.25; margin-bottom: 3px; }
   .qb-role { font-size: 0.72rem; color: var(--text-light); line-height: 1.3; }
   .qb-card.current .qb-tag { display: inline-block; margin-top: 7px; font-size: 0.62rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: var(--sage-dark); }
@@ -194,172 +196,239 @@
 </footer>
 
 <script>
+  // Farbpalette für Initial-Avatare (Markenfarben)
+  const GRAD = {
+    sage:  'linear-gradient(135deg,oklch(60% 0.10 145),oklch(44% 0.09 145))',
+    sand:  'linear-gradient(135deg,oklch(74% 0.10 70),oklch(60% 0.11 60))',
+    blush: 'linear-gradient(135deg,oklch(72% 0.09 15),oklch(56% 0.11 15))',
+  };
+
   const TEAM = [
     {
-      id: 'huber',
-      name: 'Mag. Maria Huber',
-      role: 'Direktorin',
-      photo: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=300&h=300&fit=crop&crop=face',
-      since: '2009',
-      email: 'direktion@ms-hirtenberg.at',
-      sprechstunde: 'nach Vereinbarung',
-      subjects: ['Schulleitung', 'Deutsch'],
+      id: 'schmidt', name: 'Elvira Schmidt', role: 'Direktorin', color: 'sage',
+      klasse: null, subjects: ['Mathematik', 'Geschichte'],
       tasks: [
         { t: 'Schulleitung & pädagogische Gesamtverantwortung', lead: true },
-        { t: 'Vorsitz im Schulforum' },
-        { t: 'Qualitätsentwicklung & Schulprofil' },
         { t: 'Ansprechperson für Eltern und Behörden' },
       ],
+    },
+    {
+      id: 'ascher', name: 'Bettina Ascher', role: 'Leiterin-Stellvertreterin', color: 'sand',
+      klasse: '4a', subjects: ['Englisch', 'Bewegung und Sport'],
+      tasks: [
+        { t: 'Leiterin-Stellvertreterin', lead: true },
+        { t: 'Klassenvorstand der 4a' },
+      ],
+    },
+    {
+      id: 'konrath', name: 'Andrea Konrath', role: 'Leiterin-Stellvertreterin', color: 'blush',
+      klasse: '2a', subjects: ['Sonderpädagogik', 'Volksschule'],
+      tasks: [
+        { t: 'Leiterin-Stellvertreterin', lead: true },
+        { t: 'Klassenvorstand der 2a' },
+        { t: 'Sonderpädagogische Förderung' },
+      ],
+    },
+    {
+      id: 'maurer', name: 'Georg Maurer', role: 'Leiter-Stellvertreter', color: 'sage',
+      klasse: '3b', subjects: ['Deutsch', 'Bewegung und Sport'],
+      tasks: [
+        { t: 'Leiter-Stellvertreter', lead: true },
+        { t: 'Klassenvorstand der 3b' },
+      ],
+    },
+    {
+      id: 'forstner', name: 'Sabine Forstner', role: 'Klassenvorstand 1a', color: 'sand',
+      klasse: '1a', subjects: ['Mathematik', 'Bewegung und Sport'],
+      tasks: [ { t: 'Klassenvorstand der 1a', lead: true } ],
+    },
+    {
+      id: 'krug', name: 'Karin Krug', role: 'Klassenvorstand 1b', color: 'blush',
+      klasse: '1b', subjects: ['Mathematik', 'Biologie', 'Informatik', 'Bewegung und Sport'],
+      tasks: [ { t: 'Klassenvorstand der 1b', lead: true } ],
+    },
+    {
+      id: 'wille', name: 'Robert Wille', role: 'Klassenvorstand 3a', color: 'sage',
+      klasse: '3a', subjects: ['Deutsch', 'Bewegung und Sport', 'Informatik', 'Freizeitpädagogik'],
+      tasks: [
+        { t: 'Klassenvorstand der 3a', lead: true },
+        { t: 'Freizeitpädagogik' },
+      ],
+    },
+    {
+      id: 'bahr', name: 'Maria Bahr', role: 'Klassenvorstand 4b', color: 'sand',
+      klasse: '4b', subjects: ['Deutsch', 'Bildnerische Erziehung', 'Musik', 'Bewegung und Sport'],
+      tasks: [ { t: 'Klassenvorstand der 4b', lead: true } ],
+    },
+    {
+      id: 'leithner', name: 'Julia Leithner', role: 'Mathematik · Biologie', color: 'blush',
+      klasse: null, subjects: ['Mathematik', 'Biologie'], tasks: [],
+    },
+    {
+      id: 'kern', name: 'Eva Kern', role: 'Englisch · Biologie', color: 'sage',
+      klasse: null, subjects: ['Englisch', 'Biologie'],
+      tasks: [ { t: 'Native English' } ],
+    },
+    {
+      id: 'kainberger', name: 'Manuel Kainberger', role: 'Englisch · Bewegung und Sport', color: 'sand',
+      klasse: null, subjects: ['Englisch', 'Bewegung und Sport'], tasks: [],
+    },
+    {
+      id: 'gaudriot', name: 'Karin Gaudriot', role: 'Werken · Ernährung und Haushalt', color: 'blush',
+      klasse: null, subjects: ['Technisches Werken', 'Ernährung und Haushalt'], tasks: [],
+    },
+    {
+      id: 'dorke', name: 'Viktoria Dorke', role: 'Deutsch · Englisch', color: 'sage',
+      klasse: null, subjects: ['Deutsch', 'Englisch'], tasks: [],
+    },
+    {
+      id: 'ruth', name: 'Eva Ruth', role: 'Biologie', color: 'sand',
+      klasse: null, subjects: ['Biologie'], tasks: [], note: 'Magistra der Biologie.',
+    },
+    {
+      id: 'liebhart', name: 'Armin Liebhart', role: 'Physik', color: 'blush',
+      klasse: null, subjects: ['Physik'], tasks: [], note: 'Astrophysiker.',
+    },
+    {
+      id: 'schiroky', name: 'Doris Schiroky', role: 'Lese-Omi', color: 'sage',
+      klasse: null, subjects: [],
+      tasks: [ { t: 'Lesepatenschaft / „Lese-Omi“', lead: true } ],
+      note: 'Unsere Lese-Omi an der MS Hirtenberg.',
+    },
+  ];
+
+  // Platzhalter-Texte (werden später durch echte Aussagen ersetzt)
+  const BIOS = {
+    schmidt: {
       haltung: [
         'Schule ist für mich weit mehr als ein Ort der Wissensvermittlung — sie ist eine Gemeinschaft, in der jedes Kind gesehen wird. Mir ist wichtig, dass sich Schülerinnen und Schüler bei uns sicher, ernst genommen und ermutigt fühlen.',
         'Eine gute Schule lebt vom Miteinander von Lehrenden, Eltern und Kindern. Ich setze auf offene Türen, ehrliche Gespräche und Entscheidungen, die das Wohl der Kinder in den Mittelpunkt stellen.'
       ],
       zitat: 'Kinder wachsen dort, wo man ihnen vertraut.'
     },
-    {
-      id: 'kern',
-      name: 'Mag. Thomas Kern',
-      role: 'Stellv. Direktor · Mathematik',
-      photo: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face',
-      since: '2012',
-      email: 't.kern@ms-hirtenberg.at',
-      sprechstunde: 'Di, 10:00 – 10:50 Uhr',
-      subjects: ['Mathematik', 'Physik'],
-      tasks: [
-        { t: 'Stellvertretung der Schulleitung', lead: true },
-        { t: 'Stundenplan & Supplierungen' },
-        { t: 'Betreuung der Mathematik-Förderkurse' },
-        { t: 'Koordination Digitale Grundbildung' },
-      ],
+    ascher: {
       haltung: [
-        'Mathematik darf nicht einschüchtern. Ich möchte zeigen, dass hinter Zahlen und Formeln klare, nachvollziehbare Logik steckt — und dass Fehler ein notwendiger Teil des Verstehens sind.',
-        'Mir ist wichtig, dass jede Schülerin und jeder Schüler ein eigenes Tempo haben darf. Wer einmal den roten Faden verloren hat, bekommt bei mir die Zeit, ihn wiederzufinden.'
+        'Eine Sprache lernt man, indem man sie benutzt — auch mit Fehlern. In meinem Unterricht wird gesprochen, ausprobiert und gelacht, denn Sicherheit entsteht durch Übung, nicht durch Angst.',
+        'Als Klassenvorstand der 4a bin ich verlässliche Ansprechperson — für gute wie für schwierige Tage. Bewegung und Sport gehören für mich genauso zum Lernen wie Vokabeln.'
       ],
-      zitat: 'Jeder Rechenweg ist erlaubt — Hauptsache, man versteht, warum er funktioniert.'
+      zitat: 'Trau dich zu sprechen — verstanden zu werden ist schöner als Perfektion.'
     },
-    {
-      id: 'weidinger',
-      name: 'Mag. Anna Weidinger',
-      role: 'Deutsch · Klassenvorstand 3a',
-      photo: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&h=300&fit=crop&crop=face',
-      since: '2015',
-      email: 'a.weidinger@ms-hirtenberg.at',
-      sprechstunde: 'Mi, 09:00 – 09:50 Uhr',
-      subjects: ['Deutsch', 'Soziales Lernen'],
-      tasks: [
-        { t: 'Klassenvorstand 3a', lead: true },
-        { t: 'Leseförderung & Schulbibliothek' },
-        { t: 'Begleitung der Schülerzeitung' },
+    konrath: {
+      haltung: [
+        'Jedes Kind lernt anders und in seinem eigenen Tempo. In der sonderpädagogischen Förderung geht es mir darum, Stärken zu entdecken und dort zu unterstützen, wo Begleitung gebraucht wird.',
+        'Als Klassenvorstand der 2a lege ich Wert auf eine ruhige, verlässliche Atmosphäre, in der sich alle Kinder angenommen fühlen.'
       ],
+      zitat: 'Fortschritt misst man nicht im Vergleich, sondern am eigenen Weg.'
+    },
+    maurer: {
       haltung: [
         'Sprache öffnet Türen — zu Geschichten, zu anderen Menschen und zur eigenen Meinung. Ich möchte, dass Kinder Freude am Lesen und Mut zum eigenen Wort entwickeln.',
-        'Als Klassenvorstand sehe ich mich als verlässliche Ansprechperson. Eine Klasse, in der man sich gegenseitig zuhört und respektiert, ist die beste Grundlage zum Lernen.'
+        'Im Sportunterricht erleben die Jugendlichen Fairness, Teamgeist und das gute Gefühl, über sich hinauszuwachsen — Werte, die weit über die Turnhalle hinaus tragen.'
       ],
       zitat: 'Wer seine eigene Stimme findet, traut sich auch, Fragen zu stellen.'
     },
-    {
-      id: 'novak',
-      name: 'Prof. Josef Novak',
-      role: 'Biologie · Umwelt-AG',
-      photo: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop&crop=face',
-      since: '2006',
-      email: 'j.novak@ms-hirtenberg.at',
-      sprechstunde: 'Do, 11:00 – 11:50 Uhr',
-      subjects: ['Biologie', 'Naturwissenschaften'],
-      tasks: [
-        { t: 'Leitung der Umwelt-AG', lead: true },
-        { t: 'Betreuung des Schulgartens' },
-        { t: 'Koordination „Ökolog“-Projekte' },
-      ],
+    forstner: {
       haltung: [
-        'Natur versteht man am besten draußen, mit allen Sinnen. Darum verlege ich den Unterricht, wann immer es geht, in den Schulgarten oder ins Triestingtal.',
-        'Nachhaltigkeit ist für mich kein Schlagwort, sondern eine Haltung, die im Kleinen beginnt. Wenn Kinder lernen, achtsam mit ihrer Umwelt umzugehen, tragen sie das ein Leben lang weiter.'
+        'Mathematik darf nicht einschüchtern. Ich möchte zeigen, dass hinter Zahlen und Formeln klare, nachvollziehbare Logik steckt — und dass Fehler ein notwendiger Teil des Verstehens sind.',
+        'Als Klassenvorstand der 1a begleite ich Kinder beim Ankommen an unserer Schule. Ein guter Start ist die Grundlage für alles, was danach kommt.'
       ],
-      zitat: 'Man schützt nur, was man kennt und liebgewonnen hat.'
+      zitat: 'Jeder Rechenweg ist erlaubt — Hauptsache, man versteht, warum er funktioniert.'
     },
-    {
-      id: 'fuchs',
-      name: 'Mag. Sandra Fuchs',
-      role: 'Englisch · Französisch',
-      photo: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=300&h=300&fit=crop&crop=face',
-      since: '2017',
-      email: 's.fuchs@ms-hirtenberg.at',
-      sprechstunde: 'Di, 09:00 – 09:50 Uhr',
-      subjects: ['Englisch', 'Französisch'],
-      tasks: [
-        { t: 'Organisation der Sprachreisen', lead: true },
-        { t: 'Betreuung des E-Twinning-Austauschs' },
-        { t: 'Vorbereitung Cambridge-Zertifikate' },
-      ],
+    krug: {
       haltung: [
-        'Eine Sprache lernt man, indem man sie benutzt — auch mit Fehlern. In meinem Unterricht wird gesprochen, gelacht und ausprobiert, denn Sicherheit entsteht durch Üben, nicht durch Angst.',
-        'Sprachen sind das Tor zu anderen Kulturen. Ich möchte Neugier auf die Welt wecken und zeigen, wie viel näher sie rückt, wenn man sich verständigen kann.'
+        'Ob in Mathematik, Biologie oder am Computer — ich möchte Neugier wecken und zeigen, wie spannend es ist, Dinge selbst herauszufinden.',
+        'Als Klassenvorstand der 1b ist mir ein respektvolles Miteinander wichtig. Eine Klasse, in der man einander zuhört, ist die beste Grundlage zum Lernen.'
       ],
-      zitat: 'Trau dich zu sprechen — Verstanden­werden ist schöner als Perfektion.'
+      zitat: 'Verstehen beginnt mit einer guten Frage.'
     },
-    {
-      id: 'langer',
-      name: 'Mag. Peter Langer',
-      role: 'Geschichte · Geographie',
-      photo: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&h=300&fit=crop&crop=face',
-      since: '2011',
-      email: 'p.langer@ms-hirtenberg.at',
-      sprechstunde: 'Mi, 10:00 – 10:50 Uhr',
-      subjects: ['Geschichte', 'Geographie', 'Politische Bildung'],
-      tasks: [
-        { t: 'Organisation der Wien-Exkursionen', lead: true },
-        { t: 'Projekt „Demokratie leben“' },
-        { t: 'Betreuung des Geschichte-Wettbewerbs' },
-      ],
+    wille: {
       haltung: [
-        'Geschichte ist keine Sammlung von Jahreszahlen, sondern erzählt davon, wie Menschen gelebt, entschieden und gestritten haben. Ich möchte, dass Schülerinnen und Schüler Zusammenhänge erkennen und kritisch nachfragen.',
-        'Wer die Vergangenheit versteht, kann die Gegenwart besser einordnen. Mir liegt am Herzen, junge Menschen zu mündigen, demokratisch denkenden Bürgerinnen und Bürgern zu begleiten.'
+        'Lernen gelingt am besten, wenn Kinder sich wohlfühlen. Als Klassenvorstand der 3a ist mir eine Klassengemeinschaft wichtig, in der sich alle aufeinander verlassen können.',
+        'In Deutsch, Sport und in der Freizeitpädagogik möchte ich Räume schaffen, in denen Jugendliche ausprobieren, sich einbringen und Verantwortung übernehmen dürfen.'
       ],
-      zitat: 'Geschichte gehört allen, die bereit sind, Fragen zu stellen.'
+      zitat: 'Vertrauen ist der erste Schritt zu echtem Lernen.'
     },
-    {
-      id: 'schober',
-      name: 'Karin Schober, BA',
-      role: 'Kunst · Werken',
-      photo: 'https://images.unsplash.com/photo-1554151228-14d9def656e4?w=300&h=300&fit=crop&crop=face',
-      since: '2019',
-      email: 'k.schober@ms-hirtenberg.at',
-      sprechstunde: 'Do, 09:00 – 09:50 Uhr',
-      subjects: ['Bildnerische Erziehung', 'Technisches Werken'],
-      tasks: [
-        { t: 'Gestaltung der Schulausstellungen', lead: true },
-        { t: 'Betreuung der Kreativ-AG' },
-        { t: 'Bühnenbild für Schulaufführungen' },
-      ],
+    bahr: {
       haltung: [
-        'Kreativität braucht Freiraum und das Gefühl, dass nichts „falsch“ ist. In meinem Unterricht zählt der Mut zum Ausprobieren mehr als das perfekte Ergebnis.',
-        'Gestalten heißt, mit Kopf und Händen zu denken. Gerade Kinder, die sich mit Worten schwertun, blühen oft auf, wenn sie etwas mit eigenen Händen schaffen dürfen.'
+        'Kreativität braucht Freiraum und das Gefühl, dass nichts „falsch“ ist. Ob in Deutsch, Musik oder Bildnerischer Erziehung — der Mut zum Ausprobieren zählt mehr als das perfekte Ergebnis.',
+        'Als Klassenvorstand der 4b begleite ich meine Klasse auf den letzten Metern bis zum Abschluss — mit offenem Ohr und klarem Blick.'
       ],
       zitat: 'Jedes Kind ist kreativ — man muss ihm nur Material und Vertrauen geben.'
     },
-    {
-      id: 'reiter',
-      name: 'Mag. Michael Reiter',
-      role: 'Musik · Chor',
-      photo: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=300&h=300&fit=crop&crop=face',
-      since: '2014',
-      email: 'm.reiter@ms-hirtenberg.at',
-      sprechstunde: 'Di, 11:00 – 11:50 Uhr',
-      subjects: ['Musikerziehung'],
-      tasks: [
-        { t: 'Leitung des Schulchors', lead: true },
-        { t: 'Musikalische Gestaltung der Schulfeiern' },
-        { t: 'Betreuung der Instrumental-Gruppe' },
-      ],
+    leithner: {
       haltung: [
-        'Musik verbindet — sie schafft Gemeinschaft, lange bevor man über sie spricht. Wenn eine ganze Klasse gemeinsam singt, entsteht etwas, das man nicht erzwingen kann.',
-        'Mir ist wichtig, dass jeder mitmachen darf, unabhängig von Vorerfahrung. Im Chor geht es nicht um die schönste Stimme, sondern darum, Teil von etwas Größerem zu sein.'
+        'Mathematik und Biologie erklären, wie unsere Welt funktioniert. Ich möchte, dass Schülerinnen und Schüler genau hinschauen, staunen und selbst nach Erklärungen suchen.',
+        'Mir ist wichtig, dass jede und jeder ein eigenes Tempo haben darf. Wer einmal den Faden verliert, bekommt bei mir die Zeit, ihn wiederzufinden.'
       ],
-      zitat: 'Gemeinsam singen heißt, für einen Moment ganz eins zu sein.'
+      zitat: 'Naturwissenschaft beginnt mit dem Mut, „warum?“ zu fragen.'
     },
-  ];
+    kern: {
+      haltung: [
+        'Sprachen sind das Tor zu anderen Kulturen. Ich möchte Neugier auf die Welt wecken und zeigen, wie viel näher sie rückt, wenn man sich verständigen kann.',
+        'Im Native-English-Unterricht zählt für mich vor allem eines: einfach loszusprechen — Sicherheit kommt mit der Übung.'
+      ],
+      zitat: 'Eine neue Sprache ist ein neues Fenster zur Welt.'
+    },
+    kainberger: {
+      haltung: [
+        'Eine Sprache lebt vom Sprechen. In meinem Englischunterricht wird ausprobiert, gespielt und kommuniziert, denn so bleibt Gelerntes am besten hängen.',
+        'Im Sport erleben die Jugendlichen Teamgeist, Fairness und Durchhaltevermögen — Eigenschaften, die im ganzen Leben zählen.'
+      ],
+      zitat: 'Dranbleiben lohnt sich — beim Sport wie beim Lernen.'
+    },
+    gaudriot: {
+      haltung: [
+        'Gestalten heißt, mit Kopf und Händen zu denken. Gerade Kinder, die sich mit Worten schwertun, blühen oft auf, wenn sie etwas mit eigenen Händen schaffen dürfen.',
+        'In Ernährung und Haushalt geht es um Alltagskompetenz — ums Selbermachen, Ausprobieren und um die Freude an einem gelungenen Ergebnis.'
+      ],
+      zitat: 'Was man selbst geschaffen hat, vergisst man nicht.'
+    },
+    dorke: {
+      haltung: [
+        'Ob in Deutsch oder Englisch — ich möchte, dass Kinder Freude an Sprache entwickeln und den Mut finden, sich auszudrücken.',
+        'Lesen und Erzählen öffnen Welten. Mir ist wichtig, dass sich jede und jeder mit der eigenen Stimme einbringen darf.'
+      ],
+      zitat: 'Wer liest, reist — ohne den Raum zu verlassen.'
+    },
+    ruth: {
+      haltung: [
+        'Biologie versteht man am besten mit allen Sinnen. Ich verlege den Unterricht, wann immer es geht, nach draußen und lasse die Jugendlichen selbst beobachten und entdecken.',
+        'Nachhaltigkeit ist für mich keine Floskel, sondern eine Haltung, die im Kleinen beginnt und ein Leben lang trägt.'
+      ],
+      zitat: 'Man schützt nur, was man kennt und liebgewonnen hat.'
+    },
+    liebhart: {
+      haltung: [
+        'Physik erzählt von den großen Fragen — vom Allerkleinsten bis zu den Sternen. Ich möchte zeigen, wie viel Staunen in scheinbar trockenen Formeln steckt.',
+        'Verstehen entsteht durch Ausprobieren. Im Unterricht darf experimentiert, gestaunt und auch einmal gescheitert werden.'
+      ],
+      zitat: 'Wer zu den Sternen schaut, stellt die besten Fragen.'
+    },
+    schiroky: {
+      haltung: [
+        'Vorlesen schenkt Zeit und Aufmerksamkeit. Als Lese-Omi nehme ich mir genau diese Zeit für unsere Kinder — ganz ohne Noten und Druck.',
+        'Geschichten verbinden Generationen. Es macht mich glücklich, die Freude am Lesen weiterzugeben.'
+      ],
+      zitat: 'Eine Geschichte zu teilen, ist das schönste Geschenk.'
+    },
+  };
 
   function byId(id) { return TEAM.find(t => t.id === id); }
+
+  // Avatar: zeigt uploads/<id>.jpg, faellt sonst auf Initialen zurueck.
+  // PHOTO_V bei neuen/ausgetauschten Fotos erhoehen, damit der Cache bricht.
+  const PHOTO_V = '2';
+  function avFallback(img) {
+    const d = img.parentElement;
+    d.classList.add('initials');
+    d.style.background = d.getAttribute('data-grad');
+    d.textContent = d.getAttribute('data-ini');
+  }
+  window.avFallback = avFallback;
+  function avatarHtml(member, baseCls) {
+    return `<div class="${baseCls}" data-grad="${grad(member.color)}" data-ini="${esc(initials(member.name))}">`
+      + `<img src="uploads/${member.id}.jpg?v=${PHOTO_V}" alt="${esc(member.name)}" onerror="avFallback(this)"></div>`;
+  }
 
   const params = new URLSearchParams(location.search);
   const current = byId(params.get('id')) || TEAM[0];
@@ -368,24 +437,60 @@
   document.getElementById('hero-title').textContent = current.name;
 
   function esc(s) { return String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+  function initials(name) { return name.split(/\s+/).filter(Boolean).map(w => w[0]).slice(0, 2).join('').toUpperCase(); }
+  const grad = c => GRAD[c] || GRAD.sage;
 
   // ── Profile body ──
   const subjectChips = current.subjects.map(s => `<span class="chip">${esc(s)}</span>`).join('');
   const taskItems = current.tasks.map(t =>
     `<li${t.lead ? ' style="font-weight:700"' : ''}>${esc(t.t)}</li>`
   ).join('');
-  const haltungHtml = current.haltung.map(p => `<p>${esc(p)}</p>`).join('');
+
+  const boxes = [];
+  if (current.subjects.length) {
+    boxes.push(`<div class="rollen-box"><h3>Unterrichtsfächer</h3><div class="chips">${subjectChips}</div></div>`);
+  }
+  if (current.tasks.length) {
+    boxes.push(`<div class="rollen-box"><h3>Aufgaben an der Schule</h3><ul class="task-list">${taskItems}</ul></div>`);
+  }
+  const gridStyle = boxes.length < 2 ? ' style="grid-template-columns:1fr"' : '';
+
+  const klasseLine = current.klasse
+    ? `<span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V8l9-5 9 5v13"/><path d="M9 21v-7h6v7"/></svg>Klassenvorstand der Klasse ${esc(current.klasse)}</span>`
+    : '';
+  const noteBlock = current.note
+    ? `<div class="section-block"><div class="haltung"><p>${esc(current.note)}</p></div></div>`
+    : '';
+
+  const bio = BIOS[current.id] || { haltung: [], zitat: '' };
+  const haltungHtml = bio.haltung.map(p => `<p>${esc(p)}</p>`).join('');
+  const haltungBlock = bio.haltung.length ? `
+    <div class="section-block">
+      <div class="block-label">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.5-9.5-9A5 5 0 0 1 12 5a5 5 0 0 1 9.5 7c-2.5 4.5-9.5 9-9.5 9z"/></svg>
+        Meine Haltung
+      </div>
+      <div class="haltung">${haltungHtml}</div>
+    </div>` : '';
+  const zitatBlock = bio.zitat ? `
+    <div class="section-block">
+      <div class="zitat">
+        <span class="mark">&ldquo;</span>
+        <blockquote>${esc(bio.zitat)}</blockquote>
+        <div class="cite">— ${esc(current.name)}</div>
+      </div>
+    </div>` : '';
 
   document.getElementById('profile-root').innerHTML = `
     <div class="profile-head">
-      <div class="profile-avatar"><img src="${current.photo}" alt="${esc(current.name)}"></div>
+      ${avatarHtml(current, 'profile-avatar')}
       <div>
         <div class="profile-name">${esc(current.name)}</div>
         <div class="profile-primary"><span class="leaf"></span>${esc(current.role)}</div>
         <div class="profile-meta">
-          <span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><a href="mailto:${esc(current.email)}">${esc(current.email)}</a></span>
-          <span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Sprechstunde: ${esc(current.sprechstunde)}</span>
-          <span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V8l9-5 9 5v13"/><path d="M9 21v-7h6v7"/></svg>An der MS Hirtenberg seit ${esc(current.since)}</span>
+          ${klasseLine}
+          <span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><a href="mailto:hs.hirtenberg@noeschule.at">hs.hirtenberg@noeschule.at</a></span>
+          <span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.69 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.33 1.85.56 2.81.69A2 2 0 0 1 22 16.92z"/></svg>02256 - 81131</span>
         </div>
       </div>
     </div>
@@ -395,48 +500,28 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3 8-8"/><path d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h9"/></svg>
         Rollen &amp; Aufgaben
       </div>
-      <div class="rollen-grid">
-        <div class="rollen-box">
-          <h3>Unterrichtsfächer</h3>
-          <div class="chips">${subjectChips}</div>
-        </div>
-        <div class="rollen-box">
-          <h3>Aufgaben an der Schule</h3>
-          <ul class="task-list">${taskItems}</ul>
-        </div>
-      </div>
+      <div class="rollen-grid"${gridStyle}>${boxes.join('')}</div>
     </div>
 
-    <div class="section-block">
-      <div class="block-label">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.5-9.5-9A5 5 0 0 1 12 5a5 5 0 0 1 9.5 7c-2.5 4.5-9.5 9-9.5 9z"/></svg>
-        Meine Haltung
-      </div>
-      <div class="haltung">${haltungHtml}</div>
-    </div>
-
-    <div class="section-block">
-      <div class="zitat">
-        <span class="mark">&ldquo;</span>
-        <blockquote>${esc(current.zitat)}</blockquote>
-        <div class="cite">— ${esc(current.name)}</div>
-      </div>
-    </div>
+    ${noteBlock}
+    ${haltungBlock}
+    ${zitatBlock}
   `;
 
   // ── Schnell-Leiste ──
   const ordered = [current, ...TEAM.filter(t => t.id !== current.id)];
   document.getElementById('quickbar').innerHTML = ordered.map(t => {
+    const av = avatarHtml(t, 'qb-av');
     if (t.id === current.id) {
       return `<div class="qb-card current">
-        <div class="qb-av"><img src="${t.photo}" alt="${esc(t.name)}"></div>
+        ${av}
         <div class="qb-name">${esc(t.name)}</div>
         <div class="qb-role">${esc(t.role)}</div>
         <span class="qb-tag">Sie sind hier</span>
       </div>`;
     }
     return `<a class="qb-card" href="lehrer.html?id=${t.id}">
-      <div class="qb-av"><img src="${t.photo}" alt="${esc(t.name)}"></div>
+      ${av}
       <div class="qb-name">${esc(t.name)}</div>
       <div class="qb-role">${esc(t.role)}</div>
     </a>`;

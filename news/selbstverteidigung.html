@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="../favicon.svg" type="image/svg+xml">
-    <link rel="icon" href="../favicon-32.png" sizes="32x32" type="image/png">
-    <link rel="apple-touch-icon" href="../apple-touch-icon.png">
-<title>Sporttag 2026 – MS Hirtenberg</title>
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<title>Selbstverteidigungskurs mit unseren 1. Klassen – MS Hirtenberg</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -38,45 +38,44 @@
   .nav-links a { color: var(--text-light); text-decoration: none; font-size: 0.88rem; font-weight: 600; padding: 7px 15px; border-radius: 30px; transition: background 0.2s, color 0.2s; letter-spacing: 0.01em; }
   .nav-links a:hover, .nav-links a.active { background: var(--sage-pale); color: var(--sage-dark); }
   body { font-family: var(--font-body); background: var(--cream); color: var(--text); font-size: 17px; line-height: 1.7; }
+
   .article-hero { position: relative; height: 480px; overflow: hidden; display: flex; align-items: flex-end; }
-  .article-hero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-  .article-hero-overlay { position: absolute; inset: 0; background: linear-gradient(to top, oklch(22% 0.06 145 / 0.80) 0%, transparent 60%); }
-  .article-hero-content { position: relative; z-index: 2; padding: 48px 96px; max-width: 900px; }
+  .article-hero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 30%; }
+  .article-hero-overlay { position: absolute; inset: 0; background: linear-gradient(to top, oklch(22% 0.06 145 / 0.82) 0%, oklch(22% 0.06 145 / 0.20) 50%, transparent 75%); }
+  .article-hero-content { position: relative; z-index: 2; padding: 48px 96px; max-width: 920px; }
   .article-tag { display: inline-flex; align-items: center; gap: 7px; background: var(--white); color: var(--sage); font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; padding: 5px 14px; border-radius: 30px; margin-bottom: 14px; border: 1.5px solid var(--sage-pale); }
-  .article-hero-title { font-family: var(--font-heading); color: var(--white); font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 700; line-height: 1.2; text-shadow: 0 2px 12px oklch(0% 0 0 / 30%); }
+  .article-hero-title { font-family: var(--font-heading); color: var(--white); font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 700; line-height: 1.2; text-shadow: 0 2px 14px oklch(0% 0 0 / 35%); text-wrap: pretty; }
+
   .article-wrapper { max-width: 800px; margin: 0 auto; padding: 64px 48px 100px; }
-  .article-meta { display: flex; align-items: center; gap: 24px; padding-bottom: 28px; border-bottom: 1.5px solid var(--cream-dark); margin-bottom: 40px; color: var(--text-light); font-size: 0.88rem; font-weight: 600; }
-  .article-body h2 { font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700; margin: 40px 0 14px; color: var(--text); }
+  .article-meta { display: flex; align-items: center; gap: 24px; padding-bottom: 28px; border-bottom: 1.5px solid var(--cream-dark); margin-bottom: 40px; color: var(--text-light); font-size: 0.88rem; font-weight: 600; flex-wrap: wrap; }
+  .article-lead { font-family: var(--font-heading); font-size: 1.28rem; line-height: 1.55; color: var(--text); margin-bottom: 28px; font-weight: 600; }
+  .article-body h2 { font-family: var(--font-heading); font-size: 1.45rem; font-weight: 700; margin: 40px 0 14px; color: var(--text); }
   .article-body p { margin-bottom: 20px; color: var(--text-light); text-wrap: pretty; }
   .article-body strong { color: var(--text); font-weight: 700; }
   .article-body blockquote { border-left: 3px solid var(--sage-light); margin: 32px 0; padding: 16px 24px; background: var(--sage-pale); border-radius: 0 var(--radius) var(--radius) 0; font-style: italic; color: var(--text); }
+
   .article-photo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 36px 0; }
-  .article-photo-grid img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: var(--radius); display: block; }
+  .article-photo-grid img { width: 100%; aspect-ratio: 3/4; object-fit: cover; border-radius: var(--radius); display: block; }
+  .article-photo-grid img.landscape { aspect-ratio: 4/3; }
   .article-photo-grid img.wide { grid-column: span 2; aspect-ratio: 16/7; }
+
   .back-link { display: inline-flex; align-items: center; gap: 8px; color: var(--sage); font-weight: 700; text-decoration: none; font-size: 0.9rem; margin-bottom: 40px; transition: gap 0.2s; }
   .back-link:hover { gap: 12px; color: var(--sage-dark); }
+
   footer { background: var(--sage-dark); padding: 32px 48px; display: flex; align-items: center; justify-content: space-between; color: var(--sage-light); font-size: 0.83rem; }
   footer a { color: var(--sage-light); text-decoration: none; }
   footer a:hover { color: var(--white); }
+
   @media (max-width: 768px) {
     nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .article-hero { height: 360px; }
     .article-hero-content { padding: 32px 20px; }
     .article-wrapper { padding: 40px 20px 80px; }
     .article-photo-grid { grid-template-columns: 1fr; }
     .article-photo-grid img.wide { grid-column: unset; aspect-ratio: 4/3; }
     footer { flex-direction: column; gap: 12px; text-align: center; }
   }
-  .signup-box { background: var(--sage-dark); border-radius: var(--radius-lg); padding: 36px 40px; margin-top: 48px; }
-  .signup-box h3 { font-family: var(--font-heading); color: var(--white); font-size: 1.4rem; margin-bottom: 8px; }
-  .signup-box p { color: oklch(82% 0.05 145); margin-bottom: 24px; font-size: 0.95rem; }
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
-  .form-row input, .form-row select, .signup-box input[type=text] { width: 100%; padding: 11px 16px; border: none; border-radius: 10px; font-family: var(--font-body); font-size: 0.95rem; background: oklch(100% 0 0 / 12%); color: var(--white); }
-  .form-row input::placeholder { color: oklch(72% 0.04 145); }
-  .form-row select { color: oklch(72% 0.04 145); }
-  .form-row select option { background: var(--sage-dark); color: var(--white); }
-  .btn-submit { margin-top: 8px; background: var(--blush-dark); color: var(--white); border: none; border-radius: 30px; padding: 13px 32px; font-family: var(--font-body); font-size: 0.95rem; font-weight: 700; cursor: pointer; transition: transform 0.15s, box-shadow 0.15s; }
-  .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 6px 20px oklch(0% 0 0 / 18%); }
-  @media (max-width: 768px) { .form-row { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
@@ -96,7 +95,7 @@
   </a>
   <ul class="nav-links">
     <li><a href="../index.html#ueber">Über uns</a></li>
-    <li><a href="../index.html#news" class="active">Aktuelles</a></li>
+    <li><a href="../aktuelles.html" class="active">Aktuelles</a></li>
     <li><a href="../termine.html">Termine</a></li>
     <li><a href="../index.html#team">Lehrpersonal</a></li>
     <li><a href="../index.html#galerie">Galerie</a></li>
@@ -105,67 +104,63 @@
 </nav>
 
 <div class="article-hero">
-  <img src="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=1600&fit=crop&crop=center" alt="Sporttag">
+  <img src="selbstverteidigung-1.jpg" alt="Selbstverteidigungskurs an der MS Hirtenberg">
   <div class="article-hero-overlay"></div>
   <div class="article-hero-content">
-    <div class="article-tag">Sport</div>
-    <h1 class="article-hero-title">Sporttag 2026 – Jetzt anmelden!</h1>
+    <div class="article-tag">Bewegung &amp; Sport</div>
+    <h1 class="article-hero-title">Selbstverteidigungskurs mit unseren 1. Klassen</h1>
   </div>
 </div>
 
 <div class="article-wrapper">
-  <a href="../index.html#news" class="back-link">← Zurück zur Übersicht</a>
+  <a href="../aktuelles.html" class="back-link">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+    Zurück zur Übersicht
+  </a>
 
   <div class="article-meta">
-    <span>📅 10. Mai 2026</span>
-    <span>✍️ Sabine Forstner</span>
-    <span>📍 Sportplatz Hirtenberg</span>
+    <span>📅 Juni 2026</span>
+    <span>🥋 1. Klassen der MS Hirtenberg</span>
+    <span>📍 Turnhalle MS Hirtenberg</span>
   </div>
 
   <div class="article-body">
-    <p>Der jährliche Sporttag der MS Hirtenberg findet dieses Jahr am <strong>Sonntag, 10. Mai 2026</strong>, auf dem Sportplatz Hirtenberg statt. Von 8:30 bis 16:00 Uhr messen sich alle Klassen in verschiedenen Disziplinen — von Leichtathletik über Staffelläufe bis hin zu Mannschaftsspielen.</p>
+    <p class="article-lead">Grenzen setzen, Selbstbewusstsein stärken, sich schützen können — die Schülerinnen und Schüler der ersten Klassen erlebten einen besonderen Tag in der Turnhalle.</p>
 
-    <h2>Programm des Tages</h2>
-    <p>Geplant sind Wettbewerbe in <strong>100-Meter-Lauf, Weitsprung, Hochsprung, Kugelstoßen</strong> sowie ein großes <strong>Fußball- und Völkerballturnier</strong>. Neu in diesem Jahr: ein Hindernislauf-Parcours, der von Schülerinnen und Schülern der 4. Klassen selbst entworfen wurde.</p>
+    <p>Im Rahmen eines <strong>Projekttags zum Thema Selbstverteidigung</strong> lernten unsere Erstklässlerinnen und Erstklässler, wie sie durch ihre Stimme und Körpersprache ihre Grenzen klar zum Ausdruck bringen können. Ein erfahrener Trainer begleitete die Klassen durch den Workshop und stellte dabei einfache, wirkungsvolle Abwehrtechniken vor.</p>
 
-    <blockquote>„Sport verbindet. Der Sporttag ist immer einer der Höhepunkte unseres Schuljahres!" — Sabine Forstner, stv. Direktor</blockquote>
+    <h2>Mehr als Technik</h2>
+    <p>Im Mittelpunkt stand nicht nur das Erlernen von Bewegungsabläufen, sondern das <strong>Stärken des persönlichen Selbstbewusstseins</strong>. Die Jugendlichen übten, wie sie in unangenehmen Situationen auftreten und sich behaupten können — mit Haltung, Stimme und klaren Signalen.</p>
+
+    <p>Neben dem Einstieg in grundlegende Abwehrbewegungen kamen auch erfahrene junge Muay-Thai-Kämpfer zu Wort und zeigten, was regelmäßiges Training bedeutet — eine echte Inspiration für die Klasse.</p>
 
     <div class="article-photo-grid">
-      <img src="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=600&h=450&fit=crop" alt="Laufen">
-      <img src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=600&h=450&fit=crop" alt="Weitsprung">
-      <img src="https://images.unsplash.com/photo-1526676037777-05a232554f77?w=1200&h=525&fit=crop" alt="Mannschaft" class="wide">
+      <img src="selbstverteidigung-1.jpg" alt="Trainer zeigt Abwehrtechnik mit einer Schülerin" class="landscape">
+      <img src="selbstverteidigung-4.jpg" alt="Schülerinnen üben Selbstverteidigung zu zweit" class="landscape">
+      <img src="selbstverteidigung-2.jpg" alt="Schülerinnen üben Tritttechniken in der Turnhalle" class="wide">
     </div>
 
-    <h2>Eltern und Geschwister herzlich willkommen</h2>
-    <p>Alle Familien sind eingeladen, dem Sporttag beizuwohnen und die Schülerinnen und Schüler anzufeuern. Ein kleines Buffet wird vom Elternverein organisiert. Für Speisen und Getränke ist gesorgt.</p>
+    <h2>Spaß und Konzentration in einem</h2>
+    <p>Die Schülerinnen und Schüler waren <strong>aufmerksam, neugierig und mit vollem Einsatz dabei</strong>. Die Mischung aus ernstem Lerninhalt und aktivem Ausprobieren sorgte für eine besondere Energie in der Turnhalle — und für viele lachende Gesichter.</p>
 
-    <p>Bitte melden Sie Ihr Kind bis <strong>30. April 2026</strong> über das untenstehende Formular an. Bei Fragen wenden Sie sich an das Sekretariat.</p>
+    <blockquote>Die Jugendlichen zeigten großen Eifer und viel Spaß — ein gelungener Tag, der Selbstbewusstsein und Gemeinschaft gleichermaßen gestärkt hat.</blockquote>
 
-    <div class="signup-box">
-      <h3>Jetzt anmelden</h3>
-      <p>Anmeldefrist: 30. April 2026 · Teilnahme kostenlos</p>
-      <div class="form-row">
-        <input type="text" placeholder="Vorname des Kindes">
-        <input type="text" placeholder="Nachname des Kindes">
-      </div>
-      <div class="form-row">
-        <select>
-          <option value="" disabled selected>Klasse wählen…</option>
-          <option>1a</option><option>1b</option>
-          <option>2a</option><option>2b</option>
-          <option>3a</option><option>3b</option>
-          <option>4a</option><option>4b</option>
-        </select>
-        <input type="text" placeholder="E-Mail der Eltern">
-      </div>
-      <button class="btn-submit" onclick="this.textContent='Anmeldung gesendet ✓'; this.style.background='oklch(50% 0.13 145)'; this.disabled=true;">Verbindlich anmelden</button>
+    <div class="article-photo-grid">
+      <img src="selbstverteidigung-3.jpg" alt="Zwei Schüler in Muay-Thai-Outfit posieren gemeinsam" class="landscape">
     </div>
+
+    <p>Wir bedanken uns herzlich beim Trainerteam für den engagierten und einfühlsamen Workshop und freuen uns auf eine mögliche Fortsetzung im nächsten Schuljahr!</p>
   </div>
 </div>
 
 <footer>
   <div>© 2026 Mittelschule Hirtenberg · Alle Rechte vorbehalten</div>
-  <div style="display:flex;gap:24px;"><a href="../impressum.html">Impressum</a><a href="../datenschutz.html">Datenschutz</a><a href="../barrierefreiheit.html">Barrierefreiheit</a></div>
+  <div style="display:flex;gap:24px;">
+    <a href="../impressum.html">Impressum</a>
+    <a href="../datenschutz.html">Datenschutz</a>
+    <a href="../barrierefreiheit.html">Barrierefreiheit</a>
+  </div>
 </footer>
+
 </body>
 </html>
