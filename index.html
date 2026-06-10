@@ -10,40 +10,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
 
+<link rel="stylesheet" href="variables.css">
 <style>
-  :root {
-    --sage:        oklch(52% 0.10 145);
-    --sage-dark:   oklch(38% 0.09 145);
-    --sage-mid:    oklch(62% 0.09 145);
-    --sage-light:  oklch(80% 0.07 145);
-    --sage-pale:   oklch(95% 0.04 145);
-    --blush:       oklch(78% 0.08 15);
-    --blush-dark:  oklch(56% 0.11 15);
-    --blush-pale:  oklch(96% 0.03 15);
-    --sand:        oklch(80% 0.07 75);
-    --sand-pale:   oklch(95% 0.04 75);
-    --cream:       oklch(98% 0.008 88);
-    --cream-mid:   oklch(96% 0.012 88);
-    --cream-dark:  oklch(92% 0.018 88);
-    --text:        oklch(28% 0.05 145);
-    --text-light:  oklch(55% 0.04 145);
-    --white: #fff;
-
-    /* legacy aliases for compatibility */
-    --green-dark:   var(--sage-dark);
-    --green-mid:    var(--sage);
-    --green-light:  var(--sage-light);
-    --green-pale:   var(--sage-pale);
-    --amber:        var(--blush-dark);
-    --amber-light:  var(--blush-pale);
-    --brown:        oklch(46% 0.07 20);
-
-    --font-heading: 'Lora', Georgia, serif;
-    --font-body:    'Nunito', system-ui, sans-serif;
-    --radius:       12px;
-    --radius-lg:    20px;
-  }
-
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   html { scroll-behavior: smooth; }
@@ -131,10 +99,6 @@
     background-repeat: no-repeat;
     opacity: 0.6;
   }
-  /* botanical bg pattern for sections */
-  .hero-leaves { display: none; }
-  .leaf-group, .leaf { display: none; }
-
   .hero-content {
     position: relative; z-index: 2;
     padding: 56px 96px;
@@ -385,7 +349,7 @@
     gap: 3px;
     padding: 5px 8px;
     text-decoration: none;
-    border-radius: var(--radius-md, 12px);
+    border-radius: var(--radius);
     transition: background 0.18s;
   }
   .quick-item::after {
@@ -707,6 +671,7 @@
   }
   .team-card:hover .team-more { opacity: 1; transform: translateY(0); }
   .team-avatar {
+    position: relative;
     width: 110px; height: 110px;
     border-radius: 50%;
     margin: 0 auto 16px;
@@ -715,16 +680,13 @@
     border: 3px solid var(--cream-dark);
   }
   .team-avatar img {
-    width: 100%; height: 100%; object-fit: cover; display: block;
+    position: relative; z-index: 1;
+    width: 100%; height: 100%; object-fit: cover; object-position: 50% 22%; display: block; opacity: 0;
   }
-  .team-avatar-initials {
-    width: 110px; height: 110px;
-    border-radius: 50%;
-    margin: 0 auto 16px;
+  .team-avatar .av-ini {
+    position: absolute; inset: 0; z-index: 0;
     display: flex; align-items: center; justify-content: center;
-    font-weight: 700;
-    font-size: 1.4rem;
-    color: var(--white);
+    color: var(--white); font-weight: 700; font-size: 1.4rem;
   }
   .team-name { font-weight: 700; font-size: 1rem; margin-bottom: 4px; }
   .team-role { font-size: 0.83rem; color: var(--text-light); }
@@ -806,7 +768,7 @@
   footer {
     background: var(--sage-dark); padding: 32px 48px;
     display: flex; align-items: center; justify-content: space-between;
-    color: var(--sage-light); font-size: 0.83rem;
+    color: var(--sage-light); font-size: 0.85rem;
   }
   footer a { color: var(--sage-light); text-decoration: none; }
   footer a:hover { color: var(--white); }
@@ -881,14 +843,7 @@
 <section id="home">
   <div class="hero-photo"></div>
   <div class="hero-bg"></div>
-  <div class="hero-leaves">
-    <div class="leaf-group">
-      <div class="leaf leaf-1"></div>
-      <div class="leaf leaf-2"></div>
-      <div class="leaf leaf-3"></div>
-      <div class="leaf leaf-4"></div>
-    </div>
-  </div>
+
   <div class="hero-content">
     <h1 class="hero-title"><span class="word" style="--d:0">Lernen,</span> <span class="word" style="--d:1"><em>wachsen</em>,</span><br><span class="word" style="--d:2">die</span> <span class="word" style="--d:3">Zukunft</span> <span class="word" style="--d:4">gestalten.</span></h1>
     <p class="hero-sub">Herzlich willkommen an der MS Hirtenberg — wo Bildung und Gemeinschaft Hand in Hand gehen.</p>
@@ -1072,97 +1027,145 @@
     <p class="section-subtitle">Engagierte Pädagoginnen und Pädagogen begleiten Ihre Kinder auf dem Weg.</p>
     <div class="team-grid">
       <a class="team-card" href="lehrer.html?id=schmidt">
-        <div class="team-avatar-initials" style="background:linear-gradient(135deg,oklch(60% 0.10 145),oklch(44% 0.09 145));">ES</div>
+        <div class="team-avatar" style="background:linear-gradient(135deg,oklch(60% 0.10 145),oklch(44% 0.09 145));">
+          <span class="av-ini">ES</span>
+          <img src="uploads/schmidt.jpg?v=3" alt="Elvira Schmidt" loading="lazy" onload="this.style.opacity=1">
+        </div>
         <div class="team-name">Elvira Schmidt</div>
         <div class="team-role">Direktorin</div>
         <span class="team-more">Profil ansehen →</span>
       </a>
       <a class="team-card" href="lehrer.html?id=ascher">
-        <div class="team-avatar-initials" style="background:linear-gradient(135deg,oklch(74% 0.10 70),oklch(60% 0.11 60));">BA</div>
+        <div class="team-avatar" style="background:linear-gradient(135deg,oklch(74% 0.10 70),oklch(60% 0.11 60));">
+          <span class="av-ini">BA</span>
+          <img src="uploads/ascher.jpg?v=3" alt="Bettina Ascher" loading="lazy" onload="this.style.opacity=1">
+        </div>
         <div class="team-name">Bettina Ascher</div>
         <div class="team-role">Leiterin-Stv. · Klasse 4a</div>
         <span class="team-more">Profil ansehen →</span>
       </a>
       <a class="team-card" href="lehrer.html?id=konrath">
-        <div class="team-avatar-initials" style="background:linear-gradient(135deg,oklch(72% 0.09 15),oklch(56% 0.11 15));">AK</div>
+        <div class="team-avatar" style="background:linear-gradient(135deg,oklch(72% 0.09 15),oklch(56% 0.11 15));">
+          <span class="av-ini">AK</span>
+          <img src="uploads/konrath.jpg?v=3" alt="Andrea Konrath" loading="lazy" onload="this.style.opacity=1">
+        </div>
         <div class="team-name">Andrea Konrath</div>
         <div class="team-role">Leiterin-Stv. · Klasse 2a</div>
         <span class="team-more">Profil ansehen →</span>
       </a>
       <a class="team-card" href="lehrer.html?id=maurer">
-        <div class="team-avatar-initials" style="background:linear-gradient(135deg,oklch(60% 0.10 145),oklch(44% 0.09 145));">GM</div>
+        <div class="team-avatar" style="background:linear-gradient(135deg,oklch(60% 0.10 145),oklch(44% 0.09 145));">
+          <span class="av-ini">GM</span>
+          <img src="uploads/maurer.jpg?v=3" alt="Georg Maurer" loading="lazy" onload="this.style.opacity=1">
+        </div>
         <div class="team-name">Georg Maurer</div>
         <div class="team-role">Leiter-Stv. · Klasse 3b</div>
         <span class="team-more">Profil ansehen →</span>
       </a>
       <a class="team-card" href="lehrer.html?id=forstner">
-        <div class="team-avatar-initials" style="background:linear-gradient(135deg,oklch(74% 0.10 70),oklch(60% 0.11 60));">SF</div>
+        <div class="team-avatar" style="background:linear-gradient(135deg,oklch(74% 0.10 70),oklch(60% 0.11 60));">
+          <span class="av-ini">SF</span>
+          <img src="uploads/forstner.jpg?v=3" alt="Sabine Forstner" loading="lazy" onload="this.style.opacity=1">
+        </div>
         <div class="team-name">Sabine Forstner</div>
         <div class="team-role">Klassenvorstand 1a</div>
         <span class="team-more">Profil ansehen →</span>
       </a>
       <a class="team-card" href="lehrer.html?id=krug">
-        <div class="team-avatar-initials" style="background:linear-gradient(135deg,oklch(72% 0.09 15),oklch(56% 0.11 15));">KK</div>
+        <div class="team-avatar" style="background:linear-gradient(135deg,oklch(72% 0.09 15),oklch(56% 0.11 15));">
+          <span class="av-ini">KK</span>
+          <img src="uploads/krug.jpg?v=3" alt="Karin Krug" loading="lazy" onload="this.style.opacity=1">
+        </div>
         <div class="team-name">Karin Krug</div>
         <div class="team-role">Klassenvorstand 1b</div>
         <span class="team-more">Profil ansehen →</span>
       </a>
       <a class="team-card" href="lehrer.html?id=wille">
-        <div class="team-avatar-initials" style="background:linear-gradient(135deg,oklch(60% 0.10 145),oklch(44% 0.09 145));">RW</div>
+        <div class="team-avatar" style="background:linear-gradient(135deg,oklch(60% 0.10 145),oklch(44% 0.09 145));">
+          <span class="av-ini">RW</span>
+          <img src="uploads/wille.jpg?v=3" alt="Robert Wille" loading="lazy" style="object-position:50% 8%" onload="this.style.opacity=1">
+        </div>
         <div class="team-name">Robert Wille</div>
         <div class="team-role">Klassenvorstand 3a</div>
         <span class="team-more">Profil ansehen →</span>
       </a>
       <a class="team-card" href="lehrer.html?id=bahr">
-        <div class="team-avatar-initials" style="background:linear-gradient(135deg,oklch(74% 0.10 70),oklch(60% 0.11 60));">MB</div>
+        <div class="team-avatar" style="background:linear-gradient(135deg,oklch(74% 0.10 70),oklch(60% 0.11 60));">
+          <span class="av-ini">MB</span>
+          <img src="uploads/bahr.jpg?v=3" alt="Maria Bahr" loading="lazy" onload="this.style.opacity=1">
+        </div>
         <div class="team-name">Maria Bahr</div>
         <div class="team-role">Klassenvorstand 4b</div>
         <span class="team-more">Profil ansehen →</span>
       </a>
       <a class="team-card" href="lehrer.html?id=leithner">
-        <div class="team-avatar-initials" style="background:linear-gradient(135deg,oklch(72% 0.09 15),oklch(56% 0.11 15));">JL</div>
+        <div class="team-avatar" style="background:linear-gradient(135deg,oklch(72% 0.09 15),oklch(56% 0.11 15));">
+          <span class="av-ini">JL</span>
+          <img src="uploads/leithner.jpg?v=3" alt="Julia Leithner" loading="lazy" onload="this.style.opacity=1">
+        </div>
         <div class="team-name">Julia Leithner</div>
         <div class="team-role">Mathematik · Biologie</div>
         <span class="team-more">Profil ansehen →</span>
       </a>
       <a class="team-card" href="lehrer.html?id=kern">
-        <div class="team-avatar-initials" style="background:linear-gradient(135deg,oklch(60% 0.10 145),oklch(44% 0.09 145));">EK</div>
+        <div class="team-avatar" style="background:linear-gradient(135deg,oklch(60% 0.10 145),oklch(44% 0.09 145));">
+          <span class="av-ini">EK</span>
+          <img src="uploads/kern.jpg?v=3" alt="Eva Kern" loading="lazy" onload="this.style.opacity=1">
+        </div>
         <div class="team-name">Eva Kern</div>
         <div class="team-role">Englisch · Biologie</div>
         <span class="team-more">Profil ansehen →</span>
       </a>
       <a class="team-card" href="lehrer.html?id=kainberger">
-        <div class="team-avatar-initials" style="background:linear-gradient(135deg,oklch(74% 0.10 70),oklch(60% 0.11 60));">MK</div>
+        <div class="team-avatar" style="background:linear-gradient(135deg,oklch(74% 0.10 70),oklch(60% 0.11 60));">
+          <span class="av-ini">MK</span>
+          <img src="uploads/kainberger.jpg?v=3" alt="Manuel Kainberger" loading="lazy" style="object-position:50% 8%" onload="this.style.opacity=1">
+        </div>
         <div class="team-name">Manuel Kainberger</div>
         <div class="team-role">Englisch · Bewegung und Sport</div>
         <span class="team-more">Profil ansehen →</span>
       </a>
       <a class="team-card" href="lehrer.html?id=gaudriot">
-        <div class="team-avatar-initials" style="background:linear-gradient(135deg,oklch(72% 0.09 15),oklch(56% 0.11 15));">KG</div>
+        <div class="team-avatar" style="background:linear-gradient(135deg,oklch(72% 0.09 15),oklch(56% 0.11 15));">
+          <span class="av-ini">KG</span>
+          <img src="uploads/gaudriot.jpg?v=3" alt="Karin Gaudriot" loading="lazy" onload="this.style.opacity=1">
+        </div>
         <div class="team-name">Karin Gaudriot</div>
         <div class="team-role">Werken · Ernährung u. Haushalt</div>
         <span class="team-more">Profil ansehen →</span>
       </a>
       <a class="team-card" href="lehrer.html?id=dorke">
-        <div class="team-avatar-initials" style="background:linear-gradient(135deg,oklch(60% 0.10 145),oklch(44% 0.09 145));">VD</div>
+        <div class="team-avatar" style="background:linear-gradient(135deg,oklch(60% 0.10 145),oklch(44% 0.09 145));">
+          <span class="av-ini">VD</span>
+          <img src="uploads/dorke.jpg?v=3" alt="Viktoria Dorke" loading="lazy" onload="this.style.opacity=1">
+        </div>
         <div class="team-name">Viktoria Dorke</div>
         <div class="team-role">Deutsch · Englisch</div>
         <span class="team-more">Profil ansehen →</span>
       </a>
       <a class="team-card" href="lehrer.html?id=ruth">
-        <div class="team-avatar-initials" style="background:linear-gradient(135deg,oklch(74% 0.10 70),oklch(60% 0.11 60));">ER</div>
+        <div class="team-avatar" style="background:linear-gradient(135deg,oklch(74% 0.10 70),oklch(60% 0.11 60));">
+          <span class="av-ini">ER</span>
+          <img src="uploads/ruth.jpg?v=3" alt="Eva Ruth" loading="lazy" onload="this.style.opacity=1">
+        </div>
         <div class="team-name">Eva Ruth</div>
         <div class="team-role">Biologie</div>
         <span class="team-more">Profil ansehen →</span>
       </a>
       <a class="team-card" href="lehrer.html?id=liebhart">
-        <div class="team-avatar-initials" style="background:linear-gradient(135deg,oklch(72% 0.09 15),oklch(56% 0.11 15));">AL</div>
+        <div class="team-avatar" style="background:linear-gradient(135deg,oklch(72% 0.09 15),oklch(56% 0.11 15));">
+          <span class="av-ini">AL</span>
+          <img src="uploads/liebhart.jpg?v=3" alt="Armin Liebhart" loading="lazy" onload="this.style.opacity=1">
+        </div>
         <div class="team-name">Armin Liebhart</div>
         <div class="team-role">Physik</div>
         <span class="team-more">Profil ansehen →</span>
       </a>
       <a class="team-card" href="lehrer.html?id=schiroky">
-        <div class="team-avatar-initials" style="background:linear-gradient(135deg,oklch(60% 0.10 145),oklch(44% 0.09 145));">DS</div>
+        <div class="team-avatar" style="background:linear-gradient(135deg,oklch(60% 0.10 145),oklch(44% 0.09 145));">
+          <span class="av-ini">DS</span>
+          <img src="uploads/schiroky.jpg?v=3" alt="Doris Schiroky" loading="lazy" onload="this.style.opacity=1">
+        </div>
         <div class="team-name">Doris Schiroky</div>
         <div class="team-role">Lese-Omi</div>
         <span class="team-more">Profil ansehen →</span>
@@ -1396,27 +1399,6 @@
     }).join('');
   }
   renderNewsTermine();
-
-  // ── Lehrer-Fotos: zeigt uploads/<nachname>.jpg, sonst Initialen ──
-  // PHOTO_V bei neuen/ausgetauschten Fotos erhoehen, damit der Cache bricht.
-  const PHOTO_V = '2';
-  document.querySelectorAll('.team-card').forEach(card => {
-    const m = (card.getAttribute('href') || '').match(/id=([^&]+)/);
-    if (!m) return;
-    const id = m[1];
-    const iniDiv = card.querySelector('.team-avatar-initials');
-    if (!iniDiv) return;
-    const wrap = document.createElement('div');
-    wrap.className = 'team-avatar';
-    const img = document.createElement('img');
-    const nameEl = card.querySelector('.team-name');
-    img.alt = nameEl ? nameEl.textContent : id;
-    img.loading = 'lazy';
-    img.onerror = () => { wrap.replaceWith(iniDiv); };
-    img.src = 'uploads/' + id + '.jpg?v=' + PHOTO_V;
-    wrap.appendChild(img);
-    iniDiv.replaceWith(wrap);
-  });
 </script>
 </body>
 </html>

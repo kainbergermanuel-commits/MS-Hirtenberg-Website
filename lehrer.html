@@ -9,36 +9,15 @@
 <title>Lehrpersonal – MS Hirtenberg</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="variables.css">
 <style>
-  :root {
-    --sage:        oklch(52% 0.10 145);
-    --sage-dark:   oklch(38% 0.09 145);
-    --sage-mid:    oklch(62% 0.09 145);
-    --sage-light:  oklch(80% 0.07 145);
-    --sage-pale:   oklch(95% 0.04 145);
-    --blush:       oklch(78% 0.08 15);
-    --blush-dark:  oklch(56% 0.11 15);
-    --blush-pale:  oklch(96% 0.03 15);
-    --sand:        oklch(80% 0.07 75);
-    --sand-mid:    oklch(70% 0.10 68);
-    --sand-pale:   oklch(95% 0.04 75);
-    --cream:       oklch(98% 0.008 88);
-    --cream-mid:   oklch(96% 0.012 88);
-    --cream-dark:  oklch(92% 0.018 88);
-    --text:        oklch(28% 0.05 145);
-    --text-light:  oklch(55% 0.04 145);
-    --white: #fff;
-    --font-heading: 'Lora', Georgia, serif;
-    --font-body: 'Nunito', system-ui, sans-serif;
-    --radius: 12px; --radius-lg: 20px;
-  }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
-  body { font-family: var(--font-body); background: var(--cream); color: var(--text); font-size: 16px; line-height: 1.65; }
+  body { font-family: var(--font-body); background: var(--cream); color: var(--text); font-size: 17px; line-height: 1.65; }
 
   /* NAV */
   nav { background: var(--white); display: flex; align-items: center; justify-content: space-between; padding: 0 48px; height: 68px; border-bottom: 1.5px solid var(--cream-dark); box-shadow: 0 2px 20px oklch(0% 0 0 / 6%); position: sticky; top: 0; z-index: 100; }
-  .nav-logo { font-family: var(--font-heading); color: var(--sage-dark); font-size: 1.2rem; font-weight: 700; text-decoration: none; display: flex; align-items: center; gap: 10px; }
+  .nav-logo { font-family: var(--font-heading); color: var(--sage-dark); font-size: 1.2rem; font-weight: 700; letter-spacing: -0.02em; text-decoration: none; display: flex; align-items: center; gap: 10px; }
   .nav-pill { display: inline-flex; align-items: center; background: var(--white); color: var(--sage); font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.13em; padding: 5px 14px; border-radius: 30px; border: 1.5px solid var(--sage-pale); white-space: nowrap; }
   .nav-links { display: flex; gap: 4px; list-style: none; }
   .nav-links a { color: var(--text-light); text-decoration: none; font-size: 0.88rem; font-weight: 600; padding: 7px 15px; border-radius: 30px; transition: background 0.2s, color 0.2s; letter-spacing: 0.01em; }
@@ -63,9 +42,9 @@
     padding: 36px 40px;
     display: grid; grid-template-columns: auto 1fr; gap: 32px; align-items: center;
   }
-  .profile-avatar { width: 150px; height: 150px; border-radius: 50%; overflow: hidden; border: 4px solid var(--sage-pale); box-shadow: 0 6px 20px oklch(38% 0.06 145 / 0.14); flex: none; }
-  .profile-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .profile-avatar.initials { display: flex; align-items: center; justify-content: center; color: var(--white); font-family: var(--font-heading); font-weight: 700; font-size: 3.1rem; letter-spacing: 0.02em; }
+  .profile-avatar { position: relative; width: 150px; height: 150px; border-radius: 50%; overflow: hidden; border: 4px solid var(--sage-pale); box-shadow: 0 6px 20px oklch(38% 0.06 145 / 0.14); flex: none; }
+  .profile-avatar img { position: relative; z-index: 1; width: 100%; height: 100%; object-fit: cover; object-position: 50% 22%; display: block; opacity: 0; }
+  .profile-avatar .av-ini { position: absolute; inset: 0; z-index: 0; display: flex; align-items: center; justify-content: center; color: var(--white); font-family: var(--font-heading); font-weight: 700; font-size: 3.1rem; letter-spacing: 0.02em; }
   .profile-name { font-family: var(--font-heading); font-size: clamp(1.6rem, 2.6vw, 2.1rem); font-weight: 700; color: var(--text); line-height: 1.15; margin-bottom: 6px; }
   .profile-primary { display: inline-flex; align-items: center; gap: 8px; font-weight: 800; color: var(--sage-dark); font-size: 1.02rem; margin-bottom: 14px; }
   .profile-primary .leaf { width: 9px; height: 9px; border-radius: 50% 0 50% 50%; background: var(--sage); transform: rotate(45deg); flex: none; }
@@ -115,10 +94,10 @@
   .qb-card:hover { transform: translateY(-3px); box-shadow: 0 8px 22px oklch(38% 0.06 145 / 0.13); border-color: var(--sage-light); }
   .qb-card.current { border-color: var(--sage); background: var(--sage-pale); cursor: default; }
   .qb-card.current:hover { transform: none; box-shadow: none; }
-  .qb-av { width: 64px; height: 64px; border-radius: 50%; overflow: hidden; margin: 0 auto 10px; border: 2.5px solid var(--cream-dark); }
+  .qb-av { position: relative; width: 64px; height: 64px; border-radius: 50%; overflow: hidden; margin: 0 auto 10px; border: 2.5px solid var(--cream-dark); }
   .qb-card.current .qb-av { border-color: var(--sage-mid); }
-  .qb-av img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .qb-av.initials { display: flex; align-items: center; justify-content: center; color: var(--white); font-weight: 700; font-size: 1.25rem; }
+  .qb-av img { position: relative; z-index: 1; width: 100%; height: 100%; object-fit: cover; object-position: 50% 22%; display: block; opacity: 0; }
+  .qb-av .av-ini { position: absolute; inset: 0; z-index: 0; display: flex; align-items: center; justify-content: center; color: var(--white); font-weight: 700; font-size: 1.25rem; }
   .qb-name { font-weight: 700; font-size: 0.84rem; color: var(--text); line-height: 1.25; margin-bottom: 3px; }
   .qb-role { font-size: 0.72rem; color: var(--text-light); line-height: 1.3; }
   .qb-card.current .qb-tag { display: inline-block; margin-top: 7px; font-size: 0.62rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: var(--sage-dark); }
@@ -205,7 +184,7 @@
 
   const TEAM = [
     {
-      id: 'schmidt', name: 'Elvira Schmidt', role: 'Direktorin', color: 'sage',
+      id: 'schmidt', foto: true, name: 'Elvira Schmidt', role: 'Direktorin', color: 'sage',
       klasse: null, subjects: ['Mathematik', 'Geschichte'],
       tasks: [
         { t: 'Schulleitung & pädagogische Gesamtverantwortung', lead: true },
@@ -213,7 +192,7 @@
       ],
     },
     {
-      id: 'ascher', name: 'Bettina Ascher', role: 'Leiterin-Stellvertreterin', color: 'sand',
+      id: 'ascher', foto: true, name: 'Bettina Ascher', role: 'Leiterin-Stellvertreterin', color: 'sand',
       klasse: '4a', subjects: ['Englisch', 'Bewegung und Sport'],
       tasks: [
         { t: 'Leiterin-Stellvertreterin', lead: true },
@@ -221,7 +200,7 @@
       ],
     },
     {
-      id: 'konrath', name: 'Andrea Konrath', role: 'Leiterin-Stellvertreterin', color: 'blush',
+      id: 'konrath', foto: true, name: 'Andrea Konrath', role: 'Leiterin-Stellvertreterin', color: 'blush',
       klasse: '2a', subjects: ['Sonderpädagogik', 'Volksschule'],
       tasks: [
         { t: 'Leiterin-Stellvertreterin', lead: true },
@@ -230,7 +209,7 @@
       ],
     },
     {
-      id: 'maurer', name: 'Georg Maurer', role: 'Leiter-Stellvertreter', color: 'sage',
+      id: 'maurer', foto: true, name: 'Georg Maurer', role: 'Leiter-Stellvertreter', color: 'sage',
       klasse: '3b', subjects: ['Deutsch', 'Bewegung und Sport'],
       tasks: [
         { t: 'Leiter-Stellvertreter', lead: true },
@@ -238,17 +217,17 @@
       ],
     },
     {
-      id: 'forstner', name: 'Sabine Forstner', role: 'Klassenvorstand 1a', color: 'sand',
+      id: 'forstner', foto: true, name: 'Sabine Forstner', role: 'Klassenvorstand 1a', color: 'sand',
       klasse: '1a', subjects: ['Mathematik', 'Bewegung und Sport'],
       tasks: [ { t: 'Klassenvorstand der 1a', lead: true } ],
     },
     {
-      id: 'krug', name: 'Karin Krug', role: 'Klassenvorstand 1b', color: 'blush',
+      id: 'krug', foto: true, name: 'Karin Krug', role: 'Klassenvorstand 1b', color: 'blush',
       klasse: '1b', subjects: ['Mathematik', 'Biologie', 'Informatik', 'Bewegung und Sport'],
       tasks: [ { t: 'Klassenvorstand der 1b', lead: true } ],
     },
     {
-      id: 'wille', name: 'Robert Wille', role: 'Klassenvorstand 3a', color: 'sage',
+      id: 'wille', foto: true, pos: '50% 8%', name: 'Robert Wille', role: 'Klassenvorstand 3a', color: 'sage',
       klasse: '3a', subjects: ['Deutsch', 'Bewegung und Sport', 'Informatik', 'Freizeitpädagogik'],
       tasks: [
         { t: 'Klassenvorstand der 3a', lead: true },
@@ -256,41 +235,45 @@
       ],
     },
     {
-      id: 'bahr', name: 'Maria Bahr', role: 'Klassenvorstand 4b', color: 'sand',
+      id: 'bahr', foto: true, name: 'Maria Bahr', role: 'Klassenvorstand 4b', color: 'sand',
       klasse: '4b', subjects: ['Deutsch', 'Bildnerische Erziehung', 'Musik', 'Bewegung und Sport'],
       tasks: [ { t: 'Klassenvorstand der 4b', lead: true } ],
     },
     {
-      id: 'leithner', name: 'Julia Leithner', role: 'Mathematik · Biologie', color: 'blush',
+      id: 'leithner', foto: true, name: 'Julia Leithner', role: 'Mathematik · Biologie', color: 'blush',
       klasse: null, subjects: ['Mathematik', 'Biologie'], tasks: [],
     },
     {
-      id: 'kern', name: 'Eva Kern', role: 'Englisch · Biologie', color: 'sage',
+      id: 'kern', foto: true, name: 'Eva Kern', role: 'Englisch · Biologie', color: 'sage',
       klasse: null, subjects: ['Englisch', 'Biologie'],
       tasks: [ { t: 'Native English' } ],
     },
     {
-      id: 'kainberger', name: 'Manuel Kainberger', role: 'Englisch · Bewegung und Sport', color: 'sand',
-      klasse: null, subjects: ['Englisch', 'Bewegung und Sport'], tasks: [],
+      id: 'kainberger', foto: true, pos: '50% 8%', name: 'Manuel Kainberger', role: 'Englisch · Bewegung und Sport', color: 'sand',
+      klasse: null, subjects: ['Englisch', 'Bewegung und Sport'],
+      tasks: [
+        { t: 'Administration der Webseite' },
+        { t: 'Fachkoordination Englisch' },
+      ],
     },
     {
-      id: 'gaudriot', name: 'Karin Gaudriot', role: 'Werken · Ernährung und Haushalt', color: 'blush',
+      id: 'gaudriot', foto: true, name: 'Karin Gaudriot', role: 'Werken · Ernährung und Haushalt', color: 'blush',
       klasse: null, subjects: ['Technisches Werken', 'Ernährung und Haushalt'], tasks: [],
     },
     {
-      id: 'dorke', name: 'Viktoria Dorke', role: 'Deutsch · Englisch', color: 'sage',
+      id: 'dorke', foto: true, name: 'Viktoria Dorke', role: 'Deutsch · Englisch', color: 'sage',
       klasse: null, subjects: ['Deutsch', 'Englisch'], tasks: [],
     },
     {
-      id: 'ruth', name: 'Eva Ruth', role: 'Biologie', color: 'sand',
+      id: 'ruth', foto: true, name: 'Eva Ruth', role: 'Biologie', color: 'sand',
       klasse: null, subjects: ['Biologie'], tasks: [], note: 'Magistra der Biologie.',
     },
     {
-      id: 'liebhart', name: 'Armin Liebhart', role: 'Physik', color: 'blush',
+      id: 'liebhart', foto: true, name: 'Armin Liebhart', role: 'Physik', color: 'blush',
       klasse: null, subjects: ['Physik'], tasks: [], note: 'Astrophysiker.',
     },
     {
-      id: 'schiroky', name: 'Doris Schiroky', role: 'Lese-Omi', color: 'sage',
+      id: 'schiroky', foto: true, name: 'Doris Schiroky', role: 'Lese-Omi', color: 'sage',
       klasse: null, subjects: [],
       tasks: [ { t: 'Lesepatenschaft / „Lese-Omi“', lead: true } ],
       note: 'Unsere Lese-Omi an der MS Hirtenberg.',
@@ -415,19 +398,19 @@
 
   function byId(id) { return TEAM.find(t => t.id === id); }
 
-  // Avatar: zeigt uploads/<id>.jpg, faellt sonst auf Initialen zurueck.
+  // Avatar: farbiger Initialen-Kreis; nur bei vorhandenem Foto (member.foto)
+  // wird ein Bild darueber gelegt. So keine vergeblichen Anfragen.
   // PHOTO_V bei neuen/ausgetauschten Fotos erhoehen, damit der Cache bricht.
-  const PHOTO_V = '2';
-  function avFallback(img) {
-    const d = img.parentElement;
-    d.classList.add('initials');
-    d.style.background = d.getAttribute('data-grad');
-    d.textContent = d.getAttribute('data-ini');
-  }
-  window.avFallback = avFallback;
-  function avatarHtml(member, baseCls) {
-    return `<div class="${baseCls}" data-grad="${grad(member.color)}" data-ini="${esc(initials(member.name))}">`
-      + `<img src="uploads/${member.id}.jpg?v=${PHOTO_V}" alt="${esc(member.name)}" onerror="avFallback(this)"></div>`;
+  const PHOTO_V = '3';
+  function avatarHtml(member, baseCls, priority) {
+    const ini = `<span class="av-ini">${esc(initials(member.name))}</span>`;
+    let photo = '';
+    if (member.foto) {
+      const prio = priority ? ' fetchpriority="high"' : '';
+      const pos = member.pos ? ` style="object-position:${member.pos}"` : '';
+      photo = `<img src="uploads/${member.id}.jpg?v=${PHOTO_V}" alt="${esc(member.name)}"${prio}${pos} onload="this.style.opacity=1">`;
+    }
+    return `<div class="${baseCls}" style="background:${grad(member.color)}">${ini}${photo}</div>`;
   }
 
   const params = new URLSearchParams(location.search);
@@ -483,7 +466,7 @@
 
   document.getElementById('profile-root').innerHTML = `
     <div class="profile-head">
-      ${avatarHtml(current, 'profile-avatar')}
+      ${avatarHtml(current, 'profile-avatar', true)}
       <div>
         <div class="profile-name">${esc(current.name)}</div>
         <div class="profile-primary"><span class="leaf"></span>${esc(current.role)}</div>
@@ -511,7 +494,7 @@
   // ── Schnell-Leiste ──
   const ordered = [current, ...TEAM.filter(t => t.id !== current.id)];
   document.getElementById('quickbar').innerHTML = ordered.map(t => {
-    const av = avatarHtml(t, 'qb-av');
+    const av = avatarHtml(t, 'qb-av', false);
     if (t.id === current.id) {
       return `<div class="qb-card current">
         ${av}

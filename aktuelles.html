@@ -9,33 +9,15 @@
 <title>Aktuelles – Alle Einträge – MS Hirtenberg</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="variables.css">
 <style>
-  :root {
-    --sage:        oklch(52% 0.10 145);
-    --sage-dark:   oklch(38% 0.09 145);
-    --sage-mid:    oklch(62% 0.09 145);
-    --sage-light:  oklch(80% 0.07 145);
-    --sage-pale:   oklch(95% 0.04 145);
-    --blush:       oklch(78% 0.08 15);
-    --blush-dark:  oklch(56% 0.11 15);
-    --blush-pale:  oklch(96% 0.03 15);
-    --cream:       oklch(98% 0.008 88);
-    --cream-mid:   oklch(96% 0.012 88);
-    --cream-dark:  oklch(92% 0.018 88);
-    --text:        oklch(28% 0.05 145);
-    --text-light:  oklch(55% 0.04 145);
-    --white: #fff;
-    --font-heading: 'Lora', Georgia, serif;
-    --font-body: 'Nunito', system-ui, sans-serif;
-    --radius: 12px; --radius-lg: 20px;
-  }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
-  body { font-family: var(--font-body); background: var(--cream); color: var(--text); font-size: 16px; line-height: 1.65; }
+  body { font-family: var(--font-body); background: var(--cream); color: var(--text); font-size: 17px; line-height: 1.65; }
 
   /* NAV */
   nav { background: var(--white); display: flex; align-items: center; justify-content: space-between; padding: 0 48px; height: 68px; border-bottom: 1.5px solid var(--cream-dark); box-shadow: 0 2px 20px oklch(0% 0 0 / 6%); position: sticky; top: 0; z-index: 100; }
-  .nav-logo { font-family: var(--font-heading); color: var(--sage-dark); font-size: 1.2rem; font-weight: 700; text-decoration: none; display: flex; align-items: center; gap: 10px; }
+  .nav-logo { font-family: var(--font-heading); color: var(--sage-dark); font-size: 1.2rem; font-weight: 700; letter-spacing: -0.02em; text-decoration: none; display: flex; align-items: center; gap: 10px; }
   .nav-pill { display: inline-flex; align-items: center; background: var(--white); color: var(--sage); font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.13em; padding: 5px 14px; border-radius: 30px; border: 1.5px solid var(--sage-pale); white-space: nowrap; }
   .nav-links { display: flex; gap: 4px; list-style: none; }
   .nav-links a { color: var(--text-light); text-decoration: none; font-size: 0.88rem; font-weight: 600; padding: 7px 15px; border-radius: 30px; transition: background 0.2s, color 0.2s; letter-spacing: 0.01em; }

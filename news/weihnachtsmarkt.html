@@ -9,26 +9,8 @@
 <title>Impressionen vom Weihnachtsmarkt – MS Hirtenberg</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../variables.css">
 <style>
-  :root {
-    --sage:        oklch(52% 0.10 145);
-    --sage-dark:   oklch(38% 0.09 145);
-    --sage-mid:    oklch(62% 0.09 145);
-    --sage-light:  oklch(80% 0.07 145);
-    --sage-pale:   oklch(95% 0.04 145);
-    --blush:       oklch(78% 0.08 15);
-    --blush-dark:  oklch(56% 0.11 15);
-    --blush-pale:  oklch(96% 0.03 15);
-    --cream:       oklch(98% 0.008 88);
-    --cream-mid:   oklch(96% 0.012 88);
-    --cream-dark:  oklch(92% 0.018 88);
-    --text:        oklch(28% 0.05 145);
-    --text-light:  oklch(55% 0.04 145);
-    --white: #fff;
-    --font-heading: 'Lora', Georgia, serif;
-    --font-body: 'Nunito', system-ui, sans-serif;
-    --radius: 12px; --radius-lg: 20px;
-  }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
   nav { background: var(--white); display: flex; align-items: center; justify-content: space-between; padding: 0 48px; height: 68px; border-bottom: 1.5px solid var(--cream-dark); box-shadow: 0 2px 20px oklch(0% 0 0 / 6%); position: sticky; top: 0; z-index: 100; }
@@ -61,7 +43,7 @@
   .stat-label { font-size: 0.82rem; color: var(--text-light); font-weight: 600; margin-top: 8px; }
   .back-link { display: inline-flex; align-items: center; gap: 8px; color: var(--sage); font-weight: 700; text-decoration: none; font-size: 0.9rem; margin-bottom: 40px; transition: gap 0.2s; }
   .back-link:hover { gap: 12px; color: var(--sage-dark); }
-  footer { background: var(--sage-dark); padding: 32px 48px; display: flex; align-items: center; justify-content: space-between; color: var(--sage-light); font-size: 0.83rem; }
+  footer { background: var(--sage-dark); padding: 32px 48px; display: flex; align-items: center; justify-content: space-between; color: var(--sage-light); font-size: 0.85rem; }
   footer a { color: var(--sage-light); text-decoration: none; }
   footer a:hover { color: var(--white); }
   @media (max-width: 768px) {
@@ -73,6 +55,20 @@
     .article-photo-grid img.wide, .article-photo-grid img.tall { grid-column: unset; aspect-ratio: 4/3; }
     .stat-row { grid-template-columns: 1fr; }
     footer { flex-direction: column; gap: 12px; text-align: center; }
+  }
+
+  /* WEITERE BEITRÄGE (Vorher/Nächster) */
+  .post-nav { max-width: 800px; margin: 0 auto; padding: 30px 48px 84px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; border-top: 1.5px solid var(--cream-dark); }
+  .post-nav.single { grid-template-columns: 1fr; }
+  .post-nav-link { display: flex; flex-direction: column; gap: 3px; padding: 13px 16px; background: transparent; border: 1px solid var(--cream-dark); border-radius: var(--radius); text-decoration: none; transition: background 0.2s, border-color 0.2s; }
+  .post-nav-link:hover { background: var(--white); border-color: var(--sage-light); }
+  .post-nav-link.next { text-align: right; align-items: flex-end; }
+  .post-nav-dir { font-size: 0.66rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.09em; color: var(--sage); white-space: nowrap; }
+  .post-nav-title { font-family: var(--font-body); font-size: 0.9rem; font-weight: 600; color: var(--text); line-height: 1.35; }
+  .post-nav-link:hover .post-nav-title { color: var(--sage-dark); }
+  @media (max-width: 768px) {
+    .post-nav { grid-template-columns: 1fr; padding: 32px 20px 70px; }
+    .post-nav-link.next { text-align: left; align-items: flex-start; }
   }
 </style>
 </head>
@@ -164,6 +160,13 @@
 
     <p>Wir bedanken uns herzlich bei allen, die mit ihrem Besuch, ihrer Mithilfe und ihrer Unterstützung zu diesen schönen Tagen beigetragen haben. Wir freuen uns schon jetzt auf den nächsten Weihnachtsmarkt!</p>
   </div>
+</div>
+
+<div class="post-nav single" role="navigation" aria-label="Weitere Beiträge">
+  <a class="post-nav-link prev" href="sporttag.html">
+    <span class="post-nav-dir">← Vorheriger Beitrag</span>
+    <span class="post-nav-title">Sporttag 2026 – Anmeldungen offen</span>
+  </a>
 </div>
 
 <footer>
