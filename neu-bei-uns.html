@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<title>Neu bei uns? – MS Hirtenberg</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="variables.css">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--font-body); background: var(--cream); color: var(--text); font-size: 17px; line-height: 1.65; }
+
+/* ─── NAV ─── */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--white);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 48px; height: 68px;
+  border-bottom: 1.5px solid var(--cream-dark);
+  box-shadow: 0 2px 20px oklch(0% 0 0 / 6%);
+}
+.nav-logo { font-family: var(--font-heading); color: var(--sage-dark); font-size: 1.2rem; font-weight: 700; letter-spacing: -0.02em; text-decoration: none; display: flex; align-items: center; gap: 10px; }
+.nav-pill { display: inline-flex; align-items: center; background: var(--white); color: var(--sage); font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.13em; padding: 5px 14px; border-radius: 30px; border: 1.5px solid var(--sage-pale); white-space: nowrap; }
+.nav-links { display: flex; gap: 4px; list-style: none; }
+.nav-links a { color: var(--text-light); text-decoration: none; font-size: 0.88rem; font-weight: 600; padding: 7px 15px; border-radius: 30px; transition: background 0.2s, color 0.2s; }
+.nav-links a:hover { background: var(--sage-pale); color: var(--sage-dark); } .nav-links a.nav-cta { color: var(--sage-dark); font-weight: 800; white-space: nowrap; } .nav-links a.nav-cta:hover, .nav-links a.nav-cta.active { background: var(--sage); color: var(--white); }
+
+/* ─── HERO ─── */
+.page-hero {
+  position: relative;
+  min-height: 480px;
+  display: flex; align-items: flex-end;
+  overflow: hidden;
+  background: var(--sage-pale);
+}
+.page-hero-bg {
+  position: absolute; inset: 0;
+  background-image: url("uploads/ChatGPT Image 10. Juni 2026, 16_44_33.png");
+  background-size: cover; background-position: center 30%;
+}
+.page-hero-bg::after {
+  content: ''; position: absolute; inset: 0;
+  background:
+    linear-gradient(to right, oklch(98% 0.008 88 / 0.97) 0%, oklch(98% 0.008 88 / 0.90) 35%, oklch(97% 0.02 60 / 0.55) 58%, transparent 80%),
+    linear-gradient(to top, oklch(28% 0.07 145 / 0.18) 0%, transparent 40%);
+}
+.page-hero-content {
+  position: relative; z-index: 2;
+  padding: 72px 96px 64px;
+  max-width: 740px;
+}
+.page-hero-tag {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: var(--white); color: var(--sage);
+  font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em;
+  padding: 5px 16px; border-radius: 30px; margin-bottom: 18px;
+  border: 1.5px solid var(--sage-pale);
+  box-shadow: 0 2px 12px oklch(0% 0 0 / 6%);
+}
+.page-hero-tag::before { content: ''; width: 6px; height: 6px; background: var(--sage); border-radius: 50%; }
+.page-hero h1 {
+  font-family: var(--font-heading); font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 700; color: var(--text); line-height: 1.18; margin-bottom: 18px;
+  text-wrap: pretty;
+}
+.page-hero h1 em { color: var(--sage); font-style: italic; }
+.page-hero-sub {
+  color: var(--text-light); font-size: 1.05rem; max-width: 520px;
+  line-height: 1.7; margin-bottom: 36px; text-wrap: pretty;
+}
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 13px 28px; border-radius: 30px;
+  font-family: var(--font-body); font-size: 0.92rem; font-weight: 700;
+  text-decoration: none; cursor: pointer; border: none;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px oklch(0% 0 0 / 14%); }
+.btn-primary { background: var(--sage); color: var(--white); }
+.btn-outline { background: var(--white); color: var(--sage-dark); border: 1.5px solid var(--cream-dark); }
+.btn-outline:hover { border-color: var(--sage-light); background: var(--sage-pale); }
+.hero-cta { display: flex; gap: 14px; flex-wrap: wrap; }
+.hero-stats {
+  display: grid; grid-template-columns: auto auto;
+  gap: 16px 40px; margin-top: 34px; width: fit-content;
+}
+.hero-stat { display: flex; align-items: center; gap: 11px; white-space: nowrap; }
+.hero-stat-text { display: flex; align-items: baseline; gap: 6px; }
+.hero-stat-icon {
+  flex: none; width: 34px; height: 34px; border-radius: 9px;
+  background: var(--sage-pale);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--sage-dark);
+}
+.hero-stat-icon svg { width: 18px; height: 18px; }
+.hero-stat-num { font-family: var(--font-heading); font-size: 1.15rem; font-weight: 700; color: var(--sage-dark); line-height: 1; }
+.hero-stat-label { font-size: 0.86rem; color: var(--text-light); font-weight: 500; }
+@media (max-width: 560px) { .hero-stats { grid-template-columns: 1fr; } }
+
+/* ─── SECTIONS ─── */
+section { scroll-margin-top: 68px; }
+.section-inner { max-width: 1100px; margin: 0 auto; padding: 96px 48px; }
+.section-tag {
+  display: inline-flex; align-items: center; gap: 7px;
+  color: var(--sage); font-size: 0.75rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.14em; margin-bottom: 14px;
+}
+.section-tag::before { content: ''; display: inline-block; width: 18px; height: 1.5px; background: var(--sage-light); }
+.section-title { font-family: var(--font-heading); font-size: clamp(1.7rem, 2.8vw, 2.4rem); font-weight: 700; color: var(--text); line-height: 1.2; margin-bottom: 14px; text-wrap: pretty; }
+.section-subtitle { color: var(--text-light); max-width: 560px; font-size: 1.05rem; margin-bottom: 52px; text-wrap: pretty; line-height: 1.7; }
+
+/* ─── WARUM ─── */
+#warum { background: var(--white); }
+.warum-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.warum-card {
+  background: var(--cream);
+  border: 1.5px solid var(--cream-dark);
+  border-radius: var(--radius-lg);
+  padding: 32px 28px;
+  transition: transform 0.18s, box-shadow 0.18s, border-color 0.18s, background 0.18s;
+}
+.warum-card:hover { transform: translateY(-4px); background: var(--white); border-color: var(--sage-light); box-shadow: 0 10px 30px oklch(38% 0.06 145 / 0.10); }
+.warum-icon {
+  width: 52px; height: 52px; border-radius: 14px;
+  background: var(--sage-pale); border: 1.5px solid var(--sage-light);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--sage-dark); margin-bottom: 20px;
+}
+.warum-icon svg { width: 26px; height: 26px; }
+.warum-title { font-family: var(--font-heading); font-size: 1.1rem; font-weight: 700; color: var(--text); margin-bottom: 10px; }
+.warum-text { font-size: 0.9rem; color: var(--text-light); line-height: 1.65; text-wrap: pretty; }
+
+/* ─── SCHWERPUNKTE ─── */
+#schwerpunkte { background: var(--cream-mid); }
+.sp-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 40px; }
+.sp-pill {
+  display: flex; align-items: center; gap: 13px;
+  background: var(--white); border: 1.5px solid var(--cream-dark);
+  border-radius: var(--radius); padding: 14px 18px;
+  text-decoration: none; color: inherit;
+  transition: border-color 0.18s, box-shadow 0.18s, transform 0.18s;
+}
+.sp-pill:hover { border-color: var(--sage-light); box-shadow: 0 4px 16px oklch(38% 0.06 145 / 0.10); transform: translateY(-2px); }
+.sp-pill-icon { width: 38px; height: 38px; flex: none; border-radius: 10px; background: var(--sage-pale); display: flex; align-items: center; justify-content: center; color: var(--sage-dark); }
+.sp-pill-icon svg { width: 20px; height: 20px; }
+.sp-pill-title { font-weight: 700; font-size: 0.92rem; color: var(--text); }
+.sp-pill-sub { font-size: 0.78rem; color: var(--text-light); }
+
+/* ─── AUFNAHME / SCHRITTE ─── */
+#aufnahme { background: var(--white); }
+.steps-layout { display: grid; grid-template-columns: 1fr 380px; gap: 64px; align-items: start; }
+.steps-list { display: flex; flex-direction: column; gap: 0; }
+.step {
+  display: flex; gap: 24px;
+  padding: 28px 0;
+  border-bottom: 1.5px solid var(--cream-dark);
+  position: relative;
+}
+.step:last-child { border-bottom: none; }
+.step-num {
+  flex: none; width: 44px; height: 44px;
+  border-radius: 50%;
+  background: var(--sage-pale); border: 2px solid var(--sage-light);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-heading); font-size: 1.05rem; font-weight: 700;
+  color: var(--sage-dark);
+  transition: background 0.18s, border-color 0.18s;
+}
+.step:hover .step-num { background: var(--sage); border-color: var(--sage); color: var(--white); }
+.step-body {}
+.step-title { font-weight: 700; font-size: 1rem; color: var(--text); margin-bottom: 6px; }
+.step-text { font-size: 0.9rem; color: var(--text-light); line-height: 1.65; text-wrap: pretty; }
+.step-badge {
+  display: inline-flex; align-items: center; gap: 6px; margin-top: 10px;
+  background: var(--sage-pale); border: 1.5px solid var(--sage-light);
+  border-radius: 30px; padding: 4px 12px;
+  font-size: 0.76rem; font-weight: 700; color: var(--sage-dark);
+}
+.step-badge svg { width: 13px; height: 13px; }
+
+/* Aufnahme Sidebar */
+.aufnahme-card {
+  background: var(--sage-dark);
+  border-radius: var(--radius-lg);
+  padding: 32px 28px;
+  color: var(--white);
+  position: sticky; top: 88px;
+}
+.aufnahme-card-label {
+  font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.12em;
+  color: var(--sage-light); margin-bottom: 10px;
+}
+.aufnahme-card-title {
+  font-family: var(--font-heading); font-size: 1.35rem; font-weight: 700;
+  line-height: 1.25; margin-bottom: 8px; color: var(--white);
+}
+.aufnahme-card-date {
+  font-size: 2rem; font-family: var(--font-heading); font-weight: 700;
+  color: oklch(92% 0.07 88); margin-bottom: 4px; line-height: 1;
+}
+.aufnahme-card-day {
+  font-size: 0.88rem; color: var(--sage-light); margin-bottom: 20px;
+}
+.aufnahme-divider { height: 1px; background: oklch(100% 0 0 / 12%); margin: 20px 0; }
+.aufnahme-info-row { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 13px; }
+.aufnahme-info-row svg { flex: none; color: var(--sage-light); margin-top: 2px; }
+.aufnahme-info-text { font-size: 0.88rem; line-height: 1.5; }
+.aufnahme-info-text strong { color: var(--white); font-weight: 700; display: block; }
+.aufnahme-info-text span { color: var(--sage-light); }
+.aufnahme-card .btn-primary {
+  width: 100%; justify-content: center; margin-top: 24px;
+  background: oklch(92% 0.07 88); color: var(--sage-dark);
+}
+.aufnahme-card .btn-primary:hover { background: var(--white); }
+
+/* ─── ELTERNSTIMMEN ─── */
+#stimmen { background: var(--sage-pale); position: relative; overflow: hidden; }
+#stimmen::before {
+  content: ''; position: absolute; top: -40px; right: -40px;
+  width: 260px; height: 260px; opacity: 0.4;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Ccircle cx='100' cy='100' r='90' fill='none' stroke='%23739e6e' stroke-width='1'/%3E%3Ccircle cx='100' cy='100' r='60' fill='none' stroke='%23739e6e' stroke-width='1'/%3E%3C/svg%3E");
+  background-size: contain; background-repeat: no-repeat; pointer-events: none;
+}
+.stimmen-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.stimme-card {
+  background: var(--white); border-radius: var(--radius-lg);
+  padding: 28px 26px 26px;
+  border: 1.5px solid var(--cream-dark);
+  box-shadow: 0 2px 12px oklch(0% 0 0 / 5%);
+  display: flex; flex-direction: column; gap: 18px;
+}
+.stimme-quote-icon { color: var(--sage-light); }
+.stimme-quote-icon svg { width: 30px; height: 30px; }
+.stimme-text {
+  font-family: var(--font-heading); font-style: italic;
+  font-size: 0.98rem; color: var(--text); line-height: 1.65;
+  flex: 1; text-wrap: pretty;
+}
+.stimme-author { display: flex; align-items: center; gap: 12px; }
+.stimme-avatar {
+  width: 40px; height: 40px; border-radius: 50%; flex: none;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 0.85rem; color: var(--white);
+}
+.stimme-name { font-weight: 700; font-size: 0.88rem; color: var(--text); }
+.stimme-role { font-size: 0.78rem; color: var(--text-light); }
+.stimme-disclaimer {
+  text-align: center; margin-top: 32px;
+  font-size: 0.8rem; color: var(--text-light); font-style: italic;
+}
+
+/* ─── FAQ ─── */
+#faq { background: var(--cream-mid); }
+.faq-layout { display: grid; grid-template-columns: 280px 1fr; gap: 64px; align-items: start; }
+.faq-sidebar-title { font-family: var(--font-heading); font-size: 1.1rem; font-weight: 700; color: var(--text); margin-bottom: 16px; }
+.faq-cats { display: flex; flex-direction: column; gap: 4px; }
+.faq-cat {
+  padding: 9px 14px; border-radius: 30px;
+  font-size: 0.88rem; font-weight: 700; color: var(--text-light);
+  cursor: pointer; transition: background 0.15s, color 0.15s;
+  border: none; background: none; text-align: left;
+}
+.faq-cat:hover { background: var(--white); color: var(--sage-dark); }
+.faq-cat.active { background: var(--white); color: var(--sage-dark); box-shadow: 0 2px 10px oklch(0% 0 0 / 7%); }
+.faq-list { display: flex; flex-direction: column; gap: 8px; }
+.faq-item {
+  background: var(--white); border-radius: var(--radius);
+  border: 1.5px solid var(--cream-dark);
+  overflow: hidden; transition: border-color 0.18s;
+}
+.faq-item.open { border-color: var(--sage-light); }
+.faq-q {
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  padding: 18px 20px;
+  font-weight: 700; font-size: 0.95rem; color: var(--text);
+  cursor: pointer; list-style: none;
+  transition: color 0.15s;
+}
+.faq-q:hover { color: var(--sage-dark); }
+.faq-q svg { flex: none; color: var(--sage); transition: transform 0.25s cubic-bezier(.4,0,.2,1); }
+.faq-item.open .faq-q svg { transform: rotate(180deg); }
+.faq-a {
+  max-height: 0; overflow: hidden;
+  transition: max-height 0.3s cubic-bezier(.4,0,.2,1), padding 0.2s;
+  font-size: 0.9rem; color: var(--text-light); line-height: 1.7;
+}
+.faq-item.open .faq-a { max-height: 400px; }
+.faq-a-inner { padding: 0 20px 18px; }
+.faq-a-inner a { color: var(--sage); font-weight: 700; text-decoration: none; }
+.faq-a-inner a:hover { color: var(--sage-dark); }
+
+/* ─── CTA-ABSCHLUSS ─── */
+#naechster-schritt { background: var(--white); }
+.cta-block {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+}
+.cta-card {
+  border-radius: var(--radius-lg); padding: 40px 36px;
+  border: 1.5px solid var(--cream-dark);
+  display: flex; flex-direction: column; gap: 14px;
+}
+.cta-card.primary { background: var(--sage-dark); border-color: var(--sage-dark); }
+.cta-card.secondary { background: var(--cream); }
+.cta-card-label { font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.12em; }
+.cta-card.primary .cta-card-label { color: var(--sage-light); }
+.cta-card.secondary .cta-card-label { color: var(--sage); }
+.cta-card-title { font-family: var(--font-heading); font-size: 1.45rem; font-weight: 700; line-height: 1.25; text-wrap: pretty; }
+.cta-card.primary .cta-card-title { color: var(--white); }
+.cta-card.secondary .cta-card-title { color: var(--text); }
+.cta-card-text { font-size: 0.92rem; line-height: 1.6; }
+.cta-card.primary .cta-card-text { color: var(--sage-light); }
+.cta-card.secondary .cta-card-text { color: var(--text-light); }
+.cta-card .btn { margin-top: 10px; align-self: flex-start; }
+.cta-card.primary .btn-primary { background: oklch(92% 0.07 88); color: var(--sage-dark); }
+.cta-card.primary .btn-primary:hover { background: var(--white); }
+.cta-card.secondary .btn-outline { border-color: var(--cream-dark); }
+
+/* ─── FOOTER ─── */
+footer { background: var(--sage-dark); padding: 32px 48px; display: flex; align-items: center; justify-content: space-between; color: var(--sage-light); font-size: 0.85rem; }
+footer a { color: var(--sage-light); text-decoration: none; }
+footer a:hover { color: var(--white); }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 900px) {
+  nav { padding: 0 20px; }
+  .nav-links { display: none; }
+  .page-hero-content { padding: 48px 24px 48px; }
+  .trust-band { padding: 18px 24px; gap: 24px; }
+  .section-inner { padding: 64px 24px; }
+  .warum-grid { grid-template-columns: 1fr; gap: 16px; }
+  .sp-row { grid-template-columns: 1fr 1fr; }
+  .steps-layout { grid-template-columns: 1fr; }
+  .aufnahme-card { position: static; }
+  .stimmen-grid { grid-template-columns: 1fr; }
+  .faq-layout { grid-template-columns: 1fr; }
+  .faq-cats { flex-direction: row; flex-wrap: wrap; }
+  .cta-block { grid-template-columns: 1fr; }
+  footer { flex-direction: column; gap: 12px; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <svg width="38" height="38" viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="19" cy="19" r="17" fill="none" stroke="oklch(52% 0.10 145)" stroke-width="1.3"/>
+      <circle cx="19" cy="19" r="13.5" fill="none" stroke="oklch(52% 0.10 145)" stroke-width="0.4" opacity="0.4"/>
+      <line x1="19" y1="27" x2="19" y2="22" stroke="oklch(52% 0.10 145)" stroke-width="1.4" stroke-linecap="round"/>
+      <path d="M19 22 C22 18 22 12 19 11 C16 12 16 18 19 22Z" fill="oklch(52% 0.10 145)"/>
+      <path d="M19 22 C15 19 12 15 13 13 C15 13 18 18 19 22Z" fill="oklch(68% 0.09 145)"/>
+      <path d="M19 22 C23 19 26 15 25 13 C23 13 20 18 19 22Z" fill="oklch(68% 0.09 145)"/>
+      <circle cx="19" cy="2" r="1.8" fill="oklch(60% 0.11 68)"/>
+    </svg>
+    <span class="nav-pill">Mittelschule Hirtenberg</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="neu-bei-uns.html" class="nav-cta active">Neu bei uns?</a></li>
+    <li><a href="index.html#news">Aktuelles</a></li>
+    <li><a href="termine.html">Termine</a></li>
+    <li><a href="index.html#team">Lehrpersonal</a></li>
+    <li><a href="galerie.html">Galerie</a></li>
+    <li><a href="index.html#kontakt">Kontakt</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-content">
+    <div class="page-hero-tag">Für Familien, die uns kennenlernen möchten</div>
+    <h1>Ihr Kind ist bei uns<br><em>in guten Händen.</em></h1>
+    <p class="page-hero-sub">Die Mittelschule Hirtenberg steht für persönliche Begleitung, starke Schwerpunkte und ein familiäres Schulklima — mitten im Triestingtal.</p>
+    <div class="hero-cta">
+      <a href="#aufnahme" class="btn btn-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="17" rx="2.5"/><line x1="3" y1="9.5" x2="21" y2="9.5"/><line x1="8" y1="2.5" x2="8" y2="6.5"/><line x1="16" y1="2.5" x2="16" y2="6.5"/></svg>
+        Tag der offenen Tür
+      </a>
+      <a href="#faq" class="btn btn-outline">Häufige Fragen</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <span class="hero-stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 20v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 20v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+        <span class="hero-stat-text"><span class="hero-stat-num">120</span><span class="hero-stat-label">Schüler:innen</span></span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span>
+        <span class="hero-stat-text"><span class="hero-stat-num">7</span><span class="hero-stat-label">Klassen</span></span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg></span>
+        <span class="hero-stat-text"><span class="hero-stat-num">6</span><span class="hero-stat-label">Schwerpunkte</span></span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-8-4.5-8-11a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.5-8 11-8 11z"/></svg></span>
+        <span class="hero-stat-text"><span class="hero-stat-label">Familiäres Klima im Triestingtal</span></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- WARUM MS HIRTENBERG -->
+<section id="warum">
+  <div class="section-inner">
+    <span class="section-tag">Warum wir</span>
+    <h2 class="section-title">Was die MS Hirtenberg besonders macht</h2>
+    <p class="section-subtitle">Eine Mittelschule, die Kinder als ganze Menschen sieht — nicht nur als Schülerinnen und Schüler.</p>
+    <div class="warum-grid">
+      <div class="warum-card">
+        <div class="warum-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+        </div>
+        <div class="warum-title">Individuelle Förderung</div>
+        <p class="warum-text">Jedes Kind hat seine eigenen Stärken. Wir begleiten die persönliche Entwicklung, stärken Talente und helfen gezielt dort, wo Unterstützung gebraucht wird — im Kleingruppenunterricht und durch engagiertes Lehrpersonal.</p>
+      </div>
+      <div class="warum-card">
+        <div class="warum-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 20v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 20v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <div class="warum-title">Familiäres Miteinander</div>
+        <p class="warum-text">Bei uns kennt man einander — vom Direktionszimmer bis zur letzten Bank. Kurze Wege, offene Türen und eine Schulgemeinschaft, die zusammenhält: das spürt man von Anfang an.</p>
+      </div>
+      <div class="warum-card">
+        <div class="warum-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12a5 5 0 0 0 5 5 8 8 0 0 1 5 2 8 8 0 0 1 5-2 5 5 0 0 0 5-5V7h-5a8 8 0 0 0-5 2 8 8 0 0 0-5-2H2Z"/></svg>
+        </div>
+        <div class="warum-title">Natur &amp; Nachhaltigkeit</div>
+        <p class="warum-text">Eingebettet im Triestingtal legen wir großen Wert auf Naturverbundenheit und nachhaltiges Denken. Ob Schulgarten, Junior Company oder Gesunde Schule — ökologisches Bewusstsein ist Teil unseres Alltags.</p>
+      </div>
+      <div class="warum-card">
+        <div class="warum-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></svg>
+        </div>
+        <div class="warum-title">Digitale Zukunft</div>
+        <p class="warum-text">Smartboards, digitale Grundbildung im Lehrplan und eine moderne Ausstattung bereiten Ihre Kinder auf die Anforderungen von morgen vor — ohne das Analoge zu vergessen.</p>
+      </div>
+      <div class="warum-card">
+        <div class="warum-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+        </div>
+        <div class="warum-title">Kreativität &amp; Kultur</div>
+        <p class="warum-text">Bläserklassen, Darstellendes Spiel und Kunstprojekte schaffen Raum für Kreativität. Kinder lernen, sich auszudrücken, auf der Bühne zu stehen und gemeinsam etwas zu erschaffen.</p>
+      </div>
+      <div class="warum-card">
+        <div class="warum-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+        </div>
+        <div class="warum-title">Klarer Weg nach vorne</div>
+        <p class="warum-text">Berufsorientierung ab der 2. Klasse hilft Ihrem Kind, früh ein Gespür für Interessen und Stärken zu entwickeln. Wir begleiten den Übergang nach der Pflichtschule aktiv und gezielt.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCHWERPUNKTE -->
+<section id="schwerpunkte">
+  <div class="section-inner">
+    <span class="section-tag">Angebote</span>
+    <h2 class="section-title">Unsere Schwerpunkte auf einen Blick</h2>
+    <p class="section-subtitle">Sechs besondere Bereiche, in denen wir über den Lehrplan hinausgehen.</p>
+    <div class="sp-row">
+      <a class="sp-pill" href="schwerpunkte.html#gesunde-schule">
+        <div class="sp-pill-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7Z"/></svg>
+        </div>
+        <div>
+          <div class="sp-pill-title">Gesunde Schule</div>
+          <div class="sp-pill-sub">Wohlbefinden &amp; Bewegung</div>
+        </div>
+      </a>
+      <a class="sp-pill" href="schwerpunkte.html#berufsorientierung">
+        <div class="sp-pill-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+        </div>
+        <div>
+          <div class="sp-pill-title">Berufsorientierung</div>
+          <div class="sp-pill-sub">Zukunft planen</div>
+        </div>
+      </a>
+      <a class="sp-pill" href="schwerpunkte.html#blaeserklassen">
+        <div class="sp-pill-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+        </div>
+        <div>
+          <div class="sp-pill-title">Bläserklassen</div>
+          <div class="sp-pill-sub">Musik &amp; Gemeinschaft</div>
+        </div>
+      </a>
+      <a class="sp-pill" href="schwerpunkte.html#darstellendes-spiel">
+        <div class="sp-pill-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12a5 5 0 0 0 5 5 8 8 0 0 1 5 2 8 8 0 0 1 5-2 5 5 0 0 0 5-5V7h-5a8 8 0 0 0-5 2 8 8 0 0 0-5-2H2Z"/></svg>
+        </div>
+        <div>
+          <div class="sp-pill-title">Darstellendes Spiel</div>
+          <div class="sp-pill-sub">Theater &amp; Ausdruck</div>
+        </div>
+      </a>
+      <a class="sp-pill" href="schwerpunkte.html#digitale-grundbildung">
+        <div class="sp-pill-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></svg>
+        </div>
+        <div>
+          <div class="sp-pill-title">Digitale Grundbildung</div>
+          <div class="sp-pill-sub">Medienkompetenz</div>
+        </div>
+      </a>
+      <a class="sp-pill" href="schwerpunkte.html#leseschwerpunkt">
+        <div class="sp-pill-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+        </div>
+        <div>
+          <div class="sp-pill-title">Leseschwerpunkt</div>
+          <div class="sp-pill-sub">Sprache &amp; Fantasie</div>
+        </div>
+      </a>
+    </div>
+    <div style="display:flex; justify-content:center;">
+      <a href="schwerpunkte.html" class="btn btn-outline">Alle Schwerpunkte im Detail
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- AUFNAHME -->
+<section id="aufnahme">
+  <div class="section-inner">
+    <span class="section-tag">Aufnahme</span>
+    <h2 class="section-title">Wie läuft die Einschreibung ab?</h2>
+    <p class="section-subtitle">Wir machen den Einstieg so einfach wie möglich. Hier finden Sie alle Schritte auf einen Blick.</p>
+    <div class="steps-layout">
+      <div class="steps-list">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <div class="step-title">Schule kennenlernen</div>
+            <p class="step-text">Besuchen Sie uns beim Tag der offenen Tür oder vereinbaren Sie einen persönlichen Schnuppertermin. Wir zeigen Ihnen die Schule, beantworten alle Fragen und stellen das Lehrpersonal vor.</p>
+            <span class="step-badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="17" rx="2.5"/><line x1="3" y1="9.5" x2="21" y2="9.5"/><line x1="8" y1="2.5" x2="8" y2="6.5"/><line x1="16" y1="2.5" x2="16" y2="6.5"/></svg>
+              Nächster Termin: 14. November 2026
+            </span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <div class="step-title">Einschreibung</div>
+            <p class="step-text">Die offizielle Einschreibung findet im Jänner/Februar statt. Sie benötigen die Schulnachricht der 4. Volksschulklasse, einen Lichtbildausweis des Kindes und ggf. das Jahreszeugnis.</p>
+            <span class="step-badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><polyline points="14 3 14 8 19 8"/></svg>
+              Jänner – Februar 2027
+            </span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <div class="step-title">Aufnahme &amp; Klasseneinteilung</div>
+            <p class="step-text">Nach der Einschreibung erhalten Sie eine schriftliche Bestätigung. Im Frühjahr informieren wir über die Klasseneinteilung und etwaige Schwerpunktwahl (z. B. Bläserklasse).</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-body">
+            <div class="step-title">Schulstart</div>
+            <p class="step-text">Im September startet Ihr Kind in der 1. Klasse. Ein Einführungstag zum Kennenlernen der Klasse und des Schulgebäudes findet vorab statt — damit der erste Tag kein Sprung ins kalte Wasser ist.</p>
+            <span class="step-badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+              September 2027
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar: Tag der offenen Tür -->
+      <div class="aufnahme-card">
+        <div class="aufnahme-card-label">Nächste Gelegenheit</div>
+        <div class="aufnahme-card-title">Tag der offenen Tür</div>
+        <div class="aufnahme-card-date">14. Nov.</div>
+        <div class="aufnahme-card-day">Freitag, 2026 · 14:00 – 17:00 Uhr</div>
+        <div class="aufnahme-divider"></div>
+        <div class="aufnahme-info-row">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <div class="aufnahme-info-text">
+            <strong>Mittelschule Hirtenberg</strong>
+            <span>Hauptstraße 23, 2552 Hirtenberg</span>
+          </div>
+        </div>
+        <div class="aufnahme-info-row">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 20v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+          <div class="aufnahme-info-text">
+            <strong>Für wen?</strong>
+            <span>Familien mit Kindern der 4. Volksschulklasse und alle Interessierten</span>
+          </div>
+        </div>
+        <div class="aufnahme-info-row">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+          <div class="aufnahme-info-text">
+            <strong>Was erwartet Sie?</strong>
+            <span>Schulführung, Unterrichtseinblicke, persönliche Gespräche mit Lehrpersonen</span>
+          </div>
+        </div>
+        <a href="index.html#kontakt" class="btn btn-primary">Jetzt anmelden</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ELTERNSTIMMEN -->
+<section id="stimmen">
+  <div class="section-inner">
+    <span class="section-tag">Elternstimmen</span>
+    <h2 class="section-title">Was Familien über uns sagen</h2>
+    <p class="section-subtitle">Die besten Empfehlungen kommen von Menschen, die uns bereits kennen.</p>
+    <div class="stimmen-grid">
+      <div class="stimme-card">
+        <div class="stimme-quote-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg>
+        </div>
+        <p class="stimme-text">„Unsere Tochter hat sich von Anfang an wohlgefühlt. Die Lehrerinnen kennen sie wirklich — nicht nur als Schülerin, sondern als Mensch. Das hat uns überzeugt."</p>
+        <div class="stimme-author">
+          <div class="stimme-avatar" style="background: linear-gradient(135deg, oklch(60% 0.10 145), oklch(44% 0.09 145));">KM</div>
+          <div>
+            <div class="stimme-name">Familie Mayer</div>
+            <div class="stimme-role">Eltern einer 2.-Klässlerin</div>
+          </div>
+        </div>
+      </div>
+      <div class="stimme-card">
+        <div class="stimme-quote-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg>
+        </div>
+        <p class="stimme-text">„Die Bläserklasse war für unseren Sohn eine Offenbarung. Er spielt jetzt Trompete und ist mit Begeisterung dabei — daran hätten wir vorher nie gedacht."</p>
+        <div class="stimme-author">
+          <div class="stimme-avatar" style="background: linear-gradient(135deg, oklch(74% 0.10 70), oklch(60% 0.11 60));">PH</div>
+          <div>
+            <div class="stimme-name">Familie Huber</div>
+            <div class="stimme-role">Eltern eines 3.-Klässlers</div>
+          </div>
+        </div>
+      </div>
+      <div class="stimme-card">
+        <div class="stimme-quote-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg>
+        </div>
+        <p class="stimme-text">„Was uns am meisten beeindruckt hat: die Berufsorientierung ist kein Pflichtprogramm, sondern echte Begleitung. Unsere Tochter weiß heute viel besser, wohin sie möchte."</p>
+        <div class="stimme-author">
+          <div class="stimme-avatar" style="background: linear-gradient(135deg, oklch(72% 0.09 15), oklch(56% 0.11 15));">SR</div>
+          <div>
+            <div class="stimme-name">Familie Richter</div>
+            <div class="stimme-role">Eltern einer Absolventin</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="stimme-disclaimer">Zitate mit freundlicher Genehmigung der Familien. Namen auf Wunsch geändert.</p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="section-inner">
+    <span class="section-tag">Häufige Fragen</span>
+    <h2 class="section-title">Was Eltern uns oft fragen</h2>
+    <p class="section-subtitle">Haben Sie eine Frage, die hier nicht steht? Wir freuen uns über Ihre Nachricht.</p>
+    <div class="faq-layout">
+      <div>
+        <div class="faq-sidebar-title">Themen</div>
+        <div class="faq-cats">
+          <button class="faq-cat active" data-cat="alle">Alle Fragen</button>
+          <button class="faq-cat" data-cat="aufnahme">Aufnahme</button>
+          <button class="faq-cat" data-cat="alltag">Schulalltag</button>
+          <button class="faq-cat" data-cat="kosten">Kosten</button>
+          <button class="faq-cat" data-cat="weiterführend">Weiterführend</button>
+        </div>
+      </div>
+      <div class="faq-list" id="faq-list">
+        <!-- JS rendered -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NÄCHSTER SCHRITT -->
+<section id="naechster-schritt">
+  <div class="section-inner">
+    <span class="section-tag">Nächster Schritt</span>
+    <h2 class="section-title">Wir freuen uns auf Sie.</h2>
+    <p class="section-subtitle">Kommen Sie vorbei, rufen Sie an oder schreiben Sie uns — wir beantworten alle Fragen gerne persönlich.</p>
+    <div class="cta-block">
+      <div class="cta-card primary">
+        <div class="cta-card-label">Persönlich kennenlernen</div>
+        <div class="cta-card-title">Tag der offenen Tür am 14. November</div>
+        <p class="cta-card-text">Schulführung, Unterrichtseinblicke und persönliche Gespräche mit unserem Lehrpersonal. Für Familien mit Volksschulkindern — und alle, die neugierig sind.</p>
+        <a href="index.html#kontakt" class="btn btn-primary">Anmeldung &amp; Kontakt</a>
+      </div>
+      <div class="cta-card secondary">
+        <div class="cta-card-label">Auf eigene Faust stöbern</div>
+        <div class="cta-card-title">Mehr über die MS Hirtenberg entdecken</div>
+        <p class="cta-card-text">Werfen Sie einen Blick auf unsere Schwerpunkte, die aktuellen Schulprojekte oder blättern Sie durch die Galerie — um ein Gefühl für das Leben bei uns zu bekommen.</p>
+        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;">
+          <a href="schwerpunkte.html" class="btn btn-outline">Schwerpunkte</a>
+          <a href="aktuelles.html" class="btn btn-outline">Aktuelles</a>
+          <a href="galerie.html" class="btn btn-outline">Galerie</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2026 Mittelschule Hirtenberg</span>
+  <div style="display:flex; gap:24px; flex-wrap:wrap; justify-content:center;">
+    <a href="impressum.html">Impressum</a>
+    <a href="datenschutz.html">Datenschutz</a>
+    <a href="barrierefreiheit.html">Barrierefreiheit</a>
+  </div>
+</footer>
+
+<script>
+/* ─── FAQ DATA ─── */
+const faqs = [
+  {
+    cat: "aufnahme",
+    q: "Wann findet die Einschreibung statt?",
+    a: "Die Einschreibung für das Schuljahr 2027/28 findet im Jänner und Februar 2027 statt. Genaue Termine werden rechtzeitig auf dieser Website und über die Volksschulen kommuniziert."
+  },
+  {
+    cat: "aufnahme",
+    q: "Welche Unterlagen brauche ich für die Einschreibung?",
+    a: "Benötigt werden die aktuelle Schulnachricht (4. Volksschulklasse), ein Lichtbildausweis des Kindes sowie das letzte Jahreszeugnis. Bei Fragen stehen wir gerne zur Verfügung."
+  },
+  {
+    cat: "aufnahme",
+    q: "Kann ich auch außerhalb der Einschreibezeit vorbeikommen?",
+    a: "Ja — vereinbaren Sie einfach einen persönlichen Termin mit der Schulleitung. Wir nehmen uns gerne Zeit für ein Gespräch. Schreiben Sie uns über das <a href=\"index.html#kontakt\">Kontaktformular</a> oder rufen Sie an."
+  },
+  {
+    cat: "alltag",
+    q: "Wann beginnt und endet der Unterricht?",
+    a: "Der Unterricht beginnt in der Regel um 7:55 Uhr. Die genauen Stundenzeiten und Pausenzeiten finden Sie auf der Seite <a href=\"stundenzeiten.html\">Stundenzeiten</a>."
+  },
+  {
+    cat: "alltag",
+    q: "Gibt es eine Nachmittagsbetreuung?",
+    a: "Ja, an der MS Hirtenberg gibt es eine Nachmittagsbetreuung für Schülerinnen und Schüler. Details zu Anmeldung und Zeiten erfahren Sie direkt beim Sekretariat."
+  },
+  {
+    cat: "alltag",
+    q: "Wie läuft der erste Schultag ab?",
+    a: "Vor dem offiziellen Schulstart gibt es einen Einführungstag, an dem die neue Klasse zusammenkommt, das Gebäude erkundet wird und sich alle Beteiligten kennenlernen — damit der Einstieg so sanft wie möglich ist."
+  },
+  {
+    cat: "alltag",
+    q: "Wie sind die Klassen zusammengestellt?",
+    a: "Die Klasseneinteilung erfolgt durch die Schulleitung nach pädagogischen Gesichtspunkten. Dabei wird auf eine ausgewogene Zusammensetzung geachtet. Wünsche können im Gespräch geäußert werden, sind aber nicht bindend."
+  },
+  {
+    cat: "kosten",
+    q: "Was kostet die Mittelschule?",
+    a: "Der Unterricht an einer öffentlichen Mittelschule ist kostenlos. Für Schulveranstaltungen, Ausflüge oder freiwillige Angebote (z.B. Bläserklasse) können geringe Beiträge anfallen. Details werden beim Einschreibegespräch erläutert."
+  },
+  {
+    cat: "kosten",
+    q: "Gibt es Unterstützung bei Schulbedarf?",
+    a: "Für Schulfamilien mit geringerem Einkommen gibt es Unterstützungsmöglichkeiten (z.B. Schulbeihilfe, Schülerfreifahrt, vergünstigte Mittagsverpflegung). Sprechen Sie uns vertraulich an."
+  },
+  {
+    cat: "weiterführend",
+    q: "Welche Schulen kann ich nach der MS besuchen?",
+    a: "Nach der Mittelschule stehen alle Wege offen: AHS-Oberstufe, BHS (z.B. HTL, HAK, HLW), Berufsschule oder BMS. Unser Berufsorientierungsprogramm bereitet Schülerinnen und Schüler gezielt auf diese Entscheidung vor."
+  },
+  {
+    cat: "weiterführend",
+    q: "Ist der Übergang in eine AHS nach der MS möglich?",
+    a: "Ja — mit entsprechender Beurteilung ist der Wechsel in eine AHS-Oberstufe möglich. Wir unterstützen dabei mit gezielter Vorbereitung und Empfehlungsschreiben."
+  }
+];
+
+/* ─── FAQ RENDER ─── */
+let activeCat = 'alle';
+const list = document.getElementById('faq-list');
+
+function renderFaq() {
+  const filtered = activeCat === 'alle' ? faqs : faqs.filter(f => f.cat === activeCat);
+  list.innerHTML = filtered.map((f, i) => `
+    <div class="faq-item" data-index="${i}">
+      <div class="faq-q">
+        <span>${f.q}</span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="faq-a"><div class="faq-a-inner">${f.a}</div></div>
+    </div>
+  `).join('');
+
+  list.querySelectorAll('.faq-q').forEach(q => {
+    q.addEventListener('click', () => {
+      const item = q.closest('.faq-item');
+      const wasOpen = item.classList.contains('open');
+      list.querySelectorAll('.faq-item').forEach(el => el.classList.remove('open'));
+      if (!wasOpen) item.classList.add('open');
+    });
+  });
+}
+
+document.querySelectorAll('.faq-cat').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.faq-cat').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    activeCat = btn.dataset.cat;
+    renderFaq();
+  });
+});
+
+renderFaq();
+</script>
+</body>
+</html>

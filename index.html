@@ -61,6 +61,8 @@
     background: var(--sage-pale);
     color: var(--sage-dark);
   }
+  .nav-links a.nav-cta { color: var(--sage-dark); font-weight: 800; white-space: nowrap; }
+  .nav-links a.nav-cta:hover { background: var(--sage); color: var(--white); }
 
   /* ─── HERO ─── */
   #home {
@@ -71,15 +73,25 @@
     padding-bottom: 60px;
     background: linear-gradient(135deg, var(--sage-pale) 0%, oklch(96% 0.03 100) 60%, var(--blush-pale) 100%);
   }
+  /* ─── HERO PHOTO WRAP (Slideshow) ─── */
+  .hero-photo-wrap {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
   .hero-photo {
     position: absolute;
     inset: 0;
-    background-image: url("uploads/ChatGPT Image 9. Juni 2026, 14_43_03.png");
     background-size: cover;
     background-position: right center;
-    z-index: 1;
+    opacity: 0;
+    transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1);
   }
-  /* Das neue Bild hat links bereits hellen Bereich – leichte Abdeckung reicht */
+  .hero-photo.active { opacity: 1; }
+  #hero-img-1 { background-image: url("uploads/ChatGPT Image 9. Juni 2026, 14_43_03.png"); }
+  #hero-img-2 { background-image: url("uploads/ChatGPT Image 10. Juni 2026, 16_44_33.png"); background-position: center center; }
+  #hero-img-3 { background-image: url("uploads/ChatGPT Image 10. Juni 2026, 18_29_42.png"); background-position: center center; }
+  #hero-img-4 { background-image: url("uploads/ChatGPT Image 10. Juni 2026, 18_43_28.png"); background-position: center center; }
   .hero-photo::after {
     content: ''; position: absolute; inset: 0;
     background:
@@ -327,12 +339,46 @@
   }
   .hero-chip-all:hover { color: var(--sage-dark); }
 
+  /* ─── HERO BILD-SWITCHER ─── */
+  .hero-switcher {
+    position: absolute;
+    z-index: 4;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: oklch(100% 0 0 / 0.28);
+    backdrop-filter: blur(12px) saturate(1.2);
+    -webkit-backdrop-filter: blur(12px) saturate(1.2);
+    border: 1.5px solid oklch(100% 0 0 / 0.65);
+    border-radius: 30px;
+    padding: 7px 14px;
+    box-shadow: 0 2px 14px oklch(0% 0 0 / 8%);
+  }
+  .hero-sw-dot {
+    height: 8px;
+    border-radius: 4px;
+    border: none;
+    background: oklch(52% 0.10 145 / 0.35);
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.25s, width 0.3s cubic-bezier(0.4,0,0.2,1);
+    width: 20px;
+  }
+  .hero-sw-dot:hover { background: oklch(52% 0.10 145 / 0.6); }
+  .hero-sw-dot.active {
+    background: var(--sage);
+    width: 32px;
+  }
+
   /* ─── HERO SCHNELLZUGRIFF ─── */
   .hero-quick {
     position: absolute;
     z-index: 3;
     right: 56px; bottom: 22px;
-    width: min(680px, calc(100% - 80px));
+    width: min(744px, calc(100% - 64px));
     background: oklch(100% 0 0 / 0.35);
     backdrop-filter: blur(12px) saturate(1.2);
     -webkit-backdrop-filter: blur(12px) saturate(1.2);
@@ -340,14 +386,14 @@
     border-radius: var(--radius-lg);
     box-shadow: 0 12px 36px oklch(38% 0.06 145 / 0.12);
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     padding: 6px;
   }
   .quick-item {
     position: relative;
     display: flex; flex-direction: column; align-items: center; justify-content: center;
     gap: 3px;
-    padding: 5px 8px;
+    padding: 5px 4px;
     text-decoration: none;
     border-radius: var(--radius);
     transition: background 0.18s;
@@ -407,6 +453,7 @@
   /* ─── SCHWERPUNKTE (Karten) ─── */
   .sp-card {
     display: flex; align-items: center; gap: 13px;
+    text-decoration: none; color: inherit;
     background: var(--sage-pale);
     border: 1.5px solid transparent;
     border-radius: var(--radius);
@@ -777,13 +824,15 @@
     nav { padding: 0 24px; }
     #home { flex-direction: column; min-height: auto; padding-bottom: 0; }
     .hero-content { padding: 56px 24px 28px; order: 1; }
-    .hero-photo {
+    .hero-photo-wrap {
       position: relative; order: 2;
       width: 100%; height: 280px;
       -webkit-mask-image: linear-gradient(to bottom, transparent 0%, oklch(0% 0 0) 30%);
       mask-image: linear-gradient(to bottom, transparent 0%, oklch(0% 0 0) 30%);
     }
+    .hero-photo { position: absolute; }
     .hero-photo::after { display: none; }
+    .hero-switcher { top: 16px; left: 50%; transform: translateX(-50%); }
     .hero-stats { position: static; order: 3; padding: 24px; gap: 24px; flex-wrap: wrap; }
     .hero-aside {
       position: static; order: 2;
@@ -830,7 +879,7 @@
     <span class="nav-pill">Mittelschule Hirtenberg</span>
   </a>
   <ul class="nav-links">
-    <li><a href="#ueber">Über uns</a></li>
+    <li><a href="neu-bei-uns.html" class="nav-cta">Neu bei uns?</a></li>
     <li><a href="#news">Aktuelles</a></li>
     <li><a href="termine.html">Termine</a></li>
     <li><a href="#team">Lehrpersonal</a></li>
@@ -841,8 +890,21 @@
 
 <!-- HERO -->
 <section id="home">
-  <div class="hero-photo"></div>
+  <div class="hero-photo-wrap">
+    <div class="hero-photo active" id="hero-img-1"></div>
+    <div class="hero-photo" id="hero-img-2"></div>
+    <div class="hero-photo" id="hero-img-3"></div>
+    <div class="hero-photo" id="hero-img-4"></div>
+  </div>
   <div class="hero-bg"></div>
+
+  <!-- Bild-Umschalter -->
+  <div class="hero-switcher" role="group" aria-label="Hero-Bild wählen">
+    <button class="hero-sw-dot active" data-idx="0" aria-label="Bild 1" aria-pressed="true"></button>
+    <button class="hero-sw-dot" data-idx="1" aria-label="Bild 2" aria-pressed="false"></button>
+    <button class="hero-sw-dot" data-idx="2" aria-label="Bild 3" aria-pressed="false"></button>
+    <button class="hero-sw-dot" data-idx="3" aria-label="Bild 4" aria-pressed="false"></button>
+  </div>
 
   <div class="hero-content">
     <h1 class="hero-title"><span class="word" style="--d:0">Lernen,</span> <span class="word" style="--d:1"><em>wachsen</em>,</span><br><span class="word" style="--d:2">die</span> <span class="word" style="--d:3">Zukunft</span> <span class="word" style="--d:4">gestalten.</span></h1>
@@ -893,6 +955,10 @@
       <svg class="quick-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><polyline points="14 3 14 8 19 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="13" y2="17"/></svg>
       <span class="quick-label">Formulare</span>
     </a>
+    <a class="quick-item" href="schoolfox.html">
+      <img class="quick-icon" src="uploads/Design ohne Titel(1).png" alt="" />
+      <span class="quick-label">SchoolFox</span>
+    </a>
     <a class="quick-item" href="#team">
       <svg class="quick-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 20v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9.5" cy="7" r="3.5"/><path d="M22 20v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.5a4 4 0 0 1 0 7"/></svg>
       <span class="quick-label">Team</span>
@@ -917,42 +983,47 @@
         <p style="color: var(--text-light); margin-bottom: 20px;">Die Mittelschule Hirtenberg liegt eingebettet in der grünen Umgebung des Triestingtal. Seit Jahrzehnten begleiten wir junge Menschen auf ihrem Weg — mit zeitgemäßem Unterricht, einem starken Miteinander und einem offenen Klima.</p>
         <p style="color: var(--text-light);">Wir legen besonderen Wert auf Nachhaltigkeit, Naturverbundenheit und die persönliche Entfaltung jedes einzelnen Kindes.</p>
         <div class="about-features">
-          <div class="sp-card">
+          <a class="sp-card" href="schwerpunkte.html#gesunde-schule">
             <div class="sp-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7Z"/></svg>
             </div>
             <div class="sp-title">Gesunde Schule</div>
-          </div>
-          <div class="sp-card">
+          </a>
+          <a class="sp-card" href="schwerpunkte.html#berufsorientierung">
             <div class="sp-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
             </div>
             <div class="sp-title">Berufsorientierung</div>
-          </div>
-          <div class="sp-card">
+          </a>
+          <a class="sp-card" href="schwerpunkte.html#blaeserklassen">
             <div class="sp-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
             </div>
             <div class="sp-title">Bläserklassen</div>
-          </div>
-          <div class="sp-card">
+          </a>
+          <a class="sp-card" href="schwerpunkte.html#darstellendes-spiel">
             <div class="sp-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12a5 5 0 0 0 5 5 8 8 0 0 1 5 2 8 8 0 0 1 5-2 5 5 0 0 0 5-5V7h-5a8 8 0 0 0-5 2 8 8 0 0 0-5-2H2Z"/><path d="M6 11c1.5 0 3 .5 3 2-2 0-3 0-3-2Z"/><path d="M18 11c-1.5 0-3 .5-3 2 2 0 3 0 3-2Z"/></svg>
             </div>
             <div class="sp-title">Darstellendes Spiel</div>
-          </div>
-          <div class="sp-card">
+          </a>
+          <a class="sp-card" href="schwerpunkte.html#digitale-grundbildung">
             <div class="sp-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></svg>
             </div>
             <div class="sp-title">Digitale Grundbildung</div>
-          </div>
-          <div class="sp-card">
+          </a>
+          <a class="sp-card" href="schwerpunkte.html#leseschwerpunkt">
             <div class="sp-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
             </div>
             <div class="sp-title">Leseschwerpunkt</div>
-          </div>
+          </a>
+        </div>
+        <div style="display:flex;justify-content:center;margin-top:24px;">
+          <a href="schwerpunkte.html" class="btn btn-outline">Alle Schwerpunkte entdecken
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
         </div>
       </div>
     </div>
@@ -1399,6 +1470,27 @@
     }).join('');
   }
   renderNewsTermine();
+
+  /* ── Hero Bild-Switcher (nur manuell) ── */
+  (function() {
+    const photos = document.querySelectorAll('.hero-photo');
+    const dots   = document.querySelectorAll('.hero-sw-dot');
+    let current  = 0;
+
+    function switchTo(idx) {
+      photos[current].classList.remove('active');
+      dots[current].classList.remove('active');
+      dots[current].setAttribute('aria-pressed', 'false');
+      current = idx;
+      photos[current].classList.add('active');
+      dots[current].classList.add('active');
+      dots[current].setAttribute('aria-pressed', 'true');
+    }
+
+    dots.forEach(dot => {
+      dot.addEventListener('click', () => switchTo(parseInt(dot.dataset.idx)));
+    });
+  })();
 </script>
 </body>
 </html>

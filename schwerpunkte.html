@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+<title>Schwerpunkte – MS Hirtenberg</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="variables.css">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--font-body); background: var(--cream); color: var(--text); font-size: 17px; line-height: 1.65; }
+
+  /* ─── NAV ─── */
+  nav { background: var(--white); display: flex; align-items: center; justify-content: space-between; padding: 0 48px; height: 68px; border-bottom: 1.5px solid var(--cream-dark); box-shadow: 0 2px 20px oklch(0% 0 0 / 6%); position: sticky; top: 0; z-index: 100; }
+  .nav-logo { font-family: var(--font-heading); color: var(--sage-dark); font-size: 1.2rem; font-weight: 700; letter-spacing: -0.02em; text-decoration: none; display: flex; align-items: center; gap: 10px; }
+  .nav-pill { display: inline-flex; align-items: center; background: var(--white); color: var(--sage); font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.13em; padding: 5px 14px; border-radius: 30px; border: 1.5px solid var(--sage-pale); white-space: nowrap; }
+  .nav-links { display: flex; gap: 4px; list-style: none; }
+  .nav-links a { color: var(--text-light); text-decoration: none; font-size: 0.88rem; font-weight: 600; padding: 7px 15px; border-radius: 30px; transition: background 0.2s, color 0.2s; letter-spacing: 0.01em; }
+  .nav-links a:hover, .nav-links a.active { background: var(--sage-pale); color: var(--sage-dark); } .nav-links a.nav-cta { color: var(--sage-dark); font-weight: 800; white-space: nowrap; } .nav-links a.nav-cta:hover, .nav-links a.nav-cta.active { background: var(--sage); color: var(--white); }
+
+  /* ─── PAGE HERO ─── */
+  .page-hero { padding: 56px 96px 104px; position: relative; overflow: hidden; background-color: var(--sage-pale); background-image: url("uploads/ChatGPT Image 9. Juni 2026, 14_43_03.png"); background-size: cover; background-position: right center; background-repeat: no-repeat; }
+  .page-hero::before { content: ''; position: absolute; inset: 0; z-index: 1; background: linear-gradient(to right, oklch(98% 0.008 88 / 0.99) 0%, oklch(98% 0.008 88 / 0.97) 48%, oklch(98% 0.012 80 / 0.80) 64%, oklch(97% 0.02 40 / 0.35) 82%, transparent 98%); pointer-events: none; }
+  .page-hero::after { content: ''; position: absolute; inset: 0; z-index: 1; background: linear-gradient(to top, oklch(38% 0.06 145 / 0.10), transparent 38%); pointer-events: none; }
+  .page-hero-inner { position: relative; z-index: 2; max-width: 1200px; margin: 0 auto; }
+  .page-hero-tag { display: inline-flex; align-items: center; gap: 7px; background: var(--white); color: var(--sage); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; padding: 5px 14px; border-radius: 30px; margin-bottom: 16px; border: 1.5px solid var(--sage-pale); }
+  .page-hero h1 { font-family: var(--font-heading); color: var(--text); font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; margin-bottom: 14px; line-height: 1.15; text-wrap: pretty; max-width: 620px; }
+  .page-hero h1 em { color: var(--sage); font-style: italic; }
+  .page-hero p { color: var(--text-light); max-width: 560px; font-size: 1.08rem; line-height: 1.7; text-wrap: pretty; }
+  .back-link { display: inline-flex; align-items: center; gap: 8px; color: var(--sage); font-weight: 700; text-decoration: none; font-size: 0.88rem; margin-bottom: 22px; transition: gap 0.2s; }
+  .back-link:hover { gap: 12px; }
+
+  /* ─── SPRUNG-NAVIGATION (sticky tabs) ─── */
+  .sp-nav { position: sticky; top: 68px; z-index: 90; background: oklch(99% 0.006 88 / 0.82); backdrop-filter: blur(12px) saturate(1.2); -webkit-backdrop-filter: blur(12px) saturate(1.2); border-bottom: 1.5px solid var(--cream-dark); }
+  .sp-nav-inner { max-width: 1200px; margin: 0 auto; display: flex; gap: 6px; padding: 11px 48px; overflow-x: auto; scrollbar-width: none; }
+  .sp-nav-inner::-webkit-scrollbar { display: none; }
+  .sp-tab { flex: none; display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: 30px; text-decoration: none; font-size: 0.86rem; font-weight: 700; color: var(--text-light); border: 1.5px solid transparent; transition: background 0.2s, color 0.2s, border-color 0.2s; white-space: nowrap; }
+  .sp-tab svg { width: 16px; height: 16px; }
+  .sp-tab:hover { background: var(--sage-pale); color: var(--sage-dark); }
+  .sp-tab.active { background: var(--white); color: var(--sage-dark); border-color: var(--sage-light); box-shadow: 0 2px 10px oklch(38% 0.06 145 / 0.10); }
+
+  /* ─── INTRO ─── */
+  .sp-intro { max-width: 760px; margin: 0 auto; padding: 76px 48px 8px; text-align: center; }
+  .sp-intro .eyebrow { display: inline-flex; align-items: center; gap: 7px; color: var(--sage); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; margin-bottom: 14px; }
+  .sp-intro .eyebrow::before, .sp-intro .eyebrow::after { content: ''; width: 18px; height: 1.5px; background: var(--sage-light); }
+  .sp-intro h2 { font-family: var(--font-heading); font-size: clamp(1.6rem, 2.6vw, 2.1rem); font-weight: 700; color: var(--text); line-height: 1.25; margin-bottom: 14px; text-wrap: pretty; }
+  .sp-intro p { color: var(--text-light); font-size: 1.06rem; line-height: 1.75; text-wrap: pretty; }
+
+  /* ─── BÄNDER ─── */
+  .sp-bands { max-width: 1200px; margin: 0 auto; padding: 40px 48px 40px; display: flex; flex-direction: column; gap: 28px; }
+  .sp-band { scroll-margin-top: 140px; display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; padding: 30px 0; }
+  .sp-band:nth-child(even) .sp-media { order: 2; }
+
+  /* Medien / Foto-Slot */
+  .sp-media { position: relative; aspect-ratio: 4/3; border-radius: var(--radius-lg); overflow: hidden; box-shadow: 0 18px 44px oklch(38% 0.06 145 / 0.16); border: 1.5px solid var(--cream-dark); background-color: var(--sage-pale); background-image: linear-gradient(135deg, var(--sage-pale), var(--sand-pale)); }
+  .sp-media-ph { position: absolute; inset: 0; z-index: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 9px; padding: 24px; text-align: center; }
+  .sp-media-ph::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(135deg, oklch(52% 0.10 145 / 0.06) 0 11px, transparent 11px 22px); }
+  .sp-media-ph svg { width: 34px; height: 34px; color: var(--sage-mid); position: relative; }
+  .sp-media-ph span { position: relative; font-family: 'Nunito', monospace; font-family: ui-monospace, monospace; font-size: 0.74rem; font-weight: 700; letter-spacing: 0.04em; color: oklch(45% 0.06 145); }
+  .sp-media img { position: relative; z-index: 1; width: 100%; height: 100%; object-fit: cover; display: block; opacity: 1; }
+  .sp-num { position: absolute; z-index: 2; top: 14px; left: 16px; font-family: var(--font-heading); font-size: 1.05rem; font-weight: 700; color: var(--white); background: oklch(38% 0.09 145 / 0.78); backdrop-filter: blur(4px); width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px oklch(0% 0 0 / 0.2); }
+
+  /* Text */
+  .sp-eyebrow { display: inline-flex; align-items: center; gap: 9px; margin-bottom: 14px; }
+  .sp-eyebrow .sp-chip-icon { width: 40px; height: 40px; flex: none; border-radius: 11px; background: var(--sage-pale); display: flex; align-items: center; justify-content: center; color: var(--sage-dark); }
+  .sp-eyebrow .sp-chip-icon svg { width: 22px; height: 22px; }
+  .sp-eyebrow .sp-kicker { font-size: 0.74rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.12em; color: var(--sage); }
+  .sp-band h3 { font-family: var(--font-heading); font-size: clamp(1.5rem, 2.4vw, 2rem); font-weight: 700; color: var(--text); line-height: 1.2; margin-bottom: 6px; text-wrap: pretty; }
+  .sp-lead { font-family: var(--font-heading); font-style: italic; font-size: 1.18rem; color: var(--sage-dark); margin-bottom: 16px; line-height: 1.4; }
+  .sp-body { color: var(--text-light); font-size: 1.02rem; line-height: 1.72; margin-bottom: 22px; text-wrap: pretty; }
+  .sp-facts { display: flex; flex-wrap: wrap; gap: 10px; }
+  .sp-fact { display: inline-flex; align-items: center; gap: 8px; background: var(--white); border: 1.5px solid var(--cream-dark); border-radius: 30px; padding: 7px 15px 7px 13px; font-size: 0.82rem; font-weight: 700; color: var(--text); }
+  .sp-fact::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--sage); flex: none; }
+
+  /* ─── ABSCHLUSS-CTA ─── */
+  .sp-cta { max-width: 1200px; margin: 8px auto 0; padding: 0 48px 100px; }
+  .sp-cta-card { position: relative; overflow: hidden; background: var(--sage-dark); border-radius: var(--radius-lg); padding: 52px 56px; display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap; }
+  .sp-cta-card::before { content: ''; position: absolute; top: -70px; right: -50px; width: 280px; height: 280px; opacity: 0.5; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cellipse cx='100' cy='100' rx='80' ry='120' fill='none' stroke='%23a7c3a2' stroke-width='1.2' transform='rotate(-30 100 100)'/%3E%3Cellipse cx='100' cy='100' rx='50' ry='80' fill='none' stroke='%23a7c3a2' stroke-width='1' transform='rotate(20 100 100)'/%3E%3C/svg%3E"); background-size: contain; background-repeat: no-repeat; pointer-events: none; }
+  .sp-cta-text { position: relative; z-index: 1; }
+  .sp-cta-text h3 { font-family: var(--font-heading); color: var(--white); font-size: 1.55rem; font-weight: 700; margin-bottom: 8px; }
+  .sp-cta-text p { color: oklch(86% 0.05 145); font-size: 1rem; max-width: 440px; line-height: 1.6; }
+  .sp-cta .btn { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; border-radius: 30px; font-size: 0.95rem; font-weight: 700; text-decoration: none; background: var(--white); color: var(--sage-dark); transition: transform 0.15s, box-shadow 0.15s; white-space: nowrap; }
+  .sp-cta .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 22px oklch(0% 0 0 / 0.25); }
+
+  /* ─── FOOTER ─── */
+  footer { background: var(--sage-dark); padding: 32px 48px; display: flex; align-items: center; justify-content: space-between; color: var(--sage-light); font-size: 0.85rem; }
+  footer a { color: var(--sage-light); text-decoration: none; }
+  footer a:hover { color: var(--white); }
+
+  @media (max-width: 900px) {
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .page-hero { padding: 40px 20px 92px; }
+    .sp-nav { top: 68px; }
+    .sp-nav-inner { padding: 10px 20px; }
+    .sp-intro { padding: 52px 20px 4px; }
+    .sp-bands { padding: 28px 20px; gap: 12px; }
+    .sp-band { grid-template-columns: 1fr; gap: 26px; padding: 22px 0; }
+    .sp-band:nth-child(even) .sp-media { order: 0; }
+    .sp-cta { padding: 0 20px 72px; }
+    .sp-cta-card { padding: 36px 28px; }
+    footer { flex-direction: column; gap: 12px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <svg width="38" height="38" viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="19" cy="19" r="17" fill="none" stroke="oklch(52% 0.10 145)" stroke-width="1.3"/>
+      <circle cx="19" cy="19" r="13.5" fill="none" stroke="oklch(52% 0.10 145)" stroke-width="0.4" opacity="0.4"/>
+      <line x1="19" y1="27" x2="19" y2="22" stroke="oklch(52% 0.10 145)" stroke-width="1.4" stroke-linecap="round"/>
+      <path d="M19 22 C22 18 22 12 19 11 C16 12 16 18 19 22Z" fill="oklch(52% 0.10 145)"/>
+      <path d="M19 22 C15 19 12 15 13 13 C15 13 18 18 19 22Z" fill="oklch(68% 0.09 145)"/>
+      <path d="M19 22 C23 19 26 15 25 13 C23 13 20 18 19 22Z" fill="oklch(68% 0.09 145)"/>
+      <circle cx="19" cy="2" r="1.8" fill="oklch(60% 0.11 68)"/>
+    </svg>
+    <span class="nav-pill">Mittelschule Hirtenberg</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="neu-bei-uns.html" class="nav-cta">Neu bei uns?</a></li>
+    <li><a href="index.html#news">Aktuelles</a></li>
+    <li><a href="termine.html">Termine</a></li>
+    <li><a href="index.html#team">Lehrpersonal</a></li>
+    <li><a href="index.html#galerie">Galerie</a></li>
+    <li><a href="index.html#kontakt">Kontakt</a></li>
+  </ul>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <a href="index.html#ueber" class="back-link">← Zurück zu „Über uns“</a>
+    <div class="page-hero-tag">Was uns ausmacht</div>
+    <h1>Unsere <em>Schwerpunkte</em></h1>
+    <p>An der MS Hirtenberg lernt jedes Kind mehr als den Lehrplan. Sechs Schwerpunkte geben unserem Schulalltag Farbe — von der Bläserklasse bis zur Berufsorientierung.</p>
+  </div>
+</div>
+
+<!-- SPRUNG-NAVIGATION -->
+<div class="sp-nav">
+  <div class="sp-nav-inner" id="spNav">
+    <a class="sp-tab" href="#gesunde-schule"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7Z"/></svg>Gesunde Schule</a>
+    <a class="sp-tab" href="#berufsorientierung"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>Berufsorientierung</a>
+    <a class="sp-tab" href="#blaeserklassen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>Bläserklassen</a>
+    <a class="sp-tab" href="#darstellendes-spiel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12a5 5 0 0 0 5 5 8 8 0 0 1 5 2 8 8 0 0 1 5-2 5 5 0 0 0 5-5V7h-5a8 8 0 0 0-5 2 8 8 0 0 0-5-2H2Z"/><path d="M6 11c1.5 0 3 .5 3 2-2 0-3 0-3-2Z"/><path d="M18 11c-1.5 0-3 .5-3 2 2 0 3 0 3-2Z"/></svg>Darstellendes Spiel</a>
+    <a class="sp-tab" href="#digitale-grundbildung"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></svg>Digitale Grundbildung</a>
+    <a class="sp-tab" href="#leseschwerpunkt"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>Leseschwerpunkt</a>
+  </div>
+</div>
+
+<!-- INTRO -->
+<div class="sp-intro">
+  <span class="eyebrow">Bildung mit Profil</span>
+  <h2>Sechs Wege, an denen Kinder über sich hinauswachsen</h2>
+  <p>Jeder Schwerpunkt steht für eine besondere Stärke unserer Schule. Gemeinsam sorgen sie dafür, dass bei uns Kopf, Herz und Hand gleichermaßen gefordert werden.</p>
+</div>
+
+<!-- BÄNDER -->
+<div class="sp-bands">
+
+  <!-- 1 · Gesunde Schule -->
+  <section class="sp-band" id="gesunde-schule">
+    <div class="sp-media">
+      <div class="sp-num">01</div>
+      <div class="sp-media-ph">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7Z"/></svg>
+        <span>Foto: Gesunde Schule</span>
+      </div>
+      <img src="news/kuerbini-hochbeet.jpg" alt="Frisch bepflanztes Hochbeet im Schulgarten" loading="lazy" onload="this.style.opacity=1" onerror="this.remove()">
+    </div>
+    <div class="sp-text">
+      <div class="sp-eyebrow">
+        <span class="sp-chip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7Z"/></svg></span>
+        <span class="sp-kicker">Schwerpunkt 01</span>
+      </div>
+      <h3>Gesunde Schule</h3>
+      <p class="sp-lead">Gesund lernt es sich leichter.</p>
+      <p class="sp-body">Bewegung, ausgewogene Ernährung und ein gutes Miteinander gehören bei uns zum Schulalltag. Von der gemeinsamen gesunden Jause über die eigenen Hochbeete im Schulgarten bis zu Bewegungseinheiten im Freien schaffen wir Gewohnheiten, die ein Leben lang tragen.</p>
+      <div class="sp-facts">
+        <span class="sp-fact">Gesunde Jause</span>
+        <span class="sp-fact">Schulgarten &amp; Hochbeete</span>
+        <span class="sp-fact">Bewegung im Freien</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2 · Berufsorientierung -->
+  <section class="sp-band" id="berufsorientierung">
+    <div class="sp-media">
+      <div class="sp-num">02</div>
+      <div class="sp-media-ph">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+        <span>Foto: Berufsorientierung</span>
+      </div>
+      <img src="news/markttag-1.jpg" alt="Schülerinnen und Schüler der Junior Company am Markttag" loading="lazy" onload="this.style.opacity=1" onerror="this.remove()">
+    </div>
+    <div class="sp-text">
+      <div class="sp-eyebrow">
+        <span class="sp-chip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></span>
+        <span class="sp-kicker">Schwerpunkt 02</span>
+      </div>
+      <h3>Berufsorientierung</h3>
+      <p class="sp-lead">Den eigenen Weg finden.</p>
+      <p class="sp-body">In der 3. und 4. Klasse rückt die Zukunft in den Blick: berufspraktische Tage, Schnupperlehre, Betriebsbesuche und unsere eigenen Junior Companies geben echten Einblick in die Arbeitswelt. Bewerbungstraining und persönliche Begleitung helfen beim Schritt in die weiterführende Schule oder Lehre.</p>
+      <div class="sp-facts">
+        <span class="sp-fact">3. &amp; 4. Klasse</span>
+        <span class="sp-fact">Berufspraktische Tage</span>
+        <span class="sp-fact">Junior Company</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 · Bläserklassen -->
+  <section class="sp-band" id="blaeserklassen">
+    <div class="sp-media">
+      <div class="sp-num">03</div>
+      <div class="sp-media-ph">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+        <span>Foto: Bläserklasse beim Musizieren</span>
+      </div>
+      <img src="https://images.unsplash.com/photo-1573871669414-010dbf73ca84?w=900&fit=crop&crop=center" alt="Kinder beim Musizieren in der Bläserklasse" loading="lazy" onload="this.style.opacity=1" onerror="this.remove()">
+    </div>
+    <div class="sp-text">
+      <div class="sp-eyebrow">
+        <span class="sp-chip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></span>
+        <span class="sp-kicker">Schwerpunkt 03</span>
+      </div>
+      <h3>Bläserklassen</h3>
+      <p class="sp-lead">Eine Klasse, ein Orchester.</p>
+      <p class="sp-body">In Kooperation mit der Musikschule lernt jedes Kind ein Blasinstrument — vom ersten Ton bis zum gemeinsamen Stück. Musizieren stärkt Konzentration, Teamgeist und Selbstvertrauen. Bei Konzerten und Schulfesten zeigt die Bläserklasse, was in einem Jahr gemeinsamen Übens entsteht.</p>
+      <div class="sp-facts">
+        <span class="sp-fact">Ab der 1. Klasse</span>
+        <span class="sp-fact">Kooperation Musikschule</span>
+        <span class="sp-fact">Konzerte &amp; Auftritte</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 · Darstellendes Spiel -->
+  <section class="sp-band" id="darstellendes-spiel">
+    <div class="sp-media">
+      <div class="sp-num">04</div>
+      <div class="sp-media-ph">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12a5 5 0 0 0 5 5 8 8 0 0 1 5 2 8 8 0 0 1 5-2 5 5 0 0 0 5-5V7h-5a8 8 0 0 0-5 2 8 8 0 0 0-5-2H2Z"/><path d="M6 11c1.5 0 3 .5 3 2-2 0-3 0-3-2Z"/><path d="M18 11c-1.5 0-3 .5-3 2 2 0 3 0 3-2Z"/></svg>
+        <span>Foto: Musical der MS Hirtenberg</span>
+      </div>
+      <img src="https://images.unsplash.com/photo-1503095396549-807759245b35?w=900&fit=crop&crop=center" alt="Schülerinnen und Schüler beim Musical auf der Bühne" loading="lazy" onload="this.style.opacity=1" onerror="this.remove()">
+    </div>
+    <div class="sp-text">
+      <div class="sp-eyebrow">
+        <span class="sp-chip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12a5 5 0 0 0 5 5 8 8 0 0 1 5 2 8 8 0 0 1 5-2 5 5 0 0 0 5-5V7h-5a8 8 0 0 0-5 2 8 8 0 0 0-5-2H2Z"/><path d="M6 11c1.5 0 3 .5 3 2-2 0-3 0-3-2Z"/><path d="M18 11c-1.5 0-3 .5-3 2 2 0 3 0 3-2Z"/></svg></span>
+        <span class="sp-kicker">Schwerpunkt 04</span>
+      </div>
+      <h3>Darstellendes Spiel</h3>
+      <p class="sp-lead">Vorhang auf fürs Musical.</p>
+      <p class="sp-body">Singen, schauspielern, tanzen — und das alles auf einer großen Bühne. Im Darstellenden Spiel entwickeln die Schülerinnen und Schüler Selbstbewusstsein, Ausdruck und Teamgefühl und bringen ihr Können jedes Jahr bei unserem großen Musical vor vollem Haus zur Aufführung.</p>
+      <div class="sp-facts">
+        <span class="sp-fact">Wahlpflichtfach</span>
+        <span class="sp-fact">Alljährliches Musical</span>
+        <span class="sp-fact">Gesang, Tanz &amp; Schauspiel</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 · Digitale Grundbildung -->
+  <section class="sp-band" id="digitale-grundbildung">
+    <div class="sp-media">
+      <div class="sp-num">05</div>
+      <div class="sp-media-ph">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></svg>
+        <span>Foto: Digitale Grundbildung</span>
+      </div>
+      <img src="https://speechi.com/wp-content/uploads/2023/10/best-smart-board-schools.jpg" alt="Unterricht mit modernem Smartboard und digitalen Geräten" loading="lazy" onload="this.style.opacity=1" onerror="this.remove()">
+    </div>
+    <div class="sp-text">
+      <div class="sp-eyebrow">
+        <span class="sp-chip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></svg></span>
+        <span class="sp-kicker">Schwerpunkt 05</span>
+      </div>
+      <h3>Digitale Grundbildung</h3>
+      <p class="sp-lead">Kompetent in einer digitalen Welt.</p>
+      <p class="sp-body">Mit eigenen Geräten und modernen Smartboards lernen unsere Schülerinnen und Schüler, digitale Werkzeuge sinnvoll, kreativ und kritisch zu nutzen. Von Recherche und Textverarbeitung über erste Programmierschritte bis zu Medienkompetenz und Sicherheit im Netz.</p>
+      <div class="sp-facts">
+        <span class="sp-fact">Eigenes Pflichtfach</span>
+        <span class="sp-fact">Digitale Geräte</span>
+        <span class="sp-fact">Medienkompetenz</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 · Leseschwerpunkt -->
+  <section class="sp-band" id="leseschwerpunkt">
+    <div class="sp-media">
+      <div class="sp-num">06</div>
+      <div class="sp-media-ph">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+        <span>Foto: In der Schulbibliothek</span>
+      </div>
+      <img src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=900&fit=crop&crop=center" alt="Schülerin liest ein Buch in der Schulbibliothek" loading="lazy" onload="this.style.opacity=1" onerror="this.remove()">
+    </div>
+    <div class="sp-text">
+      <div class="sp-eyebrow">
+        <span class="sp-chip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg></span>
+        <span class="sp-kicker">Schwerpunkt 06</span>
+      </div>
+      <h3>Leseschwerpunkt</h3>
+      <p class="sp-lead">Lesen öffnet Welten.</p>
+      <p class="sp-body">Wer gerne liest, lernt leichter. Mit unserer Schulbibliothek, regelmäßigen Lesestunden, Lesepatenschaften und Autorenlesungen wecken wir die Freude am Lesen — und stärken ganz nebenbei Wortschatz, Fantasie und Konzentration.</p>
+      <div class="sp-facts">
+        <span class="sp-fact">Schulbibliothek</span>
+        <span class="sp-fact">Lesepatenschaften</span>
+        <span class="sp-fact">Autorenlesungen</span>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- ABSCHLUSS-CTA -->
+<div class="sp-cta">
+  <div class="sp-cta-card">
+    <div class="sp-cta-text">
+      <h3>Neugierig geworden?</h3>
+      <p>Lernen Sie unsere Schule persönlich kennen — wir freuen uns auf Ihre Fragen und einen Besuch vor Ort.</p>
+    </div>
+    <a href="index.html#kontakt" class="btn">Kontakt aufnehmen
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div>© 2026 Mittelschule Hirtenberg · Alle Rechte vorbehalten</div>
+  <div style="display:flex;gap:24px;"><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a><a href="barrierefreiheit.html">Barrierefreiheit</a></div>
+</footer>
+
+<script>
+  // Aktiven Tab in der Sprung-Navigation hervorheben — scroll-basiert,
+  // zuverlässig in beide Richtungen.
+  (function () {
+    const nav = document.querySelector('.sp-nav');
+    const navInner = document.getElementById('spNav');
+    const tabs = Array.from(document.querySelectorAll('.sp-tab'));
+    const sections = tabs
+      .map(t => ({ tab: t, sec: document.getElementById(t.getAttribute('href').slice(1)) }))
+      .filter(o => o.sec);
+
+    let current = null;
+    function setActive(o) {
+      if (o === current) return;
+      current = o;
+      tabs.forEach(t => t.classList.remove('active'));
+      o.tab.classList.add('active');
+      // aktiven Tab horizontal in Sicht halten
+      navInner.scrollTo({ left: o.tab.offsetLeft - 24, behavior: 'smooth' });
+    }
+
+    function update() {
+      // Bezugslinie knapp unter der klebenden Tab-Leiste
+      const line = (nav.getBoundingClientRect().bottom) + 24;
+
+      // Am Seitenende immer den letzten Abschnitt markieren
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2) {
+        setActive(sections[sections.length - 1]);
+        return;
+      }
+
+      // Den letzten Abschnitt wählen, dessen Oberkante die Bezugslinie passiert hat
+      let active = sections[0];
+      for (const o of sections) {
+        if (o.sec.getBoundingClientRect().top <= line) active = o;
+        else break;
+      }
+      setActive(active);
+    }
+
+    let ticking = false;
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => { update(); ticking = false; });
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    update();
+  })();
+</script>
+
+</body>
+</html>
