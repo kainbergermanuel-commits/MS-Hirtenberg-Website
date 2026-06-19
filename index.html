@@ -27,11 +27,13 @@
   /* ─── NAV ─── */
   nav {
     position: sticky; top: 0; z-index: 100;
-    background: var(--white);
+    background: oklch(98% 0.008 88 / 0.78);
+    backdrop-filter: blur(18px) saturate(1.4);
+    -webkit-backdrop-filter: blur(18px) saturate(1.4);
     display: flex; align-items: center; justify-content: space-between;
     padding: 0 48px;
     height: 68px;
-    border-bottom: 1.5px solid var(--cream-dark);
+    border-bottom: 1.5px solid oklch(100% 0 0 / 0.55);
     box-shadow: 0 2px 20px oklch(0% 0 0 / 6%);
   }
   .nav-logo {
@@ -54,15 +56,17 @@
     font-weight: 600;
     padding: 7px 15px;
     border-radius: 30px;
-    transition: background 0.2s, color 0.2s;
+    transition: background 0.2s, color 0.2s, transform 0.15s, box-shadow 0.15s;
     letter-spacing: 0.01em;
   }
   .nav-links a:hover {
-    background: var(--sage-pale);
+    background: linear-gradient(135deg, var(--sage-pale), oklch(90% 0.055 145));
     color: var(--sage-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 3px 10px oklch(0% 0 0 / 8%);
   }
   .nav-links a.nav-cta { color: var(--sage-dark); font-weight: 800; white-space: nowrap; }
-  .nav-links a.nav-cta:hover { background: var(--sage); color: var(--white); }
+  .nav-links a.nav-cta:hover { background: linear-gradient(135deg, var(--sage), var(--sage-mid)); color: var(--white); transform: translateY(-1px); box-shadow: 0 3px 10px oklch(52% 0.10 145 / 25%); }
 
   /* ─── HERO ─── */
   #home {
@@ -204,6 +208,8 @@
     letter-spacing: 0.01em;
   }
   .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px oklch(0% 0 0 / 14%); }
+  .btn svg { transition: transform 0.2s cubic-bezier(0.4,0,0.2,1); }
+  .btn:hover svg { transform: translateX(3px); }
   .btn-primary { background: var(--sage); color: var(--white); }
   .btn-outline { background: var(--white); color: var(--sage-dark); border: 1.5px solid var(--cream-dark); }
   .btn-outline:hover { border-color: var(--sage-light); background: var(--sage-pale); }
@@ -358,19 +364,38 @@
     box-shadow: 0 2px 14px oklch(0% 0 0 / 8%);
   }
   .hero-sw-dot {
+    position: relative;
     height: 8px;
     border-radius: 4px;
     border: none;
     background: oklch(52% 0.10 145 / 0.35);
     cursor: pointer;
     padding: 0;
+    overflow: hidden;
     transition: background 0.25s, width 0.3s cubic-bezier(0.4,0,0.2,1);
     width: 20px;
   }
   .hero-sw-dot:hover { background: oklch(52% 0.10 145 / 0.6); }
   .hero-sw-dot.active {
-    background: var(--sage);
+    background: oklch(52% 0.10 145 / 0.28);
     width: 32px;
+  }
+  /* Eleganter Fortschrittsbalken im aktiven Punkt */
+  .hero-sw-dot.active::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--sage);
+    border-radius: inherit;
+    transform-origin: left center;
+    transform: scaleX(0);
+    animation: heroSwFill 7s linear forwards;
+  }
+  .hero-switcher.paused .hero-sw-dot.active::after { animation-play-state: paused; }
+  @keyframes heroSwFill { to { transform: scaleX(1); } }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-sw-dot.active { background: var(--sage); }
+    .hero-sw-dot.active::after { animation: none; transform: scaleX(1); }
   }
 
   /* ─── HERO SCHNELLZUGRIFF ─── */
@@ -811,14 +836,7 @@
     padding: 24px;
   }
 
-  /* ─── FOOTER ─── */
-  footer {
-    background: var(--sage-dark); padding: 32px 48px;
-    display: flex; align-items: center; justify-content: space-between;
-    color: var(--sage-light); font-size: 0.85rem;
-  }
-  footer a { color: var(--sage-light); text-decoration: none; }
-  footer a:hover { color: var(--white); }
+  /* Footer-Styles liegen jetzt zentral in variables.css */
 
   @media (max-width: 900px) {
     nav { padding: 0 24px; }
@@ -858,7 +876,6 @@
     .team-grid { grid-template-columns: repeat(2, 1fr); }
     .gallery-grid { grid-template-columns: repeat(2, 1fr); }
     .gallery-item.tall, .gallery-item.wide { grid-row: unset; grid-column: unset; aspect-ratio: 4/3; }
-    footer { flex-direction: column; gap: 12px; text-align: center; }
   }
 </style>
 </head>
@@ -974,9 +991,14 @@
 <section id="ueber">
   <div class="section-inner">
     <div class="about-grid">
-      <img src="https://speechi.com/wp-content/uploads/2023/10/best-smart-board-schools.jpg"
-           alt="Unterricht mit moderner Smartboard in einer Klasse der MS Hirtenberg"
-           style="width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:var(--radius-lg);display:block;">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:20px;">
+        <img src="https://speechi.com/wp-content/uploads/2023/10/best-smart-board-schools.jpg"
+             alt="Unterricht mit moderner Smartboard in einer Klasse der MS Hirtenberg"
+             style="width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:var(--radius-lg);display:block;">
+        <a href="neu-bei-uns.html" class="btn btn-primary">Neu bei uns?
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
       <div>
         <span class="section-tag">Über uns</span>
         <h2 class="section-title">Eine Schule mit Herz und Natur im Blick</h2>
@@ -1305,6 +1327,23 @@
           <div>
             <div class="kontakt-label">Adresse</div>
             <div class="kontakt-value">Schulstraße 1, 2552 Hirtenberg<br>Niederösterreich, Österreich</div>
+            <div style="margin-top:6px;">
+              <a href="https://www.google.com/maps/dir/?api=1&destination=Schulstra%C3%9Fe+1%2C+2552+Hirtenberg%2C+%C3%96sterreich" target="_blank" rel="noopener noreferrer" title="Route in Google Maps öffnen" style="
+                display:inline-flex;align-items:center;gap:5px;
+                padding:4px 10px 4px 7px;
+                background:var(--white);
+                border:1.5px solid var(--cream-dark);
+                border-radius:7px;
+                color:var(--text-light);
+                font-size:0.72rem;font-weight:600;
+                text-decoration:none;
+                transition:background 0.15s,color 0.15s,border-color 0.15s,transform 0.15s;
+                cursor:pointer;
+              " onmouseenter="this.style.transform='scale(1.05)';this.style.color='var(--sage-dark)';this.style.borderColor='var(--sage-light)';this.style.background='var(--sage-pale)'" onmouseleave="this.style.transform='scale(1)';this.style.color='var(--text-light)';this.style.borderColor='var(--cream-dark)';this.style.background='var(--white)'">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+                Route
+              </a>
+            </div>
           </div>
         </div>
         <div class="kontakt-item">
@@ -1313,7 +1352,35 @@
           </div>
           <div>
             <div class="kontakt-label">E-Mail</div>
-            <div class="kontakt-value">direktion@ms-hirtenberg.at</div>
+            <div class="kontakt-value" style="display:flex;align-items:center;gap:8px;">
+              direktion@ms-hirtenberg.at
+              <button id="copy-email-btn" onclick="(function(){
+                navigator.clipboard.writeText('direktion@ms-hirtenberg.at');
+                var btn = document.getElementById('copy-email-btn');
+                btn.innerHTML = '<svg width=&quot;13&quot; height=&quot;13&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><polyline points=&quot;20 6 9 17 4 12&quot;/></svg>';
+                btn.style.color = 'var(--sage-dark)';
+                btn.style.borderColor = 'var(--sage-light)';
+                btn.style.background = 'var(--sage-pale)';
+                setTimeout(function(){ 
+                  btn.innerHTML = '<svg width=&quot;13&quot; height=&quot;13&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><rect x=&quot;9&quot; y=&quot;9&quot; width=&quot;13&quot; height=&quot;13&quot; rx=&quot;2&quot;/><path d=&quot;M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1&quot;/></svg>';
+                  btn.style.color = 'var(--text-light)';
+                  btn.style.borderColor = 'var(--cream-dark)';
+                  btn.style.background = 'var(--white)';
+                }, 2000);
+              })()" title="E-Mail kopieren" aria-label="E-Mail-Adresse kopieren" style="
+                display:inline-flex;align-items:center;justify-content:center;
+                width:26px;height:26px;padding:0;
+                background:var(--white);
+                border:1.5px solid var(--cream-dark);
+                border-radius:7px;
+                color:var(--text-light);
+                cursor:pointer;
+                transition:background 0.15s,color 0.15s,border-color 0.15s,transform 0.15s;
+                flex-shrink:0;
+              " onmouseenter="this.style.transform='scale(1.12)'" onmouseleave="this.style.transform='scale(1)'">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              </button>
+            </div>
           </div>
         </div>
         <div class="kontakt-item">
@@ -1353,11 +1420,15 @@
 
 <!-- FOOTER -->
 <footer>
-  <div>© 2026 Mittelschule Hirtenberg · Alle Rechte vorbehalten</div>
-  <div style="display:flex;gap:24px;">
-    <a href="impressum.html">Impressum</a>
-    <a href="datenschutz.html">Datenschutz</a>
-    <a href="barrierefreiheit.html">Barrierefreiheit</a>
+  <div class="footer-bottom">
+    <div class="footer-bottom-inner">
+      <div>© 2026 Mittelschule Hirtenberg · Alle Rechte vorbehalten</div>
+      <div class="footer-legal">
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+        <a href="barrierefreiheit.html">Barrierefreiheit</a>
+      </div>
+    </div>
   </div>
 </footer>
 
@@ -1487,10 +1558,31 @@
       dots[current].setAttribute('aria-pressed', 'true');
     }
 
+    let timer;
+    const switcher = document.querySelector('.hero-switcher');
+    function start() {
+      timer = setInterval(() => switchTo((current + 1) % photos.length), 7000);
+    }
+    function reset() { clearInterval(timer); start(); }
+
     dots.forEach(dot => {
-      dot.addEventListener('click', () => switchTo(parseInt(dot.dataset.idx)));
+      dot.addEventListener('click', () => { switchTo(parseInt(dot.dataset.idx)); reset(); });
     });
+
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      start();
+      // Beim Überfahren pausieren – Balken & Timer halten gemeinsam an
+      switcher.addEventListener('mouseenter', () => { clearInterval(timer); switcher.classList.add('paused'); });
+      switcher.addEventListener('mouseleave', () => {
+        switcher.classList.remove('paused');
+        // Balken neu starten, damit er synchron zum Timer läuft
+        const a = dots[current];
+        a.classList.remove('active'); void a.offsetWidth; a.classList.add('active');
+        reset();
+      });
+    }
   })();
+
 </script>
 </body>
 </html>

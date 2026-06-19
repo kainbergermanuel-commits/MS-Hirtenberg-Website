@@ -16,12 +16,12 @@
   body { font-family: var(--font-body); background: var(--cream); color: var(--text); font-size: 17px; line-height: 1.65; }
 
   /* NAV */
-  nav { background: var(--white); display: flex; align-items: center; justify-content: space-between; padding: 0 48px; height: 68px; border-bottom: 1.5px solid var(--cream-dark); box-shadow: 0 2px 20px oklch(0% 0 0 / 6%); position: sticky; top: 0; z-index: 100; }
+  nav { background: oklch(98% 0.008 88 / 0.78); backdrop-filter: blur(18px) saturate(1.4); -webkit-backdrop-filter: blur(18px) saturate(1.4); display: flex; align-items: center; justify-content: space-between; padding: 0 48px; height: 68px; border-bottom: 1.5px solid oklch(100% 0 0 / 0.55); box-shadow: 0 2px 20px oklch(0% 0 0 / 6%); position: sticky; top: 0; z-index: 100; }
   .nav-logo { font-family: var(--font-heading); color: var(--sage-dark); font-size: 1.2rem; font-weight: 700; letter-spacing: -0.02em; text-decoration: none; display: flex; align-items: center; gap: 10px; }
   .nav-pill { display: inline-flex; align-items: center; background: var(--white); color: var(--sage); font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.13em; padding: 5px 14px; border-radius: 30px; border: 1.5px solid var(--sage-pale); white-space: nowrap; }
   .nav-links { display: flex; gap: 4px; list-style: none; }
-  .nav-links a { color: var(--text-light); text-decoration: none; font-size: 0.88rem; font-weight: 600; padding: 7px 15px; border-radius: 30px; transition: background 0.2s, color 0.2s; letter-spacing: 0.01em; }
-  .nav-links a:hover, .nav-links a.active { background: var(--sage-pale); color: var(--sage-dark); } .nav-links a.nav-cta { color: var(--sage-dark); font-weight: 800; white-space: nowrap; } .nav-links a.nav-cta:hover, .nav-links a.nav-cta.active { background: var(--sage); color: var(--white); }
+  .nav-links a { color: var(--text-light); text-decoration: none; font-size: 0.88rem; font-weight: 600; padding: 7px 15px; border-radius: 30px; transition: background 0.2s, color 0.2s, transform 0.15s, box-shadow 0.15s; letter-spacing: 0.01em; }
+  .nav-links a:hover, .nav-links a.active { background: linear-gradient(135deg, var(--sage-pale), oklch(90% 0.055 145)); color: var(--sage-dark); transform: translateY(-1px); box-shadow: 0 3px 10px oklch(0% 0 0 / 8%); } .nav-links a.nav-cta { color: var(--sage-dark); font-weight: 800; white-space: nowrap; } .nav-links a.nav-cta:hover, .nav-links a.nav-cta.active { background: linear-gradient(135deg, var(--sage), var(--sage-mid)); color: var(--white); transform: translateY(-1px); box-shadow: 0 3px 10px oklch(52% 0.10 145 / 25%); }
 
   /* PAGE HERO */
   .page-hero { padding: 64px 96px 52px; position: relative; overflow: hidden; background-color: var(--sage-pale); background-image: linear-gradient(to right, oklch(98% 0.008 88 / 0.97) 0%, oklch(98% 0.008 88 / 0.92) 40%, oklch(97% 0.02 60 / 0.66) 58%, oklch(96% 0.03 15 / 0.24) 76%, transparent 94%), url("uploads/ChatGPT Image 9. Juni 2026, 14_43_03.png"); background-size: cover, cover; background-position: center, right center; background-repeat: no-repeat, no-repeat; }
@@ -118,9 +118,6 @@
   }
   .legend-note .dot { width: 12px; height: 12px; border-radius: 3px; background: var(--sand-pale); border: 1.5px solid var(--sand-mid); flex: none; }
 
-  footer { background: var(--sage-dark); padding: 32px 48px; display: flex; align-items: center; justify-content: space-between; color: var(--sage-light); font-size: 0.85rem; }
-  footer a { color: var(--sage-light); text-decoration: none; }
-  footer a:hover { color: var(--white); }
 
   @media (max-width: 900px) {
     nav { padding: 0 20px; }
@@ -133,7 +130,6 @@
     .lesson-time { font-size: 1rem; }
     .brk { padding-left: 18px; padding-right: 18px; }
     .brk::before { width: 48px; }
-    footer { flex-direction: column; gap: 12px; text-align: center; }
   }
 </style>
 </head>
@@ -262,9 +258,74 @@
 
 </div>
 
+<!-- FOOTER -->
 <footer>
-  <div>© 2026 Mittelschule Hirtenberg · Alle Rechte vorbehalten</div>
-  <div style="display:flex;gap:24px;"><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a><a href="barrierefreiheit.html">Barrierefreiheit</a></div>
+  <div class="footer-main">
+    <div class="footer-brand">
+      <div class="footer-brand-row">
+        <svg width="42" height="42" viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="19" cy="19" r="17" fill="none" stroke="oklch(80% 0.07 145)" stroke-width="1.3"/>
+          <circle cx="19" cy="19" r="13.5" fill="none" stroke="oklch(80% 0.07 145)" stroke-width="0.4" opacity="0.4"/>
+          <line x1="19" y1="27" x2="19" y2="22" stroke="oklch(80% 0.07 145)" stroke-width="1.4" stroke-linecap="round"/>
+          <path d="M19 22 C22 18 22 12 19 11 C16 12 16 18 19 22Z" fill="oklch(80% 0.07 145)"/>
+          <path d="M19 22 C15 19 12 15 13 13 C15 13 18 18 19 22Z" fill="oklch(68% 0.09 145)"/>
+          <path d="M19 22 C23 19 26 15 25 13 C23 13 20 18 19 22Z" fill="oklch(68% 0.09 145)"/>
+          <circle cx="19" cy="2" r="1.8" fill="oklch(70% 0.12 68)"/>
+        </svg>
+        <span class="footer-brand-name">Mittelschule<br>Hirtenberg</span>
+      </div>
+      <p class="footer-tagline">Gemeinsam lernen, wachsen und die eigenen Stärken entdecken – mitten im Herzen von Hirtenberg.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Entdecken</h4>
+      <ul>
+        <li><a href="index.html#news">Aktuelles</a></li>
+        <li><a href="termine.html">Termine</a></li>
+        <li><a href="index.html#team">Lehrpersonal</a></li>
+        <li><a href="index.html#galerie">Galerie</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Service</h4>
+      <ul>
+        <li><a href="neu-bei-uns.html">Neu bei uns?</a></li>
+        <li><a href="schwerpunkte.html">Schwerpunkte</a></li>
+        <li><a href="formulare.html">Formulare</a></li>
+        <li><a href="stundenzeiten.html">Stundenzeiten</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Kontakt</h4>
+      <div class="footer-contact">
+        <div class="footer-contact-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="oklch(80% 0.07 145)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Schulgasse 1<br>2552 Hirtenberg</span>
+        </div>
+        <div class="footer-contact-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="oklch(80% 0.07 145)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+          <a href="tel:+43225612345">02256 / 12 34 56</a>
+        </div>
+        <div class="footer-contact-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="oklch(80% 0.07 145)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+          <a href="mailto:office@ms-hirtenberg.at">office@ms-hirtenberg.at</a>
+        </div>
+        <div class="footer-contact-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="oklch(80% 0.07 145)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          <span>Direktion: Mo–Fr 7:30–12:00 Uhr</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-bottom-inner">
+      <div>© 2026 Mittelschule Hirtenberg · Alle Rechte vorbehalten</div>
+      <div class="footer-legal">
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+        <a href="barrierefreiheit.html">Barrierefreiheit</a>
+      </div>
+    </div>
+  </div>
 </footer>
 
 </body>

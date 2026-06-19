@@ -42,9 +42,6 @@
   .stat-label { font-size: 0.82rem; color: var(--text-light); font-weight: 600; margin-top: 8px; }
   .back-link { display: inline-flex; align-items: center; gap: 8px; color: var(--sage); font-weight: 700; text-decoration: none; font-size: 0.9rem; margin-bottom: 40px; transition: gap 0.2s; }
   .back-link:hover { gap: 12px; color: var(--sage-dark); }
-  footer { background: var(--sage-dark); padding: 32px 48px; display: flex; align-items: center; justify-content: space-between; color: var(--sage-light); font-size: 0.85rem; }
-  footer a { color: var(--sage-light); text-decoration: none; }
-  footer a:hover { color: var(--white); }
   @media (max-width: 768px) {
     nav { padding: 0 20px; }
     .nav-links { display: none; }
@@ -53,7 +50,6 @@
     .article-photo-grid { grid-template-columns: 1fr; }
     .article-photo-grid img.wide { grid-column: unset; aspect-ratio: 4/3; }
     .stat-row { grid-template-columns: 1fr; }
-    footer { flex-direction: column; gap: 12px; text-align: center; }
   }
 
   /* WEITERE BEITRÄGE (Vorher/Nächster) */
@@ -175,9 +171,74 @@
   </a>
 </div>
 
+<!-- FOOTER -->
 <footer>
-  <div>© 2026 Mittelschule Hirtenberg · Alle Rechte vorbehalten</div>
-  <div style="display:flex;gap:24px;"><a href="../impressum.html">Impressum</a><a href="../datenschutz.html">Datenschutz</a><a href="../barrierefreiheit.html">Barrierefreiheit</a></div>
+  <div class="footer-main">
+    <div class="footer-brand">
+      <div class="footer-brand-row">
+        <svg width="42" height="42" viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="19" cy="19" r="17" fill="none" stroke="oklch(80% 0.07 145)" stroke-width="1.3"/>
+          <circle cx="19" cy="19" r="13.5" fill="none" stroke="oklch(80% 0.07 145)" stroke-width="0.4" opacity="0.4"/>
+          <line x1="19" y1="27" x2="19" y2="22" stroke="oklch(80% 0.07 145)" stroke-width="1.4" stroke-linecap="round"/>
+          <path d="M19 22 C22 18 22 12 19 11 C16 12 16 18 19 22Z" fill="oklch(80% 0.07 145)"/>
+          <path d="M19 22 C15 19 12 15 13 13 C15 13 18 18 19 22Z" fill="oklch(68% 0.09 145)"/>
+          <path d="M19 22 C23 19 26 15 25 13 C23 13 20 18 19 22Z" fill="oklch(68% 0.09 145)"/>
+          <circle cx="19" cy="2" r="1.8" fill="oklch(70% 0.12 68)"/>
+        </svg>
+        <span class="footer-brand-name">Mittelschule<br>Hirtenberg</span>
+      </div>
+      <p class="footer-tagline">Gemeinsam lernen, wachsen und die eigenen Stärken entdecken – mitten im Herzen von Hirtenberg.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Entdecken</h4>
+      <ul>
+        <li><a href="../index.html#news">Aktuelles</a></li>
+        <li><a href="../termine.html">Termine</a></li>
+        <li><a href="../index.html#team">Lehrpersonal</a></li>
+        <li><a href="../index.html#galerie">Galerie</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Service</h4>
+      <ul>
+        <li><a href="../neu-bei-uns.html">Neu bei uns?</a></li>
+        <li><a href="../schwerpunkte.html">Schwerpunkte</a></li>
+        <li><a href="../formulare.html">Formulare</a></li>
+        <li><a href="../stundenzeiten.html">Stundenzeiten</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Kontakt</h4>
+      <div class="footer-contact">
+        <div class="footer-contact-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="oklch(80% 0.07 145)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Schulgasse 1<br>2552 Hirtenberg</span>
+        </div>
+        <div class="footer-contact-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="oklch(80% 0.07 145)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+          <a href="tel:+43225612345">02256 / 12 34 56</a>
+        </div>
+        <div class="footer-contact-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="oklch(80% 0.07 145)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+          <a href="mailto:office@ms-hirtenberg.at">office@ms-hirtenberg.at</a>
+        </div>
+        <div class="footer-contact-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="oklch(80% 0.07 145)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          <span>Direktion: Mo–Fr 7:30–12:00 Uhr</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-bottom-inner">
+      <div>© 2026 Mittelschule Hirtenberg · Alle Rechte vorbehalten</div>
+      <div class="footer-legal">
+        <a href="../impressum.html">Impressum</a>
+        <a href="../datenschutz.html">Datenschutz</a>
+        <a href="../barrierefreiheit.html">Barrierefreiheit</a>
+      </div>
+    </div>
+  </div>
 </footer>
 </body>
 </html>

@@ -42,3 +42,57 @@
   --radius:    12px;
   --radius-lg: 20px;
 }
+
+/* ─── FOOTER (gemeinsame Komponente) ─── */
+footer {
+  background: var(--sage-dark);
+  color: var(--sage-light);
+  position: relative;
+}
+footer::before {
+  content: ""; display: block; height: 4px;
+  background: linear-gradient(90deg, var(--sage-mid), var(--sand), var(--blush));
+}
+.footer-main {
+  max-width: 1200px; margin: 0 auto;
+  padding: 64px 48px 40px;
+  display: grid; gap: 48px;
+  grid-template-columns: 1.5fr 1fr 1fr 1.4fr;
+}
+.footer-brand { max-width: 280px; }
+.footer-brand-row { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+.footer-brand-name { font-family: var(--font-heading); font-size: 1.15rem; color: var(--white); line-height: 1.2; }
+.footer-tagline { font-size: 0.92rem; line-height: 1.6; color: var(--sage-light); }
+.footer-col h4 {
+  font-family: var(--font-heading); font-weight: 500;
+  font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--sand); margin-bottom: 18px;
+}
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 11px; }
+.footer-col a, .footer-contact a { color: var(--sage-light); text-decoration: none; font-size: 0.92rem; transition: color 0.18s; }
+.footer-col a:hover, .footer-contact a:hover { color: var(--white); }
+.footer-contact { display: flex; flex-direction: column; gap: 14px; }
+.footer-contact-item { display: flex; gap: 12px; align-items: flex-start; font-size: 0.92rem; line-height: 1.5; }
+.footer-contact-item svg { flex-shrink: 0; margin-top: 2px; opacity: 0.85; }
+.footer-bottom {
+  border-top: 1px solid oklch(100% 0 0 / 12%);
+  background: linear-gradient(180deg, var(--sage-dark), oklch(30% 0.08 145));
+}
+.footer-bottom-inner {
+  max-width: 1200px; margin: 0 auto;
+  padding: 22px 48px;
+  display: flex; align-items: center; justify-content: space-between;
+  font-size: 0.82rem; color: var(--sage-light);
+}
+.footer-legal { display: flex; gap: 24px; }
+.footer-bottom a { color: var(--sage-light); text-decoration: none; transition: color 0.18s; }
+.footer-bottom a:hover { color: var(--white); }
+@media (max-width: 900px) {
+  .footer-main { grid-template-columns: 1fr 1fr; gap: 40px 32px; padding: 48px 28px 32px; }
+  .footer-brand { grid-column: 1 / -1; max-width: none; }
+  .footer-bottom-inner { flex-direction: column; gap: 14px; text-align: center; padding: 22px 28px; }
+  .footer-legal { flex-wrap: wrap; justify-content: center; }
+}
+@media (max-width: 520px) {
+  .footer-main { grid-template-columns: 1fr; }
+}
