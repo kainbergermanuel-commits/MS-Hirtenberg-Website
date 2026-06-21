@@ -35,6 +35,14 @@
     height: 68px;
     border-bottom: 1.5px solid oklch(100% 0 0 / 0.55);
     box-shadow: 0 2px 20px oklch(0% 0 0 / 6%);
+    transition: height 0.35s cubic-bezier(0.4,0,0.2,1),
+                box-shadow 0.35s cubic-bezier(0.4,0,0.2,1),
+                background 0.35s;
+  }
+  nav.scrolled {
+    height: 50px;
+    background: oklch(98% 0.008 88 / 0.92);
+    box-shadow: 0 2px 28px oklch(0% 0 0 / 10%);
   }
   .nav-logo {
     font-family: var(--font-heading);
@@ -71,7 +79,7 @@
   /* ─── HERO ─── */
   #home {
     position: relative;
-    min-height: calc(100vh - 68px);
+    min-height: calc(100vh - 68px); /* basiert auf Nav-Normalhöhe */
     display: flex; align-items: center;
     overflow: hidden;
     padding-bottom: 60px;
@@ -283,7 +291,9 @@
     color: var(--sage); cursor: pointer;
     transition: color 0.18s;
   }
+  .hero-alert-more svg { transition: transform 0.22s cubic-bezier(0.4,0,0.2,1); }
   .hero-alert-more:hover { color: var(--sage-dark); }
+  .hero-alert-more:hover svg { transform: translateX(4px); }
 
   /* ─── HERO TERMIN-CHIP ─── */
   .hero-chip {
@@ -313,6 +323,7 @@
     padding: 9px 0;
     text-decoration: none;
     border-bottom: 1px solid oklch(92% 0.018 88 / 0.7);
+    transition: transform 0.22s cubic-bezier(0.4, 0, 0.2, 1);
   }
   .chip-event:last-child { border-bottom: none; }
   .chip-date {
@@ -336,6 +347,9 @@
     font-size: 0.68rem; font-weight: 700; color: var(--chip-clr, var(--sage));
     margin-top: 1px;
   }
+  a.chip-event:hover {
+    transform: translateX(6px);
+  }
   a.chip-event:hover .chip-name { color: var(--sage-dark); }
   .hero-chip-all {
     display: flex; align-items: center; justify-content: center; gap: 5px;
@@ -343,7 +357,9 @@
     font-size: 0.78rem; font-weight: 800; color: var(--sage);
     text-decoration: none; letter-spacing: 0.02em;
   }
+  .hero-chip-all svg { transition: transform 0.22s cubic-bezier(0.4, 0, 0.2, 1); }
   .hero-chip-all:hover { color: var(--sage-dark); }
+  .hero-chip-all:hover svg { transform: translateX(4px); }
 
   /* ─── HERO BILD-SWITCHER ─── */
   .hero-switcher {
@@ -939,7 +955,7 @@
       <img src="uploads/info-eule.png" alt="Info-Eule">
     </div>
     <div class="hero-alert-body">
-      <div class="hero-alert-label">Wichtiger Hinweis</div>
+      <div class="hero-alert-label" style="display:inline-flex;align-items:center;gap:5px;">Wichtiger Hinweis <svg width="15" height="15" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="20" height="20" rx="6" fill="oklch(52% 0.20 25)"/><line x1="12" y1="7" x2="12" y2="13.5" stroke="white" stroke-width="2.5" stroke-linecap="round"/><circle cx="12" cy="17.5" r="1.4" fill="white"/></svg></div>
       <div class="hero-alert-text">Neue Heft-Liste für das kommende Schuljahr online</div>
       <a href="news/heftliste.html" class="hero-alert-more" style="text-decoration:none;">Weiterlesen
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
@@ -1059,6 +1075,17 @@
     <h2 class="section-title">News & Veranstaltungen</h2>
     <p class="section-subtitle">Hier finden Sie aktuelle Informationen rund um das Schulleben.</p>
     <div class="news-grid">
+      <a class="news-card" href="news/musical-julia.html" style="text-decoration:none;color:inherit;display:block;">
+        <div class="news-card-img">
+          <img src="uploads/WhatsApp%20Image%202026-06-20%20at%2000.13.29.jpeg" alt="Musical Julia – Schlussapplaus">
+        </div>
+        <div class="news-card-body">
+          <div class="news-date">19. Juni 2026</div>
+          <div class="news-title">Das Musical „Julia" begeistert das Publikum</div>
+          <div class="news-excerpt">Mit außergewöhnlichem Einsatz und echter Spielfreude brachten die Schülerinnen und Schüler das Musical „Julia" auf die Bühne — ein unvergesslicher Abend.</div>
+          <span class="news-link">Weiterlesen →</span>
+        </div>
+      </a>
       <a class="news-card" href="news/heftliste.html" style="text-decoration:none;color:inherit;display:block;">
         <div class="news-card-img">
           <img src="https://images.unsplash.com/photo-1456735190827-d1262f71b8a3?w=700&fit=crop&crop=center" alt="Heftliste 2026/27">
@@ -1078,17 +1105,6 @@
           <div class="news-date">Mai 2026</div>
           <div class="news-title">Markttage in Hirtenberg und Enzesfeld</div>
           <div class="news-excerpt">Mehr als 100 selbst gezogene Gemüse- und Kräuterpflanzen verkauft! Unsere Junior Company lernte den vollen Kreislauf eines Unternehmens kennen.</div>
-          <span class="news-link">Weiterlesen →</span>
-        </div>
-      </a>
-      <a class="news-card" href="news/kuerbini.html" style="text-decoration:none;color:inherit;display:block;">
-        <div class="news-card-img">
-          <img src="news/kuerbini-hochbeet.jpg" alt="Frisch bepflanztes Hochbeet der Junior Company">
-        </div>
-        <div class="news-card-body">
-          <div class="news-date">April 2026</div>
-          <div class="news-title">Alles wächst in der MS Hirtenberg!</div>
-          <div class="news-excerpt">Die Junior Companys Kürbini und TomasTomate laden zu den Markttagen ein — selbst gezogene Kürbis-, Zucchini- und Kräuterpflanzen für den eigenen Garten.</div>
           <span class="news-link">Weiterlesen →</span>
         </div>
       </a>
@@ -1433,6 +1449,14 @@
 </footer>
 
 <script>
+  // ─── NAV SCROLL-SHRINK ───
+  (function() {
+    const nav = document.querySelector('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+  })();
+
   function openLight(src, caption) {
     const lb = document.getElementById('lightbox');
     document.getElementById('lb-img').src = src;
