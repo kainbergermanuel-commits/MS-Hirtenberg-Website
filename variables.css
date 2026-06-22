@@ -96,3 +96,32 @@ footer::before {
 @media (max-width: 520px) {
   .footer-main { grid-template-columns: 1fr; }
 }
+
+/* ── Nav-Logo Tooltip (global) ── */
+.nav-logo { position: relative; }
+.nav-logo::after {
+  content: 'Zurück zur Startseite\00a0 ↩';
+  position: absolute;
+  top: calc(100% + 22px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-4px);
+  background: oklch(99% 0.007 88 / 0.96);
+  color: oklch(42% 0.07 145);
+  font-family: var(--font-body);
+  font-size: 0.71rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  padding: 5px 18px;
+  border-radius: 20px;
+  border: 1px solid oklch(82% 0.03 145 / 0.5);
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  box-shadow: 0 2px 12px oklch(0% 0 0 / 8%);
+  backdrop-filter: blur(8px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+.nav-logo:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}

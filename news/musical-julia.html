@@ -13,13 +13,6 @@
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
-  nav { background: oklch(98% 0.008 88 / 0.78); backdrop-filter: blur(18px) saturate(1.4); -webkit-backdrop-filter: blur(18px) saturate(1.4); display: flex; align-items: center; justify-content: space-between; padding: 0 48px; height: 68px; border-bottom: 1.5px solid oklch(100% 0 0 / 0.55); box-shadow: 0 2px 20px oklch(0% 0 0 / 6%); position: sticky; top: 0; z-index: 100; transition: height 0.35s cubic-bezier(0.4,0,0.2,1), box-shadow 0.35s cubic-bezier(0.4,0,0.2,1), background 0.35s; }
-  nav.scrolled { height: 50px; background: oklch(98% 0.008 88 / 0.92); box-shadow: 0 2px 28px oklch(0% 0 0 / 10%); }
-  .nav-logo { font-family: var(--font-heading); color: var(--sage-dark); font-size: 1.2rem; font-weight: 700; letter-spacing: -0.02em; text-decoration: none; display: flex; align-items: center; gap: 10px; }
-  .nav-pill { display: inline-flex; align-items: center; background: var(--white); color: var(--sage); font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.13em; padding: 5px 14px; border-radius: 30px; border: 1.5px solid var(--sage-pale); white-space: nowrap; }
-  .nav-links { display: flex; gap: 4px; list-style: none; }
-  .nav-links a { color: var(--text-light); text-decoration: none; font-size: 0.88rem; font-weight: 600; padding: 7px 15px; border-radius: 30px; transition: background 0.2s, color 0.2s, transform 0.15s, box-shadow 0.15s; letter-spacing: 0.01em; }
-  .nav-links a:hover, .nav-links a.active { background: linear-gradient(135deg, var(--sage-pale), oklch(90% 0.055 145)); color: var(--sage-dark); transform: translateY(-1px); box-shadow: 0 3px 10px oklch(0% 0 0 / 8%); }
   .nav-links a.nav-cta { color: var(--sage-dark); font-weight: 800; white-space: nowrap; }
   .nav-links a.nav-cta:hover, .nav-links a.nav-cta.active { background: linear-gradient(135deg, var(--sage), var(--sage-mid)); color: var(--white); transform: translateY(-1px); box-shadow: 0 3px 10px oklch(52% 0.10 145 / 25%); }
 
@@ -83,6 +76,115 @@
   .back-link { display: inline-flex; align-items: center; gap: 8px; color: var(--sage); font-weight: 700; text-decoration: none; font-size: 0.9rem; margin-bottom: 40px; transition: gap 0.2s; }
   .back-link:hover { gap: 12px; color: var(--sage-dark); }
 
+  /* Dekoratives Karten-Element im Foto-Grid */
+  .photo-deco-card {
+    aspect-ratio: 4/3;
+    border-radius: var(--radius);
+    background:
+      radial-gradient(ellipse at 30% 20%, oklch(52% 0.10 145 / 0.18) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 80%, oklch(78% 0.08 15 / 0.15) 0%, transparent 55%),
+      linear-gradient(145deg, oklch(24% 0.07 145) 0%, oklch(20% 0.05 145) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+  }
+  .photo-deco-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: repeating-linear-gradient(
+      0deg,
+      oklch(100% 0 0 / 0.018) 0px,
+      oklch(100% 0 0 / 0.018) 1px,
+      transparent 1px,
+      transparent 6px
+    );
+    pointer-events: none;
+  }
+  /* Rahmen */
+  .photo-deco-card::after {
+    content: "";
+    position: absolute;
+    inset: 14px;
+    border: 1px solid oklch(80% 0.07 68 / 0.22);
+    border-radius: 6px;
+    pointer-events: none;
+  }
+  .pdc-inner {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+  }
+  .pdc-ornament {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 4px;
+  }
+  .pdc-ornament-line {
+    width: 28px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, oklch(80% 0.07 68 / 0.6));
+  }
+  .pdc-ornament-line.right {
+    background: linear-gradient(90deg, oklch(80% 0.07 68 / 0.6), transparent);
+  }
+  .pdc-ornament-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: oklch(78% 0.08 68);
+    opacity: 0.7;
+  }
+  .pdc-label {
+    font-family: var(--font-body);
+    font-size: 0.58rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: oklch(78% 0.08 68);
+    opacity: 0.85;
+  }
+  .pdc-title {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: clamp(2.2rem, 5.5vw, 3.2rem);
+    font-weight: 700;
+    color: oklch(97% 0.015 88);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    text-shadow: 0 2px 20px oklch(0% 0 0 / 40%);
+  }
+  .pdc-divider {
+    width: 36px;
+    height: 1.5px;
+    background: linear-gradient(90deg, oklch(78% 0.08 68 / 0.4), oklch(78% 0.08 68), oklch(78% 0.08 68 / 0.4));
+    border-radius: 2px;
+    margin: 4px 0;
+  }
+  .pdc-sub {
+    font-family: var(--font-body);
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: oklch(80% 0.06 145);
+    letter-spacing: 0.04em;
+  }
+  .pdc-year {
+    font-family: var(--font-body);
+    font-size: 0.62rem;
+    font-weight: 600;
+    color: oklch(70% 0.05 145 / 0.65);
+    letter-spacing: 0.08em;
+    margin-top: 2px;
+  }
+
   .post-nav { max-width: 800px; margin: 0 auto; padding: 30px 48px 84px; display: grid; grid-template-columns: 1fr; gap: 12px; border-top: 1.5px solid var(--cream-dark); }
   .post-nav-link { display: flex; flex-direction: column; gap: 3px; padding: 13px 16px; background: transparent; border: 1px solid var(--cream-dark); border-radius: var(--radius); text-decoration: none; transition: background 0.2s, border-color 0.2s; }
   .post-nav-link:hover { background: var(--white); border-color: var(--sage-light); }
@@ -104,32 +206,38 @@
     .closing-box { flex-direction: column; gap: 14px; padding: 24px; }
     .post-nav { padding: 32px 20px 70px; }
   }
+
+  /* ── Stimmen-Karussell ── */
+  .voices-carousel { margin: 50px 0; }
+  .voices-carousel h2 { margin-bottom: 10px; }
+  .voices-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 22px; }
+  .voices-sub { font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--sage); }
+  .voices-nav { display: flex; gap: 8px; }
+  .voices-btn { width: 40px; height: 40px; border-radius: 50%; background: var(--white); border: 1.5px solid var(--cream-dark); cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px oklch(0% 0 0 / 6%); transition: background 0.18s, border-color 0.18s; }
+  .voices-btn:hover { background: var(--sage-pale); border-color: var(--sage-light); }
+  .voices-card { background: linear-gradient(135deg, var(--cream-dark) 0%, oklch(99% 0.004 88) 100%); border: 1.5px solid var(--cream-dark); border-radius: var(--radius-lg); padding: 36px 36px 28px; box-shadow: 0 6px 28px oklch(0% 0 0 / 5%); position: relative; overflow: hidden; }
+  .voices-card-accent { position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--sage), var(--blush)); border-radius: var(--radius-lg) var(--radius-lg) 0 0; }
+  .voices-open-quote { font-family: var(--font-heading); font-size: 6.75rem; line-height: 1; color: oklch(46% 0.11 145); opacity: 0.35; position: absolute; top: 10px; left: 50%; transform: translateX(-50%); user-select: none; pointer-events: none; z-index: 0; }
+  .article-body .voices-text { font-family: var(--font-heading); font-style: italic; font-size: 1.18rem; line-height: 1.6; color: var(--text); padding-top: 62px; position: relative; z-index: 1; margin-bottom: 24px; }
+  .voices-attribution { display: flex; align-items: center; gap: 12px; }
+  .voices-avatar { width: 38px; height: 38px; border-radius: 50%; background: linear-gradient(135deg, var(--sage-pale), oklch(90% 0.055 145)); border: 1.5px solid var(--sage-light); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .voices-by { display: flex; flex-direction: column; gap: 2px; }
+  .voices-by-name { font-size: 0.82rem; font-weight: 700; color: var(--text); }
+  .voices-by-role { font-size: 0.72rem; color: var(--text-light); }
+  .voices-counter { margin-left: auto; font-size: 0.78rem; font-weight: 700; color: var(--text-light); }
+  .voices-counter strong { color: var(--sage); }
+  .voices-dots { display: flex; justify-content: center; gap: 8px; margin-top: 18px; }
+  .voices-dot { height: 8px; border-radius: 4px; background: var(--cream-dark); border: none; cursor: pointer; padding: 0; transition: width 0.3s cubic-bezier(0.4,0,0.2,1), background 0.2s; }
+  .voices-dot.active { background: var(--sage); }
+  @keyframes voicesSlideRight { from { opacity: 0; transform: translateX(36px); } to { opacity: 1; transform: translateX(0); } }
+  @keyframes voicesSlideLeft  { from { opacity: 0; transform: translateX(-36px); } to { opacity: 1; transform: translateX(0); } }
+  .voices-card.anim-right { animation: voicesSlideRight 0.35s cubic-bezier(0.4,0,0.2,1); }
+  .voices-card.anim-left  { animation: voicesSlideLeft  0.35s cubic-bezier(0.4,0,0.2,1); }
 </style>
 </head>
 <body>
 
-<nav>
-  <a href="../index.html" class="nav-logo">
-    <svg width="38" height="38" viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="19" cy="19" r="17" fill="none" stroke="oklch(52% 0.10 145)" stroke-width="1.3"/>
-      <circle cx="19" cy="19" r="13.5" fill="none" stroke="oklch(52% 0.10 145)" stroke-width="0.4" opacity="0.4"/>
-      <line x1="19" y1="27" x2="19" y2="22" stroke="oklch(52% 0.10 145)" stroke-width="1.4" stroke-linecap="round"/>
-      <path d="M19 22 C22 18 22 12 19 11 C16 12 16 18 19 22Z" fill="oklch(52% 0.10 145)"/>
-      <path d="M19 22 C15 19 12 15 13 13 C15 13 18 18 19 22Z" fill="oklch(68% 0.09 145)"/>
-      <path d="M19 22 C23 19 26 15 25 13 C23 13 20 18 19 22Z" fill="oklch(68% 0.09 145)"/>
-      <circle cx="19" cy="2" r="1.8" fill="oklch(60% 0.11 68)"/>
-    </svg>
-    <span class="nav-pill">Mittelschule Hirtenberg</span>
-  </a>
-  <ul class="nav-links">
-    <li><a href="../neu-bei-uns.html" class="nav-cta">Neu bei uns?</a></li>
-    <li><a href="../index.html#news" class="active">Aktuelles</a></li>
-    <li><a href="../termine.html">Termine</a></li>
-    <li><a href="../index.html#team">Lehrpersonal</a></li>
-    <li><a href="../index.html#galerie">Galerie</a></li>
-    <li><a href="../index.html#kontakt">Kontakt</a></li>
-  </ul>
-</nav>
+<script src="../nav.js"></script>
 
 <div class="article-hero">
   <img src="../uploads/WhatsApp%20Image%202026-06-20%20at%2000.13.29.jpeg" alt="Schlussapplaus beim Musical Julia – alle Darstellerinnen und Darsteller auf der Bühne">
@@ -206,9 +314,35 @@
     <h2>Eine Geschichte, die bewegt</h2>
     <p>Das Musical „Julia" — eine moderne Interpretation eines zeitlosen Stoffes über Liebe, Freundschaft und Mut — entfaltete auf der Bühne eine ganz eigene Magie. Ob in den mitreißenden Gruppenszenen voller Tempo und Humor, in den zarten Momenten zwischen zwei Charakteren oder in den dramatisch zugespitzten Szenen des Finales — die jungen Künstlerinnen und Künstler überzeugten durchweg mit vollem Körpereinsatz und echter Spielfreude.</p>
 
-    <div class="pull-quote">
-      <p>Man spürte in jeder Szene, wie viel Herzblut die Kinder in diese Aufführung gesteckt haben — das war großes Theater!</p>
-      <span class="pq-cite">Stimme aus dem Publikum</span>
+    <div class="voices-carousel">
+      <h2>Stimmen aus dem Publikum</h2>
+      <div class="voices-top">
+        <span class="voices-sub">Was das Publikum bewegt hat</span>
+        <div class="voices-nav">
+          <button class="voices-btn" id="voices-prev" aria-label="Vorheriges Zitat">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--sage)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <button class="voices-btn" id="voices-next" aria-label="Nächstes Zitat">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--sage)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="voices-card" id="voices-card">
+        <div class="voices-card-accent"></div>
+        <div class="voices-open-quote">&ldquo;</div>
+        <p class="voices-text" id="voices-text"></p>
+        <div class="voices-attribution">
+          <div class="voices-avatar">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--sage)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+          </div>
+          <div class="voices-by">
+            <span class="voices-by-name" id="voices-by-name"></span>
+            <span class="voices-by-role" id="voices-by-role"></span>
+          </div>
+          <div class="voices-counter"><strong id="voices-current">1</strong> / <span id="voices-total"></span></div>
+        </div>
+      </div>
+      <div class="voices-dots" id="voices-dots"></div>
     </div>
 
     <div class="article-photo-grid">
@@ -226,6 +360,25 @@
       <img src="../uploads/WhatsApp%20Image%202026-06-20%20at%2000.13.30%20(4).jpeg" alt="Darsteller auf der Bühne">
       <img src="../uploads/WhatsApp%20Image%202026-06-20%20at%2000.13.31%20(6).jpeg" alt="Vier Darstellerinnen und Darsteller posieren auf der Bühne">
       <img src="../uploads/WhatsApp%20Image%202026-06-20%20at%2000.13.31%20(5).jpeg" alt="Szene an der Bar">
+      <div class="photo-deco-card">
+        <div class="pdc-inner">
+          <div class="pdc-ornament">
+            <div class="pdc-ornament-line"></div>
+            <div class="pdc-ornament-dot"></div>
+            <div class="pdc-ornament-line right"></div>
+          </div>
+          <div class="pdc-label">Schulmusical</div>
+          <div class="pdc-title">Julia</div>
+          <div class="pdc-divider"></div>
+          <div class="pdc-sub">MS Hirtenberg</div>
+          <div class="pdc-year">19. Juni 2026 · Kulturhaus</div>
+          <div class="pdc-ornament" style="margin-top: 4px;">
+            <div class="pdc-ornament-line"></div>
+            <div class="pdc-ornament-dot"></div>
+            <div class="pdc-ornament-line right"></div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="closing-box">
@@ -316,13 +469,5 @@
 </footer>
 
 
-<script>
-  (() => {
-    const nav = document.querySelector('nav');
-    window.addEventListener('scroll', () => {
-      nav.classList.toggle('scrolled', window.scrollY > 40);
-    }, { passive: true });
-  })();
-</script>
 </body>
 </html>
