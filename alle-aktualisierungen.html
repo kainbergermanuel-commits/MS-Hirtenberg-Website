@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<title>Alle Aktualisierungen – MS Hirtenberg</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="variables.css">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--font-body); background: var(--cream); color: var(--text); font-size: 17px; line-height: 1.65; }
+
+  /* ── PAGE HERO ── */
+  .page-hero {
+    padding: 64px 96px 52px;
+    position: relative; overflow: hidden;
+    background-color: var(--sage-pale);
+    background-image:
+      linear-gradient(to right,
+        oklch(98% 0.008 88 / 0.97) 0%,
+        oklch(98% 0.008 88 / 0.92) 40%,
+        oklch(97% 0.02 60 / 0.66) 58%,
+        oklch(96% 0.03 15 / 0.24) 76%,
+        transparent 94%),
+      url("uploads/ChatGPT Image 9. Juni 2026, 14_43_03.png");
+    background-size: cover, cover;
+    background-position: center, right center;
+    background-repeat: no-repeat, no-repeat;
+  }
+  .page-hero::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(to top, oklch(38% 0.06 145 / 0.10), transparent 38%);
+    pointer-events: none;
+  }
+  .page-hero-tag {
+    display: inline-flex; align-items: center; gap: 7px;
+    background: var(--white); color: var(--sage);
+    font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.12em; padding: 5px 14px; border-radius: 30px;
+    margin-bottom: 14px; border: 1.5px solid var(--sage-pale);
+  }
+  .page-hero h1 {
+    font-family: var(--font-heading); color: var(--text);
+    font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .page-hero p { color: var(--text-light); max-width: 560px; }
+  .back-link {
+    display: inline-flex; align-items: center; gap: 8px;
+    color: var(--sage); font-weight: 700; text-decoration: none;
+    font-size: 0.88rem; margin-bottom: 20px;
+    transition: gap 0.2s;
+  }
+  .back-link:hover { gap: 12px; }
+
+  /* ── CONTENT BODY ── */
+  .page-body { max-width: 860px; margin: 0 auto; padding: 56px 48px 100px; }
+
+  /* ── FILTER BAR ── */
+  .filter-bar {
+    display: flex; gap: 8px; flex-wrap: wrap;
+    margin-bottom: 48px;
+  }
+  .filter-btn {
+    display: inline-flex; align-items: center; gap: 7px;
+    padding: 7px 16px; border-radius: 30px;
+    font-family: var(--font-body); font-size: 0.82rem; font-weight: 700;
+    cursor: pointer; border: 1.5px solid var(--cream-dark);
+    background: var(--white); color: var(--text-light);
+    transition: background 0.16s, color 0.16s, border-color 0.16s, transform 0.14s;
+    letter-spacing: 0.01em;
+  }
+  .filter-btn .dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: currentColor; opacity: 0.5;
+    transition: opacity 0.16s;
+  }
+  .filter-btn:hover { border-color: var(--sage-light); color: var(--sage); transform: translateY(-1px); }
+  .filter-btn.active {
+    background: var(--sage-pale); color: var(--sage-dark);
+    border-color: var(--sage-light);
+  }
+  .filter-btn.active .dot { opacity: 1; }
+  .filter-btn[data-type="artikel"].active  { background: var(--sage-pale);            color: var(--sage-dark);          border-color: var(--sage-light); }
+  .filter-btn[data-type="termin"].active   { background: oklch(93% 0.04 260);         color: oklch(35% 0.12 260);       border-color: oklch(76% 0.08 260); }
+  .filter-btn[data-type="info"].active     { background: oklch(95% 0.05 70);          color: oklch(42% 0.12 68);        border-color: oklch(78% 0.10 70); }
+  .filter-btn[data-type="artikel"] .dot    { color: var(--sage); }
+  .filter-btn[data-type="termin"]  .dot    { color: oklch(55% 0.12 260); }
+  .filter-btn[data-type="info"]    .dot    { color: oklch(56% 0.11 68); }
+  .filter-btn[data-type="artikel"].active .dot { color: var(--sage-dark); }
+  .filter-btn[data-type="termin"].active  .dot { color: oklch(35% 0.12 260); }
+  .filter-btn[data-type="info"].active    .dot { color: oklch(42% 0.12 68); }
+
+  /* count badge on "Alle" */
+  .filter-count {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-width: 20px; height: 20px; padding: 0 5px;
+    border-radius: 10px;
+    background: var(--cream-dark); color: var(--text-light);
+    font-size: 0.72rem; font-weight: 700;
+    transition: background 0.16s, color 0.16s;
+  }
+  .filter-btn.active .filter-count { background: var(--sage-light); color: var(--sage-dark); }
+
+  /* ── TIMELINE ── */
+  .timeline { display: flex; flex-direction: column; gap: 0; }
+
+  .month-group { margin-bottom: 40px; }
+  .month-group.hidden { display: none; }
+
+  .month-header {
+    display: flex; align-items: center; gap: 16px;
+    margin-bottom: 4px;
+    padding-bottom: 10px;
+    border-bottom: 1.5px solid var(--cream-dark);
+  }
+  .month-name {
+    font-family: var(--font-heading);
+    font-size: 1.05rem; font-weight: 700;
+    color: var(--text-light);
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+  }
+  .month-count {
+    font-size: 0.72rem; font-weight: 700;
+    color: var(--text-light); opacity: 0.6;
+  }
+
+  /* ── ENTRY ROW ── */
+  .tl-entry {
+    display: grid;
+    grid-template-columns: 52px 74px 1fr 20px;
+    align-items: start;
+    gap: 0 14px;
+    padding: 13px 14px;
+    border-radius: var(--radius);
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.16s;
+    position: relative;
+  }
+  .tl-entry:hover { background: var(--white); box-shadow: 0 1px 8px oklch(0% 0 0 / 5%); }
+  .tl-entry:hover .tl-title { color: var(--sage-dark); }
+  .tl-entry:hover .tl-arrow { opacity: 1; transform: translateX(3px); }
+
+  .tl-date {
+    font-size: 0.78rem; font-weight: 700;
+    color: var(--text-light); letter-spacing: 0.02em;
+    padding-top: 3px;
+    white-space: nowrap;
+  }
+
+  .tl-chip {
+    display: inline-flex; align-items: center; justify-content: center;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.68rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    white-space: nowrap;
+    align-self: start;
+    margin-top: 1px;
+  }
+  .tl-chip.artikel { background: var(--sage-pale);          color: var(--sage-dark); }
+  .tl-chip.termin  { background: oklch(92% 0.05 260);       color: oklch(35% 0.12 260); }
+  .tl-chip.info    { background: oklch(95% 0.06 70);        color: oklch(42% 0.12 68); }
+
+  .tl-content { min-width: 0; }
+  .tl-title {
+    font-size: 0.95rem; font-weight: 700;
+    color: var(--text); line-height: 1.35;
+    text-wrap: pretty;
+    transition: color 0.16s;
+  }
+  .tl-excerpt {
+    font-size: 0.83rem; color: var(--text-light);
+    line-height: 1.5; margin-top: 3px;
+    display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden;
+  }
+
+  .tl-arrow {
+    color: var(--sage); opacity: 0; flex-shrink: 0;
+    transition: opacity 0.16s, transform 0.18s cubic-bezier(0.4,0,0.2,1);
+    margin-top: 4px;
+  }
+
+  /* ── EMPTY STATE ── */
+  .tl-empty {
+    text-align: center; padding: 64px 24px;
+    color: var(--text-light); font-size: 0.95rem;
+    display: none;
+  }
+  .tl-empty.visible { display: block; }
+  .tl-empty svg { display: block; margin: 0 auto 16px; opacity: 0.3; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 700px) {
+    .page-hero { padding: 40px 20px 32px; }
+    .page-body { padding: 40px 20px 80px; }
+    .tl-entry {
+      grid-template-columns: 52px 1fr 20px;
+      grid-template-rows: auto auto;
+    }
+    .tl-date { grid-row: 1; }
+    .tl-chip { grid-row: 1; justify-self: start; }
+    .tl-content { grid-column: 1 / -1; grid-row: 2; padding-left: 0; margin-top: 5px; }
+    .tl-arrow { grid-row: 1; }
+  }
+  @media (max-width: 900px) {
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<script src="nav.js"></script>
+
+<div class="page-hero">
+  <a href="index.html#news" class="back-link">← Zurück zur Startseite</a>
+  <div class="page-hero-tag">Aktuelles</div>
+  <h1>Alle Aktualisierungen</h1>
+  <p>Chronologischer Überblick über alle Neuigkeiten, veröffentlichten Artikel und Änderungen auf dieser Website — neueste Einträge zuerst.</p>
+</div>
+
+<div class="page-body">
+
+  <div class="filter-bar" id="filter-bar">
+    <button class="filter-btn active" data-type="alle">
+      Alle <span class="filter-count" id="count-alle"></span>
+    </button>
+    <button class="filter-btn" data-type="artikel">
+      <span class="dot"></span> Artikel
+    </button>
+    <button class="filter-btn" data-type="termin">
+      <span class="dot"></span> Termine
+    </button>
+    <button class="filter-btn" data-type="info">
+      <span class="dot"></span> Info
+    </button>
+  </div>
+
+  <div class="timeline" id="timeline"></div>
+  <div class="tl-empty" id="tl-empty">
+    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+    Keine Einträge für diesen Filter.
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-main">
+    <div class="footer-brand">
+      <div class="footer-brand-row">
+        <svg width="42" height="42" viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="19" cy="19" r="17" fill="none" stroke="oklch(80% 0.07 145)" stroke-width="1.3"/>
+          <circle cx="19" cy="19" r="13.5" fill="none" stroke="oklch(80% 0.07 145)" stroke-width="0.4" opacity="0.4"/>
+          <line x1="19" y1="27" x2="19" y2="22" stroke="oklch(80% 0.07 145)" stroke-width="1.4" stroke-linecap="round"/>
+          <path d="M19 22 C22 18 22 12 19 11 C16 12 16 18 19 22Z" fill="oklch(80% 0.07 145)"/>
+          <path d="M19 22 C15 19 12 15 13 13 C15 13 18 18 19 22Z" fill="oklch(68% 0.09 145)"/>
+          <path d="M19 22 C23 19 26 15 25 13 C23 13 20 18 19 22Z" fill="oklch(68% 0.09 145)"/>
+          <circle cx="19" cy="2" r="1.8" fill="oklch(70% 0.12 68)"/>
+        </svg>
+        <span class="footer-brand-name">Mittelschule<br>Hirtenberg</span>
+      </div>
+      <p class="footer-tagline">Gemeinsam lernen, wachsen und die eigenen Stärken entdecken – mitten im Herzen von Hirtenberg.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Entdecken</h4>
+      <ul>
+        <li><a href="index.html#news">Aktuelles</a></li>
+        <li><a href="termine.html">Termine</a></li>
+        <li><a href="index.html#team">Lehrpersonal</a></li>
+        <li><a href="index.html#galerie">Galerie</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Service</h4>
+      <ul>
+        <li><a href="neu-bei-uns.html">Neu bei uns?</a></li>
+        <li><a href="schwerpunkte.html">Schwerpunkte</a></li>
+        <li><a href="formulare.html">Formulare</a></li>
+        <li><a href="stundenzeiten.html">Stundenzeiten</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Kontakt</h4>
+      <div class="footer-contact">
+        <div class="footer-contact-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="oklch(80% 0.07 145)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Schulgasse 1<br>2552 Hirtenberg</span>
+        </div>
+        <div class="footer-contact-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="oklch(80% 0.07 145)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+          <a href="tel:+43225612345">02256 / 12 34 56</a>
+        </div>
+        <div class="footer-contact-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="oklch(80% 0.07 145)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+          <a href="mailto:office@ms-hirtenberg.at">office@ms-hirtenberg.at</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-bottom-inner">
+      <div>© 2026 Mittelschule Hirtenberg · Alle Rechte vorbehalten</div>
+      <div class="footer-legal">
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+        <a href="barrierefreiheit.html">Barrierefreiheit</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="back-to-top.js"></script>
+
+<script>
+const MONTHS_DE = ['Jänner','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'];
+
+/* ── Alle Einträge, neueste zuerst ── */
+const UPDATES = [
+  /* Juni 2026 */
+  { date: '2026-06-19', type: 'artikel', title: 'Das Musical „Julia" begeistert das Publikum',             excerpt: 'Mit außergewöhnlichem Einsatz und echter Spielfreude brachten die Schülerinnen und Schüler das Musical auf die Bühne — ein unvergesslicher Abend voller Emotionen und stehenden Ovationen.', href: 'news/musical-julia.html' },
+  { date: '2026-06-12', type: 'termin',  title: 'Schulschlussfeier am 29. Juni eingetragen',              href: 'termine.html#evt-schulschluss' },
+  { date: '2026-06-10', type: 'artikel', title: 'Selbstverteidigungskurs mit unseren 1. Klassen',         excerpt: 'Grenzen setzen, Selbstbewusstsein stärken — die Erstklässler erlebten einen besonderen Projekttag mit Abwehrtechniken und Körpersprache.', href: 'news/selbstverteidigung.html' },
+  { date: '2026-06-08', type: 'info',    title: 'Tag der Offenen Tür – alle Details aktualisiert',        href: 'termine.html#evt-open-house' },
+  { date: '2026-06-04', type: 'artikel', title: 'Heftliste für das Schuljahr 2026/27',                    excerpt: 'Die aktuelle Heftliste für alle Schulstufen ist online — übersichtlich nach Klassen und Fächern, auch als PDF zum Ausdrucken.', href: 'news/heftliste.html' },
+  { date: '2026-06-01', type: 'termin',  title: 'Elternsprechtag 11. Juni eingetragen',                   href: 'termine.html#evt-sprechtag' },
+  /* Mai 2026 */
+  { date: '2026-05-26', type: 'artikel', title: 'Markttage in Hirtenberg und Enzesfeld',                  excerpt: 'Mehr als 100 selbst gezogene Gemüse- und Kräuterpflanzen verkauft! Unsere Junior Company lernte den vollen Kreislauf eines Unternehmens kennen.', href: 'news/markttage.html' },
+  /* April 2026 */
+  { date: '2026-04-14', type: 'artikel', title: 'Frühlingsausflug in den Wienerwald',                     excerpt: 'Die 3. Klassen erkundeten gemeinsam den Wienerwald und lernten heimische Pflanzen- und Tierarten kennen — ein unvergesslicher Tag voller Entdeckungen.', href: 'news/wienerwald.html' },
+  { date: '2026-04-08', type: 'artikel', title: 'Großer Erfolg beim Schultheaterabend',                   excerpt: 'Über 200 Gäste erlebten eine beeindruckende Aufführung unserer Theater-AG zum Thema Klimawandel — mit selbst geschriebenen Texten.', href: 'news/theaterabend.html' },
+  { date: '2026-04-02', type: 'artikel', title: 'Sporttag 2026 – Anmeldungen offen',                      excerpt: 'Am 10. Mai findet unser jährlicher Sporttag statt. Leichtathletik, Staffelläufe und Mannschaftsspiele warten auf alle Klassen.', href: 'news/sporttag.html' },
+  { date: '2026-04-01', type: 'artikel', title: 'Alles wächst in der MS Hirtenberg!',                     excerpt: 'Die Junior Company lädt zu den Markttagen am 25. und 26. April ein — selbst gezogene Kürbis-, Zucchini- und Kräuterpflanzen.', href: 'news/kuerbini.html' },
+  /* Februar 2026 */
+  { date: '2026-02-01', type: 'artikel', title: 'Informationsmesse der AK NÖ – Berufe zum Angreifen',     excerpt: 'Experimente, Kreativworkshops, ÖBB und AK Kids: Unsere Schülerinnen und Schüler erkundeten die Berufswelt hautnah.', href: 'news/berufe-messe.html' },
+  /* Jänner 2026 */
+  { date: '2026-01-15', type: 'artikel', title: 'Berufspraktische Tage an der MS Hirtenberg',             excerpt: 'Zwei Tage im Wunschbetrieb: Unsere Viertklässler schnupperten im Handel, in der Kfz-Werkstatt, im Supermarkt und in der Logistik.', href: 'news/berufspraktikum.html' },
+  /* November 2025 */
+  { date: '2025-11-28', type: 'artikel', title: 'Impressionen vom Weihnachtsmarkt',                       excerpt: 'Unser dreitägiger Weihnachtsmarkt Ende November war wieder ein großer Erfolg — mit feiner Kulinarik und liebevoll selbst hergestellten Produkten.', href: 'news/weihnachtsmarkt.html' },
+];
+
+const ARROW_SVG = `<svg class="tl-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>`;
+
+function formatDate(iso) {
+  const d = new Date(iso + 'T12:00:00');
+  const day = String(d.getDate()).padStart(2, '0');
+  const mon = MONTHS_DE[d.getMonth()].slice(0, 3) + '.';
+  return `${day}. ${mon}`;
+}
+
+function monthKey(iso) {
+  const d = new Date(iso + 'T12:00:00');
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`;
+}
+
+function monthLabel(key) {
+  const [y, m] = key.split('-');
+  return `${MONTHS_DE[parseInt(m, 10) - 1]} ${y}`;
+}
+
+function buildTimeline(filter) {
+  const items = filter === 'alle' ? UPDATES : UPDATES.filter(u => u.type === filter);
+
+  // Group by month
+  const groups = new Map();
+  for (const u of items) {
+    const key = monthKey(u.date);
+    if (!groups.has(key)) groups.set(key, []);
+    groups.get(key).push(u);
+  }
+
+  const tl = document.getElementById('timeline');
+  const empty = document.getElementById('tl-empty');
+
+  if (items.length === 0) {
+    tl.innerHTML = '';
+    empty.classList.add('visible');
+    return;
+  }
+  empty.classList.remove('visible');
+
+  let html = '';
+  for (const [key, entries] of groups) {
+    html += `<div class="month-group">
+      <div class="month-header">
+        <span class="month-name">${monthLabel(key)}</span>
+        <span class="month-count">${entries.length} ${entries.length === 1 ? 'Eintrag' : 'Einträge'}</span>
+      </div>`;
+    for (const u of entries) {
+      const chipClass = u.type;
+      const chipLabel = u.type === 'artikel' ? 'Artikel' : u.type === 'termin' ? 'Termin' : 'Info';
+      html += `<a class="tl-entry" href="${u.href}">
+        <time class="tl-date">${formatDate(u.date)}</time>
+        <span class="tl-chip ${chipClass}">${chipLabel}</span>
+        <div class="tl-content">
+          <div class="tl-title">${u.title}</div>
+          ${u.excerpt ? `<div class="tl-excerpt">${u.excerpt}</div>` : ''}
+        </div>
+        ${ARROW_SVG}
+      </a>`;
+    }
+    html += `</div>`;
+  }
+  tl.innerHTML = html;
+}
+
+// Filter logic
+document.getElementById('count-alle').textContent = UPDATES.length;
+buildTimeline('alle');
+
+document.getElementById('filter-bar').addEventListener('click', function (e) {
+  const btn = e.target.closest('.filter-btn');
+  if (!btn) return;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  buildTimeline(btn.dataset.type);
+});
+</script>
+</body>
+</html>
