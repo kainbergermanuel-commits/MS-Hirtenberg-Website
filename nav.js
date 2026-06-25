@@ -95,6 +95,7 @@
       box-shadow: 0 8px 26px oklch(0% 0 0 / 9%), 0 1px 4px oklch(0% 0 0 / 4%);
       opacity: 0;
       pointer-events: none;
+      will-change: opacity, transform;
       transition: opacity 0.17s ease, transform 0.17s cubic-bezier(.2,.8,.25,1);
       z-index: 200;
       overflow: hidden;
@@ -223,6 +224,10 @@
 
   /* ── Nav-Element bauen ── */
   const logoHref = isIndex ? '#home' : R + 'index.html';
+  const tooltipIcon = isIndex
+    ? `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>`
+    : `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>`;
+  const tooltipText = isIndex ? 'Nach oben' : 'Zurück zur Startseite';
   const nav = document.createElement('nav');
 
   const liItems = links.map(({ href, label, cls }) => {
@@ -243,10 +248,12 @@
         <circle cx="19" cy="2" r="1.8" fill="oklch(60% 0.11 68)"/>
       </svg>
       <span class="nav-pill">Mittelschule Hirtenberg</span>
+      <span class="nav-logo-tooltip">${tooltipIcon}${tooltipText}</span>
     </a>
     <ul class="nav-links">${liItems}</ul>
   `;
 
+  if (isIndex) nav.classList.add('nav--home');
   document.body.insertBefore(nav, document.body.firstChild);
 
   /* ── Scroll-Shrink ── */
@@ -275,12 +282,12 @@
         '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>' +
       '</a>';
     li.appendChild(popup);
+    loadOnce(); // Daten sofort beim Seitenaufbau laden – kein Fetch-Delay beim ersten Hover
 
     /* hover / focus with enter-delay + leave-grace */
     let t;
     function show() {
       clearTimeout(t);
-      loadOnce();
       t = setTimeout(function () { popup.classList.add('open'); }, 80);
     }
     function hide() {
