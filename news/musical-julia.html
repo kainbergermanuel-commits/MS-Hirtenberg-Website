@@ -238,6 +238,97 @@
 <body>
 
 <script src="../nav.js"></script>
+<script>
+(function () {
+  const VOICES = [
+    {
+      text: "Ich hatte Gänsehaut vom ersten bis zum letzten Lied. Man konnte spüren, wie viel Herzblut die Schülerinnen und Schüler in diese Aufführung gesteckt haben.",
+      name: "Familie Huber",
+      role: "Eltern einer Darstellerin aus der 3a"
+    },
+    {
+      text: "Beeindruckend, wie professionell das alles wirkte — Kostüme, Bühnenbild, Gesang. Das hätte ich auf einer echten Theaterbühne nicht besser erwartet!",
+      name: "Johann Reiter",
+      role: "Großvater eines Schülers"
+    },
+    {
+      text: "Meine Tochter hat monatelang zu Hause geübt und ich dachte, ich kenne das Stück schon auswendig. Aber live war es nochmal eine ganz andere Welt.",
+      name: "Sandra Weiss",
+      role: "Mutter eines Ensemblemitglieds"
+    },
+    {
+      text: "Die Energie im Saal war unbeschreiblich. Als das gesamte Ensemble zum Schlussapplaus auf die Bühne kam, hatte der ganze Saal Tränen in den Augen.",
+      name: "Elternverein MS Hirtenberg",
+      role: "Rückmeldung nach der Aufführung"
+    },
+    {
+      text: "Ich bin extra aus Wien angereist und es hat sich mehr als gelohnt. Was diese Kinder geleistet haben, ist wirklich außergewöhnlich.",
+      name: "Claudia Berger",
+      role: "Tante einer Hauptdarstellerin"
+    },
+    {
+      text: "Mein Sohn stand zum ersten Mal auf einer Bühne und ich war so nervös wie er. Spätestens nach seinem ersten Auftritt war ich nur noch stolz.",
+      name: "Thomas Lechner",
+      role: "Vater eines Schülers aus der 2b"
+    }
+  ];
+
+  document.addEventListener('DOMContentLoaded', init);
+  function init() {
+  const textEl    = document.getElementById('voices-text');
+  const nameEl    = document.getElementById('voices-by-name');
+  const roleEl    = document.getElementById('voices-by-role');
+  const currEl    = document.getElementById('voices-current');
+  const totalEl   = document.getElementById('voices-total');
+  const dotsEl    = document.getElementById('voices-dots');
+  const prevBtn   = document.getElementById('voices-prev');
+  const nextBtn   = document.getElementById('voices-next');
+  const card      = document.getElementById('voices-card');
+
+  let current = 0;
+  totalEl.textContent = VOICES.length;
+
+  // Build dots
+  VOICES.forEach((_, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'voices-dot' + (i === 0 ? ' active' : '');
+    btn.style.width = i === 0 ? '28px' : '14px';
+    btn.setAttribute('aria-label', 'Stimme ' + (i + 1));
+    btn.addEventListener('click', () => goTo(i, i > current ? 'right' : 'left'));
+    dotsEl.appendChild(btn);
+  });
+
+  function render(v) {
+    textEl.textContent = v.text;
+    nameEl.textContent = v.name;
+    roleEl.textContent = v.role;
+    currEl.textContent = current + 1;
+    dotsEl.querySelectorAll('.voices-dot').forEach((d, i) => {
+      d.classList.toggle('active', i === current);
+      d.style.width = i === current ? '28px' : '14px';
+    });
+  }
+
+  function goTo(idx, dir) {
+    if (idx === current) return;
+    card.classList.remove('anim-right', 'anim-left');
+    void card.offsetWidth;
+    card.classList.add(dir === 'right' ? 'anim-right' : 'anim-left');
+    current = idx;
+    render(VOICES[current]);
+  }
+
+  prevBtn.addEventListener('click', () => {
+    goTo((current - 1 + VOICES.length) % VOICES.length, 'left');
+  });
+  nextBtn.addEventListener('click', () => {
+    goTo((current + 1) % VOICES.length, 'right');
+  });
+
+  render(VOICES[0]);
+  } // end init
+})();
+</script>
 
 <div class="article-hero">
   <img src="../uploads/WhatsApp%20Image%202026-06-20%20at%2000.13.29.jpeg" alt="Schlussapplaus beim Musical Julia – alle Darstellerinnen und Darsteller auf der Bühne">
