@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="../favicon-32.png" sizes="32x32" type="image/png">
+    <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<title>Workshop „Flusswanderung" an der Triesting – MS Hirtenberg</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../variables.css">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--font-body); background: var(--cream); color: var(--text); font-size: 17px; line-height: 1.7; }
+  .article-hero { position: relative; height: 480px; overflow: hidden; display: flex; align-items: flex-end; }
+  .article-hero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 40%; }
+  .article-hero-overlay { position: absolute; inset: 0; background: linear-gradient(to top, oklch(22% 0.06 145 / 0.80) 0%, transparent 60%); }
+  .article-hero-content { position: relative; z-index: 2; padding: 48px 96px; max-width: 900px; }
+  .article-tag { display: inline-flex; align-items: center; gap: 7px; background: var(--white); color: var(--sage); font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; padding: 5px 14px; border-radius: 30px; margin-bottom: 14px; border: 1.5px solid var(--sage-pale); }
+  .article-hero-title { font-family: var(--font-heading); color: var(--white); font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 700; line-height: 1.2; text-shadow: 0 2px 12px oklch(0% 0 0 / 30%); }
+  .article-wrapper { max-width: 800px; margin: 0 auto; padding: 64px 48px 100px; }
+  .article-meta { display: flex; align-items: center; gap: 24px; padding-bottom: 28px; border-bottom: 1.5px solid var(--cream-dark); margin-bottom: 40px; color: var(--text-light); font-size: 0.88rem; font-weight: 600; flex-wrap: wrap; }
+  .article-lead { font-family: var(--font-heading); font-size: 1.3rem; line-height: 1.5; color: var(--text); margin-bottom: 28px; font-weight: 600; }
+  .article-body h2 { font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700; margin: 40px 0 14px; color: var(--text); }
+  .article-body p { margin-bottom: 20px; color: var(--text-light); text-wrap: pretty; }
+  .article-body strong { color: var(--text); font-weight: 700; }
+  .article-body blockquote { border-left: 3px solid var(--sage-light); margin: 32px 0; padding: 16px 24px; background: var(--sage-pale); border-radius: 0 var(--radius) var(--radius) 0; font-style: italic; color: var(--text); }
+
+  .fact-box { background: var(--white); border: 1.5px solid var(--cream-dark); border-radius: var(--radius-lg); padding: 28px 32px; margin: 38px 0; box-shadow: 0 6px 24px oklch(0% 0 0 / 5%); }
+  .fact-box-head { display: flex; align-items: center; gap: 12px; font-family: var(--font-heading); font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.13em; color: var(--sage); margin-bottom: 22px; }
+  .fact-box-head::after { content: ""; flex: 1; height: 1px; background: var(--cream-dark); }
+  .fact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px 28px; }
+  .fact-item { display: flex; gap: 14px; align-items: flex-start; }
+  .fact-icon { flex-shrink: 0; width: 40px; height: 40px; border-radius: 11px; background: var(--sage-pale); display: flex; align-items: center; justify-content: center; }
+  .fact-icon svg { width: 20px; height: 20px; stroke: var(--sage); }
+  .fact-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text-light); margin-bottom: 3px; }
+  .fact-value { font-size: 0.98rem; font-weight: 700; color: var(--text); line-height: 1.35; }
+
+  .article-photo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 36px 0; }
+  .article-photo-grid img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: var(--radius); display: block; }
+  .article-photo-grid img.wide { grid-column: span 2; aspect-ratio: 16/9; }
+  .article-photo-grid img.portrait { aspect-ratio: 3/4; }
+  .photo-caption { font-size: 0.85rem; font-style: italic; color: var(--text-light); text-align: center; margin: -22px 0 36px; }
+
+  .species-card { display: flex; gap: 16px; align-items: center; background: var(--white); border: 1.5px solid var(--cream-dark); border-radius: var(--radius); padding: 16px 20px; margin: 14px 0; }
+  .species-card img { width: 74px; height: 74px; object-fit: cover; border-radius: 10px; flex-shrink: 0; }
+  .species-card-text { font-size: 0.92rem; color: var(--text-light); }
+  .species-card-text strong { color: var(--text); font-family: var(--font-heading); font-size: 1rem; display: block; margin-bottom: 2px; }
+
+  .back-link { display: inline-flex; align-items: center; gap: 8px; color: var(--sage); font-weight: 700; text-decoration: none; font-size: 0.9rem; margin-bottom: 40px; transition: gap 0.2s; }
+  .back-link:hover { gap: 12px; color: var(--sage-dark); }
+
+  @media (max-width: 768px) {
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .article-hero-content { padding: 32px 20px; }
+    .article-wrapper { padding: 40px 20px 80px; }
+    .article-photo-grid { grid-template-columns: 1fr; }
+    .article-photo-grid img.wide { grid-column: unset; aspect-ratio: 4/3; }
+    .fact-grid { grid-template-columns: 1fr; }
+    .species-card { flex-direction: column; align-items: flex-start; }
+  }
+
+  /* WEITERE BEITRÄGE */
+  .post-nav { max-width: 800px; margin: 0 auto; padding: 30px 48px 84px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; border-top: 1.5px solid var(--cream-dark); }
+  .post-nav.single { grid-template-columns: 1fr; }
+  .post-nav-link { display: flex; flex-direction: column; gap: 3px; padding: 13px 16px; background: transparent; border: 1px solid var(--cream-dark); border-radius: var(--radius); text-decoration: none; transition: background 0.2s, border-color 0.2s; }
+  .post-nav-link:hover { background: var(--white); border-color: var(--sage-light); }
+  .post-nav-link.next { text-align: right; align-items: flex-end; }
+  .post-nav-dir { font-size: 0.66rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.09em; color: var(--sage); white-space: nowrap; }
+  .post-nav-title { font-family: var(--font-body); font-size: 0.9rem; font-weight: 600; color: var(--text); line-height: 1.35; }
+  .post-nav-link:hover .post-nav-title { color: var(--sage-dark); }
+  @media (max-width: 768px) {
+    .post-nav { grid-template-columns: 1fr; padding: 32px 20px 70px; }
+    .post-nav-link.next { text-align: left; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<script src="../nav.js"></script>
+
+<div class="article-hero">
+  <img src="triesting-hero.jpg" alt="Schülerinnen und Schüler suchen mit Keschern nach Kleintieren in der Triesting">
+  <div class="article-hero-overlay"></div>
+  <div class="article-hero-content">
+    <div class="article-tag">Naturwissenschaftliches Projekt</div>
+    <h1 class="article-hero-title">Workshop „Flusswanderung" an der Triesting</h1>
+  </div>
+</div>
+
+<div class="article-wrapper">
+  <a href="../aktuelles.html" class="back-link">← Zurück zur Übersicht</a>
+
+  <div class="article-meta">
+    <span>📅 Juli 2026</span>
+    <span>🔬 Gewässerökologie</span>
+    <span>📍 Triesting</span>
+  </div>
+
+  <div class="article-body">
+    <p class="article-lead">Nasse Füße, volle Kescher und jede Menge Entdeckerfreude: Beim Workshop „Flusswanderung" ging es für unsere Schülerinnen und Schüler direkt hinein in die Triesting — auf der Suche nach den kleinen Bewohnern des Flusses.</p>
+
+    <div class="fact-box">
+      <div class="fact-box-head">Auf einen Blick</div>
+      <div class="fact-grid">
+        <div class="fact-item">
+          <div class="fact-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20M2 12c0-3 4-5 4-5s2 2 6 2 6-2 6-2 4 2 4 5-4 5-4 5-2-2-6-2-6 2-6 2-4-2-4-5Z"/></svg></div>
+          <div>
+            <div class="fact-label">Gewässer</div>
+            <div class="fact-value">Die Triesting</div>
+          </div>
+        </div>
+        <div class="fact-item">
+          <div class="fact-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+          <div>
+            <div class="fact-label">Methode</div>
+            <div class="fact-value">Kescher, Sieb &amp; Bestimmungsschlüssel</div>
+          </div>
+        </div>
+        <div class="fact-item">
+          <div class="fact-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 20v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9.5" cy="7" r="3.5"/><path d="M22 20v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.5a4 4 0 0 1 0 7"/></svg></div>
+          <div>
+            <div class="fact-label">Format</div>
+            <div class="fact-value">Workshop im Freien, klassenweise</div>
+          </div>
+        </div>
+        <div class="fact-item">
+          <div class="fact-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+          <div>
+            <div class="fact-label">Wichtigste Regel</div>
+            <div class="fact-value">Alle Tiere wurden wieder freigelassen</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2>Mit Kescher und Sieb unterwegs</h2>
+    <p>Barfuß oder mit alten Turnschuhen ging es für die Schülerinnen und Schüler direkt ins kühle Nass. Mit Keschern und feinen Sieben wurde vorsichtig zwischen Steinen, Kies und Strömung nach Kleinlebewesen gesucht — für viele der erste bewusste Blick unter die Wasseroberfläche eines heimischen Flusses.</p>
+
+    <div class="article-photo-grid">
+      <img src="triesting-maedchen.jpg" alt="Schülerinnen waten durch die Triesting auf der Suche nach Kleintieren">
+      <img src="triesting-gruppe.jpg" alt="Gruppe von Schülerinnen und Schülern bei der Auswertung ihres Fangs am Ufer">
+    </div>
+
+    <h2>Wer lebt eigentlich im Wasser?</h2>
+    <p>Was im ersten Moment nach einer einfachen Becher-Ladung Wasser und Schlamm aussah, entpuppte sich bei genauerem Hinsehen als kleines Ökosystem: Köcherfliegenlarven, Eintagsfliegenlarven, ein Flusskrebs und sogar ein kleiner Fisch fanden sich in den Fangbehältern wieder.</p>
+
+    <div class="article-photo-grid">
+      <img src="triesting-krebs.jpg" alt="Ein junger Flusskrebs im Fangbecher" class="portrait">
+      <img src="triesting-fisch.jpg" alt="Ein kleiner Fisch schwimmt im Fangbecher" class="portrait">
+    </div>
+
+    <p>Anschließend hieß es: bestimmen statt raten. Mit einem <strong>Bestimmungsschlüssel</strong> ordneten die Schülerinnen und Schüler ihre Funde konkreten Arten zu — anhand von Merkmalen wie Körperform, Beinpaaren oder charakteristischen Anhängen. Das ist mehr als ein nettes Naturerlebnis: Die gefundenen Kleinlebewesen gelten in der Gewässerökologie als <strong>Bioindikatoren</strong> — bestimmte Arten reagieren sehr empfindlich auf Wasserqualität und Sauerstoffgehalt und verraten so, wie gesund ein Gewässer tatsächlich ist.</p>
+
+    <div class="article-photo-grid">
+      <img src="triesting-bestimmungskarten.jpg" alt="Bestimmungskarten verschiedener Wasserlebewesen ausgebreitet am Ufer" class="wide">
+    </div>
+    <p class="photo-caption">Mit Bestimmungskarten wurden die gefundenen Kleintiere den passenden Arten zugeordnet.</p>
+
+    <div class="article-photo-grid">
+      <img src="triesting-becher-insekten.jpg" alt="Verschiedene Kleintiere und Larven in einem Fangbecher" class="wide">
+    </div>
+
+    <blockquote>„Ja, wir haben die Tierchen gesammelt, mit Hilfe eines Bestimmungsschlüssels identifiziert und natürlich wieder freigelassen."</blockquote>
+
+    <h2>Und wieder zurück ins Wasser</h2>
+    <p>Nach dem genauen Beobachten und Bestimmen ging jedes Tier dorthin zurück, wo es hergekommen war: zurück in die Triesting. Denn Forschen heißt nicht nur genau hinsehen, sondern auch verantwortungsvoll mit dem umzugehen, was man findet.</p>
+
+    <div class="article-photo-grid">
+      <img src="triesting-freilassen.jpg" alt="Freilassen der gesammelten Wasserlebewesen zurück in die Triesting" class="wide">
+    </div>
+    <p class="photo-caption">Alle gesammelten Tiere wurden nach der Bestimmung wieder behutsam in die Triesting entlassen.</p>
+
+    <p>Ein gelungener Vormittag mit nassen Füßen, klugen Fragen und ganz viel Respekt vor dem, was direkt vor unserer Haustür im Wasser lebt.</p>
+  </div>
+</div>
+
+<div class="post-nav" role="navigation" aria-label="Weitere Beiträge">
+  <a class="post-nav-link next" href="musical-julia.html">
+    <span class="post-nav-dir">Nächster Beitrag →</span>
+    <span class="post-nav-title">Das Musical „Julia" begeistert das Publikum</span>
+  </a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-main">
+    <div class="footer-brand">
+      <div class="footer-brand-row">
+        <svg width="42" height="42" viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="19" cy="19" r="17" fill="none" stroke="oklch(80% 0.07 145)" stroke-width="1.3"/>
+          <circle cx="19" cy="19" r="13.5" fill="none" stroke="oklch(80% 0.07 145)" stroke-width="0.4" opacity="0.4"/>
+          <line x1="19" y1="27" x2="19" y2="22" stroke="oklch(80% 0.07 145)" stroke-width="1.4" stroke-linecap="round"/>
+          <path d="M19 22 C22 18 22 12 19 11 C16 12 16 18 19 22Z" fill="oklch(80% 0.07 145)"/>
+          <path d="M19 22 C15 19 12 15 13 13 C15 13 18 18 19 22Z" fill="oklch(68% 0.09 145)"/>
+          <path d="M19 22 C23 19 26 15 25 13 C23 13 20 18 19 22Z" fill="oklch(68% 0.09 145)"/>
+          <circle cx="19" cy="2" r="1.8" fill="oklch(70% 0.12 68)"/>
+        </svg>
+        <span class="footer-brand-name">Mittelschule<br>Hirtenberg</span>
+      </div>
+      <p class="footer-tagline">Gemeinsam lernen, wachsen und die eigenen Stärken entdecken – mitten im Herzen von Hirtenberg.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Entdecken</h4>
+      <ul>
+        <li><a href="../index.html#news">Aktuelles</a></li>
+        <li><a href="../termine.html">Termine</a></li>
+        <li><a href="../index.html#team">Lehrpersonal</a></li>
+        <li><a href="../index.html#galerie">Galerie</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Service</h4>
+      <ul>
+        <li><a href="../neu-bei-uns.html">Neu bei uns?</a></li>
+        <li><a href="../schwerpunkte.html">Schwerpunkte</a></li>
+        <li><a href="../formulare.html">Formulare</a></li>
+        <li><a href="../stundenzeiten.html">Stundenzeiten</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Kontakt</h4>
+      <div class="footer-contact">
+        <div class="footer-contact-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="oklch(80% 0.07 145)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Schulgasse 1<br>2552 Hirtenberg</span>
+        </div>
+        <div class="footer-contact-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="oklch(80% 0.07 145)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+          <a href="tel:+43225612345">02256 / 12 34 56</a>
+        </div>
+        <div class="footer-contact-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="oklch(80% 0.07 145)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+          <a href="mailto:office@ms-hirtenberg.at">office@ms-hirtenberg.at</a>
+        </div>
+        <div class="footer-contact-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="oklch(80% 0.07 145)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          <span>Direktion: Mo–Fr 7:30–12:00 Uhr</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-bottom-inner">
+      <div>© 2026 Mittelschule Hirtenberg · Alle Rechte vorbehalten</div>
+      <div class="footer-legal">
+        <a href="../impressum.html">Impressum</a>
+        <a href="../datenschutz.html">Datenschutz</a>
+        <a href="../barrierefreiheit.html">Barrierefreiheit</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

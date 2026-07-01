@@ -538,6 +538,15 @@
     width: 13px; height: 13px; flex: none; color: var(--sage);
   }
   .termine-preview-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .termine-empty {
+    grid-column: 1 / -1;
+    display: flex; flex-direction: column; align-items: center; text-align: center;
+    gap: 18px; padding: 56px 32px;
+    background: var(--white); border: 1.5px solid var(--cream-dark); border-radius: var(--radius-lg);
+  }
+  .termine-empty-icon { width: 64px; height: 64px; color: var(--sage-light); }
+  .termine-empty-title { font-family: var(--font-heading); font-size: 1.2rem; font-weight: 700; color: var(--text); }
+  .termine-empty-sub { font-size: 0.92rem; color: var(--text-light); max-width: 380px; }
   .termine-card {
     background: var(--white); border-radius: var(--radius-lg);
     border: 1.5px solid var(--cream-dark); border-left: 4px solid var(--sage);
@@ -1012,6 +1021,17 @@
     <h2 class="section-title">News & Veranstaltungen</h2>
     <p class="section-subtitle">Hier finden Sie aktuelle Informationen rund um das Schulleben.</p>
     <div class="news-grid">
+      <a class="news-card" href="news/flusswanderung-triesting.html" style="text-decoration:none;color:inherit;display:block;">
+        <div class="news-card-img">
+          <img src="news/triesting-hero.jpg" alt="Schülerinnen und Schüler suchen mit Keschern nach Kleintieren in der Triesting">
+        </div>
+        <div class="news-card-body">
+          <div class="news-date">Juli 2026</div>
+          <div class="news-title">Workshop „Flusswanderung" an der Triesting</div>
+          <div class="news-excerpt">Kescher, Sieb und Bestimmungsschlüssel: Unsere Schülerinnen und Schüler erforschten die kleinen Bewohner der Triesting — und ließen sie danach wieder frei.</div>
+          <span class="news-link">Weiterlesen →</span>
+        </div>
+      </a>
       <a class="news-card" href="news/musical-julia.html" style="text-decoration:none;color:inherit;display:block;">
         <div class="news-card-img">
           <img src="uploads/WhatsApp%20Image%202026-06-20%20at%2000.13.29.jpeg" alt="Musical Julia – Schlussapplaus">
@@ -1031,17 +1051,6 @@
           <div class="news-date">4. Juni 2026</div>
           <div class="news-title">Heftliste für das Schuljahr 2026/27</div>
           <div class="news-excerpt">Die aktuelle Heftliste für alle Schulstufen ist online — übersichtlich nach Klassen und Fächern, auch als PDF zum Ausdrucken.</div>
-          <span class="news-link">Weiterlesen →</span>
-        </div>
-      </a>
-      <a class="news-card" href="news/markttage.html" style="text-decoration:none;color:inherit;display:block;">
-        <div class="news-card-img">
-          <img src="https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=700&fit=crop&crop=center" alt="Markttage Junior Company">
-        </div>
-        <div class="news-card-body">
-          <div class="news-date">Mai 2026</div>
-          <div class="news-title">Markttage in Hirtenberg und Enzesfeld</div>
-          <div class="news-excerpt">Mehr als 100 selbst gezogene Gemüse- und Kräuterpflanzen verkauft! Unsere Junior Company lernte den vollen Kreislauf eines Unternehmens kennen.</div>
           <span class="news-link">Weiterlesen →</span>
         </div>
       </a>
@@ -1441,6 +1450,13 @@
       .sort((a,b) => a.date.localeCompare(b.date))
       .slice(0, 3);
     const tagLabels = { test:'Schularbeit', event:'Veranstaltung', free:'Schulfrei', conf:'Konferenz', trip:'Ausflug' };
+    if (next3.length === 0) {
+      list.innerHTML = `<div style="display:flex;align-items:center;gap:10px;padding:10px 0;color:var(--text-light);font-size:0.86rem;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;color:var(--sage-light);"><rect x="3" y="4.5" width="18" height="17" rx="2.5"/><line x1="3" y1="9.5" x2="21" y2="9.5"/><path d="M8.5 15l2.2 2.2L15.5 13"/></svg>
+        <span>Keine bevorstehenden Termine</span>
+      </div>`;
+      return;
+    }
     list.innerHTML = next3.map(e => {
       const dt = new Date(e.date + 'T12:00:00');
       const day = dt.getDate();
@@ -1475,6 +1491,20 @@
       .sort((a,b) => a.date.localeCompare(b.date))
       .slice(0, 3);
     const tagLabels = { test:'Schularbeit', event:'Veranstaltung', free:'Schulfrei', conf:'Konferenz', trip:'Ausflug' };
+    if (next3.length === 0) {
+      container.innerHTML = `<div class="termine-empty">
+        <svg class="termine-empty-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="4.5" width="18" height="17" rx="2.5"/>
+          <line x1="3" y1="9.5" x2="21" y2="9.5"/>
+          <line x1="8" y1="2.5" x2="8" y2="6.5"/>
+          <line x1="16" y1="2.5" x2="16" y2="6.5"/>
+          <path d="M8.5 15l2.2 2.2L15.5 13"/>
+        </svg>
+        <div class="termine-empty-title">Keine bevorstehenden Termine für dieses Schuljahr</div>
+        <div class="termine-empty-sub">Neue Termine für das kommende Schuljahr werden hier rechtzeitig veröffentlicht.</div>
+      </div>`;
+      return;
+    }
     container.innerHTML = next3.map(e => {
       const dt = new Date(e.date + 'T12:00:00');
       const day = dt.getDate();

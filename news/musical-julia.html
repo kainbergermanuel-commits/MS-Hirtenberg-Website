@@ -185,9 +185,11 @@
     margin-top: 2px;
   }
 
-  .post-nav { max-width: 800px; margin: 0 auto; padding: 30px 48px 84px; display: grid; grid-template-columns: 1fr; gap: 12px; border-top: 1.5px solid var(--cream-dark); }
+  .post-nav { max-width: 800px; margin: 0 auto; padding: 30px 48px 84px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; border-top: 1.5px solid var(--cream-dark); }
+  .post-nav.single { grid-template-columns: 1fr; }
   .post-nav-link { display: flex; flex-direction: column; gap: 3px; padding: 13px 16px; background: transparent; border: 1px solid var(--cream-dark); border-radius: var(--radius); text-decoration: none; transition: background 0.2s, border-color 0.2s; }
   .post-nav-link:hover { background: var(--white); border-color: var(--sage-light); }
+  .post-nav-link.next { text-align: right; align-items: flex-end; }
   .post-nav-dir { font-size: 0.66rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.09em; color: var(--sage); }
   .post-nav-title { font-size: 0.9rem; font-weight: 600; color: var(--text); line-height: 1.35; }
   .post-nav-link:hover .post-nav-title { color: var(--sage-dark); }
@@ -204,7 +206,8 @@
     .fact-box { padding: 24px; }
     .pull-quote p { font-size: 1.25rem; }
     .closing-box { flex-direction: column; gap: 14px; padding: 24px; }
-    .post-nav { padding: 32px 20px 70px; }
+    .post-nav { grid-template-columns: 1fr; padding: 32px 20px 70px; }
+    .post-nav-link.next { text-align: left; align-items: flex-start; }
   }
 
   /* ── Stimmen-Karussell ── */
@@ -482,7 +485,11 @@
   </div>
 </div>
 
-<div class="post-nav single" role="navigation" aria-label="Weitere Beiträge">
+<div class="post-nav" role="navigation" aria-label="Weitere Beiträge">
+  <a class="post-nav-link prev" href="flusswanderung-triesting.html">
+    <span class="post-nav-dir">← Vorheriger Beitrag</span>
+    <span class="post-nav-title">Workshop „Flusswanderung" an der Triesting</span>
+  </a>
   <a class="post-nav-link next" href="heftliste.html">
     <span class="post-nav-dir">Nächster Beitrag →</span>
     <span class="post-nav-title">Heftliste für das Schuljahr 2026/27</span>
